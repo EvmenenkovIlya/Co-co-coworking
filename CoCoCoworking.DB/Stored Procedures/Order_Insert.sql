@@ -8,3 +8,5 @@ BEGIN
 	 INSERT INTO dbo.[Order](CustomerId, OrderCost,OrderStatusId,PaidDate)
 	 VALUES (@CustomerId, @OrderCost, @OrderStatusId, @PaidDate)
 END
+
+
