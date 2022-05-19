@@ -72,5 +72,6 @@
     <Build Include="dbo\Tables\RentPrice.sql" />
     <Build Include="dbo\Tables\Room.sql" />
     <Build Include="dbo\Tables\Subsription.sql" />
+    <Build Include="Procedure1.sql" />
   </ItemGroup>
 </Project>
