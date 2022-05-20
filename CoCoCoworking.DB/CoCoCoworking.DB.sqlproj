@@ -60,6 +60,7 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
+    <Folder Include="Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\WorkPlace.sql" />
@@ -72,5 +73,7 @@
     <Build Include="dbo\Tables\RentPrice.sql" />
     <Build Include="dbo\Tables\Room.sql" />
     <Build Include="dbo\Tables\Subsription.sql" />
+    <Build Include="Stored Procedures\Order_Insert.sql" />
+    <Build Include="Stored Procedures\OrderUnit_Insert.sql" />
   </ItemGroup>
 </Project>
