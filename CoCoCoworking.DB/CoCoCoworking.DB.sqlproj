@@ -72,5 +72,9 @@
     <Build Include="dbo\Tables\Room.sql" />
     <Build Include="Stored Procedures\Order_Insert.sql" />
     <Build Include="Stored Procedures\OrderUnit_Insert.sql" />
+    <Build Include="Stored Procedures\Room_GetAll.sql" />
+    <Build Include="Stored Procedures\Room_GetById.sql" />
+    <Build Include="Stored Procedures\Room_Update.sql" />
+    <Build Include="Stored Procedures\Room_Add.sql" />
   </ItemGroup>
 </Project>
