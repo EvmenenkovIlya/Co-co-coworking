@@ -3,12 +3,12 @@
 	@EndDate nvarchar(255),
 	@RoomId int,
 	@WorkPlaceId int,
+	@WorkPlaceInRoomId int,
 	@AdditionalServiceId int,
-	@OrderUnitCost decimal(18,0),
 	@OrderId int
 AS
 BEGIN
-	 INSERT INTO dbo.[OrderUnit](StartDate, EndDate,RoomId,WorkPlaceId,AdditionalServiceId,OrderUnitCost,OrderId )
-	 VALUES (@StartDate, @EndDate,@RoomId,@WorkPlaceId,@AdditionalServiceId,@OrderUnitCost,@OrderId)
+	 INSERT INTO dbo.[OrderUnit](StartDate, EndDate,RoomId,WorkPlaceId,WorkPlaceInRoomId, AdditionalServiceId,OrderId )
+	 VALUES (@StartDate, @EndDate,@RoomId,@WorkPlaceId,@WorkPlaceInRoomId, @AdditionalServiceId,@OrderId)
 END
 
