@@ -64,15 +64,12 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\WorkPlace.sql" />
-    <Build Include="dbo\Tables\TypesOfPlace.sql" />
     <Build Include="dbo\Tables\OrderUnit.sql" />
     <Build Include="dbo\Tables\AdditionalService.sql" />
     <Build Include="dbo\Tables\Customer.sql" />
     <Build Include="dbo\Tables\Order.sql" />
-    <Build Include="dbo\Tables\OrderStatus.sql" />
     <Build Include="dbo\Tables\RentPrice.sql" />
     <Build Include="dbo\Tables\Room.sql" />
-    <Build Include="dbo\Tables\Subsription.sql" />
     <Build Include="Stored Procedures\Order_Insert.sql" />
     <Build Include="Stored Procedures\OrderUnit_Insert.sql" />
   </ItemGroup>
