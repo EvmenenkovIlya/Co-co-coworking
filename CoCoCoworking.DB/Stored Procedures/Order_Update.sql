@@ -11,11 +11,10 @@ BEGIN
 	
 	UPDATE [dbo].[Order]
 
-	SET CustomerId = @CustomerId,
-		CustomerId= @CustomerId,
-	    OrderCost= @OrderCost,
-	    OrderStatus= @OrderStatus,
-	    PaidDate= @PaidDate
+	SET CustomerId = @CustomerId,		
+	    OrderCost = @OrderCost,
+	    OrderStatus = @OrderStatus,
+	    PaidDate = @PaidDate
 
 	WHERE Id = @Id
 END

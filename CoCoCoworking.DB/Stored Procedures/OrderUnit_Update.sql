@@ -14,7 +14,7 @@ BEGIN
 	
 	UPDATE [dbo].[OrderUnit]
 
-	SET Id= @Id,
+	SET 
 	StartDate= @StartDate,
 	EndDate= @EndDate,
 	RoomId= @RoomId,
