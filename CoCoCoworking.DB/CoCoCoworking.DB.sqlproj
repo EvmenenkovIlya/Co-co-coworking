@@ -80,5 +80,7 @@
     <Build Include="Stored Procedures\OrderUnit_GetAll.sql" />
     <Build Include="Stored Procedures\OrderUnit_GetById.sql" />
     <Build Include="Stored Procedures\Order_GetById.sql" />
+    <Build Include="Stored Procedures\Order_Update.sql" />
+    <Build Include="Stored Procedures\OrderUnit_Update.sql" />
   </ItemGroup>
 </Project>
