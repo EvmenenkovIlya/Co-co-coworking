@@ -8,7 +8,26 @@
 	@OrderId int
 AS
 BEGIN
-	 INSERT INTO dbo.[OrderUnit](StartDate, EndDate,RoomId,WorkPlaceId,WorkPlaceInRoomId, AdditionalServiceId,OrderId )
-	 VALUES (@StartDate, @EndDate,@RoomId,@WorkPlaceId,@WorkPlaceInRoomId, @AdditionalServiceId,@OrderId)
+	 INSERT INTO dbo.[OrderUnit]
+	 (
+	 StartDate,
+	 EndDate,
+	 RoomId,
+	 WorkPlaceId,
+	 WorkPlaceInRoomId,
+	 AdditionalServiceId,
+	 OrderId
+	 )
+	 VALUES 
+	 (
+	 @StartDate,
+	 @EndDate,
+	 @RoomId,
+	 @WorkPlaceId,
+	 @WorkPlaceInRoomId,
+	 @AdditionalServiceId,
+	 @OrderId
+	 )
+	  SELECT SCOPE_IDENTITY() AS [SCOPE_IDENTITY]
 END
 
