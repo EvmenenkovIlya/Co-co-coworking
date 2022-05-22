@@ -74,6 +74,16 @@
     <Build Include="Stored Procedures\Room_GetById.sql" />
     <Build Include="Stored Procedures\Room_Update.sql" />
     <Build Include="Stored Procedures\Room_Add.sql" />
+    <Build Include="Stored Procedures\Order_GelAll.sql" />
+    <Build Include="Stored Procedures\OrderUnit_GetAll.sql" />
+    <Build Include="Stored Procedures\OrderUnit_GetById.sql" />
+    <Build Include="Stored Procedures\Order_GetById.sql" />
+    <Build Include="Stored Procedures\Order_Update.sql" />
+    <Build Include="Stored Procedures\OrderUnit_Update.sql" />
+    <Build Include="Stored Procedures\Workplace_GetAll.sql" />
+    <Build Include="Stored Procedures\Workplace_GetById.sql" />
+    <Build Include="Stored Procedures\Workplace_Add.sql" />
+    <Build Include="Stored Procedures\Workplace_Update.sql" />
     <Build Include="Stored Procedures\Customer_Add.sql" />
     <Build Include="Stored Procedures\Customer_GetAll.sql" />
     <Build Include="Stored Procedures\Customer_Update.sql" />
