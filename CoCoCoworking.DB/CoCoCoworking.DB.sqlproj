@@ -93,5 +93,10 @@
     <Build Include="Stored Procedures\RentPrice_GetById.sql" />
     <Build Include="Stored Procedures\RentPrice_Update.sql" />
     <Build Include="Stored Procedures\RentPrice_SoftDelete.sql" />
+    <Build Include="Stored Procedures\AdditionalService_Add.sql" />
+    <Build Include="Stored Procedures\AdditionalService_GetAll.sql" />
+    <Build Include="Stored Procedures\AdditionalService_GetById.sql" />
+    <Build Include="Stored Procedures\AdditionalService_Update.sql" />
+    <Build Include="Stored Procedures\AdditionalService_SoftDelete.sql" />
   </ItemGroup>
 </Project>
