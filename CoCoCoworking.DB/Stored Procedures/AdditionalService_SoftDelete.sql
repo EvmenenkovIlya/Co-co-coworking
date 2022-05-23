@@ -4,7 +4,7 @@
 AS
 Begin
 	Update dbo.AdditionalService 
-	set IsDeleted = @IsDeleted
-	where Id = @Id
+	SET [IsDeleted] = @IsDeleted
+	WHERE Id = @Id
 End
 	
