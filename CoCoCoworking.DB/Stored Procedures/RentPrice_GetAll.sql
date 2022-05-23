@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[RentPrice_GelAll]
+﻿CREATE PROCEDURE [dbo].[RentPrice_GetAll]
 	
 AS
 BEGIN
