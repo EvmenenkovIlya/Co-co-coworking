@@ -1,13 +1,12 @@
 ﻿CREATE PROCEDURE [dbo].[RentPrice_SoftDelete]
-	@Id int,	
-	@IsDeleted bit
+	@Id int	
 
 AS
 BEGIN
 	
 	UPDATE [dbo].RentPrice
 
-	SET [IsDeleted] = @IsDeleted
+	SET [IsDeleted] = 1
 
 	WHERE Id = @Id
 END
