@@ -5,4 +5,3 @@ Begin
 Select *From dbo.AdditionalService
 where IsDeleted = 0
 End
-	
