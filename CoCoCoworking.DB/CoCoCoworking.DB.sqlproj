@@ -99,5 +99,6 @@
     <Build Include="Stored Procedures\AdditionalService_Update.sql" />
     <Build Include="Stored Procedures\AdditionalService_SoftDelete.sql" />
     <Build Include="Stored Procedures\GetAllCustomerWhithOrderWithOrderUnit.sql" />
+    <Build Include="Stored Procedures\GetFinanceReport.sql" />
   </ItemGroup>
 </Project>
