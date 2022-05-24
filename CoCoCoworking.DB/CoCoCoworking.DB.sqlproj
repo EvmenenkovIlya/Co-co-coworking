@@ -98,5 +98,6 @@
     <Build Include="Stored Procedures\AdditionalService_GetById.sql" />
     <Build Include="Stored Procedures\AdditionalService_Update.sql" />
     <Build Include="Stored Procedures\AdditionalService_SoftDelete.sql" />
+    <Build Include="Stored Procedures\GetAllCustomerWithActiveSubscription.sql" />
   </ItemGroup>
 </Project>
