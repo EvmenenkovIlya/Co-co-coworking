@@ -7,6 +7,7 @@
     [WorkPlaceInRoomId]   INT            NULL,
     [AdditionalServiceId] INT            NULL,
     [OrderId]             INT            NOT NULL,
+    [OrderUnitCost]       DECIMAL        NOT NULL,
     CONSTRAINT [PK__OrderUni__3214EC078C0B9961] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK__OrderUnit__Addit__5535A963] FOREIGN KEY ([AdditionalServiceId]) REFERENCES [dbo].[AdditionalService] ([Id]),
     CONSTRAINT [FK__OrderUnit__Order__5629CD9C] FOREIGN KEY ([OrderId]) REFERENCES [dbo].[Order] ([Id]),

@@ -5,7 +5,8 @@
 	@WorkPlaceId int,
 	@WorkPlaceInRoomId int,
 	@AdditionalServiceId int,
-	@OrderId int
+	@OrderId int,
+	@OrderUnitCost decimal
 AS
 BEGIN
 	 INSERT INTO dbo.[OrderUnit]
@@ -16,7 +17,8 @@ BEGIN
 	 WorkPlaceId,
 	 WorkPlaceInRoomId,
 	 AdditionalServiceId,
-	 OrderId
+	 OrderId,
+	 OrderUnitCost
 	 )
 	 VALUES 
 	 (
@@ -26,7 +28,8 @@ BEGIN
 	 @WorkPlaceId,
 	 @WorkPlaceInRoomId,
 	 @AdditionalServiceId,
-	 @OrderId
+	 @OrderId,
+	 @OrderUnitCost
 	 )
 	  SELECT SCOPE_IDENTITY() AS [SCOPE_IDENTITY]
 END
