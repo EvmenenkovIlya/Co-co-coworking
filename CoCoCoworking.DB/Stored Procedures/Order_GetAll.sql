@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[Order_GelAll]
+﻿CREATE PROCEDURE [dbo].[Order_GetAll]
 	
 AS
 BEGIN
