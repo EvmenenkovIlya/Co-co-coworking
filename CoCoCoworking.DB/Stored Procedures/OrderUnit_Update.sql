@@ -7,7 +7,8 @@
 	@WorkPlaceId int,
 	@WorkPlaceInRoomId int,
 	@AdditionalServiceId int,
-	@OrderId int
+	@OrderId int,
+	@OrderUnitCost decimal
 
 AS
 BEGIN
@@ -21,7 +22,8 @@ BEGIN
 	WorkPlaceId=@WorkPlaceId,
 	WorkPlaceInRoomId=@WorkPlaceInRoomId,
 	AdditionalServiceId=@AdditionalServiceId,
-	OrderId=@OrderId
+	OrderId=@OrderId,
+	OrderUnitCost=@OrderUnitCost
 
 	WHERE Id = @Id
 END
