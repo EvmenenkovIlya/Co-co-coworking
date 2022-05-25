@@ -31,5 +31,54 @@ namespace CoCoCoWorking.DAL
                     commandType: System.Data.CommandType.StoredProcedure);
             }
         }
+
+        public void AddOrderUnit(string startDate, string endDate, int roomId, int workPlaceId,
+                                             int workPlaceInRoomId, int orderId, decimal orderUnitCost)
+        {
+           
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                    connection.QuerySingle<OrderUnitDTO>(
+                    StoredProcedures.OrderUnit_Add,
+                     param: new
+                     { 
+                         startDate = startDate,
+                         endDate = endDate,
+                         roomId = roomId,
+                         workPlaceId = workPlaceId,
+                         orderId = orderId,
+                         orderUnitCost = orderUnitCost
+
+                     },
+                    commandType: System.Data.CommandType.StoredProcedure);
+            }
+        }
+
+        public void UpdateOrderUnit(int id, string startDate, string endDate, int roomId, int workPlaceId,
+                                                int workPlaceInRoomId, int orderId, decimal orderUnitCost)
+        {
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                connection.QuerySingleOrDefault<OrderUnitDTO>(
+                StoredProcedures.OrderUnit_Add,
+                 param: new
+                 {
+                     id = id,
+                     startDate = startDate,
+                     endDate = endDate,
+                     roomId = roomId,
+                     workPlaceId = workPlaceId,
+                     orderId = orderId,
+                     orderUnitCost = orderUnitCost
+
+                 },
+                commandType: System.Data.CommandType.StoredProcedure);
+            }
+        }
     }
 }
