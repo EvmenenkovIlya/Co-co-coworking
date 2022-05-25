@@ -4,5 +4,5 @@ AS
 BEGIN
 	SELECT *
 	FROM [dbo].[RentPrice]
-	WHERE Id = @Id
+	WHERE Id = @Id and IsDeleted = 0
 END
