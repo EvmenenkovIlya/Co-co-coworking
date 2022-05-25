@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace CoCoCoWorking.DAL.DTO
 {
-    internal class WorkPlaceDTO
+    public class WorkplaceDTO
     {
+        public int Id { get; set; }
+        public int RoomId { get; set; }
+        public int Number { get; set; }
+
+        public override string ToString()
+        {
+            return $"Id={Id} RommId={RoomId} Number={Number}";
+        }
     }
 }
