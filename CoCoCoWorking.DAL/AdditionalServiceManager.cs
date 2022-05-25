@@ -7,7 +7,7 @@ namespace CoCoCoWorking.DAL
 {
     public class AdditionalServiceManager
     {
-        public string connectionString = @"Server=.;Database=CoCoCoworking.DB;Trusted_Connection=True;";
+        public string connectionString = @"Server=DESKTOP-U9ABOQU\SQLEXPRESS;Database=CoCoCoworking.DB;Trusted_Connection=True;";
         public List<AdditionalServiceDTO> GetAllAdditionalService()
         {
             using (var connection = new SqlConnection(connectionString))
@@ -33,7 +33,7 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public void  AddAdditionalService(string firstName, string lastName, string phoneNumber, string email)
+        public void  AddAdditionalService(string name, int? count)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -43,30 +43,26 @@ namespace CoCoCoWorking.DAL
                     StoredProcedures.AdditionalService_Add,
                     param: new
                     {
-                        firstName = firstName,
-                        lastName = lastName,
-                        phoneNumber = phoneNumber,
-                        email = email,
+                        name = name,
+                        count = count,    
                     },
                     commandType: System.Data.CommandType.StoredProcedure);
             }
         }
 
-        public void UpdateAdditionalService(int id, string firstName, string lastName, string phoneNumber, string email)
+        public void UpdateAdditionalService(int id, string name, int? count)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
                 connection.QuerySingleOrDefault<AdditionalServiceDTO>(
-                StoredProcedures.AdditionalService_Add,
+                StoredProcedures.AdditionalService_Update,
                 param: new
                 {
                     id = id,
-                    firstName = firstName,
-                    lastName = lastName,
-                    phoneNumber = phoneNumber,
-                    email = email,
+                    name = name,
+                    count = count,
                 },
                 commandType: System.Data.CommandType.StoredProcedure);
             }
