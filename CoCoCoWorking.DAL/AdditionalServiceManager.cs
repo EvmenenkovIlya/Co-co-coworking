@@ -27,9 +27,61 @@ namespace CoCoCoWorking.DAL
                 connection.Open();
 
                 return connection.QuerySingle<AdditionalServiceDTO>(
-                    StoredProcedures.Customer_GetById,
+                    StoredProcedures.AdditionalService_GetById,
                     param: new { id = id },
                     commandType: System.Data.CommandType.StoredProcedure);
+            }
+        }
+
+        public void  AddAdditionalService(string firstName, string lastName, string phoneNumber, string email)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                    connection.QuerySingle<AdditionalServiceDTO>(
+                    StoredProcedures.AdditionalService_Add,
+                    param: new
+                    {
+                        firstName = firstName,
+                        lastName = lastName,
+                        phoneNumber = phoneNumber,
+                        email = email,
+                    },
+                    commandType: System.Data.CommandType.StoredProcedure);
+            }
+        }
+
+        public void UpdateAdditionalService(int id, string firstName, string lastName, string phoneNumber, string email)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                connection.QuerySingleOrDefault<AdditionalServiceDTO>(
+                StoredProcedures.AdditionalService_Add,
+                param: new
+                {
+                    id = id,
+                    firstName = firstName,
+                    lastName = lastName,
+                    phoneNumber = phoneNumber,
+                    email = email,
+                },
+                commandType: System.Data.CommandType.StoredProcedure);
+            }
+        }
+
+        public void DeleteAdditionalService(int id)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                connection.QuerySingleOrDefault<AdditionalServiceDTO>(
+                StoredProcedures.AdditionalService_SoftDelete,
+                param: new { id = id },
+                commandType: System.Data.CommandType.StoredProcedure);
             }
         }
     }
