@@ -32,8 +32,8 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public void AddOrderUnit(string startDate, string endDate, int roomId, int workPlaceId,
-                                             int workPlaceInRoomId, int AdditionalServiceId, int orderId, decimal orderUnitCost)
+        public void AddOrderUnit(string startDate, string endDate, int? roomId, int? workPlaceId,
+                                             int? workPlaceInRoomId, int? AdditionalServiceId, int orderId, decimal orderUnitCost)
         {
            
             using (var connection = new SqlConnection(connectionString))
@@ -58,8 +58,8 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public void UpdateOrderUnit(int id, string startDate, string endDate, int roomId, int workPlaceId, int workPlaceInRoomId, 
-                                                                     int additionalServiceId, int orderId, decimal orderUnitCost)
+        public void UpdateOrderUnit(int id, string startDate, string endDate, int? roomId, int? workPlaceId, int? workPlaceInRoomId, 
+                                                                     int? additionalServiceId, int orderId, decimal orderUnitCost)
         {
 
             using (var connection = new SqlConnection(connectionString))
