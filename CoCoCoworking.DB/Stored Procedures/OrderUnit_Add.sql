@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[OrderUnit_Insert]
+﻿CREATE PROCEDURE [dbo].[OrderUnit_Add]
 	@StartDate nvarchar(255),
 	@EndDate nvarchar(255),
 	@RoomId int,

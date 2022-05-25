@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[Order_Insert]
+﻿CREATE PROCEDURE [dbo].[Order_Add]
 	@CustomerId int,
 	@OrderCost decimal(18,2),
 	@OrderStatus nvarchar(255),
