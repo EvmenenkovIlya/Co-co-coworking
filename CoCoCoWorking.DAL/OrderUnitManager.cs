@@ -6,7 +6,7 @@ namespace CoCoCoWorking.DAL
 {
     public class OrderUnitManager
     {
-        public string connectionString = @"Server=.;Database=CoCoCoworking.DB;Trusted_Connection=True;";
+        public string connectionString = @"Server=DESKTOP-U9ABOQU\SQLEXPRESS;Database=CoCoCoworking.DB;Trusted_Connection=True;";
         public List<OrderUnitDTO> GetAllOrderUnit()
         {
             using (var connection = new SqlConnection(connectionString))
@@ -33,7 +33,7 @@ namespace CoCoCoWorking.DAL
         }
 
         public void AddOrderUnit(string startDate, string endDate, int roomId, int workPlaceId,
-                                             int workPlaceInRoomId, int orderId, decimal orderUnitCost)
+                                             int workPlaceInRoomId, int AdditionalServiceId, int orderId, decimal orderUnitCost)
         {
            
             using (var connection = new SqlConnection(connectionString))
@@ -48,6 +48,8 @@ namespace CoCoCoWorking.DAL
                          endDate = endDate,
                          roomId = roomId,
                          workPlaceId = workPlaceId,
+                         workPlaceInRoomId= workPlaceInRoomId,
+                         AdditionalServiceId = AdditionalServiceId,
                          orderId = orderId,
                          orderUnitCost = orderUnitCost
 
@@ -56,8 +58,8 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public void UpdateOrderUnit(int id, string startDate, string endDate, int roomId, int workPlaceId,
-                                                int workPlaceInRoomId, int orderId, decimal orderUnitCost)
+        public void UpdateOrderUnit(int id, string startDate, string endDate, int roomId, int workPlaceId, int workPlaceInRoomId, 
+                                                                     int additionalServiceId, int orderId, decimal orderUnitCost)
         {
 
             using (var connection = new SqlConnection(connectionString))
@@ -65,7 +67,7 @@ namespace CoCoCoWorking.DAL
                 connection.Open();
 
                 connection.QuerySingleOrDefault<OrderUnitDTO>(
-                StoredProcedures.OrderUnit_Add,
+                StoredProcedures.OrderUnit_Update,
                  param: new
                  {
                      id = id,
@@ -73,6 +75,8 @@ namespace CoCoCoWorking.DAL
                      endDate = endDate,
                      roomId = roomId,
                      workPlaceId = workPlaceId,
+                     workPlaceInRoomId= workPlaceInRoomId,
+                     additionalServiceId = additionalServiceId,
                      orderId = orderId,
                      orderUnitCost = orderUnitCost
 
