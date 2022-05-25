@@ -34,5 +34,8 @@
         public const string Workplace_Update = "Workplace_Update";
 
         public const string GetAllCustomerWhithOrderWithOrderUnit = "GetAllCustomerWhithOrderWithOrderUnit";
+        public const string GetAllCustomerWithActiveSubscription = "GetAllCustomerWithActiveSubscription";
+        public const string GetAllRoomAndWorkPlaceBusyOrFree = "GetAllRoomAndWorkPlaceBusyOrFree";
+        public const string GetFinancialReport = "GetFinancialReport";
     }
 }

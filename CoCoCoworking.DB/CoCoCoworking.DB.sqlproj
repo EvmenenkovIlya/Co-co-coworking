@@ -101,6 +101,6 @@
     <Build Include="Stored Procedures\GetAllCustomerWhithOrderWithOrderUnit.sql" />
     <Build Include="Stored Procedures\GetAllCustomerWithActiveSubscription.sql" />
     <Build Include="Stored Procedures\GetFinanceReport.sql" />
-    <Build Include="Stored Procedures\GetAllRoomAndWorckplaceBusyOrFree.sql" />
+    <Build Include="Stored Procedures\GetAllRoomAndWorkPlaceBusyOrFree.sql" />
   </ItemGroup>
 </Project>

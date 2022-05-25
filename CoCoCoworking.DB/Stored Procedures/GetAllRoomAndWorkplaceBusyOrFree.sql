@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetAllRoomAndWorckplaceBusyOrFree]
+﻿CREATE PROCEDURE [dbo].[GetAllRoomAndWorkPlaceBusyOrFree]
 	@bool bit
 AS
 BEGIN
