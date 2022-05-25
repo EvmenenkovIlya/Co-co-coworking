@@ -6,7 +6,7 @@ namespace CoCoCoWorking.DAL
 {
     public class CustomerManager
     {
-        public string connectionString = @"Server=.\MSSQLSERVER;Database=CoCoCoworking.DB;Trusted_Connection=True;";//тут ошибка где-то
+        public string connectionString = @"Server=.;Database=CoCoCoworking.DB;Trusted_Connection=True;";
         public List<CustomerDTO> GetAllCustomers()
         {
             using (var connection = new SqlConnection(connectionString))
