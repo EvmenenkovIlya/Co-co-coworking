@@ -102,5 +102,6 @@
     <Build Include="Stored Procedures\GetAllCustomerWithActiveSubscription.sql" />
     <Build Include="Stored Procedures\GetFinanceReport.sql" />
     <Build Include="Stored Procedures\GetAllRoomAndWorkPlaceBusyOrFree.sql" />
+    <Build Include="Stored Procedures\GetAllAdditionalService.sql" />
   </ItemGroup>
 </Project>
