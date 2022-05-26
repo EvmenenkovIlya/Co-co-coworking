@@ -4,7 +4,7 @@
 AS
 BEGIN
 
-	INSERT INTO [dbo].[Workplace]
+	INSERT INTO [dbo].[WorkPlace]
 	(
 		RoomId,
 		Number

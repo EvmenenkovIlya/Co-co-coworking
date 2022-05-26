@@ -6,7 +6,7 @@
 AS
 BEGIN
 	
-	UPDATE [dbo].Workplace
+	UPDATE [dbo].WorkPlace
 
 	SET [RoomId] = @RoomId,
 		Number = @Number
