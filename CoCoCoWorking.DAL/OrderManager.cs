@@ -14,7 +14,7 @@ namespace CoCoCoWorking.DAL
             {
                 connection.Open();
 
-                return connection.QuerySingle<OrderDTO>
+                return connection.QuerySingle
                        (StoredProcedures.Order_Add,
                        param: new
                        {
@@ -45,7 +45,7 @@ namespace CoCoCoWorking.DAL
             {
                 connection.Open();
                 return connection.Query<OrderDTO>
-                       (StoredProcedures.Order_GetAll,
+                    (StoredProcedures.Order_GetAll,
                        commandType: System.Data.CommandType.StoredProcedure)
                        .ToList();
             }
