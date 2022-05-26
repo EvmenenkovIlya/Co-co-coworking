@@ -7,7 +7,7 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CoCoCoworking.DB", "CoCoCow
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoCoCoWorking.DAL", "CoCoCoWorking.DAL\CoCoCoWorking.DAL.csproj", "{3BA43346-9405-4F89-9F7C-C56661EDA767}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{D0F37331-9199-4C3A-AB20-999D2F414C8D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForTestDAL", "ForTestDAL\ForTestDAL.csproj", "{251600B8-C884-4B9A-82DD-3DC02F21F167}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +25,10 @@ Global
 		{3BA43346-9405-4F89-9F7C-C56661EDA767}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BA43346-9405-4F89-9F7C-C56661EDA767}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BA43346-9405-4F89-9F7C-C56661EDA767}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D0F37331-9199-4C3A-AB20-999D2F414C8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D0F37331-9199-4C3A-AB20-999D2F414C8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D0F37331-9199-4C3A-AB20-999D2F414C8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D0F37331-9199-4C3A-AB20-999D2F414C8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{251600B8-C884-4B9A-82DD-3DC02F21F167}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{251600B8-C884-4B9A-82DD-3DC02F21F167}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{251600B8-C884-4B9A-82DD-3DC02F21F167}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{251600B8-C884-4B9A-82DD-3DC02F21F167}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
