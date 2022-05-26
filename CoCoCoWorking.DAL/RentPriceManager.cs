@@ -33,8 +33,8 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public void AddRentPrice(int roomId, int workPlaceInRoomId, int additionalServiceId, string periodType,
-                                               decimal regularPrice, decimal residentPrice, decimal fixedPrice)
+        public void AddRentPrice(int? roomId, int? workPlaceInRoomId, int? additionalServiceId, string periodType,
+                                               decimal regularPrice, decimal? residentPrice, decimal? fixedPrice)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -56,8 +56,8 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public void UpdateRentPrice(int id, int roomId, int workPlaceInRoomId, int additionalServiceId, string periodType,
-                                                          decimal regularPrice, decimal residentPrice, decimal fixedPrice)
+        public void UpdateRentPrice(int id, int? roomId, int? workPlaceInRoomId, int? additionalServiceId, string periodType,
+                                                          decimal regularPrice, decimal? residentPrice, decimal? fixedPrice)
         {
             using (var connection = new SqlConnection(connectionString))
             {
