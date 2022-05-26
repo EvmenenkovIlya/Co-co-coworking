@@ -3,7 +3,7 @@
 AS
 BEGIN
 	select distinct 
-		OU.[Startdate], 
+		OU.[StartDate], 
 		OU.[EndDate], 
 		R.[Name], 
 		R.[WorkPlaceNumber], 
