@@ -15,15 +15,16 @@ using CoCoCoWorking.DAL.DTO;
 
 //Console.WriteLine(CM.GetCustomerByID(2));
 
-var RM = new RoomManager();
+//var RM = new RoomManager();
 
 
-RM.AddRoom("Ромашка", 5);
-RM.AddRoom("Одуванчик", 10);
-List<RoomDTO> rooms = RM.GetAllRooms();
-foreach (var i in rooms)
-{
-    Console.WriteLine(i.ToString());
-}
-RM.UpdateRoom(2, "Лилия", 15);
-Console.WriteLine(RM.GetRoomByID(2));
+//RM.AddRoom("Ромашка", 5);
+//RM.AddRoom("Одуванчик", 10);
+//List<RoomDTO> rooms = RM.GetAllRooms();
+//foreach (var i in rooms)
+//{
+//    Console.WriteLine(i.ToString());
+//}
+//RM.UpdateRoom(2, "Лилия", 15);
+//Console.WriteLine(RM.GetRoomByID(2));
+Console.WriteLine("Test");

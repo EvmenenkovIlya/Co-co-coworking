@@ -6,7 +6,7 @@ namespace CoCoCoWorking.DAL
 {
     public class OrderUnitManager
     {
-        public string connectionString = @"Server=DESKTOP-U9ABOQU\SQLEXPRESS;Database=CoCoCoworking.DB;Trusted_Connection=True;";
+        public string connectionString = ServerOptions.ConnectionOption;
         public List<OrderUnitDTO> GetAllOrderUnit()
         {
             using (var connection = new SqlConnection(connectionString))
@@ -40,7 +40,7 @@ namespace CoCoCoWorking.DAL
             {
                 connection.Open();
 
-                    connection.QuerySingle<OrderUnitDTO>(
+                    connection.QuerySingle(
                     StoredProcedures.OrderUnit_Add,
                      param: new
                      { 
@@ -66,7 +66,7 @@ namespace CoCoCoWorking.DAL
             {
                 connection.Open();
 
-                connection.QuerySingleOrDefault<OrderUnitDTO>(
+                connection.QuerySingleOrDefault(
                 StoredProcedures.OrderUnit_Update,
                  param: new
                  {

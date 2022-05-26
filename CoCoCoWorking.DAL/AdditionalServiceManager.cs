@@ -7,7 +7,7 @@ namespace CoCoCoWorking.DAL
 {
     public class AdditionalServiceManager
     {
-        public string connectionString = @"Server=DESKTOP-U9ABOQU\SQLEXPRESS;Database=CoCoCoworking.DB;Trusted_Connection=True;";
+        public string connectionString = ServerOptions.ConnectionOption;
         public List<AdditionalServiceDTO> GetAllAdditionalService()
         {
             using (var connection = new SqlConnection(connectionString))
@@ -26,7 +26,7 @@ namespace CoCoCoWorking.DAL
             {
                 connection.Open();
 
-                return connection.QuerySingle<AdditionalServiceDTO>(
+                return connection.QuerySingle(
                     StoredProcedures.AdditionalService_GetById,
                     param: new { id = id },
                     commandType: System.Data.CommandType.StoredProcedure);
@@ -39,7 +39,7 @@ namespace CoCoCoWorking.DAL
             {
                 connection.Open();
 
-                    connection.QuerySingle<AdditionalServiceDTO>(
+                    connection.QuerySingleOrDefault(
                     StoredProcedures.AdditionalService_Add,
                     param: new
                     {

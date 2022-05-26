@@ -6,7 +6,6 @@ namespace CoCoCoWorking.DAL
 {
     public class CustomerManager
     {
-        public string connectionString = @"Server=DESKTOP-U9ABOQU\SQLEXPRESS;Database=CoCoCoworking.DB;Trusted_Connection=True;";
         public string connectionString = ServerOptions.ConnectionOption ;
         public List<CustomerDTO> GetAllCustomers()
         {
@@ -33,7 +32,7 @@ namespace CoCoCoWorking.DAL
                     );
             }
         }
-        public void AddCustomer(string firstName, string lastName, string phoneNumber, string email)
+        public void AddCustomer(string? firstName, string? lastName, string phoneNumber, string? email)
         { 
             using (var connection = new SqlConnection(connectionString))
             {
@@ -50,7 +49,7 @@ namespace CoCoCoWorking.DAL
                     );
             }
         }
-        public void UpdateCustomer(int id, string firstName, string lastName, string phoneNumber, string email)
+        public void UpdateCustomer(int id, string? firstName, string? lastName, string phoneNumber, string? email)
         {
             using (var connection = new SqlConnection(connectionString))
             {

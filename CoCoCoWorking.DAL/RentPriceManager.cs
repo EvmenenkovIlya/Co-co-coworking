@@ -7,7 +7,7 @@ namespace CoCoCoWorking.DAL
     public class RentPriceManager
     {
 
-        public string connectionString = @"Server=DESKTOP-U9ABOQU\SQLEXPRESS;Database=CoCoCoworking.DB;Trusted_Connection=True;";
+        public string connectionString = ServerOptions.ConnectionOption;
         public List<RentPriceDTO> GetAllRentPrice()
         {
             using (var connection = new SqlConnection(connectionString))
@@ -40,7 +40,7 @@ namespace CoCoCoWorking.DAL
             {
                 connection.Open();
 
-                    connection.QuerySingle<RentPriceDTO>(
+                    connection.QuerySingle(
                     StoredProcedures.RentPrice_Add,
                      param: new
                      {
@@ -63,7 +63,7 @@ namespace CoCoCoWorking.DAL
             {
                 connection.Open();
 
-                    connection.QuerySingleOrDefault <RentPriceDTO>(
+                    connection.QuerySingleOrDefault(
                     StoredProcedures.RentPrice_Update,
                     param: new
                     {

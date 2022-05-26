@@ -6,7 +6,7 @@ namespace CoCoCoWorking.DAL
 {
     public class ComplicatedProceduresManager
     {
-        public string connectionString = @"Server=.;Database=CoCoCoworking.DB;Trusted_Connection=True;";
+        public string connectionString = ServerOptions.ConnectionOption;
 
         public List<GetAllAdditionalServiceDTO> GetAllAdditionalService()
         {

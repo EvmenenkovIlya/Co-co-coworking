@@ -6,7 +6,7 @@ namespace CoCoCoWorking.DAL
 {
     internal class WorkplaceManager
     {
-        public string connectionString = @"Server=.;Database=CoCoCoworking.DB;Trusted_Connection=True;";
+        public string connectionString = ServerOptions.ConnectionOption;
 
         public List<WorkplaceDTO> GetAllWorkplaces()
         {
@@ -39,7 +39,7 @@ namespace CoCoCoWorking.DAL
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                connection.QuerySingle<WorkplaceDTO>(
+                connection.QuerySingle(
                     StoredProcedures.Workplace_Add,
                     param: new {
                         RoomId = roomId,
@@ -54,7 +54,7 @@ namespace CoCoCoWorking.DAL
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                connection.QuerySingle<WorkplaceDTO>(
+                connection.QuerySingleOrDefault(
                     StoredProcedures.Workplace_Update,
                     param: new
                     {
