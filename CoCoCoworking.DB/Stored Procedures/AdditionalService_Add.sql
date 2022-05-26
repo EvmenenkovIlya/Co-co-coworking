@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[AdditionalService_Add]
 	@Name nvarchar(255),
-	@Count int,
-	@IsDeleted bit
+	@Count int
+	
 AS
 BEGIN
 	INSERT INTO dbo.AdditionalService 
@@ -15,7 +15,7 @@ BEGIN
 	(
 	 @Name,
 	 @Count,
-	  0
+	 0
 	)
 
 SELECT SCOPE_IDENTITY() AS [SCOPE_IDENTITY]

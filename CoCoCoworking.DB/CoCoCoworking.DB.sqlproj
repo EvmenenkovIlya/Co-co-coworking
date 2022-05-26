@@ -99,6 +99,10 @@
     <Build Include="Stored Procedures\AdditionalService_Update.sql" />
     <Build Include="Stored Procedures\AdditionalService_SoftDelete.sql" />
     <Build Include="Stored Procedures\GetAllCustomerWhithOrderWithOrderUnit.sql" />
+    <Build Include="Stored Procedures\GetAllCustomerWithActiveSubscription.sql" />
+    <Build Include="Stored Procedures\GetFinanceReport.sql" />
+    <Build Include="Stored Procedures\GetAllRoomAndWorkPlaceBusyOrFree.sql" />
+    <Build Include="Stored Procedures\GetAllAdditionalService.sql" />
     <Build Include="Stored Procedures\GetAllRoomsWithPriceWithPeriodRentalWhereRentFromWeek_.sql" />
     <Build Include="Stored Procedures\GetAllRoomsWithPriceWithPeriodRentalWhereRentFromHour.sql" />
   </ItemGroup>

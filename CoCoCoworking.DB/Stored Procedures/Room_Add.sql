@@ -7,7 +7,7 @@ BEGIN
 	INSERT INTO dbo.Room 
 	(
 		[Name], 
-		WorkPlaceNumber
+		[WorkPlaceNumber]
 	)
 
     VALUES 
