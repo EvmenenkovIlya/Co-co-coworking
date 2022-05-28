@@ -8,35 +8,40 @@ namespace CoCoCoWorking.DAL
     {
         public string connectionString = ServerOptions.ConnectionOption;
 
-        public List<CustomerDTO> GetAllCustomerWhithOrderWithOrderUnit()
+        public List<CustomesThisOrdersDTO> GetAllCustomerWhithOrderWithOrderUnit()
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 
-                Dictionary<int, CustomerDTO> result = new Dictionary<int, CustomerDTO>();   
+                Dictionary<int, CustomesThisOrdersDTO> result = new Dictionary<int, CustomesThisOrdersDTO>();   
 
-                     connection.Query<CustomerDTO, OrderDTO, OrderUnitDTO, CustomerDTO>
+                     connection.Query<CustomesThisOrdersDTO, OrderDTO, OrderUnitDTO, CustomesThisOrdersDTO>
                      ("GetAllCustomerWhithOrderWithOrderUnit",
                      (customer, order, orderunit) =>
                      {
-                         
-                        if(!result.ContainsKey(customer.Id))
+
+                         if (!result.ContainsKey(customer.Id))
                          {
                              result.Add(customer.Id, customer);
                          }
-                         CustomerDTO crnt = result[customer.Id];
+                         CustomesThisOrdersDTO crnt = result[customer.Id];
 
-                         if(customer!=null)
+                         if (customer!=null)
                          {
-                         crnt.Orders.Add(order);
-                         crnt.OrderUnits.Add(orderunit);
+                             if(!crnt.Orders.Contains(order))
+                             {
+                                 crnt.Orders.Add(order);
+                             }
+                             int index = crnt.Orders.IndexOf(order);
+                             crnt.Orders[index].Orderunits.Add(orderunit);
+                             
                          }
                          return crnt;
                      },
-                     StoredProcedures.GetAllCustomerWhithOrderWithOrderUnit,
+                     
                      commandType: System.Data.CommandType.StoredProcedure,
-                     splitOn: "id"
+                     splitOn: "Id"
                      );
                 return result.Values.ToList();
             }

@@ -12,8 +12,15 @@ using CoCoCoWorking.DAL.DTO;
 
 var CM = new GetAllCustomerWhithOrderWithOrderUnitManager();
 var O = CM.GetAllCustomerWhithOrderWithOrderUnit();
+foreach (var i in O)
+{
+    
+    
 
-Console.WriteLine(O);
+        Console.WriteLine(O);
+    
+}
+
 
 
 
