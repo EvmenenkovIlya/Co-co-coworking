@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+using System.IO;
+using CoCoCoWorking.DAL;
+using CoCoCoWorking.DAL.DTO;
 
 namespace CoCoCoWorking.UI
 {
@@ -20,9 +24,22 @@ namespace CoCoCoWorking.UI
     /// </summary>
     public partial class MainWindow : Window
     {
+        CustomerManager customers = new CustomerManager();
         public MainWindow()
         {
             InitializeComponent();
+            DataGridCustomers.ItemsSource = customers.GetAllCustomers();
+        }
+
+        private void ButtonCreateNewOrder_Click(object sender, RoutedEventArgs e)
+        {
+           TextBoxNumberForSearch.Text = DataGridCustomers.SelectedItem.ToString();
+        }
+
+        private void ButtonCreateNewCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            customers.AddCustomer(TextBoxFirstName.Text, TextBoxLastName.Text, TextBoxNumber.Text, TextBoxEmail.Text);
+            DataGridCustomers.ItemsSource = customers.GetAllCustomers();
         }
     }
 }
