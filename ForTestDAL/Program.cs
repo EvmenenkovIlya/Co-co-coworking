@@ -27,4 +27,13 @@ using CoCoCoWorking.DAL.DTO;
 //}
 //RM.UpdateRoom(2, "Лилия", 15);
 //Console.WriteLine(RM.GetRoomByID(2));
-Console.WriteLine("Test");
+
+
+
+var R = new RoomManager();
+List<RoomDTO> rr = R.GetAllRooms();
+
+foreach (var i in rr)
+{
+    Console.WriteLine(i);
+}
