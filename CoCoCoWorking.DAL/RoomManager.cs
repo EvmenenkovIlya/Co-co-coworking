@@ -4,65 +4,62 @@ using System.Data.SqlClient;
 
 namespace CoCoCoWorking.DAL
 {
-    public class CustomerManager
+    public class RoomManager
     {
-        public string connectionString = ServerOptions.ConnectionOption ;
-        public List<CustomerDTO> GetAllCustomers()
+        public string connectionString = ServerOptions.ConnectionOption;
+        public List<RoomDTO> GetAllRooms()
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                return connection.Query<CustomerDTO>(
-                    StoredProcedures.Customer_GetAll,
+                return connection.Query<RoomDTO>(
+                    StoredProcedures.Room_GetAll,
                     commandType: System.Data.CommandType.StoredProcedure)
                     .ToList();
             }
         }
-        public CustomerDTO GetCustomerByID(int id)
+        public RoomDTO GetRoomByID(int id)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                return connection.QuerySingle<CustomerDTO>(
-                    StoredProcedures.Customer_GetById,
+                return connection.QuerySingle<RoomDTO>(
+                    StoredProcedures.Room_GetById,
                     param: new { id = id },
                     commandType: System.Data.CommandType.StoredProcedure
                     );
             }
         }
-        public void AddCustomer(string? firstName, string? lastName, string phoneNumber, string? email)
-        { 
+        public void AddRoom(string name, int workPlaceNumber)
+        {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 connection.QuerySingle(
-                    StoredProcedures.Customer_Add,
-                    param: new {
-                        FirstName= firstName,
-                        LastName = lastName,
-                        PhoneNumber = phoneNumber,
-                        Email = email
+                    StoredProcedures.Room_Add,
+                    param: new
+                    {
+                        Name = name,
+                        WorkPlaceNumber = workPlaceNumber
                     },
                     commandType: System.Data.CommandType.StoredProcedure
                     );
             }
         }
-        public void UpdateCustomer(int id, string? firstName, string? lastName, string phoneNumber, string? email)
+        public void UpdateRoom(int id, string name, int workPlaceNumber)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 connection.QuerySingleOrDefault(
-                    StoredProcedures.Customer_Update,
+                    StoredProcedures.Room_Update,
                     param: new
                     {
                         id = id,
-                        FirstName = firstName,
-                        LastName = lastName,
-                        PhoneNumber = phoneNumber,
-                        Email = email
+                        Name = name,
+                        WorkPlaceNumber = workPlaceNumber
                     },
                     commandType: System.Data.CommandType.StoredProcedure
                     );

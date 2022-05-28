@@ -6,7 +6,7 @@ namespace CoCoCoWorking.DAL
 {
     public class OrderManager
     {
-        public string connectionString = @"Server=localhost;Database=master;Trusted_Connection=True;";
+        public string connectionString = ServerOptions.ConnectionOption;
 
         public OrderDTO OrderAdd(int? CustomerId, decimal OrderCost, string OrderStatus, string PaidDate)
         {
@@ -57,7 +57,7 @@ namespace CoCoCoWorking.DAL
             {
                 connection.Open();
 
-                return connection.QuerySingle<OrderDTO>(
+                return connection.QuerySingleOrDefault(
                     StoredProcedures.Order_GetById,
                     param: new { 
                         id = id,

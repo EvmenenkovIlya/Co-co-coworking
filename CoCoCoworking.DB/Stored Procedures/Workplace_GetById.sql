@@ -3,6 +3,6 @@
 AS
 BEGIN
 	SELECT *
-	FROM [dbo].[Workplace]
+	FROM [dbo].[WorkPlace]
 	WHERE Id = @Id
 END
