@@ -7,6 +7,9 @@
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
+        public List<OrderDTO> Orders { get; set; }=new List<OrderDTO>();
+        public List<OrderUnitDTO> OrderUnits { get; set; }=new List<OrderUnitDTO>();
+
         public override string ToString()
         {
             return $"Id={Id} FirstName={FirstName} LastName={LastName} PhoneNumber={PhoneNumber} Email={Email}";

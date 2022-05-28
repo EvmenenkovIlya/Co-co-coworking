@@ -10,6 +10,15 @@ using CoCoCoWorking.DAL.DTO;
 //    Console.WriteLine(i.ToString());
 //}
 
+var CM = new GetAllCustomerWhithOrderWithOrderUnitManager();
+var O = CM.GetAllCustomerWhithOrderWithOrderUnit();
+
+Console.WriteLine(O);
+
+
+
+
+
 ////CM.AddCustomer("Niko", "Roman", "444-321-555", "NikoDarkStalker@mail.com");
 //CM.UpdateCustomer(2,"Roman", "Niko", "555-321-444", "RomanDarkStalker96@mail.com");
 
@@ -27,4 +36,4 @@ using CoCoCoWorking.DAL.DTO;
 //}
 //RM.UpdateRoom(2, "Лилия", 15);
 //Console.WriteLine(RM.GetRoomByID(2));
-Console.WriteLine("Test");
+//Console.WriteLine("Test");
