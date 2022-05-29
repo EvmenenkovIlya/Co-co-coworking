@@ -8,7 +8,7 @@ namespace CoCoCoWorking.DAL
     public class AdditionalServiceManager
     {
         public string connectionString = ServerOptions.ConnectionOption;
-        public List<AdditionalServiceDTO> GetAllAdditionalService()
+        public List<AdditionalServiceDTO> GetAllAdditionalServices()
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -33,7 +33,7 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public void  AddAdditionalService(string name, int? count)
+        public void  AddAdditionalService(AdditionalServiceDTO additionalService)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -43,14 +43,14 @@ namespace CoCoCoWorking.DAL
                     StoredProcedures.AdditionalService_Add,
                     param: new
                     {
-                        name = name,
-                        count = count,    
+                        name = additionalService.Name,
+                        count = additionalService.Count,    
                     },
                     commandType: System.Data.CommandType.StoredProcedure);
             }
         }
 
-        public void UpdateAdditionalService(int id, string name, int? count)
+        public void UpdateAdditionalService(AdditionalServiceDTO additionalService)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -60,9 +60,9 @@ namespace CoCoCoWorking.DAL
                 StoredProcedures.AdditionalService_Update,
                 param: new
                 {
-                    id = id,
-                    name = name,
-                    count = count,
+                    id = additionalService.Id,
+                    name = additionalService.Name,
+                    count = additionalService.Count,
                 },
                 commandType: System.Data.CommandType.StoredProcedure);
             }
