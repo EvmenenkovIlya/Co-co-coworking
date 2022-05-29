@@ -24,6 +24,7 @@ namespace CoCoCoWorking.UI
     {
         RoomManager room = new RoomManager();
         AdditionalServiceManager additionalService = new AdditionalServiceManager();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -31,38 +32,15 @@ namespace CoCoCoWorking.UI
         }
 
 
-        private void Office_RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            ChooseWorkplace_Combobox.IsEnabled = false;
-            var roomName = room.GetAllRooms();
-            ChooseRoom_Combobox.Items.Clear();
-            for (int i = 0; i < roomName.Count; i++)
-            {
-                ChooseRoom_Combobox.Items.Add(roomName[i].Name);
-            }
 
-        }
-
-        private void WorckPlace_RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            ChooseWorkplace_Combobox.IsEnabled = true;
-            var roomName = room.GetAllRooms();
-            ChooseRoom_Combobox.Items.Clear();
-            for (int i = 0; i < roomName.Count; i++)
-            {
-                ChooseRoom_Combobox.Items.Add(roomName[i].Name);
-            }
-
-        }
-
-        private void ChooseRoom_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void PurchaseType_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ChooseWorkplace_Combobox.Items.Clear();
-            if (ChooseRoom_Combobox.SelectedItem == null)
+            if (PurchaseType_Combobox.SelectedItem == null)
             {
                 return;
             }
-            string roomName = ChooseRoom_Combobox.SelectedItem.ToString();
+            string roomName = PurchaseType_Combobox.SelectedItem.ToString();
 
             var rooms = room.GetAllRooms();
 
@@ -79,15 +57,54 @@ namespace CoCoCoWorking.UI
 
         }
 
-        private void Service_CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            Service_ListBox.Items.Clear();
-            var allService = additionalService.GetAllAdditionalService();
-            foreach (var service in allService)
-            {
+       
 
-                Service_ListBox.Items.Add(service.Name);
+        
+
+        private void Type_ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            if (Type_ComboBox.SelectedItem == null)
+            {
+                return;
             }
+
+
+            var allService = additionalService.GetAllAdditionalService();
+            var roomName = room.GetAllRooms();
+
+            if (Type_ComboBox.SelectedIndex == 5)
+            {
+                PurchaseType_Combobox.Items.Clear();
+                foreach (var service in allService)
+                {
+
+                    PurchaseType_Combobox.Items.Add(service.Name);
+                }
+
+            }
+
+            if (Type_ComboBox.SelectedIndex == 0)
+            {
+                PurchaseType_Combobox.Items.Clear();
+                PurchaseType_Combobox.Items.Clear();
+                for (int i = 0; i < roomName.Count; i++)
+                {
+                    PurchaseType_Combobox.Items.Add(roomName[i].Name);
+                }
+
+            }
+
+            if (Type_ComboBox.SelectedIndex == 4)
+            {
+                PurchaseType_Combobox.Items.Clear();
+               
+                for (int i = 0; i < roomName.Count; i++)
+                {
+                    PurchaseType_Combobox.Items.Add(roomName[i].Name);
+                }
+
+            }
+
         }
     }
 }

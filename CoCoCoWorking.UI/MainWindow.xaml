@@ -16,20 +16,25 @@
             </TabItem>
             <TabItem Header="Orders">
                 <Grid Background="Bisque">
-                    <RadioButton x:Name="Office_RadioButton" Content="Office" HorizontalAlignment="Left" Height="35" Margin="51,37,0,0" VerticalAlignment="Top" Width="91" Checked="Office_RadioButton_Checked"/>
-                    <RadioButton x:Name="WorckPlace_RadioButton" Content="Worck Place" HorizontalAlignment="Left" Height="35" Margin="51,72,0,0" VerticalAlignment="Top" Width="91" Checked="WorckPlace_RadioButton_Checked"/>
-                    <ComboBox x:Name="ChooseRoom_Combobox" HorizontalAlignment="Left" Height="35" Margin="223,37,0,0" VerticalAlignment="Top" Width="477" SelectionChanged="ChooseRoom_Combobox_SelectionChanged" >
+                    <ComboBox x:Name="PurchaseType_Combobox" HorizontalAlignment="Left" Height="35" Margin="239,59,0,0" VerticalAlignment="Top" Width="477" SelectionChanged="PurchaseType_Combobox_SelectionChanged" >
                         <ComboBox Height="30" Width="48"/>
                     </ComboBox>
-                    <TextBox x:Name="StartTime_TextBox" HorizontalAlignment="Left" Height="35" Margin="754,37,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="189"/>
-                    <TextBox x:Name="EndTime_TextBox" HorizontalAlignment="Left" Height="38" Margin="754,107,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="189"/>
-                    <DataGrid x:Name="Order_DataGrid" HorizontalAlignment="Left" Height="446" Margin="51,164,0,0" VerticalAlignment="Top" Width="406" d:ItemsSource="{d:SampleData ItemCount=5}"/>
-                    <Button x:Name="CreateOrder_Button" Content="Button" HorizontalAlignment="Left" Height="66" Margin="783,639,0,0" VerticalAlignment="Top" Width="160"/>
-                    <ComboBox x:Name="ChooseWorkplace_Combobox" HorizontalAlignment="Left" Height="35" Margin="223,103,0,0" VerticalAlignment="Top" Width="477" IsEnabled="False"/>
-                    <TextBlock HorizontalAlignment="Left" Height="13" Margin="756,21,0,0" TextWrapping="Wrap" Text="Start date" VerticalAlignment="Top" Width="184"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="754,90,0,0" TextWrapping="Wrap" Text="End date" VerticalAlignment="Top" Width="189"/>
-                    <ListBox x:Name="Service_ListBox" HorizontalAlignment="Left" Height="446" Margin="610,164,0,0" VerticalAlignment="Top" Width="333" d:ItemsSource="{d:SampleData ItemCount=5}" IsEnabled="{Binding ElementName=Service_CheckBox, Path=IsChecked}" />
-                    <CheckBox x:Name="Service_CheckBox" Content="Service" HorizontalAlignment="Left" Height="35" Margin="51,109,0,0" VerticalAlignment="Top" Width="91" Checked="Service_CheckBox_Checked"/>
+                    <TextBox x:Name="StartTime_TextBox" HorizontalAlignment="Left" Height="35" Margin="43,105,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="173"/>
+                    <TextBox x:Name="EndTime_TextBox" HorizontalAlignment="Left" Height="38" Margin="45,158,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="171"/>
+                    <DataGrid x:Name="Order_DataGrid" HorizontalAlignment="Left" Height="446" Margin="45,226,0,0" VerticalAlignment="Top" Width="890" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                    <Button x:Name="CreateOrder_Button" Content="Button" HorizontalAlignment="Left" Height="34" Margin="709,680,0,0" VerticalAlignment="Top" Width="145"/>
+                    <ComboBox x:Name="ChooseWorkplace_Combobox" HorizontalAlignment="Left" Height="35" Margin="239,125,0,0" VerticalAlignment="Top" Width="477" />
+                    <TextBlock HorizontalAlignment="Left" Height="13" Margin="45,89,0,0" TextWrapping="Wrap" Text="Start date" VerticalAlignment="Top" Width="184"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="45,141,0,0" TextWrapping="Wrap" Text="End date" VerticalAlignment="Top" Width="189"/>
+                    <ComboBox x:Name="Type_ComboBox" HorizontalAlignment="Left" Height="33" Margin="43,54,0,0" VerticalAlignment="Top" Width="173" SelectionChanged="Type_ComboBox_SelectionChanged_1" >
+                        <ComboBoxItem Content="Room"/>
+                        <ComboBoxItem Content="Сonference hall"/>
+                        <ComboBoxItem Content="Meeting room"/>
+                        <ComboBoxItem Content="Worckplace"/>
+                        <ComboBoxItem Content="Worckplace fixed"/>
+                        <ComboBoxItem Content="Service"/>
+                    </ComboBox>
+                    <Button Content="Button" HorizontalAlignment="Left" Height="50" Margin="478,171,0,0" VerticalAlignment="Top" Width="238"/>
 
                 </Grid>
             </TabItem>
