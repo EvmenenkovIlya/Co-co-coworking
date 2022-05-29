@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace CoCoCoWorking.DAL
 {
-    public class GetAllRoomsWithPriceWithPeriodRentalWhereRentFromWeekManager
+    public class AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekManager
     {
         public string connectionString = ServerOptions.ConnectionOption;
 

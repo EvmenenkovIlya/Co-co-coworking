@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace CoCoCoWorking.DAL
 {
-        public class GetAllRoomAndWorkPlaceBusyOrFreeManager
+        public class AllRoomAndWorkPlaceBusyOrFreeManager
     {
             public string connectionString = ServerOptions.ConnectionOption;
 

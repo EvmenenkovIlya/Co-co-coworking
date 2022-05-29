@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace CoCoCoWorking.DAL
 {
-    public class GetAllCustomerWithActiveSubscriptionManager
+    public class AllCustomerWithActiveSubscriptionManager
     {
         public string connectionString = ServerOptions.ConnectionOption;
       

@@ -10,12 +10,12 @@ using CoCoCoWorking.DAL.DTO;
 //    Console.WriteLine(i.ToString());
 //}
 
-//var CM = new GetAllCustomerWhithOrderWithOrderUnitManager();
-//var O = CM.GetAllCustomerWhithOrderWithOrderUnit();
-//foreach (var i in O)
-//{
-//        Console.WriteLine(O);    
-//}
+var CM = new AllCustomerWhithOrderWithOrderUnitManager();
+var O = CM.GetAllCustomerWhithOrderWithOrderUnit();
+foreach (var i in O)
+{
+    Console.WriteLine(O);
+}
 
 //var CM = new GetAllCustomerWithActiveSubscriptionManager();
 //var O = CM.GetAllCustomerWithActiveSubscriptiont();
@@ -35,13 +35,18 @@ using CoCoCoWorking.DAL.DTO;
 //{
 //    Console.WriteLine(O);
 //}
-var CM = new GetAllRoomsWithPriceWithPeriodRentalWhereRentFromWeekManager();
-var O = CM.GetAllRoomsWithPriceWithPeriodRentalWhereRentFromWeek();
-foreach (var i in O)
-{
-    Console.WriteLine(O);
-}
-
+//var CM = new AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekManager();
+//var O = CM.GetAllRoomsWithPriceWithPeriodRentalWhereRentFromWeek();
+//foreach (var i in O)
+//{
+//    Console.WriteLine(O);
+//}
+//var CM = new AllAdditionalServiceManager();
+//var O = CM.AllAdditionalService();
+//foreach (var i in O)
+//{
+//    Console.WriteLine(O);
+//}
 
 
 ////CM.AddCustomer("Niko", "Roman", "444-321-555", "NikoDarkStalker@mail.com");

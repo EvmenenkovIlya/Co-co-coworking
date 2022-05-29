@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace CoCoCoWorking.DAL
 {
-    public class GetAllCustomerWhithOrderWithOrderUnitManager
+    public class AllCustomerWhithOrderWithOrderUnitManager
     {
         public string connectionString = ServerOptions.ConnectionOption;
 
