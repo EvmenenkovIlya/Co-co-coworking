@@ -17,6 +17,7 @@ namespace CoCoCoWorking.DAL.DTO
         public int AdditionalServiceId { get; set; }
         public int OrderId { get; set; }
         public decimal OrderUnitCost { get; set; }
+        
 
         public override string ToString()
         {
