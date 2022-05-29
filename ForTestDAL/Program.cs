@@ -29,8 +29,14 @@ using CoCoCoWorking.DAL.DTO;
 //{
 //    Console.WriteLine(O);
 //}
-var CM = new GetAllRoomsWithPriceWithPeriodRentalWhereRentFromHourManager();
-var O = CM.GetAllRoomsWithPriceWithPeriodRentalWhereRentFromHour();
+//var CM = new GetAllRoomsWithPriceWithPeriodRentalWhereRentFromHourManager();
+//var O = CM.GetAllRoomsWithPriceWithPeriodRentalWhereRentFromHour();
+//foreach (var i in O)
+//{
+//    Console.WriteLine(O);
+//}
+var CM = new GetAllRoomsWithPriceWithPeriodRentalWhereRentFromWeekManager();
+var O = CM.GetAllRoomsWithPriceWithPeriodRentalWhereRentFromWeek();
 foreach (var i in O)
 {
     Console.WriteLine(O);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoCoCoWorking.DAL.DTO
 {
-    public class AllRoomsWithPriceWithPeriodRentaDTO
+    public class AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDTO
     {
         public string StartDate { get; set; }
         public string EndDate { get; set; }

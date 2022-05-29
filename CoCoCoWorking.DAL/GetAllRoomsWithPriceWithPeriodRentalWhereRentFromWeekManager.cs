@@ -4,20 +4,20 @@ using System.Data.SqlClient;
 
 namespace CoCoCoWorking.DAL
 {
-    public class GetAllRoomsWithPriceWithPeriodRentalWhereRentFromHourManager
+    public class GetAllRoomsWithPriceWithPeriodRentalWhereRentFromWeekManager
     {
         public string connectionString = ServerOptions.ConnectionOption;
 
-        public List<AllRoomsWithPriceWithPeriodRentaHDTO> GetAllRoomsWithPriceWithPeriodRentalWhereRentFromHour()
+        public List<AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDTO> GetAllRoomsWithPriceWithPeriodRentalWhereRentFromWeek()
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                Dictionary<string, AllRoomsWithPriceWithPeriodRentaHDTO> result = new Dictionary<string, AllRoomsWithPriceWithPeriodRentaHDTO>();
+                Dictionary<string, AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDTO> result = new Dictionary<string, AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDTO>();
 
-                connection.Query<AllRoomsWithPriceWithPeriodRentaHDTO, RoomDTO, RentPriceDTO, AllRoomsWithPriceWithPeriodRentaHDTO>
-                ("GetAllRoomsWithPriceWithPeriodRentalWhereRentFromHour",
+                connection.Query<AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDTO, RoomDTO, RentPriceDTO, AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDTO>
+                ("GetAllRoomsWithPriceWithPeriodRentalWhereRentFromWeek",
                 (allroom, room, rentprice) =>
                 {
 
@@ -25,11 +25,11 @@ namespace CoCoCoWorking.DAL
                     {
                         result.Add(allroom.StartDate, allroom);
                     }
-                    AllRoomsWithPriceWithPeriodRentaHDTO crnt = result[allroom.StartDate];
+                    AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDTO crnt = result[allroom.StartDate];
 
                     crnt.Rooms.Add(room);
                     crnt.Rentprices.Add(rentprice);
-                    
+
 
                     return crnt;
                 },
