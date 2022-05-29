@@ -25,6 +25,7 @@ namespace CoCoCoWorking.UI
         RoomManager room = new RoomManager();
         AdditionalServiceManager additionalService = new AdditionalServiceManager();
 
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -63,12 +64,8 @@ namespace CoCoCoWorking.UI
 
         private void Type_ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            if (Type_ComboBox.SelectedItem == null)
-            {
-                return;
-            }
-
-
+            ChooseWorkplace_Combobox.IsEnabled = false;
+            ChooseWorkplace_Combobox.Items.Clear ();
             var allService = additionalService.GetAllAdditionalService();
             var roomName = room.GetAllRooms();
 
@@ -97,13 +94,26 @@ namespace CoCoCoWorking.UI
             if (Type_ComboBox.SelectedIndex == 4)
             {
                 PurchaseType_Combobox.Items.Clear();
-               
+                ChooseWorkplace_Combobox.IsEnabled = true;
                 for (int i = 0; i < roomName.Count; i++)
                 {
                     PurchaseType_Combobox.Items.Add(roomName[i].Name);
                 }
 
             }
+
+        }
+
+        private void Order_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+          
+            Order_DataGrid.Items.Refresh();
+           
 
         }
     }
