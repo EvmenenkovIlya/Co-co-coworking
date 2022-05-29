@@ -8,7 +8,7 @@ namespace CoCoCoWorking.DAL
     {
         public string connectionString = ServerOptions.ConnectionOption;
 
-        public OrderDTO OrderAdd(int? CustomerId, decimal OrderCost, string OrderStatus, string PaidDate)
+        public OrderDTO AddOrder(int? CustomerId, decimal OrderCost, string OrderStatus, string PaidDate)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -26,7 +26,7 @@ namespace CoCoCoWorking.DAL
                        commandType: System.Data.CommandType.StoredProcedure);
             }
         }
-        public OrderDTO OrderGetById(int id)
+        public OrderDTO GetOrderById(int id)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -39,7 +39,7 @@ namespace CoCoCoWorking.DAL
                     );
             }
         }
-        public List<OrderDTO> OrderGetAll()
+        public List<OrderDTO> GetAllOrder()
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -51,7 +51,7 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public OrderDTO OrderUpdate(int id, int? CustomerId, decimal OrderCost, int? OrderStatus, int? PaidDate)
+        public OrderDTO UpdateOrder(int id, int? CustomerId, decimal OrderCost, int? OrderStatus, int? PaidDate)
         {
             using (var connection = new SqlConnection(connectionString))
             {
