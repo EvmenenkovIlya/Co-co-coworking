@@ -23,8 +23,14 @@ using CoCoCoWorking.DAL.DTO;
 //{
 //    Console.WriteLine(O);
 //}
-var CM = new GetAllRoomAndWorkPlaceBusyOrFreeManager();
-var O = CM.GetAllRoomAndWorkPlaceBusyOrFree();
+//var CM = new GetAllRoomAndWorkPlaceBusyOrFreeManager();
+//var O = CM.GetAllRoomAndWorkPlaceBusyOrFree();
+//foreach (var i in O)
+//{
+//    Console.WriteLine(O);
+//}
+var CM = new GetAllRoomsWithPriceWithPeriodRentalWhereRentFromHourManager();
+var O = CM.GetAllRoomsWithPriceWithPeriodRentalWhereRentFromHour();
 foreach (var i in O)
 {
     Console.WriteLine(O);
