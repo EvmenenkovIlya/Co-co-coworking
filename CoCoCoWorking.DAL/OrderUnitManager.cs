@@ -7,7 +7,7 @@ namespace CoCoCoWorking.DAL
     public class OrderUnitManager
     {
         public string connectionString = ServerOptions.ConnectionOption;
-        public List<OrderUnitDTO> GetAllOrderUnit()
+        public List<OrderUnitDTO> GetAllOrderUnits()
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -32,8 +32,7 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public void AddOrderUnit(string startDate, string endDate, int? roomId, int? workPlaceId,
-                                             int? workPlaceInRoomId, int? AdditionalServiceId, int orderId, decimal orderUnitCost)
+        public void AddOrderUnit(OrderUnitDTO orderUnit)
         {
            
             using (var connection = new SqlConnection(connectionString))
@@ -44,22 +43,21 @@ namespace CoCoCoWorking.DAL
                     StoredProcedures.OrderUnit_Add,
                      param: new
                      { 
-                         startDate = startDate,
-                         endDate = endDate,
-                         roomId = roomId,
-                         workPlaceId = workPlaceId,
-                         workPlaceInRoomId= workPlaceInRoomId,
-                         AdditionalServiceId = AdditionalServiceId,
-                         orderId = orderId,
-                         orderUnitCost = orderUnitCost
+                         startDate = orderUnit.StartDate,
+                         endDate = orderUnit.EndDate,
+                         roomId = orderUnit.RoomId,
+                         workPlaceId = orderUnit.WorkPlaceId,
+                         workPlaceInRoomId= orderUnit.WorkPlaceInRoomId,
+                         AdditionalServiceId = orderUnit.AdditionalServiceId,
+                         orderId = orderUnit.OrderId,
+                         orderUnitCost = orderUnit.OrderUnitCost
 
                      },
                     commandType: System.Data.CommandType.StoredProcedure);
             }
         }
 
-        public void UpdateOrderUnit(int id, string startDate, string endDate, int? roomId, int? workPlaceId, int? workPlaceInRoomId, 
-                                                                     int? additionalServiceId, int orderId, decimal orderUnitCost)
+        public void UpdateOrderUnit(OrderUnitDTO orderUnit)
         {
 
             using (var connection = new SqlConnection(connectionString))
@@ -70,15 +68,15 @@ namespace CoCoCoWorking.DAL
                 StoredProcedures.OrderUnit_Update,
                  param: new
                  {
-                     id = id,
-                     startDate = startDate,
-                     endDate = endDate,
-                     roomId = roomId,
-                     workPlaceId = workPlaceId,
-                     workPlaceInRoomId= workPlaceInRoomId,
-                     additionalServiceId = additionalServiceId,
-                     orderId = orderId,
-                     orderUnitCost = orderUnitCost
+                     id = orderUnit.Id,
+                     startDate = orderUnit.StartDate,
+                     endDate = orderUnit.EndDate,
+                     roomId = orderUnit.RoomId,
+                     workPlaceId = orderUnit.WorkPlaceId,
+                     workPlaceInRoomId= orderUnit.WorkPlaceInRoomId,
+                     additionalServiceId = orderUnit.AdditionalServiceId,
+                     orderId = orderUnit.OrderId,
+                     orderUnitCost = orderUnit.OrderUnitCost
 
                  },
                 commandType: System.Data.CommandType.StoredProcedure);
