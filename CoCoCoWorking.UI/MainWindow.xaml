@@ -46,7 +46,7 @@
             </TabItem>
             <TabItem Header="Orders">
                 <Grid Background="Bisque">
-                    <ComboBox x:Name="PurchaseType_Combobox" HorizontalAlignment="Left" Height="33" Margin="458,54,0,0" VerticalAlignment="Top" Width="477" SelectionChanged="PurchaseType_Combobox_SelectionChanged" >
+                    <ComboBox x:Name="PurchaseType_Combobox" HorizontalAlignment="Left" Height="33" Margin="463,38,0,0" VerticalAlignment="Top" Width="477" SelectionChanged="PurchaseType_Combobox_SelectionChanged" >
                         <ComboBox Height="30" Width="48"/>
                     </ComboBox>
                     <DataGrid x:Name="Order_DataGrid" HorizontalAlignment="Left" Height="446" Margin="45,226,0,0" VerticalAlignment="Top" Width="890">
@@ -60,8 +60,8 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="CreateOrder_Button" Content="Create order" HorizontalAlignment="Left" Height="48" Margin="790,677,0,0" VerticalAlignment="Top" Width="145"/>
-                    <ComboBox x:Name="ChooseWorkplace_Combobox" HorizontalAlignment="Left" Height="35" Margin="458,107,0,0" VerticalAlignment="Top" Width="477" IsEnabled="False" />
-                    <ComboBox x:Name="Type_ComboBox" HorizontalAlignment="Left" Height="33" Margin="43,54,0,0" VerticalAlignment="Top" Width="173" SelectionChanged="Type_ComboBox_SelectionChanged_1" >
+                    <ComboBox x:Name="ChooseWorkplace_Combobox" HorizontalAlignment="Left" Height="35" Margin="463,98,0,0" VerticalAlignment="Top" Width="477" IsEnabled="False" />
+                    <ComboBox x:Name="Type_ComboBox" HorizontalAlignment="Left" Height="33" Margin="45,32,0,0" VerticalAlignment="Top" Width="173" SelectionChanged="Type_ComboBox_SelectionChanged_1" >
                         <ComboBoxItem Content="Room"/>
                         <ComboBoxItem Content="Сonference hall"/>
                         <ComboBoxItem Content="Meeting room"/>
@@ -70,7 +70,8 @@
                         <ComboBoxItem Content="Service"/>
                     </ComboBox>
                     <Button x:Name="AddToOrder_Button" Content="Add to order" HorizontalAlignment="Left" Height="38" Margin="782,158,0,0" VerticalAlignment="Top" Width="153"/>
-                    <DatePicker x:Name="StartDatate_DatePicker" HorizontalAlignment="Left" Margin="45,116,0,0" VerticalAlignment="Top" Height="26" Width="173"/>
+                    <Calendar HorizontalAlignment="Left" Height="164" Margin="216,32,0,0" VerticalAlignment="Top" Width="242"/>
+
 
                 </Grid>
             </TabItem>
