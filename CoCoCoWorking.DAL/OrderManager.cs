@@ -40,17 +40,17 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public OrderDTO OrderGetByCustomerId(int id)
+        public List<OrderDTO> OrderGetByCustomerId(int id)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                return connection.QuerySingle<OrderDTO>(
+                return connection.Query<OrderDTO>(
                     StoredProcedures.Order_GetByCustomerId,
-                    param: new { CustomerId = id },
+                    param: new { id = id },
                     commandType: System.Data.CommandType.StoredProcedure
-                    );
+                    ).ToList();
             }
         }
         public List<OrderDTO> OrderGetAll()

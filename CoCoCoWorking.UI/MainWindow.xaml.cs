@@ -27,7 +27,7 @@ namespace CoCoCoWorking.UI
     {
         RoomManager room = new RoomManager();
         AdditionalServiceManager additionalService = new AdditionalServiceManager();
-
+        OrderManager order = new OrderManager();
         
         CustomerManager customers = new CustomerManager();
         public MainWindow()
@@ -127,9 +127,15 @@ namespace CoCoCoWorking.UI
 
         private void CreateOrder_Button_Click(object sender, RoutedEventArgs e)
         {
-            List<CustomerDTO> tmp = customers.GetAllCustomers();
+            
+        }
 
+        private void DataGridCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            List<CustomerDTO> tmp = customers.GetAllCustomers();
             int id = tmp[DataGridCustomers.SelectedIndex].Id;
+
+            Order_DataGrid.ItemsSource = order.OrderGetByCustomerId(id);
         }
     }
 }
