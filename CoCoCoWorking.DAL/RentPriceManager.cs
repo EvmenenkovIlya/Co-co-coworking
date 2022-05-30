@@ -8,7 +8,7 @@ namespace CoCoCoWorking.DAL
     {
 
         public string connectionString = ServerOptions.ConnectionOption;
-        public List<RentPriceDTO> GetAllRentPrice()
+        public List<RentPriceDTO> GetAllRentPrices()
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -33,8 +33,7 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public void AddRentPrice(int? roomId, int? workPlaceInRoomId, int? additionalServiceId, string periodType,
-                                               decimal regularPrice, decimal? residentPrice, decimal? fixedPrice)
+        public void AddRentPrice(RentPriceDTO rentPrice)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -44,20 +43,19 @@ namespace CoCoCoWorking.DAL
                     StoredProcedures.RentPrice_Add,
                      param: new
                      {
-                         roomId = roomId,
-                         workPlaceInRoomId = workPlaceInRoomId,
-                         additionalServiceId = additionalServiceId,
-                         periodType = periodType,
-                         regularPrice = regularPrice,
-                         residentPrice = residentPrice,
-                         fixedPrice = fixedPrice
+                         roomId = rentPrice.RoomId,
+                         workPlaceInRoomId = rentPrice.WorkPlaceInRoomId,
+                         additionalServiceId = rentPrice.AdditionalServiceId,
+                         periodType = rentPrice.PeriodType,
+                         regularPrice = rentPrice.RegularPrice,
+                         residentPrice = rentPrice.ResidentPrice,
+                         fixedPrice = rentPrice.FixedPrice
                      },
                     commandType: System.Data.CommandType.StoredProcedure);
             }
         }
 
-        public void UpdateRentPrice(int id, int? roomId, int? workPlaceInRoomId, int? additionalServiceId, string periodType,
-                                                          decimal regularPrice, decimal? residentPrice, decimal? fixedPrice)
+        public void UpdateRentPrice(RentPriceDTO rentPrice)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -67,14 +65,14 @@ namespace CoCoCoWorking.DAL
                     StoredProcedures.RentPrice_Update,
                     param: new
                     {
-                        id = id,
-                        roomId = roomId,
-                        workPlaceInRoomId = workPlaceInRoomId,
-                        additionalServiceId = additionalServiceId,
-                        periodType = periodType,
-                        regularPrice = regularPrice,
-                        residentPrice = residentPrice,
-                        fixedPrice = fixedPrice
+                        id = rentPrice.Id,
+                        roomId = rentPrice.RoomId,
+                        workPlaceInRoomId = rentPrice.WorkPlaceInRoomId,
+                        additionalServiceId = rentPrice.AdditionalServiceId,
+                        periodType = rentPrice.PeriodType,
+                        regularPrice = rentPrice.RegularPrice,
+                        residentPrice = rentPrice.ResidentPrice,
+                        fixedPrice = rentPrice.FixedPrice
                     },
                     commandType: System.Data.CommandType.StoredProcedure);
             }

@@ -32,7 +32,7 @@ namespace CoCoCoWorking.DAL
                     );
             }
         }
-        public void AddCustomer(string? firstName, string? lastName, string phoneNumber, string? email)
+        public void AddCustomer(CustomerDTO customer)
         { 
             using (var connection = new SqlConnection(connectionString))
             {
@@ -40,16 +40,16 @@ namespace CoCoCoWorking.DAL
                 connection.QuerySingle(
                     StoredProcedures.Customer_Add,
                     param: new {
-                        FirstName= firstName,
-                        LastName = lastName,
-                        PhoneNumber = phoneNumber,
-                        Email = email
+                        FirstName = customer.FirstName,
+                        LastName = customer.LastName,
+                        PhoneNumber = customer.PhoneNumber,
+                        Email = customer.Email
                     },
                     commandType: System.Data.CommandType.StoredProcedure
                     );
             }
         }
-        public void UpdateCustomer(int id, string? firstName, string? lastName, string phoneNumber, string? email)
+        public void UpdateCustomer(CustomerDTO customer)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -58,11 +58,11 @@ namespace CoCoCoWorking.DAL
                     StoredProcedures.Customer_Update,
                     param: new
                     {
-                        id = id,
-                        FirstName = firstName,
-                        LastName = lastName,
-                        PhoneNumber = phoneNumber,
-                        Email = email
+                        id = customer.Id,
+                        FirstName = customer.FirstName,
+                        LastName = customer.LastName,
+                        PhoneNumber = customer.PhoneNumber,
+                        Email = customer.Email
                     },
                     commandType: System.Data.CommandType.StoredProcedure
                     );
