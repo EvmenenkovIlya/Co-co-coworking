@@ -46,6 +46,34 @@
             </TabItem>
             <TabItem Header="Orders">
                 <Grid Background="Bisque">
+                    <ComboBox x:Name="PurchaseType_Combobox" HorizontalAlignment="Left" Height="33" Margin="458,54,0,0" VerticalAlignment="Top" Width="477" SelectionChanged="PurchaseType_Combobox_SelectionChanged" >
+                        <ComboBox Height="30" Width="48"/>
+                    </ComboBox>
+                    <TextBox x:Name="StartTime_TextBox" HorizontalAlignment="Left" Height="35" Margin="43,105,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="173"/>
+                    <TextBox x:Name="EndTime_TextBox" HorizontalAlignment="Left" Height="38" Margin="45,158,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="171"/>
+                    <DataGrid x:Name="Order_DataGrid" HorizontalAlignment="Left" Height="446" Margin="45,226,0,0" VerticalAlignment="Top" Width="890"  SelectionChanged="Order_DataGrid_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Service name"/>
+                            <DataGridCheckBoxColumn Header="Name"/>
+                            <DataGridTextColumn Header="Room number"/>
+                            <DataGridCheckBoxColumn Header="Price"/>
+                            <DataGridCheckBoxColumn Header="Start dadte"/>
+                            <DataGridCheckBoxColumn Header="End date"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="CreateOrder_Button" Content="Button" HorizontalAlignment="Left" Height="48" Margin="790,677,0,0" VerticalAlignment="Top" Width="145"/>
+                    <ComboBox x:Name="ChooseWorkplace_Combobox" HorizontalAlignment="Left" Height="35" Margin="458,107,0,0" VerticalAlignment="Top" Width="477" IsEnabled="False" />
+                    <TextBlock HorizontalAlignment="Left" Height="13" Margin="45,89,0,0" TextWrapping="Wrap" Text="Start date" VerticalAlignment="Top" Width="184"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="45,141,0,0" TextWrapping="Wrap" Text="End date" VerticalAlignment="Top" Width="189"/>
+                    <ComboBox x:Name="Type_ComboBox" HorizontalAlignment="Left" Height="33" Margin="43,54,0,0" VerticalAlignment="Top" Width="173" SelectionChanged="Type_ComboBox_SelectionChanged_1" >
+                        <ComboBoxItem Content="Room"/>
+                        <ComboBoxItem Content="Сonference hall"/>
+                        <ComboBoxItem Content="Meeting room"/>
+                        <ComboBoxItem Content="Worckplace"/>
+                        <ComboBoxItem Content="Worckplace fixed"/>
+                        <ComboBoxItem Content="Service"/>
+                    </ComboBox>
+                    <Button Content="Button" HorizontalAlignment="Left" Height="38" Margin="782,158,0,0" VerticalAlignment="Top" Width="153" Click="Button_Click"/>
 
                 </Grid>
             </TabItem>
@@ -56,7 +84,7 @@
             </TabItem>
             <TabItem Header="Finance">
                 <Grid Background="Bisque">
-                
+
                 </Grid>
             </TabItem>
             <TabItem Header="Old Design">
@@ -87,7 +115,7 @@
                     <Button Content="Забронировать" HorizontalAlignment="Left" Margin="666,372,0,0" VerticalAlignment="Top" Height="30" Width="107"/>
                     <Label Content="CoCoCoWorking" HorizontalAlignment="Left" Height="70" Margin="67,27,0,0" VerticalAlignment="Top" Width="307" FontSize="40"/>
                 </Grid>
-             </TabItem>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
