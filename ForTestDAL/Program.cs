@@ -52,7 +52,7 @@ var CM = new FinanceReportManager();
 var O = CM.GetFinanceReport();
 foreach (var i in O)
 {
-    Console.WriteLine(O);
+    Console.WriteLine(i);
 }
 
 ////CM.AddCustomer("Niko", "Roman", "444-321-555", "NikoDarkStalker@mail.com");
@@ -76,10 +76,10 @@ foreach (var i in O)
 
 
 
-var R = new RoomManager();
-List<RoomDTO> rr = R.GetAllRooms();
+//var R = new RoomManager();
+//List<RoomDTO> rr = R.GetAllRooms();
 
-foreach (var i in rr)
-{
-    Console.WriteLine(i);
-}
+//foreach (var i in rr)
+//{
+//    Console.WriteLine(i);
+//}

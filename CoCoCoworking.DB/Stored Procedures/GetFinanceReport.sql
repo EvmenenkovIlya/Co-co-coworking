@@ -1,6 +1,6 @@
-﻿CREATE PROCEDURE [dbo].[GetFinancialReport]
-	@StartDate DATE,
-	@EndDate DATE
+﻿CREATE PROCEDURE [dbo].[GetFinanceReport]
+	--@StartDate DATE,
+	--@EndDate DATE
 AS
 BEGIN
 	SELECT OU.[RoomId], 
@@ -8,7 +8,7 @@ BEGIN
 	COUNT(OU.[RoomId]) as RoomCount, 
 	COUNT(OU.[WorkPlaceId]) as WorkPlaceCount, 
 	OU.[AdditionalServiceId],
-	AdS.[Name] as ADName,
+	AdS.[Name] as AdditionalServiceName,
 	COUNT(OU.[AdditionalServiceId]) as AdditionalServiceCount, 
 	SUM(OU.[OrderUnitCost]) as Summ 
 	FROM [dbo].[Order] as O
@@ -17,7 +17,7 @@ BEGIN
 	left join [dbo].[Room] as R on OU.[RoomId] = R.[Id]
 	left join [dbo].[AdditionalService] as AdS on OU.[AdditionalServiceId] = AdS.[Id]
 
-WHERE CAST(O.[PaidDate] AS DATE) >= @StartDate AND CAST(O.[PaidDate] AS DATE) <= @EndDate
+--WHERE CAST(O.[PaidDate] AS DATE) >= @StartDate AND CAST(O.[PaidDate] AS DATE) <= @EndDate
 GROUP BY OU.[RoomId], R.[Name], OU.[AdditionalServiceId],AdS.[Name]
 	
 END
