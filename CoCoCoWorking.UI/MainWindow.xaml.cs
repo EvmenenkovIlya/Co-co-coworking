@@ -16,6 +16,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using CoCoCoWorking.DAL;
 using CoCoCoWorking.DAL.DTO;
+using System.Data;
 
 namespace CoCoCoWorking.UI
 {
@@ -124,6 +125,11 @@ namespace CoCoCoWorking.UI
 
         }
 
-        
+        private void CreateOrder_Button_Click(object sender, RoutedEventArgs e)
+        {
+            List<CustomerDTO> tmp = customers.GetAllCustomers();
+
+            int id = tmp[DataGridCustomers.SelectedIndex].Id;
+        }
     }
 }

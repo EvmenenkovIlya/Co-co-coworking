@@ -105,5 +105,6 @@
     <Build Include="Stored Procedures\GetAllAdditionalService.sql" />
     <Build Include="Stored Procedures\GetAllRoomsWithPriceWithPeriodRentalWhereRentFromWeek_.sql" />
     <Build Include="Stored Procedures\GetAllRoomsWithPriceWithPeriodRentalWhereRentFromHour.sql" />
+    <Build Include="Stored Procedures\Order_GetByCustomerId.sql" />
   </ItemGroup>
 </Project>

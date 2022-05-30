@@ -44,19 +44,17 @@
                     <Button Name="ButtonCreateNewOrder" Grid.Column="1" Grid.Row="1" Content="Create New Order" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="200" Height="30" Margin="0, 0, 20, 30" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonCreateNewOrder_Click"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Orders">
+            <TabItem Header="Orders" Height="20" VerticalAlignment="Top">
                 <Grid Background="Bisque">
                     <ComboBox x:Name="PurchaseType_Combobox" HorizontalAlignment="Left" Height="33" Margin="463,38,0,0" VerticalAlignment="Top" Width="477" SelectionChanged="PurchaseType_Combobox_SelectionChanged" >
                         <ComboBox Height="30" Width="48"/>
                     </ComboBox>
-                    <DataGrid x:Name="Order_DataGrid" HorizontalAlignment="Left" Height="446" Margin="45,226,0,0" VerticalAlignment="Top" Width="890">
+                    <DataGrid x:Name="Order_DataGrid" HorizontalAlignment="Left" Height="446" Margin="45,226,0,0" VerticalAlignment="Top" Width="368">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Service name"/>
-                            <DataGridCheckBoxColumn Header="Name"/>
-                            <DataGridTextColumn Header="Room number"/>
-                            <DataGridCheckBoxColumn Header="Price"/>
-                            <DataGridCheckBoxColumn Header="Start date"/>
-                            <DataGridCheckBoxColumn Header="End date"/>
+                            <DataGridTextColumn Header="CustomerId"/>
+                            <DataGridCheckBoxColumn Header="OrderStatus"/>
+                            <DataGridTextColumn Header="PaidDate"/>
+                            <DataGridCheckBoxColumn Header="OrderCost"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="CreateOrder_Button" Content="Create order" HorizontalAlignment="Left" Height="48" Margin="790,677,0,0" VerticalAlignment="Top" Width="145"/>
