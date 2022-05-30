@@ -83,7 +83,26 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Finance">
-                <Grid Background="Bisque">
+                <Grid ShowGridLines="True" Background="LightBlue">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="21*"></RowDefinition>
+                        <RowDefinition Height="70*"></RowDefinition>
+                        <RowDefinition Height="17*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Content="Reports Period" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="26" Width="88"/>
+                    <TextBox x:Name="TextBox_ReportStartDate" HorizontalAlignment="Left" Margin="10,41,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="250" Height="24"/>
+                    <TextBox x:Name="TextBox_ReportEndDate" HorizontalAlignment="Left" Margin="10,70,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="250" Height="24"/>
+                    <Label Content="Type of Report" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Grid.Column="1" Height="26" Width="88"/>
+                    <ComboBox x:Name="ComboBox_TypeOfReport" Grid.Column="1" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Width="250" Height="52"/>
+                    <Button x:Name="Button_GetReport" Grid.Column="2" Content="Get Report" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Height="52" Width="250" BorderBrush="{x:Null}" Background="#FF2794B8" Foreground="White"/>
+                    <DataGrid x:Name="DataGrid_Report" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="3" Margin="10,16,10,5" Grid.Row="1"/>
+                    <Label Grid.Column="1" Content="Total:" HorizontalAlignment="Left" Margin="270,490,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="16" Background="White" FontWeight="Bold" Grid.RowSpan="2" Height="46"/>
+                    <TextBox x:Name="TextBox_Total" Grid.Column="2" HorizontalAlignment="Left" Margin="0,490,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="321" Grid.RowSpan="2" Height="46"/>
 
                 </Grid>
             </TabItem>
