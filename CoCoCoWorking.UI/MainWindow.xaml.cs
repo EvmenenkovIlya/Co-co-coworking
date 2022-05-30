@@ -94,9 +94,8 @@ namespace CoCoCoWorking.UI
 
             }
 
-            if (Type_ComboBox.SelectedIndex == 0)
+            if (Type_ComboBox.SelectedIndex == 0 || Type_ComboBox.SelectedIndex == 2)
             {
-                PurchaseType_Combobox.Items.Clear();
                 PurchaseType_Combobox.Items.Clear();
                 for (int i = 0; i < roomName.Count; i++)
                 {
@@ -116,19 +115,15 @@ namespace CoCoCoWorking.UI
 
             }
 
-        }
+            if (Type_ComboBox.SelectedIndex == 1)
+            {
+                PurchaseType_Combobox.Items.Clear();
+               
 
-        private void Order_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-          
-            Order_DataGrid.Items.Refresh();
-           
+            }
 
         }
+
+        
     }
 }
