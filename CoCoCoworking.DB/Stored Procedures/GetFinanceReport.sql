@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[GetFinancialReport]
-	@Date DATE
+	--@Date DATE
 AS
 BEGIN
 	SELECT OU.[RoomId], 
@@ -11,7 +11,7 @@ BEGIN
 		SUM(OU.[OrderUnitCost]) as Summ 
 		FROM [dbo].[Order] as O
 	join [dbo].[OrderUnit] as OU on OU.[OrderId] = O.[Id]
-	WHERE MONTH(CAST(O.[PaidDate] AS DATE)) = MONTH(@Date)
+	--WHERE MONTH(CAST(O.[PaidDate] AS DATE)) = MONTH(@Date)
 	GROUP BY OU.[RoomId], OU.[WorkPlaceId], OU.[AdditionalServiceId]
 	
 END

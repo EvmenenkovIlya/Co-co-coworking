@@ -11,7 +11,7 @@ namespace CoCoCoWorking.DAL.DTO
         public int Id { get; set; }
         public string? Name { get; set; }
         public string? Count { get; set; }
-        public List<OrderUnitDTO>? Orderunits { get; set; } 
-        public List<RentPriceDTO>? Rentprices { get; set; }
+        public List<OrderUnitDTO>? Orderunits { get; set; } = new List<OrderUnitDTO>();
+        public List<RentPriceDTO>? Rentprices { get; set; } = new List<RentPriceDTO>();
     }
 }

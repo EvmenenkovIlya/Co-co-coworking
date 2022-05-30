@@ -8,19 +8,10 @@ namespace CoCoCoWorking.DAL.DTO
 {
     public class FinanceReportDBO
     {
-        public List<AdditionalServiceDTO>? Additionalservices { get; set; }
-        public int? AdditionalServiceCount { get; set; }
-        public int? Summ { get; set; }
-
-
-
-
-        public int RoomId { get; set; }
-        public int? RoomCount { get; set; }
-        public int WorkplaceId {get;set;}
-        public int? WorkPlaceCount { get; set; }
-      
-
-        
+        public int Id { get; set; }
+        public List<RoomDTO>? Rooms { get; set; } = new List<RoomDTO>();
+        public List<WorkplaceDTO>? Workplaces { get; set; } = new List<WorkplaceDTO>();
+        public List<AdditionalServiceDTO>? Additionalservices { get; set; } = new List<AdditionalServiceDTO>();    
+        public int? Summ { get; set; }     
     }
 }

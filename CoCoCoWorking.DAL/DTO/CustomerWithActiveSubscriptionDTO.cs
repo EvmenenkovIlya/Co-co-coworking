@@ -12,7 +12,7 @@ namespace CoCoCoWorking.DAL.DTO
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? PhoneNumber { get; set; }
-        public List <OrderDTO>? Orders { get; set; }  
+        public List<OrderDTO>? Orders { get; set; } = new List<OrderDTO>();
 
 
         //public override string ToString()

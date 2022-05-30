@@ -19,10 +19,6 @@ namespace CoCoCoWorking.DAL.DTO
         public decimal? OrderUnitCost { get; set; }
         
 
-        public override string ToString()
-        {
-            return $"Id={Id} StartDate={StartDate} EndDate={EndDate} RoomId={RoomId} WorkPlaceId={WorkPlaceId} WorkPlaceInRoomId={WorkPlaceInRoomId}" +
-                   $"AdditionalServiceId={AdditionalServiceId} OrderId={OrderId} OrderUnitCost={OrderUnitCost}";
-        }
+       
     }
 }
