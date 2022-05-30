@@ -9,14 +9,14 @@ namespace CoCoCoWorking.DAL
     {
         public string connectionString = ServerOptions.ConnectionOption;
 
-        public List<FinanceReportDBO> GetFinanceReport()
+        public List<FinanceReportDTO> GetFinanceReport()
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                Dictionary<int, FinanceReportDBO> result = new Dictionary<int, FinanceReportDBO>();
-                connection.Query<FinanceReportDBO, RoomDTO, WorkplaceDTO, AdditionalServiceDTO, FinanceReportDBO>
+                Dictionary<int, FinanceReportDTO> result = new Dictionary<int, FinanceReportDTO>();
+                connection.Query<FinanceReportDTO, RoomDTO, WorkplaceDTO, AdditionalServiceDTO, FinanceReportDTO>
                 ("GetFinancialReport",
                 (financereport, room, workplace, additionalservice) =>
                 {
@@ -24,7 +24,7 @@ namespace CoCoCoWorking.DAL
                     {
                         result.Add(financereport.Id, financereport);
                     }
-                    FinanceReportDBO crnt = result[financereport.Id];
+                    FinanceReportDTO crnt = result[financereport.Id];
 
                     crnt.Rooms.Add(room);
                     crnt.Workplaces.Add(workplace);
