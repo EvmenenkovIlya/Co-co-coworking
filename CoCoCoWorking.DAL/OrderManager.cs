@@ -8,7 +8,7 @@ namespace CoCoCoWorking.DAL
     {
         public string connectionString = ServerOptions.ConnectionOption;
 
-        public OrderDTO OrderAdd(int? CustomerId, decimal OrderCost, string OrderStatus, string PaidDate)
+        public OrderDTO AddOrder(OrderDTO order)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -18,15 +18,15 @@ namespace CoCoCoWorking.DAL
                        (StoredProcedures.Order_Add,
                        param: new
                        {
-                           CustomerId = CustomerId,
-                           OrderCost = OrderCost,
-                           OrderStatus = OrderStatus,
-                           PaidDate = PaidDate
+                           CustomerId = order.CustomerId,
+                           OrderCost = order.OrderCost,
+                           OrderStatus = order.OrderStatus,
+                           PaidDate = order.PaidDate
                        },
                        commandType: System.Data.CommandType.StoredProcedure);
             }
         }
-        public OrderDTO OrderGetById(int id)
+        public OrderDTO GetOrderById(int id)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -39,7 +39,7 @@ namespace CoCoCoWorking.DAL
                     );
             }
         }
-        public List<OrderDTO> OrderGetAll()
+        public List<OrderDTO> GetAllOrders()
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -51,7 +51,7 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public OrderDTO OrderUpdate(int id, int? CustomerId, decimal OrderCost, int? OrderStatus, int? PaidDate)
+        public OrderDTO UpdateOrder(OrderDTO order)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -60,11 +60,11 @@ namespace CoCoCoWorking.DAL
                 return connection.QuerySingleOrDefault(
                     StoredProcedures.Order_GetById,
                     param: new { 
-                        id = id,
-                        CustomerId= CustomerId,
-                        OrderCost= OrderCost,
-                        OrderStatus= OrderStatus,
-                        PaidDate= PaidDate
+                        id = order.Id,
+                        CustomerId = order.CustomerId,
+                        OrderCost = order.OrderCost,
+                        OrderStatus = order.OrderStatus,
+                        PaidDate = order.PaidDate
                     },
                     commandType: System.Data.CommandType.StoredProcedure
                     );

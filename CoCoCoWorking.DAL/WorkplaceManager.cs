@@ -34,7 +34,7 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public void AddWorkplace(int roomId, int number)
+        public void AddWorkplace(WorkplaceDTO workplace)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -42,14 +42,14 @@ namespace CoCoCoWorking.DAL
                 connection.QuerySingle(
                     StoredProcedures.Workplace_Add,
                     param: new {
-                        RoomId = roomId,
-                        Number = number
+                        RoomId = workplace.RoomId,
+                        Number = workplace.Number
                     },
                     commandType: System.Data.CommandType.StoredProcedure);
             }
         }
 
-        public void UpdateWorkplace(int id, int roomId, int number)
+        public void UpdateWorkplace(WorkplaceDTO workplace)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -58,9 +58,9 @@ namespace CoCoCoWorking.DAL
                     StoredProcedures.Workplace_Update,
                     param: new
                     {
-                        Id = id,
-                        RoomId = roomId,
-                        Number = number
+                        Id = workplace.Id,
+                        RoomId = workplace.RoomId,
+                        Number = workplace.Number
                     },
                     commandType: System.Data.CommandType.StoredProcedure);
             }
