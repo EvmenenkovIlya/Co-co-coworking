@@ -8,15 +8,15 @@ namespace CoCoCoWorking.DAL
     {
         public string connectionString = ServerOptions.ConnectionOption;
 
-        public List<CustomesThisOrdersDTO> GetAllCustomerWhithOrderWithOrderUnit()
+        public List<CustomersWithOrdersDTO> GetAllCustomerWhithOrderWithOrderUnit()
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 
-                Dictionary<int, CustomesThisOrdersDTO> result = new Dictionary<int, CustomesThisOrdersDTO>();   
+                Dictionary<int, CustomersWithOrdersDTO> result = new Dictionary<int, CustomersWithOrdersDTO>();   
 
-                     connection.Query<CustomesThisOrdersDTO, OrderDTO, OrderUnitDTO, CustomesThisOrdersDTO>
+                     connection.Query<CustomersWithOrdersDTO, OrderDTO, OrderUnitDTO, CustomersWithOrdersDTO>
                      ("GetAllCustomerWhithOrderWithOrderUnit",
                      (customer, order, orderunit) =>
                      {
@@ -25,17 +25,19 @@ namespace CoCoCoWorking.DAL
                          {
                              result.Add(customer.Id, customer);
                          }
-                         CustomesThisOrdersDTO crnt = result[customer.Id];
+                         CustomersWithOrdersDTO crnt = result[customer.Id];
 
                          if (customer!=null)
                          {
-                             if(!crnt.Orders.Contains(order))
+                             if (crnt.Orders != null && !crnt.Orders.Contains(order))
                              {
                                  crnt.Orders.Add(order);
-                             }
-                             int index = crnt.Orders.IndexOf(order);
-                             crnt.Orders[index].Orderunits.Add(orderunit);
-                             
+                                 int index = crnt.Orders.IndexOf(order);
+                                 if (orderunit!= null)
+                                 {
+                                    crnt.Orders[index].OrderUnits.Add(orderunit);
+                                 }
+                             }                                                        
                          }
                          return crnt;
                      },

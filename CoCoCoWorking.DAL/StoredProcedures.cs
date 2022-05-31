@@ -14,6 +14,7 @@
         public const string Order_Add = "Order_Add";
         public const string Order_GetAll = "Order_GetAll";
         public const string Order_GetById = "Order_GetById";
+        public const string Order_GetByCustomerId = "Order_GetByCustomerId";
         public const string Order_Update = "Order_Update";
         public const string OrderUnit_Add = "OrderUnit_Add";
         public const string OrderUnit_GetAll = "OrderUnit_GetAll";
@@ -37,6 +38,7 @@
         public const string GetAllCustomerWhithOrderWithOrderUnit = "GetAllCustomerWhithOrderWithOrderUnit";
         public const string GetAllCustomerWithActiveSubscription = "GetAllCustomerWithActiveSubscription";
         public const string GetAllRoomAndWorkPlaceBusyOrFree = "GetAllRoomAndWorkPlaceBusyOrFree";
-        public const string GetFinanceReport = "GetFinancialReport";
+        public const string GetFinanceReport = "GetFinanceReport";
+        public const string GetFinanceReportByCustomer = "GetFinanceReportByCustomer";
     }
 }
