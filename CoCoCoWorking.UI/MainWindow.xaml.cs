@@ -27,12 +27,14 @@ namespace CoCoCoWorking.UI
         RoomManager room = new RoomManager();
         AdditionalServiceManager additionalService = new AdditionalServiceManager();
 
-        
+        FinanceReportManager financereport = new FinanceReportManager();
         CustomerManager customers = new CustomerManager();
         public MainWindow()
         {
             InitializeComponent();
             DataGridCustomers.ItemsSource = customers.GetAllCustomers();
+
+            DataGrid_Report.ItemsSource = financereport.GetFinanceReport();
         }
 
         private void ButtonCreateNewOrder_Click(object sender, RoutedEventArgs e)
@@ -124,6 +126,5 @@ namespace CoCoCoWorking.UI
 
         }
 
-        
     }
 }
