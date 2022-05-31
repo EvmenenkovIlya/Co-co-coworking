@@ -9,7 +9,7 @@ namespace CoCoCoWorking.DAL
     {
         public string connectionString = ServerOptions.ConnectionOption;
 
-        public List<FinanceReportDTO> GetFinanceReport()
+        public List<FinanceReportDTO> GetFinanceReport(string startDate, string EndDate)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -21,7 +21,7 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public List<FinanceReportByCustomerDTO> GetFinanceReportByCustomer()
+        public List<FinanceReportByCustomerDTO> GetFinanceReportByCustomer(string startDate, string EndDate)
         {
             using (var connection = new SqlConnection(connectionString))
             {
