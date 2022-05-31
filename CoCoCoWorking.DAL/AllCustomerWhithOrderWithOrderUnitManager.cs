@@ -29,13 +29,15 @@ namespace CoCoCoWorking.DAL
 
                          if (customer!=null)
                          {
-                             if(!crnt.Orders.Contains(order))
+                             if (crnt.Orders != null && !crnt.Orders.Contains(order))
                              {
                                  crnt.Orders.Add(order);
-                             }
-                             int index = crnt.Orders.IndexOf(order);
-                             crnt.Orders[index].Orderunits.Add(orderunit);
-                             
+                                 int index = crnt.Orders.IndexOf(order);
+                                 if (orderunit!= null)
+                                 {
+                                    crnt.Orders[index].OrderUnits.Add(orderunit);
+                                 }
+                             }                                                        
                          }
                          return crnt;
                      },

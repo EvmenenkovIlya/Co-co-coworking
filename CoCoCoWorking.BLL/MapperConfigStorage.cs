@@ -25,11 +25,11 @@ namespace CoCoCoWorking.BLL
         {
             _instance =new Mapper(new MapperConfiguration(cfg => {
                 cfg.CreateMap<CustomersWithOrdersDTO, CustomerModel>()
-                .ForMember("Name", opt => opt.MapFrom(c => @"{c.FirstName} {c.Name}"))
+                .ForMember("Name", opt => opt.MapFrom(c => $"{c.FirstName} {c.LastName}"))
                 .ForMember("Regular", opt => opt.MapFrom(c => c.IsRegular()))
                 .ForMember("Subscribe", opt => opt.MapFrom(c => c.IsSubscribe()))
                 .ForMember("EndDate", opt => opt.MapFrom(c => c.GetLastDate()));
-            });
+            }));
         }
     }
 }

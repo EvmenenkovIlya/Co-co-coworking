@@ -22,12 +22,15 @@ namespace CoCoCoWorking.DAL.DTO
             }
             foreach (OrderDTO order in Orders)
             {
-                foreach (OrderUnitDTO orderUnit in order.Orderunits!)
-                { 
-                    if ((DateTime.Parse(orderUnit.EndDate!) - DateTime.Parse(orderUnit.EndDate!)).Days > 30)
-                    {
-                        return true;
-                    }    
+                if (order != null)
+                {                  
+                    foreach (OrderUnitDTO orderUnit in order.OrderUnits!)
+                    { 
+                        if ((DateTime.Parse(orderUnit.EndDate!) - DateTime.Parse(orderUnit.EndDate!)).Days > 30)
+                        {
+                            return true;
+                        }    
+                    }
                 }
             }
             return false;
@@ -40,11 +43,14 @@ namespace CoCoCoWorking.DAL.DTO
             }
             foreach (OrderDTO order in Orders)
             {
-                foreach (OrderUnitDTO orderUnit in order.Orderunits!)
+                if (order != null)
                 {
-                    if (orderUnit.AdditionalServiceId == 1 && DateTime.Parse(orderUnit.EndDate!) > DateTime.Now.Date)
+                    foreach (OrderUnitDTO orderUnit in order.OrderUnits!)
                     {
-                        return true;
+                        if (orderUnit.AdditionalServiceId == 1 && DateTime.Parse(orderUnit.EndDate!) > DateTime.Now.Date)
+                        {
+                            return true;
+                        }
                     }
                 }
             }
@@ -52,17 +58,27 @@ namespace CoCoCoWorking.DAL.DTO
         }
         public string GetLastDate()
         {
-            DateTime lastDate = DateTime.Now.Date;
-            foreach (OrderDTO order in Orders)
+            DateTime lastDate = new DateTime();
+            if (Orders != null)
             {
-                foreach (OrderUnitDTO orderUnit in order.Orderunits!)
+                foreach (OrderDTO order in Orders)
                 {
-                    DateTime crnt = DateTime.Parse(orderUnit.EndDate);
-                    if (crnt > lastDate)
-                    {
-                        crnt = lastDate;
+                    if (order != null)
+                    { 
+                        foreach (OrderUnitDTO orderUnit in order.OrderUnits!)
+                        {
+                            DateTime crnt = DateTime.Parse(orderUnit.EndDate);
+                            if (crnt > lastDate)
+                            {
+                                lastDate = crnt;
+                            }
+                        }
                     }
                 }
+            }
+            if (lastDate == new DateTime())
+            {
+                return "No orders";
             }
             return lastDate.ToString();
         }

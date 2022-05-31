@@ -18,6 +18,7 @@ using CoCoCoWorking.DAL;
 using CoCoCoWorking.DAL.DTO;
 using System.Data;
 using CoCoCoWorking.BLL;
+using CoCoCoWorking.BLL.Models;
 
 namespace CoCoCoWorking.UI
 {
@@ -31,14 +32,16 @@ namespace CoCoCoWorking.UI
         OrderManager order = new OrderManager();
         FinanceReportManager financereport = new FinanceReportManager();
         AllCustomerWhithOrderWithOrderUnitManager CustomerManager = new AllCustomerWhithOrderWithOrderUnitManager();
-        MapperConfigStorage configStorage = new MapperConfigStorage();       
+
+        AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
+        
 
         public MainWindow()
         {
             InitializeComponent();
             List<CustomersWithOrdersDTO> customers = CustomerManager.GetAllCustomerWhithOrderWithOrderUnit();
-
-            DataGridCustomers.ItemsSource = customers;
+            List<CustomerModel> CustomerModel = mapper.Map<List<CustomerModel>>(customers);
+            DataGridCustomers.ItemsSource = CustomerModel;
 
             DataGrid_Report.ItemsSource = financereport.GetFinanceReport();
         }

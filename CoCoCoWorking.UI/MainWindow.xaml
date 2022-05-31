@@ -35,10 +35,12 @@
                     <Label Content="List of Customers:" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment= "Top" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Margin="0,100,0,0" Height="30" />
                     <DataGrid Name="DataGridCustomers" Grid.Column="2" Margin="10,130,10,80" Grid.RowSpan="2" ColumnHeaderHeight="30" RowBackground="AliceBlue" RowHeight="30" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="FirstName" Width="40*" Binding="{Binding Path=FirstName}"/>
-                            <DataGridTextColumn Header="LastName"  Width="40*" Binding="{Binding Path=LastName}"/>
+                            <DataGridTextColumn Header="Name" Width="40*" Binding="{Binding Path=Name}"/>
                             <DataGridTextColumn Header="Phone"  Width="40*" Binding="{Binding Path=PhoneNumber}"/>
                             <DataGridTextColumn Header="Email" Width="50*" Binding="{Binding Path=Email}"/>
+                            <DataGridTextColumn Header="Regular" Width="50*" Binding="{Binding Path=Regular}"/>
+                            <DataGridTextColumn Header="Subscribe" Width="50*" Binding="{Binding Path=Subscribe}"/>
+                            <DataGridTextColumn Header="EndDate"  Width="40*" Binding="{Binding Path=EndDate}"/>
                         </DataGrid.Columns>
                     </DataGrid>
 
