@@ -16,6 +16,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using CoCoCoWorking.DAL;
 using CoCoCoWorking.DAL.DTO;
+using System.Data;
 
 namespace CoCoCoWorking.UI
 {
@@ -26,7 +27,7 @@ namespace CoCoCoWorking.UI
     {
         RoomManager room = new RoomManager();
         AdditionalServiceManager additionalService = new AdditionalServiceManager();
-
+        OrderManager order = new OrderManager();
         
         CustomerManager customers = new CustomerManager();
         public MainWindow()
@@ -125,5 +126,7 @@ namespace CoCoCoWorking.UI
         }
 
         
+
+       
     }
 }
