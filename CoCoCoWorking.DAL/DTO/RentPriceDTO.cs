@@ -12,11 +12,12 @@ namespace CoCoCoWorking.DAL.DTO
         public int RoomId { get; set; }
         public int WorkPlaceInRoomId { get; set; }
         public int AdditionalServiceId { get; set; }
-        public string PeriodType { get; set; }
-        public decimal RegularPrice { get; set; }
-        public decimal ResidentPrice { get; set; }
-        public decimal FixedPrice { get; set; }
+        public string? PeriodType { get; set; }
+        public decimal? RegularPrice { get; set; }
+        public decimal? ResidentPrice { get; set; }
+        public decimal? FixedPrice { get; set; }
         public bool IsDeleted { get; set; }
+
         public override string ToString()
         {
             return $"Id={Id} RoomId={RoomId} WorkPlaceInRoomId={WorkPlaceInRoomId} AdditionalServiceId={AdditionalServiceId} PeriodType={PeriodType}" +

@@ -38,6 +38,6 @@
         public const string GetAllCustomerWhithOrderWithOrderUnit = "GetAllCustomerWhithOrderWithOrderUnit";
         public const string GetAllCustomerWithActiveSubscription = "GetAllCustomerWithActiveSubscription";
         public const string GetAllRoomAndWorkPlaceBusyOrFree = "GetAllRoomAndWorkPlaceBusyOrFree";
-        public const string GetFinanceReport = "GetFinancialReport";
+        public const string GetFinanceReport = "GetFinanceReport";
     }
 }
