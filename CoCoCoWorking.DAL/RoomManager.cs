@@ -32,7 +32,7 @@ namespace CoCoCoWorking.DAL
                     );
             }
         }
-        public void AddRoom(string name, int workPlaceNumber)
+        public void AddRoom(RoomDTO room)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -41,14 +41,14 @@ namespace CoCoCoWorking.DAL
                     StoredProcedures.Room_Add,
                     param: new
                     {
-                        Name = name,
-                        WorkPlaceNumber = workPlaceNumber
+                        Name = room.Name,
+                        WorkPlaceNumber = room.WorkPlaceNumber
                     },
                     commandType: System.Data.CommandType.StoredProcedure
                     );
             }
         }
-        public void UpdateRoom(int id, string name, int workPlaceNumber)
+        public void UpdateRoom(RoomDTO room)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -57,9 +57,9 @@ namespace CoCoCoWorking.DAL
                     StoredProcedures.Room_Update,
                     param: new
                     {
-                        id = id,
-                        Name = name,
-                        WorkPlaceNumber = workPlaceNumber
+                        id = room.Id,
+                        Name = room.Name,
+                        WorkPlaceNumber = room.WorkPlaceNumber
                     },
                     commandType: System.Data.CommandType.StoredProcedure
                     );

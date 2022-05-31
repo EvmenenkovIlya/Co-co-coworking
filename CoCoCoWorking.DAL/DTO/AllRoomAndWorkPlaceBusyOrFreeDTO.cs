@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace CoCoCoWorking.DAL.DTO
 {
-    public class GetAllRoomAndWorkPlaceBusyOrFreeDTO
+    public class AllRoomAndWorkPlaceBusyOrFreeDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public int WorkPlaceNumber { get; set; }
-
-        public override string ToString()
-        {
-            return $"Id={Id} Name={Name} WorkPlaceNumber={WorkPlaceNumber}";
-        }
+        public List<WorkplaceDTO> Workplaces = new List<WorkplaceDTO>();
+        public List <RentPriceDTO> RentPrices=new List<RentPriceDTO>();
+        public List<OrderUnitDTO> Orderunits = new List<OrderUnitDTO>();    
     }
 }
