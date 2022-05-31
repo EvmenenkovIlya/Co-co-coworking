@@ -23,9 +23,17 @@ namespace CoCoCoWorking.BLL
 
         private static void InitMapperConfigStorage()
         {
-            _instance =new Mapper(new MapperConfiguration(cfg => {
+            _instance =new Mapper(new MapperConfiguration(cfg => 
+            {
                 cfg.CreateMap<CustomersWithOrdersDTO, CustomerModel>()
                 .ForMember("Name", opt => opt.MapFrom(c => @"{c.FirstName} {c.Name}"));
+
+                cfg.CreateMap<RoomDTO, RoomModel>().ReverseMap();
+
+                cfg.CreateMap<WorkplaceDTO, WorkPlaceModel>().ReverseMap();
+
+                cfg.CreateMap<AdditionalServiceDTO, AdditionalServiceModel>().ReverseMap();
+                
             }));
 
 
