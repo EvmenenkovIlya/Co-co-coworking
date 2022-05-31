@@ -34,7 +34,7 @@ namespace CoCoCoWorking.DAL
                                 crnt.Orders.Add(order);
                             }
                             int index = crnt.Orders.IndexOf(order);
-                            crnt.Orders[index].Orderunits.Add(orderunit);
+                            crnt.Orders[index].OrderUnits.Add(orderunit);
 
                         }
                         return crnt;
