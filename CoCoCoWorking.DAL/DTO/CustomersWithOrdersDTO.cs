@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoCoCoWorking.DAL.DTO
 {
-    public class CustomersWithActiveSubscriptionDTO
+    public class CustomersWithOrdersDTO
     {
         public int Id { get; set; }
         public string? FirstName { get; set; }

@@ -49,8 +49,6 @@ namespace CoCoCoWorking.UI
             DataGridCustomers.ItemsSource = customers.GetAllCustomers();
         }
 
-
-
         private void PurchaseType_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ChooseWorkplace_Combobox.Items.Clear();
@@ -73,12 +71,7 @@ namespace CoCoCoWorking.UI
                 }
             }
 
-        }
-
-       
-
-        
-
+        }            
         private void Type_ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             ChooseWorkplace_Combobox.IsEnabled = false;
@@ -91,12 +84,10 @@ namespace CoCoCoWorking.UI
                 PurchaseType_Combobox.Items.Clear();
                 foreach (var service in allService)
                 {
-
                     PurchaseType_Combobox.Items.Add(service.Name);
                 }
 
             }
-
             if (Type_ComboBox.SelectedIndex == 0 || Type_ComboBox.SelectedIndex == 2)
             {
                 PurchaseType_Combobox.Items.Clear();
@@ -104,9 +95,7 @@ namespace CoCoCoWorking.UI
                 {
                     PurchaseType_Combobox.Items.Add(roomName[i].Name);
                 }
-
             }
-
             if (Type_ComboBox.SelectedIndex == 4)
             {
                 PurchaseType_Combobox.Items.Clear();
@@ -120,12 +109,8 @@ namespace CoCoCoWorking.UI
 
             if (Type_ComboBox.SelectedIndex == 1)
             {
-                PurchaseType_Combobox.Items.Clear();
-               
-
+                PurchaseType_Combobox.Items.Clear();               
             }
-
         }
-
     }
 }
