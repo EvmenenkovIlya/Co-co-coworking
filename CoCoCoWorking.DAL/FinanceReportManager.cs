@@ -20,5 +20,17 @@ namespace CoCoCoWorking.DAL
                        .ToList();
             }
         }
+
+        public List<FinanceReportByCustomerDTO> GetFinanceReportByCustomer()
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                return connection.Query<FinanceReportByCustomerDTO>
+                    (StoredProcedures.GetFinanceReportByCustomer,
+                       commandType: System.Data.CommandType.StoredProcedure)
+                       .ToList();
+            }
+        }
     }
 }
