@@ -11,14 +11,22 @@ namespace CoCoCoWorking.BLL
 {
     public class MapperConfigStorage
     {
-        public MapperConfiguration config { get; private set; }
-
-        public MapperConfigStorage()
+        private static Mapper _instance;
+        
+        public static Mapper GetInstance()
         {
-            config = new MapperConfiguration(cfg => {
+            if (_instance == null)
+                InitMapperConfigStorage();               
+            return _instance;
+        }
+        
+
+        private static void InitMapperConfigStorage()
+        {
+            _instance =new Mapper(new MapperConfiguration(cfg => {
                 cfg.CreateMap<CustomersWithOrdersDTO, CustomerModel>()
                 .ForMember("Name", opt => opt.MapFrom(c => @"{c.FirstName} {c.Name}"));
-            });
+            }));
 
 
         }
