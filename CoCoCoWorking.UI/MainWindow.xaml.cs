@@ -17,6 +17,7 @@ using System.IO;
 using CoCoCoWorking.DAL;
 using CoCoCoWorking.DAL.DTO;
 using System.Data;
+using CoCoCoWorking.BLL;
 
 namespace CoCoCoWorking.UI
 {
@@ -29,11 +30,15 @@ namespace CoCoCoWorking.UI
         AdditionalServiceManager additionalService = new AdditionalServiceManager();
         OrderManager order = new OrderManager();
         FinanceReportManager financereport = new FinanceReportManager();
-        CustomerManager customers = new CustomerManager();
+        AllCustomerWhithOrderWithOrderUnitManager CustomerManager = new AllCustomerWhithOrderWithOrderUnitManager();
+        MapperConfigStorage configStorage = new MapperConfigStorage();       
+
         public MainWindow()
         {
             InitializeComponent();
-            DataGridCustomers.ItemsSource = customers.GetAllCustomers();
+            List<CustomersWithOrdersDTO> customers = CustomerManager.GetAllCustomerWhithOrderWithOrderUnit();
+
+            DataGridCustomers.ItemsSource = customers;
 
             DataGrid_Report.ItemsSource = financereport.GetFinanceReport();
         }
@@ -45,8 +50,8 @@ namespace CoCoCoWorking.UI
 
         private void ButtonCreateNewCustomer_Click(object sender, RoutedEventArgs e)
         {
-            //customers.AddCustomer(TextBoxFirstName.Text, TextBoxLastName.Text, TextBoxNumber.Text, TextBoxEmail.Text);
-            DataGridCustomers.ItemsSource = customers.GetAllCustomers();
+            List<CustomersWithOrdersDTO> customers = CustomerManager.GetAllCustomerWhithOrderWithOrderUnit();
+            DataGridCustomers.ItemsSource = customers;
         }
 
         private void PurchaseType_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
