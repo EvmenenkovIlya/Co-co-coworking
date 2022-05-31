@@ -39,5 +39,6 @@
         public const string GetAllCustomerWithActiveSubscription = "GetAllCustomerWithActiveSubscription";
         public const string GetAllRoomAndWorkPlaceBusyOrFree = "GetAllRoomAndWorkPlaceBusyOrFree";
         public const string GetFinanceReport = "GetFinanceReport";
+        public const string GetFinanceReportByCustomer = "GetFinanceReportByCustomer";
     }
 }
