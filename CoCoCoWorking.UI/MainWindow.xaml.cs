@@ -125,17 +125,8 @@ namespace CoCoCoWorking.UI
 
         }
 
-        private void CreateOrder_Button_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+        
 
-        private void DataGridCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            List<CustomerDTO> tmp = customers.GetAllCustomers();
-            int id = tmp[DataGridCustomers.SelectedIndex].Id;
-
-            Order_DataGrid.ItemsSource = order.OrderGetByCustomerId(id);
-        }
+       
     }
 }
