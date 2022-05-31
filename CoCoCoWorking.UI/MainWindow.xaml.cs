@@ -42,7 +42,7 @@ namespace CoCoCoWorking.UI
 
         private void ButtonCreateNewCustomer_Click(object sender, RoutedEventArgs e)
         {
-            customers.AddCustomer(TextBoxFirstName.Text, TextBoxLastName.Text, TextBoxNumber.Text, TextBoxEmail.Text);
+            //customers.AddCustomer(TextBoxFirstName.Text, TextBoxLastName.Text, TextBoxNumber.Text, TextBoxEmail.Text);
             DataGridCustomers.ItemsSource = customers.GetAllCustomers();
         }
 
@@ -80,7 +80,7 @@ namespace CoCoCoWorking.UI
         {
             ChooseWorkplace_Combobox.IsEnabled = false;
             ChooseWorkplace_Combobox.Items.Clear ();
-            var allService = additionalService.GetAllAdditionalService();
+            var allService = additionalService.GetAllAdditionalServices();
             var roomName = room.GetAllRooms();
 
             if (Type_ComboBox.SelectedIndex == 5)
@@ -124,6 +124,6 @@ namespace CoCoCoWorking.UI
 
         }
 
-        
+
     }
 }
