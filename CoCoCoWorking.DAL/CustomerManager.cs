@@ -7,32 +7,32 @@ namespace CoCoCoWorking.DAL
     public class CustomerManager
     {
         public string connectionString = ServerOptions.ConnectionOption ;
-        public List<CustomerDTO> GetAllCustomers()
+        public List<CustomersWithOrdersDTO> GetAllCustomers()
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                return connection.Query<CustomerDTO>(
+                return connection.Query<CustomersWithOrdersDTO>(
                     StoredProcedures.Customer_GetAll,
                     commandType: System.Data.CommandType.StoredProcedure)
                     .ToList();
             }
         }
-        public CustomerDTO GetCustomerByID(int id)
+        public CustomersWithOrdersDTO GetCustomerByID(int id)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                return connection.QuerySingle<CustomerDTO>(
+                return connection.QuerySingle<CustomersWithOrdersDTO>(
                     StoredProcedures.Customer_GetById,
                     param: new { id = id },
                     commandType: System.Data.CommandType.StoredProcedure
                     );
             }
         }
-        public void AddCustomer(CustomerDTO customer)
+        public void AddCustomer(CustomersWithOrdersDTO customer)
         { 
             using (var connection = new SqlConnection(connectionString))
             {
@@ -49,7 +49,7 @@ namespace CoCoCoWorking.DAL
                     );
             }
         }
-        public void UpdateCustomer(CustomerDTO customer)
+        public void UpdateCustomer(CustomersWithOrdersDTO customer)
         {
             using (var connection = new SqlConnection(connectionString))
             {

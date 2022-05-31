@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoCoCoWorking.BLL\CoCoCoWorking.BLL.csproj" />
     <ProjectReference Include="..\CoCoCoWorking.DAL\CoCoCoWorking.DAL.csproj" />
   </ItemGroup>
 
