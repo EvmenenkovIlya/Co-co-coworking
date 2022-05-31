@@ -28,12 +28,18 @@ namespace CoCoCoWorking.BLL
                 cfg.CreateMap<CustomersWithOrdersDTO, CustomerModel>()
                 .ForMember("Name", opt => opt.MapFrom(c => @"{c.FirstName} {c.Name}"));
 
-                cfg.CreateMap<RoomDTO, RoomModel>().ReverseMap();
+                cfg.CreateMap<RoomDTO, RoomModel>().ReverseMap()
+                .ForMember("Name", opt => opt.MapFrom(c => c.Name))
+                .ForMember("WorkPlaceCount", opt => opt.MapFrom(c => c.WorkPlaceNumber));
 
-                cfg.CreateMap<WorkplaceDTO, WorkPlaceModel>().ReverseMap();
+                cfg.CreateMap<WorkplaceDTO, WorkPlaceModel>().ReverseMap()
+                .ForMember("RoomName", opt => opt.MapFrom(c => c.RoomId))
+                .ForMember("Number", opt => opt.MapFrom(c => c.Number));
 
-                cfg.CreateMap<AdditionalServiceDTO, AdditionalServiceModel>().ReverseMap();
-                
+                cfg.CreateMap<AdditionalServiceDTO, AdditionalServiceModel>().ReverseMap()
+                .ForMember("Name", opt => opt.MapFrom(c => c.Name));
+
+
             }));
 
 
