@@ -20,12 +20,20 @@
             </TabItem>
             <TabItem Header="Administration">
                 <Grid Background="Bisque">
+                    <DataGrid x:Name="DataGridSheduleRooms" HorizontalAlignment="Left" Height="485" Margin="19,0,0,0" VerticalAlignment="Center" Width="401" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                    <ComboBox x:Name="ComboBoxTypeAdministration" HorizontalAlignment="Left" Height="66" Margin="26,33,0,0" VerticalAlignment="Top" Width="387">
+                        <ComboBoxItem Content="Room"/>
+                        <ComboBoxItem Content="Meeting Room"/>
+                        <ComboBoxItem/>
+                        <ComboBoxItem Content="Work Place Fixed"/>
+                    </ComboBox>
+                    <ComboBox HorizontalAlignment="Left" Height="66" Margin="523,33,0,0" VerticalAlignment="Top" Width="401"/>
 
                 </Grid>
             </TabItem>
             <TabItem Header="Finance">
                 <Grid Background="Bisque">
-                
+
                 </Grid>
             </TabItem>
             <TabItem Header="Old Design">
@@ -56,7 +64,7 @@
                     <Button Content="Забронировать" HorizontalAlignment="Left" Margin="666,372,0,0" VerticalAlignment="Top" Height="30" Width="107"/>
                     <Label Content="CoCoCoWorking" HorizontalAlignment="Left" Height="70" Margin="67,27,0,0" VerticalAlignment="Top" Width="307" FontSize="40"/>
                 </Grid>
-             </TabItem>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
