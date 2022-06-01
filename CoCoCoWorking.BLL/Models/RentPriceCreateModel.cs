@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoCoCoWorking.BLL.Models
 {
-    public class RentPriceCreate
+    public class RentPriceCreateModel
     {
         public int Id { get; set; }
         public int RoomId { get; set; }

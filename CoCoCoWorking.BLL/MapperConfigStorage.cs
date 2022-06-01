@@ -33,7 +33,7 @@ namespace CoCoCoWorking.BLL
 
                 cfg.CreateMap<RoomDTO, RoomModel>().ReverseMap()
                 .ForMember("Name", opt => opt.MapFrom(c => c.Name))
-                .ForMember("WorkPlaceCount", opt => opt.MapFrom(c => c.WorkPlaceNumber));
+                .ForMember("WorkPlaceNumber", opt => opt.MapFrom(c => c.WorkPlaceNumber));
 
                 cfg.CreateMap<WorkplaceDTO, WorkPlaceModel>().ReverseMap()
                 .ForMember("RoomId", opt => opt.MapFrom(c => c.RoomId))
