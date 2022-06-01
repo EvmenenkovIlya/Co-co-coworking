@@ -9,15 +9,16 @@ namespace CoCoCoWorking.DAL
     {
         public string connectionString = ServerOptions.ConnectionOption;
 
-        public List<FinanceReportDTO> GetFinanceReport(string startDate, string EndDate)
+        public List<FinanceReportDTO> GetFinanceReport(DateTime startDate, DateTime endDate)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 return connection.Query<FinanceReportDTO>
                     (StoredProcedures.GetFinanceReport,
-                       commandType: System.Data.CommandType.StoredProcedure)
-                       .ToList();
+                    param: new { StartDate = startDate, EndDate = endDate },
+                    commandType: System.Data.CommandType.StoredProcedure)
+                    .ToList();
             }
         }
 

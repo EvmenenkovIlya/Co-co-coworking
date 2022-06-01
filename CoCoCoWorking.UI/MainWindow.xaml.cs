@@ -30,7 +30,7 @@ namespace CoCoCoWorking.UI
         RoomManager room = new RoomManager();
         AdditionalServiceManager additionalService = new AdditionalServiceManager();
         OrderManager order = new OrderManager();
-        FinanceReportManager financereport = new FinanceReportManager();
+        FinanceReportManager financeReportManager = new FinanceReportManager();
         AllCustomerWhithOrderWithOrderUnitManager CustomerManager = new AllCustomerWhithOrderWithOrderUnitManager();
 
         AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
@@ -42,8 +42,9 @@ namespace CoCoCoWorking.UI
             List<CustomersWithOrdersDTO> customers = CustomerManager.GetAllCustomerWhithOrderWithOrderUnit();
             List<CustomerModel> CustomerModel = mapper.Map<List<CustomerModel>>(customers);
             DataGridCustomers.ItemsSource = CustomerModel;
-
-            DataGrid_Report.ItemsSource = financereport.GetFinanceReport();
+            List<FinanceReportDTO> financeReportDTOs = financeReportManager.GetFinanceReport(new DateTime(2022, 5, 1), new DateTime(2022, 5, 31));
+            List<FinanceReportModel> financeReportModels = mapper.Map<List<FinanceReportModel>>(financeReportDTOs);
+            DataGrid_Report.ItemsSource = financeReportModels;
         }
 
         private void ButtonCreateNewOrder_Click(object sender, RoutedEventArgs e)
@@ -53,8 +54,8 @@ namespace CoCoCoWorking.UI
 
         private void ButtonCreateNewCustomer_Click(object sender, RoutedEventArgs e)
         {
-            List<CustomersWithOrdersDTO> customers = CustomerManager.GetAllCustomerWhithOrderWithOrderUnit();
-            DataGridCustomers.ItemsSource = customers;
+            //customers.AddCustomer(TextBoxFirstName.Text, TextBoxLastName.Text, TextBoxNumber.Text, TextBoxEmail.Text);
+            //DataGridCustomers.ItemsSource = customers.GetAllCustomers();
         }
 
         private void PurchaseType_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)

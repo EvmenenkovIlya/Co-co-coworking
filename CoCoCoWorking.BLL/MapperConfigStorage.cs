@@ -20,15 +20,46 @@ namespace CoCoCoWorking.BLL
             return _instance;
         }
         
+        private static ModelController modelController = new ModelController();
 
         private static void InitMapperConfigStorage()
         {
-            _instance =new Mapper(new MapperConfiguration(cfg => {
+            _instance =new Mapper(new MapperConfiguration(cfg => 
+            {
                 cfg.CreateMap<CustomersWithOrdersDTO, CustomerModel>()
                 .ForMember("Name", opt => opt.MapFrom(c => $"{c.FirstName} {c.LastName}"))
                 .ForMember("Regular", opt => opt.MapFrom(c => c.IsRegular()))
                 .ForMember("Subscribe", opt => opt.MapFrom(c => c.IsSubscribe()))
                 .ForMember("EndDate", opt => opt.MapFrom(c => c.GetLastDate()));
+
+                cfg.CreateMap<RoomDTO, RoomModel>().ReverseMap()
+                .ForMember("Name", opt => opt.MapFrom(c => c.Name))
+                .ForMember("WorkPlaceNumber", opt => opt.MapFrom(c => c.WorkPlaceNumber));
+
+                cfg.CreateMap<WorkplaceDTO, WorkPlaceModel>().ReverseMap()
+                .ForMember("RoomId", opt => opt.MapFrom(c => c.RoomId))
+                .ForMember("Number", opt => opt.MapFrom(c => c.Number));
+
+                cfg.CreateMap<AdditionalServiceDTO, AdditionalServiceModel>().ReverseMap()
+                .ForMember("Name", opt => opt.MapFrom(c => c.Name));
+
+                cfg.CreateMap<AdditionalServiceDTO, AdditionalServiceModel>().ReverseMap()
+                .ForMember("Name", opt => opt.MapFrom(c => c.Name));
+
+                cfg.CreateMap<RentPriceDTO, RentPriceCreateModel>().ReverseMap()
+                .ForMember("RoomId", opt => opt.MapFrom(c => c.RoomId))
+                .ForMember("WorkPlaceInRoomId", opt => opt.MapFrom(c => c.WorkPlaceInRoomId))
+                .ForMember("AdditionalServiceId", opt => opt.MapFrom(c => c.AdditionalServiceId))
+                .ForMember("PeriodType", opt => opt.MapFrom(c => c.PeriodType))
+                .ForMember("RegularPrice", opt => opt.MapFrom(c => c.RegularPrice))
+                .ForMember("ResidentPrice", opt => opt.MapFrom(c => c.ResidentPrice))
+                .ForMember("FixedPrice", opt => opt.MapFrom(c => c.FixedPrice));
+
+                cfg.CreateMap<FinanceReportDTO, FinanceReportModel>()
+                .ForMember("ProductName", opt => opt.MapFrom(c => modelController.GetProductName(c)))
+                .ForMember("Count", opt => opt.MapFrom(c => modelController.GetProductCount(c)))
+                .ForMember("Summ", opt => opt.MapFrom(c => c.Summ));
+
             }));
         }
     }
