@@ -20,6 +20,7 @@ namespace CoCoCoWorking.BLL
             return _instance;
         }
         
+        private static ModelController modelController = new ModelController();
 
         private static void InitMapperConfigStorage()
         {
@@ -53,6 +54,25 @@ namespace CoCoCoWorking.BLL
                 .ForMember("RegularPrice", opt => opt.MapFrom(c => c.RegularPrice))
                 .ForMember("ResidentPrice", opt => opt.MapFrom(c => c.ResidentPrice))
                 .ForMember("FixedPrice", opt => opt.MapFrom(c => c.FixedPrice));
+
+                cfg.CreateMap<FinanceReportDTO, FinanceReportModel>()
+                .ForMember("ProductName", opt => opt.MapFrom(c => modelController.GetProductName(c)))
+                .ForMember("Count", opt => opt.MapFrom(c => modelController.GetProductCount(c)))
+                .ForMember("Summ", opt => opt.MapFrom(c => c.Summ));
+
+
+                //cfg.CreateMap<CustomersWithOrdersDTO, OrderModel>()
+                //.ForMember("Name", opt => opt.MapFrom(c => $"{c.LastName}{c.FirstName}{c.PhoneNumber}"));
+
+                cfg.CreateMap<OrderDTO, OrderModel>()
+                .ForMember("OrderCost", opt => opt.MapFrom(c => c.OrderStatus))
+                .ForMember("OrderStatus", opt => opt.MapFrom(c => c.OrderCost))
+                .ForMember("PaidDate", opt => opt.MapFrom(c => c.PaidDate));
+
+                cfg.CreateMap<FinanceReportByCustomerDTO, FinanceReportByCustomerModel>()
+                .ForMember("Name", opt => opt.MapFrom(c => $"{c.FirstName} {c.LastName}"))
+                .ForMember("OrderCount", opt => opt.MapFrom(c => c.OrderCount))
+                .ForMember("OrderSum", opt => opt.MapFrom(c => c.OrderSum));
             }));
         }
     }
