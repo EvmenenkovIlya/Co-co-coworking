@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[GetFinanceReport]
-	--@StartDate DATE,
-	--@EndDate DATE
+	@StartDate DATE,
+	@EndDate DATE
 AS
 BEGIN
 	SELECT OU.[RoomId], 
@@ -17,7 +17,7 @@ BEGIN
 	left join [dbo].[Room] as R on OU.[RoomId] = R.[Id]
 	left join [dbo].[AdditionalService] as AdS on OU.[AdditionalServiceId] = AdS.[Id]
 
---WHERE CAST(O.[PaidDate] AS DATE) >= @StartDate AND CAST(O.[PaidDate] AS DATE) <= @EndDate
+WHERE CAST(O.[PaidDate] AS DATE) >= @StartDate AND CAST(O.[PaidDate] AS DATE) <= @EndDate
 GROUP BY OU.[RoomId], R.[Name], OU.[AdditionalServiceId],AdS.[Name]
 	
 END
