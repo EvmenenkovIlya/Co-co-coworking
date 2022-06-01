@@ -62,7 +62,7 @@
                             <DataGridTextColumn Header="OrderCost" Binding="{Binding Path=OrderCost}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="CreateOrder_Button" Content="Create order" HorizontalAlignment="Left" Height="48" Margin="790,677,0,0" VerticalAlignment="Top" Width="145"/>
+                    <Button x:Name="CreateOrder_Button" Content="Create order" HorizontalAlignment="Left" Height="48" Margin="790,677,0,0" VerticalAlignment="Top" Width="145" Click="CreateOrder_Button_Click"/>
                     <ComboBox x:Name="ChooseWorkplace_Combobox" HorizontalAlignment="Left" Height="35" Margin="463,98,0,0" VerticalAlignment="Top" Width="477" IsEnabled="False" />
                     <ComboBox x:Name="Type_ComboBox" HorizontalAlignment="Left" Height="33" Margin="45,32,0,0" VerticalAlignment="Top" Width="173" SelectionChanged="Type_ComboBox_SelectionChanged_1" >
                         <ComboBoxItem Content="Room"/>
@@ -72,7 +72,7 @@
                         <ComboBoxItem Content="Worckplace fixed"/>
                         <ComboBoxItem Content="Service"/>
                     </ComboBox>
-                    <Button x:Name="AddToOrder_Button" Content="Add to order" HorizontalAlignment="Left" Height="38" Margin="782,158,0,0" VerticalAlignment="Top" Width="153" Click="AddToOrder_Button_Click"/>
+                    <Button x:Name="AddToOrder_Button" Content="Add to order" HorizontalAlignment="Left" Height="38" Margin="782,158,0,0" VerticalAlignment="Top" Width="153" />
                     <Calendar x:Name="Order_Calendar" HorizontalAlignment="Left" Height="164" Margin="216,32,0,0" VerticalAlignment="Top" Width="242" SelectionMode="MultipleRange" />
 
 
