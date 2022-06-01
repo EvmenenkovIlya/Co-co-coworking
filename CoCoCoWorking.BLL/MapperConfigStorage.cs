@@ -23,7 +23,7 @@ namespace CoCoCoWorking.BLL
 
         private static void InitMapperConfigStorage()
         {
-            _instance =new Mapper(new MapperConfiguration(cfg => 
+            _instance = new Mapper(new MapperConfiguration(cfg => 
             {
                 cfg.CreateMap<CustomersWithOrdersDTO, CustomerModel>()
                 .ForMember("Name", opt => opt.MapFrom(c => @"{c.FirstName} {c.Name}"));
@@ -38,6 +38,11 @@ namespace CoCoCoWorking.BLL
 
                 cfg.CreateMap<AdditionalServiceDTO, AdditionalServiceModel>().ReverseMap()
                 .ForMember("Name", opt => opt.MapFrom(c => c.Name));
+
+                cfg.CreateMap<OrderUnitDTO, OrderUnitModel>()
+                .ForMember("ProductName", opt => opt.MapFrom(c => c.AdditionalServiceId)) //Id, but should be name
+                .ForMember("Price", opt => opt.MapFrom(c => c.OrderUnitCost));
+                
 
 
             }));
