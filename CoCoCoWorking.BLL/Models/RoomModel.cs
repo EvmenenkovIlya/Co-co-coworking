@@ -9,7 +9,7 @@ namespace CoCoCoWorking.BLL.Models
     public class RoomModel
     {
         public int Id { get; set; }
-        public string? Name { get; set; }
+        public string Name { get; set; }
         public int? WorkPlaceNumber { get; set; }
     }
 }
