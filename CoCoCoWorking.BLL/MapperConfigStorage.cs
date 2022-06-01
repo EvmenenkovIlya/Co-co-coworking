@@ -20,6 +20,7 @@ namespace CoCoCoWorking.BLL
             return _instance;
         }
         
+        private static ModelController modelController = new ModelController();
 
         private static void InitMapperConfigStorage()
         {
@@ -53,6 +54,12 @@ namespace CoCoCoWorking.BLL
                 .ForMember("RegularPrice", opt => opt.MapFrom(c => c.RegularPrice))
                 .ForMember("ResidentPrice", opt => opt.MapFrom(c => c.ResidentPrice))
                 .ForMember("FixedPrice", opt => opt.MapFrom(c => c.FixedPrice));
+
+                cfg.CreateMap<FinanceReportDTO, FinanceReportModel>()
+                .ForMember("ProductName", opt => opt.MapFrom(c => modelController.GetProductName(c)))
+                .ForMember("Count", opt => opt.MapFrom(c => modelController.GetProductCount(c)))
+                .ForMember("Summ", opt => opt.MapFrom(c => c.Summ));
+
             }));
         }
     }
