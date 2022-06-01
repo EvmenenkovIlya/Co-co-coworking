@@ -42,9 +42,8 @@ namespace CoCoCoWorking.UI
             List<CustomersWithOrdersDTO> customers = CustomerManager.GetAllCustomerWhithOrderWithOrderUnit();
             List<CustomerModel> CustomerModel = mapper.Map<List<CustomerModel>>(customers);
             DataGridCustomers.ItemsSource = CustomerModel;
-            List<FinanceReportDTO> financeReportDTOs = financeReportManager.GetFinanceReport(new DateTime(2022, 5, 1), new DateTime(2022, 5, 31));
-            List<FinanceReportModel> financeReportModels = mapper.Map<List<FinanceReportModel>>(financeReportDTOs);
-            DataGrid_Report.ItemsSource = financeReportModels;
+            
+            
         }
 
         private void ButtonCreateNewOrder_Click(object sender, RoutedEventArgs e)
@@ -121,5 +120,24 @@ namespace CoCoCoWorking.UI
                 PurchaseType_Combobox.Items.Clear();               
             }
         }
+
+        private void Button_GetReport_Click(object sender, RoutedEventArgs e)
+        {
+
+            switch (ComboBox_TypeOfReport.SelectedIndex)
+            {
+                case 0:
+                    List<FinanceReportDTO> financeReportDTOs = financeReportManager.GetFinanceReport(new DateTime(2022, 5, 1), new DateTime(2022, 5, 31));
+                    List<FinanceReportModel> financeReportModels = mapper.Map<List<FinanceReportModel>>(financeReportDTOs);
+                    DataGrid_Report.ItemsSource = financeReportModels;
+                    break;
+                case 1:
+                    break;
+
+
+            }
+
+
+            }
     }
 }
