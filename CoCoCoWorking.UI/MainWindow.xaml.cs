@@ -128,13 +128,13 @@ namespace CoCoCoWorking.UI
             {
                 case 0:
                     DataGrid_Report.Visibility = Visibility.Visible;
-                    List<FinanceReportDTO> financeReportDTOs = financeReportManager.GetFinanceReport(new DateTime(2022, 5, 1), new DateTime(2022, 5, 31));
+                    List<FinanceReportDTO> financeReportDTOs = financeReportManager.GetFinanceReport(DataPicker_Finance_StartDate.SelectedDate.Value, DataPicker_Finance_EndDate.SelectedDate.Value);
                     List<FinanceReportModel> financeReportModels = mapper.Map<List<FinanceReportModel>>(financeReportDTOs);
                     DataGrid_Report.ItemsSource = financeReportModels;
                     break;
                 case 1:
                     DataGrid_ReportByCustomer.Visibility = Visibility.Visible;
-                    List<FinanceReportByCustomerDTO> financeReportByCustomerDTOs = financeReportManager.GetFinanceReportByCustomer(new DateTime(2022, 5, 1), new DateTime(2022, 5, 31));
+                    List<FinanceReportByCustomerDTO> financeReportByCustomerDTOs = financeReportManager.GetFinanceReportByCustomer(DataPicker_Finance_StartDate.SelectedDate.Value, DataPicker_Finance_EndDate.SelectedDate.Value);
                     List<FinanceReportByCustomerModel> financeReportByCustomerModels = mapper.Map<List<FinanceReportByCustomerModel>>(financeReportByCustomerDTOs);
                     DataGrid_ReportByCustomer.ItemsSource = financeReportByCustomerModels;
                     break;
