@@ -131,12 +131,18 @@
                         <TextBlock>Customers</TextBlock>
                     </ComboBox>
                     <Button x:Name="Button_GetReport" Grid.Column="2" Content="Get Report" HorizontalAlignment="Left" Margin="46,34,0,0" VerticalAlignment="Top" Height="52" Width="250" BorderBrush="{x:Null}" Background="#FF2794B8" Foreground="White" FontSize="16" FontWeight="Bold" Click="Button_GetReport_Click"/>
-                    <!--<DataGrid x:Name="DataGrid_Report" Grid.ColumnSpan="4" Margin="10,147,10,21" Grid.RowSpan="2"/>-->
-                    <DataGrid Name="DataGrid_Report" Grid.ColumnSpan="4" Margin="10,147,10,21" Grid.RowSpan="2" ColumnHeaderHeight="30" RowBackground="AliceBlue" RowHeight="30" AutoGenerateColumns="False">
+                    <DataGrid Name="DataGrid_Report" Grid.ColumnSpan="4" Margin="10,147,10,21" Grid.RowSpan="2" ColumnHeaderHeight="30" RowBackground="AliceBlue" RowHeight="30" AutoGenerateColumns="False" Visibility="Hidden">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ProductName" Width="50*" Binding="{Binding Path=ProductName}"/>
                             <DataGridTextColumn Header="Count" Width="50*" Binding="{Binding Path=Count}"/>
                             <DataGridTextColumn Header="Summ" Width="50*" Binding="{Binding Path=Summ}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid Name="DataGrid_ReportByCustomer" Grid.ColumnSpan="4" Margin="10,147,10,21" Grid.RowSpan="2" ColumnHeaderHeight="30" RowBackground="AliceBlue" RowHeight="30" AutoGenerateColumns="False" Visibility="Hidden">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Width="50*" Binding="{Binding Path=Name}"/>
+                            <DataGridTextColumn Header="Count of orders" Width="50*" Binding="{Binding Path=OrderCount}"/>
+                            <DataGridTextColumn Header="Summ of orders" Width="50*" Binding="{Binding Path=OrderSum}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Label Grid.Column="2" Content="Total:" HorizontalAlignment="Left" Margin="46,490,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="16" Background="White" FontWeight="Bold" Grid.RowSpan="2" Height="46" Width="82"/>

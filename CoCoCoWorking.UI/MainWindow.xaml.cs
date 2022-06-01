@@ -127,11 +127,16 @@ namespace CoCoCoWorking.UI
             switch (ComboBox_TypeOfReport.SelectedIndex)
             {
                 case 0:
+                    DataGrid_Report.Visibility = Visibility.Visible;
                     List<FinanceReportDTO> financeReportDTOs = financeReportManager.GetFinanceReport(new DateTime(2022, 5, 1), new DateTime(2022, 5, 31));
                     List<FinanceReportModel> financeReportModels = mapper.Map<List<FinanceReportModel>>(financeReportDTOs);
                     DataGrid_Report.ItemsSource = financeReportModels;
                     break;
                 case 1:
+                    DataGrid_ReportByCustomer.Visibility = Visibility.Visible;
+                    List<FinanceReportByCustomerDTO> financeReportByCustomerDTOs = financeReportManager.GetFinanceReportByCustomer(new DateTime(2022, 5, 1), new DateTime(2022, 5, 31));
+                    List<FinanceReportByCustomerModel> financeReportByCustomerModels = mapper.Map<List<FinanceReportByCustomerModel>>(financeReportByCustomerDTOs);
+                    DataGrid_ReportByCustomer.ItemsSource = financeReportByCustomerModels;
                     break;
 
 

@@ -22,13 +22,14 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public List<FinanceReportByCustomerDTO> GetFinanceReportByCustomer(string startDate, string EndDate)
+        public List<FinanceReportByCustomerDTO> GetFinanceReportByCustomer(DateTime startDate, DateTime endDate)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 return connection.Query<FinanceReportByCustomerDTO>
                     (StoredProcedures.GetFinanceReportByCustomer,
+                    param: new { StartDate = startDate, EndDate = endDate },
                        commandType: System.Data.CommandType.StoredProcedure)
                        .ToList();
             }
