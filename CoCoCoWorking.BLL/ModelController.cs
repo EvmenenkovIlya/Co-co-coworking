@@ -18,15 +18,33 @@ namespace CoCoCoWorking.BLL
             {
                 s = f.RoomName;
             }
-            else if (f.WorkPlaceCount != null)
-            {
-                s = "WorkPlaces";
-            }
-            else
+            else if (f.AdditionalServiceName != null)
             {
                 s = f.AdditionalServiceName;
             }
+            else
+            {
+                s = "WorkPlaces";
+            }
             return s;
+        }
+
+        public int GetProductCount(FinanceReportDTO f)
+        {
+            int i = 0;
+            if (f.RoomCount != 0)
+            {
+                i = (int)f.RoomCount;
+            }
+            else if (f.AdditionalServiceCount != 0)
+            {
+                i = (int)f.AdditionalServiceCount;
+            }
+            else if (f.WorkPlaceCount != 0)
+            {
+                i = (int)f.WorkPlaceCount;
+            }
+            return i;
         }
     }
 }
