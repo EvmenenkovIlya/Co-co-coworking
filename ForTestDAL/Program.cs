@@ -1,6 +1,8 @@
 ﻿using CoCoCoWorking.DAL;
 using CoCoCoWorking.DAL.DTO;
 
+
+
 //var CM = new CustomerManager();
 
 //List<CustomerDTO> customers = CM.GetAllCustomers();

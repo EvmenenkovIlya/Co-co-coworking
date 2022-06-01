@@ -11,9 +11,9 @@ namespace CoCoCoWorking.DAL.DTO
         public int Id { get; set; }
         public int CustomerId { get; set; }
         public int? OrderCost { get; set; }
-        public string? OrderStatus { get; set; }
-        public string? PaidDate { get; set; }
-        public List<OrderUnitDTO>? OrderUnits { get; set; } = new List<OrderUnitDTO>();
+        public string OrderStatus { get; set; }
+        public string PaidDate { get; set; }
+        public List<OrderUnitDTO> OrderUnits { get; set; } = new List<OrderUnitDTO>();
 
         //public override string ToString()
         //{
