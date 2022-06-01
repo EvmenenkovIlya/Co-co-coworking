@@ -53,6 +53,14 @@ namespace CoCoCoWorking.BLL
                 .ForMember("RegularPrice", opt => opt.MapFrom(c => c.RegularPrice))
                 .ForMember("ResidentPrice", opt => opt.MapFrom(c => c.ResidentPrice))
                 .ForMember("FixedPrice", opt => opt.MapFrom(c => c.FixedPrice));
+
+                cfg.CreateMap<CustomersWithOrdersDTO, OrderModel>()
+                .ForMember("FirstName", opt => opt.MapFrom(c => $"{c.LastName}{c.FirstName}{c.PhoneNumber}"));
+                cfg.CreateMap<OrderDTO, OrderModel>()
+                .ForMember("OrderCost", opt => opt.MapFrom(c => c.OrderStatus))
+                .ForMember("OrderStatus", opt => opt.MapFrom(c => c.OrderCost))
+                .ForMember("PaidDate", opt => opt.MapFrom(c => c.PaidDate));
+                 
             }));
         }
     }
