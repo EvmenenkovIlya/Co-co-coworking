@@ -39,7 +39,7 @@ namespace CoCoCoWorking.UI
         public MainWindow()
         {
             InitializeComponent();
-            List<CustomersWithOrdersDTO> customers = CustomerManager.GetAllCustomerWhithOrderWithOrderUnit();
+            //List<CustomersWithOrdersDTO> customers = CustomerManager.GetAllCustomerWhithOrderWithOrderUnit();
             List<CustomerModel> CustomerModel = mapper.Map<List<CustomerModel>>(customers);
             DataGridCustomers.ItemsSource = CustomerModel;
             
@@ -103,6 +103,7 @@ namespace CoCoCoWorking.UI
                 {
                     PurchaseType_Combobox.Items.Add(roomName[i].Name);
                 }
+                Order_Calendar.BlackoutDates.Add (new CalendarDateRange(new DateTime(2022, 6, 1)));
             }
             if (Type_ComboBox.SelectedIndex == 4)
             {
