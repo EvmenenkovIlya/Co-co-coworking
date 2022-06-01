@@ -16,6 +16,9 @@ using System.Collections.ObjectModel;
 using System.IO;
 using CoCoCoWorking.DAL;
 using CoCoCoWorking.DAL.DTO;
+using System.Data;
+using CoCoCoWorking.BLL;
+using CoCoCoWorking.BLL.Models;
 
 namespace CoCoCoWorking.UI
 {
@@ -26,13 +29,21 @@ namespace CoCoCoWorking.UI
     {
         RoomManager room = new RoomManager();
         AdditionalServiceManager additionalService = new AdditionalServiceManager();
+        OrderManager order = new OrderManager();
+        FinanceReportManager financereport = new FinanceReportManager();
+        AllCustomerWhithOrderWithOrderUnitManager CustomerManager = new AllCustomerWhithOrderWithOrderUnitManager();
 
+        AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
         
-        CustomerManager customers = new CustomerManager();
+
         public MainWindow()
         {
             InitializeComponent();
-            DataGridCustomers.ItemsSource = customers.GetAllCustomers();
+            List<CustomersWithOrdersDTO> customers = CustomerManager.GetAllCustomerWhithOrderWithOrderUnit();
+            List<CustomerModel> CustomerModel = mapper.Map<List<CustomerModel>>(customers);
+            DataGridCustomers.ItemsSource = CustomerModel;
+
+           // DataGrid_Report.ItemsSource = financereport.GetFinanceReport();
         }
 
         private void ButtonCreateNewOrder_Click(object sender, RoutedEventArgs e)
@@ -42,11 +53,9 @@ namespace CoCoCoWorking.UI
 
         private void ButtonCreateNewCustomer_Click(object sender, RoutedEventArgs e)
         {
-            customers.AddCustomer(TextBoxFirstName.Text, TextBoxLastName.Text, TextBoxNumber.Text, TextBoxEmail.Text);
-            DataGridCustomers.ItemsSource = customers.GetAllCustomers();
+            //customers.AddCustomer(TextBoxFirstName.Text, TextBoxLastName.Text, TextBoxNumber.Text, TextBoxEmail.Text);
+            //DataGridCustomers.ItemsSource = customers.GetAllCustomers();
         }
-
-
 
         private void PurchaseType_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -70,17 +79,12 @@ namespace CoCoCoWorking.UI
                 }
             }
 
-        }
-
-       
-
-        
-
+        }            
         private void Type_ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             ChooseWorkplace_Combobox.IsEnabled = false;
             ChooseWorkplace_Combobox.Items.Clear ();
-            var allService = additionalService.GetAllAdditionalService();
+            var allService = additionalService.GetAllAdditionalServices();
             var roomName = room.GetAllRooms();
 
             if (Type_ComboBox.SelectedIndex == 5)
@@ -88,12 +92,10 @@ namespace CoCoCoWorking.UI
                 PurchaseType_Combobox.Items.Clear();
                 foreach (var service in allService)
                 {
-
                     PurchaseType_Combobox.Items.Add(service.Name);
                 }
 
             }
-
             if (Type_ComboBox.SelectedIndex == 0 || Type_ComboBox.SelectedIndex == 2)
             {
                 PurchaseType_Combobox.Items.Clear();
@@ -101,9 +103,7 @@ namespace CoCoCoWorking.UI
                 {
                     PurchaseType_Combobox.Items.Add(roomName[i].Name);
                 }
-
             }
-
             if (Type_ComboBox.SelectedIndex == 4)
             {
                 PurchaseType_Combobox.Items.Clear();
@@ -117,13 +117,8 @@ namespace CoCoCoWorking.UI
 
             if (Type_ComboBox.SelectedIndex == 1)
             {
-                PurchaseType_Combobox.Items.Clear();
-               
-
+                PurchaseType_Combobox.Items.Clear();               
             }
-
         }
-
-        
     }
 }

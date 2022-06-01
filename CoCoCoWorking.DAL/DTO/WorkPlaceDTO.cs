@@ -10,7 +10,8 @@ namespace CoCoCoWorking.DAL.DTO
     {
         public int Id { get; set; }
         public int RoomId { get; set; }
-        public int Number { get; set; }
+        public int? Number { get; set; }
+        public int? WorkplaceCount { get; set; }
 
         public override string ToString()
         {
