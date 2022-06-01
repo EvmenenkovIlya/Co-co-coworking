@@ -53,8 +53,8 @@ namespace CoCoCoWorking.UI
 
         private void ButtonCreateNewCustomer_Click(object sender, RoutedEventArgs e)
         {
-            List<CustomersWithOrdersDTO> customers = CustomerManager.GetAllCustomerWhithOrderWithOrderUnit();
-            DataGridCustomers.ItemsSource = customers;
+            //customers.AddCustomer(TextBoxFirstName.Text, TextBoxLastName.Text, TextBoxNumber.Text, TextBoxEmail.Text);
+            DataGridCustomers.ItemsSource = customers.GetAllCustomers();
         }
 
         private void PurchaseType_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)

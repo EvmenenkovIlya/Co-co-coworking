@@ -49,19 +49,23 @@
             </TabItem>
             <TabItem Header="Orders" Height="20" VerticalAlignment="Top">
                 <Grid Background="Bisque">
-                    <ComboBox x:Name="PurchaseType_Combobox" HorizontalAlignment="Left" Height="33" Margin="463,38,0,0" VerticalAlignment="Top" Width="477" SelectionChanged="PurchaseType_Combobox_SelectionChanged" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="75*"/>
+                        <ColumnDefinition Width="422*"/>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox x:Name="PurchaseType_Combobox" HorizontalAlignment="Left" Height="33" Margin="313,38,0,0" VerticalAlignment="Top" Width="477" SelectionChanged="PurchaseType_Combobox_SelectionChanged" Grid.Column="1" >
                         <ComboBox Height="30" Width="48"/>
                     </ComboBox>
-                    <DataGrid x:Name="Order_DataGrid" HorizontalAlignment="Left" Height="446" Margin="45,226,0,0" VerticalAlignment="Top" Width="368">
+                    <DataGrid x:Name="Order_DataGrid" HorizontalAlignment="Left" Height="446" Margin="45,226,0,0" VerticalAlignment="Top" Width="890" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="OrderStatus" Binding="{Binding Path=OrderStatus}"/>
                             <DataGridTextColumn Header="PaidDate" Binding="{Binding Path=PaidDate}"/>
                             <DataGridTextColumn Header="OrderCost" Binding="{Binding Path=OrderCost}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="CreateOrder_Button" Content="Create order" HorizontalAlignment="Left" Height="48" Margin="790,677,0,0" VerticalAlignment="Top" Width="145"/>
-                    <ComboBox x:Name="ChooseWorkplace_Combobox" HorizontalAlignment="Left" Height="35" Margin="463,98,0,0" VerticalAlignment="Top" Width="477" IsEnabled="False" />
-                    <ComboBox x:Name="Type_ComboBox" HorizontalAlignment="Left" Height="33" Margin="45,32,0,0" VerticalAlignment="Top" Width="173" SelectionChanged="Type_ComboBox_SelectionChanged_1" >
+                    <Button x:Name="CreateOrder_Button" Content="Create order" HorizontalAlignment="Left" Height="48" Margin="640,677,0,0" VerticalAlignment="Top" Width="145" Grid.Column="1"/>
+                    <ComboBox x:Name="ChooseWorkplace_Combobox" HorizontalAlignment="Left" Height="35" Margin="313,98,0,0" VerticalAlignment="Top" Width="477" IsEnabled="False" Grid.Column="1" />
+                    <ComboBox x:Name="Type_ComboBox" HorizontalAlignment="Left" Height="33" Margin="45,32,0,0" VerticalAlignment="Top" Width="173" SelectionChanged="Type_ComboBox_SelectionChanged_1" Grid.ColumnSpan="2" >
                         <ComboBoxItem Content="Room"/>
                         <ComboBoxItem Content="Сonference hall"/>
                         <ComboBoxItem Content="Meeting room"/>
@@ -69,14 +73,42 @@
                         <ComboBoxItem Content="Worckplace fixed"/>
                         <ComboBoxItem Content="Service"/>
                     </ComboBox>
-                    <Button x:Name="AddToOrder_Button" Content="Add to order" HorizontalAlignment="Left" Height="38" Margin="782,158,0,0" VerticalAlignment="Top" Width="153"/>
-                    <Calendar HorizontalAlignment="Left" Height="164" Margin="216,32,0,0" VerticalAlignment="Top" Width="242"/>
+                    <Button x:Name="AddToOrder_Button" Content="Add to order" HorizontalAlignment="Left" Height="38" Margin="632,158,0,0" VerticalAlignment="Top" Width="153" Grid.Column="1"/>
+                    <Calendar HorizontalAlignment="Left" Height="164" Margin="66,32,0,0" VerticalAlignment="Top" Width="242" Grid.Column="1"/>
 
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Administration">
+            <TabItem x:Name="TabItemAdministration" Header="Administration">
                 <Grid Background="Bisque">
+                    <DataGrid x:Name="DataGridSheduleRooms" HorizontalAlignment="Left" Height="378" Margin="26,153,0,0" VerticalAlignment="Top" Width="401" d:ItemsSource="{d:SampleData ItemCount=5}" AutoGenerateColumns="False">
+                        <DataGrid.CellStyle>
+                            <Style/>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Service name"/>
+                            <DataGridTextColumn Header="Room number"/>
+                            <DataGridCheckBoxColumn Header="Name"/>
+                            <DataGridCheckBoxColumn Header="Price"/>
+                            <DataGridCheckBoxColumn Header="Start date"/>
+                            <DataGridCheckBoxColumn Header="End date"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <ComboBox x:Name="ComboBoxTypeAdministration" HorizontalAlignment="Left" Height="35" Margin="26,33,0,0" VerticalAlignment="Top" Width="401">
+                        <ComboBoxItem Content="Room"/>
+                        <ComboBoxItem Content="Additional Service"/>
+                        <ComboBoxItem Content="Work Place"/>
+                        <ComboBoxItem Content="Meeting Room"/>
+                        <ComboBoxItem Content="Conference Hall"/>
+                        <ComboBoxItem Content="Work Place Fixed"/>
+                    </ComboBox>
+                    <ComboBox HorizontalAlignment="Left" Height="35" Margin="26,87,0,0" VerticalAlignment="Top" Width="401">
+                        <ComboBoxItem Content="Classic Room"/>
+                        <ComboBoxItem Content="Second Classic Room"/>
+                        <ComboBoxItem Content="Business Room"/>
+                        <ComboBoxItem Content="VIP Room"/>
+                    </ComboBox>
 
                 </Grid>
             </TabItem>
