@@ -123,7 +123,7 @@ namespace CoCoCoWorking.UI
 
         private void Button_GetReport_Click(object sender, RoutedEventArgs e)
         {
-
+            double sum = 0;
             switch (ComboBox_TypeOfReport.SelectedIndex)
             {
                 case 0:
@@ -131,12 +131,22 @@ namespace CoCoCoWorking.UI
                     List<FinanceReportDTO> financeReportDTOs = financeReportManager.GetFinanceReport(DataPicker_Finance_StartDate.SelectedDate.Value, DataPicker_Finance_EndDate.SelectedDate.Value);
                     List<FinanceReportModel> financeReportModels = mapper.Map<List<FinanceReportModel>>(financeReportDTOs);
                     DataGrid_Report.ItemsSource = financeReportModels;
+                    foreach (FinanceReportModel a in financeReportModels)
+                    {
+                        sum += a.Summ;
+                    }
+                    TextBox_Total.Text = "" + sum;
                     break;
                 case 1:
                     DataGrid_ReportByCustomer.Visibility = Visibility.Visible;
                     List<FinanceReportByCustomerDTO> financeReportByCustomerDTOs = financeReportManager.GetFinanceReportByCustomer(DataPicker_Finance_StartDate.SelectedDate.Value, DataPicker_Finance_EndDate.SelectedDate.Value);
                     List<FinanceReportByCustomerModel> financeReportByCustomerModels = mapper.Map<List<FinanceReportByCustomerModel>>(financeReportByCustomerDTOs);
                     DataGrid_ReportByCustomer.ItemsSource = financeReportByCustomerModels;
+                    foreach (FinanceReportByCustomerModel a in financeReportByCustomerModels)
+                    {
+                        sum += a.OrderSum;
+                    }
+                    TextBox_Total.Text = "" + sum;
                     break;
 
 
