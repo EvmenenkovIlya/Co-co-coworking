@@ -33,7 +33,7 @@
                     <TextBox Name="TextBoxNumberForSearch" Grid.Column="2" Width="160" Height="30" HorizontalAlignment="Left" VerticalAlignment= "Top" Margin="10, 50, 0, 0"/>
                     <Button Name="ButtonSearchByNumber" Content="Search by Number"  Grid.Column="2" Width="250" Height="30" HorizontalAlignment="Right" VerticalAlignment= "Top" FontWeight="Bold" Margin="0,50,30,0" FontFamily="Arial Black" FontSize="14"/>
                     <Label Content="List of Customers:" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment= "Top" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Margin="0,100,0,0" Height="30" />
-                    <DataGrid Name="DataGridCustomers" Grid.Column="2" Margin="10,130,10,80" Grid.RowSpan="2" ColumnHeaderHeight="30" RowBackground="AliceBlue" RowHeight="30" AutoGenerateColumns="False">
+                    <DataGrid Name="DataGridCustomers" Grid.Column="2" Margin="10,130,10,80" Grid.RowSpan="2" ColumnHeaderHeight="30" RowBackground="AliceBlue" RowHeight="30" AutoGenerateColumns="False" SelectionChanged="DataGridCustomers_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name" Width="40*" Binding="{Binding Path=Name}"/>
                             <DataGridTextColumn Header="Phone"  Width="40*" Binding="{Binding Path=PhoneNumber}"/>
@@ -56,11 +56,11 @@
                     <ComboBox x:Name="PurchaseType_Combobox" HorizontalAlignment="Left" Height="33" Margin="313,38,0,0" VerticalAlignment="Top" Width="477" SelectionChanged="PurchaseType_Combobox_SelectionChanged" Grid.Column="1" >
                         <ComboBox Height="30" Width="48"/>
                     </ComboBox>
-                    <DataGrid x:Name="Order_DataGrid" HorizontalAlignment="Left" Height="446" Margin="45,226,0,0" VerticalAlignment="Top" Width="890" Grid.ColumnSpan="2">
+                    <DataGrid x:Name="Order_DataGrid" HorizontalAlignment="Left" Height="446" Margin="45,226,0,0" VerticalAlignment="Top" Width="413" Grid.ColumnSpan="2" AutoGenerateColumns="False">
                         <DataGrid.Columns>
+                            <DataGridTextColumn Header="OrderCost" Binding="{Binding Path=OrderCost}"/>
                             <DataGridTextColumn Header="OrderStatus" Binding="{Binding Path=OrderStatus}"/>
                             <DataGridTextColumn Header="PaidDate" Binding="{Binding Path=PaidDate}"/>
-                            <DataGridTextColumn Header="OrderCost" Binding="{Binding Path=OrderCost}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="CreateOrder_Button" Content="Create order" HorizontalAlignment="Left" Height="48" Margin="640,677,0,0" VerticalAlignment="Top" Width="145" Grid.Column="1"/>
@@ -75,6 +75,13 @@
                     </ComboBox>
                     <Button x:Name="AddToOrder_Button" Content="Add to order" HorizontalAlignment="Left" Height="38" Margin="632,158,0,0" VerticalAlignment="Top" Width="153" Grid.Column="1"/>
                     <Calendar HorizontalAlignment="Left" Height="164" Margin="66,32,0,0" VerticalAlignment="Top" Width="242" Grid.Column="1"/>
+                    <DataGrid x:Name="Order_DataGrid_Copy" HorizontalAlignment="Left" Height="446" Margin="535,226,0,0" VerticalAlignment="Top" Width="413" Grid.ColumnSpan="2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="OrderStatus" Binding="{Binding OrderStatus}"/>
+                            <DataGridTextColumn Header="PaidDate" Binding="{Binding PaidDate}"/>
+                            <DataGridTextColumn Header="OrderCost" Binding="{Binding OrderCost}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
 
 
                 </Grid>

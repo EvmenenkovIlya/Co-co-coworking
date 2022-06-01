@@ -144,5 +144,17 @@ namespace CoCoCoWorking.UI
 
 
             }
+
+        private void DataGridCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            List<CustomersWithOrdersDTO> customers = CustomerManager.GetAllCustomerWhithOrderWithOrderUnit();
+
+            List<OrderDTO> customerOrders = order.OrderGetByCustomerId(customers[DataGridCustomers.SelectedIndex].Id);
+
+            List<OrderModel> customerOrdersModel = mapper.Map<List<OrderModel>>(customerOrders);
+
+            Order_DataGrid.ItemsSource = customerOrdersModel;
+            
+        }
     }
 }
