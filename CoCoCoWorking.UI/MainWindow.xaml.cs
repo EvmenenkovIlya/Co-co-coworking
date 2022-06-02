@@ -30,7 +30,7 @@ namespace CoCoCoWorking.UI
         RoomManager room = new RoomManager();
         AdditionalServiceManager additionalService = new AdditionalServiceManager();
         OrderManager order = new OrderManager();
-        FinanceReportManager financereport = new FinanceReportManager();
+        FinanceReportManager financeReportManager = new FinanceReportManager();
         AllCustomerWhithOrderWithOrderUnitManager CustomerManager = new AllCustomerWhithOrderWithOrderUnitManager();
 
         AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
@@ -42,8 +42,8 @@ namespace CoCoCoWorking.UI
             List<CustomersWithOrdersDTO> customers = CustomerManager.GetAllCustomerWhithOrderWithOrderUnit();
             List<CustomerModel> CustomerModel = mapper.Map<List<CustomerModel>>(customers);
             DataGridCustomers.ItemsSource = CustomerModel;
-
-           // DataGrid_Report.ItemsSource = financereport.GetFinanceReport();
+            
+            
         }
 
         private void ButtonCreateNewOrder_Click(object sender, RoutedEventArgs e)
@@ -120,5 +120,49 @@ namespace CoCoCoWorking.UI
                 PurchaseType_Combobox.Items.Clear();               
             }
         }
+
+        private void Button_GetReport_Click(object sender, RoutedEventArgs e)
+        {
+            if (ComboBox_TypeOfReport.SelectedIndex == -1
+                || DataPicker_Finance_StartDate.SelectedDate == null 
+                || DataPicker_Finance_EndDate.SelectedDate == null)
+            {
+                popup1.IsOpen = true;
+            }
+
+            else
+            {
+                double sum = 0;
+                switch (ComboBox_TypeOfReport.SelectedIndex)
+                {
+                    case 0:
+                        DataGrid_Report.Visibility = Visibility.Visible;
+                        List<FinanceReportDTO> financeReportDTOs = financeReportManager.GetFinanceReport(DataPicker_Finance_StartDate.SelectedDate.Value, DataPicker_Finance_EndDate.SelectedDate.Value);
+                        List<FinanceReportModel> financeReportModels = mapper.Map<List<FinanceReportModel>>(financeReportDTOs);
+                        DataGrid_Report.ItemsSource = financeReportModels;
+                        foreach (FinanceReportModel a in financeReportModels)
+                        {
+                            sum += a.Summ;
+                        }
+                        TextBox_Total.Text = "" + sum;
+                        break;
+                    case 1:
+                        DataGrid_ReportByCustomer.Visibility = Visibility.Visible;
+                        List<FinanceReportByCustomerDTO> financeReportByCustomerDTOs = financeReportManager.GetFinanceReportByCustomer(DataPicker_Finance_StartDate.SelectedDate.Value, DataPicker_Finance_EndDate.SelectedDate.Value);
+                        List<FinanceReportByCustomerModel> financeReportByCustomerModels = mapper.Map<List<FinanceReportByCustomerModel>>(financeReportByCustomerDTOs);
+                        DataGrid_ReportByCustomer.ItemsSource = financeReportByCustomerModels;
+                        foreach (FinanceReportByCustomerModel a in financeReportByCustomerModels)
+                        {
+                            sum += a.OrderSum;
+                        }
+                        TextBox_Total.Text = "" + sum;
+                        break;
+
+
+                }
+            }
+        }
+
+        
     }
 }
