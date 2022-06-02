@@ -5,12 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using CoCoCoWorking.DAL;
 using CoCoCoWorking.DAL.DTO;
+using CoCoCoWorking.BLL.Models;
 
 
 namespace CoCoCoWorking.BLL
 {
     public class ModelController
     {
+        private FinanceReportManager financeReportManager = new FinanceReportManager();
+        private AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
+
         public string GetProductName(FinanceReportDTO f)
         {
             string s = "";
@@ -45,6 +49,22 @@ namespace CoCoCoWorking.BLL
                 i = (int)f.WorkPlaceCount;
             }
             return i;
+        }
+
+        public List<FinanceReportModel> GetFinanceReportModels(DateTime startDate, DateTime endDate)
+        {
+            List<FinanceReportModel> list = new List<FinanceReportModel>();
+            List<FinanceReportDTO> listDto = financeReportManager.GetFinanceReport(startDate, endDate);
+            list = mapper.Map<List<FinanceReportModel>>(listDto);
+            return list;
+        }
+
+        public List<FinanceReportByCustomerModel> GetFinanceReportByCustomerModels(DateTime startDate, DateTime endDate)
+        {
+            List<FinanceReportByCustomerModel> list = new List<FinanceReportByCustomerModel>();
+            List<FinanceReportByCustomerDTO> listDto = financeReportManager.GetFinanceReportByCustomer(startDate, endDate);
+            list = mapper.Map<List<FinanceReportByCustomerModel>>(listDto);
+            return list;
         }
     }
 }
