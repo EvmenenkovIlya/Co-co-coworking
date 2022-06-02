@@ -28,8 +28,8 @@ namespace CoCoCoWorking.UI
     /// 
     public partial class MainWindow : Window
     {
-        RoomManager room = new RoomManager();
-        AdditionalServiceManager additionalService = new AdditionalServiceManager();
+        RoomManager room = new RoomManager();//test
+        AdditionalServiceManager additionalService = new AdditionalServiceManager();//test
         OrderManager order = new OrderManager();
         FinanceReportManager financeReportManager = new FinanceReportManager();
         AllCustomerWhithOrderWithOrderUnitManager CustomerManager = new AllCustomerWhithOrderWithOrderUnitManager();
@@ -61,94 +61,92 @@ namespace CoCoCoWorking.UI
 
         private void PurchaseType_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           if(PurchaseType_Combobox.SelectedItem is null)
+            if(PurchaseType_Combobox.SelectedItem is null)
             {
                 return;
             }
-            ChooseWorkplace_Combobox.Items.Clear();
-            Order_Calendar.BlackoutDates.Clear();
 
-            string roomName = PurchaseType_Combobox.SelectedItem.ToString();
+            Combobox_ChooseWorkplace.Items.Clear();
+            Order_Calendar.BlackoutDates.Clear();
 
             var rooms = room.GetAllRooms();
 
             foreach (var room in rooms)
             {
-                if (room.Name == roomName)
+                if (room.Name == PurchaseType_Combobox.SelectedItem.ToString())
                 {
                     for (int i = 1; i <= room.WorkPlaceNumber; i++)
                     {
-                        ChooseWorkplace_Combobox.Items.Add($" Worck place number:{i}");
+                        Combobox_ChooseWorkplace.Items.Add($" Worck place number:{i}");
                     }
-                    //ForTestCalendar
-                    if(Type_ComboBox.SelectedIndex == 0)
+                //ForTestCalendar
+                    switch(Type_ComboBox.SelectedIndex)
                     {
-                         var date = busyOrFreeRoom.GetStringBusyDateRoom(room.Id);
-                         var dateConvert = busyOrFreeRoom.ConvertIntBusyDateRoom(date);
+                        case 0:
+                            var date = busyOrFreeRoom.GetStringBusyDateRoom(room.Id);
+                            var dateConvert = busyOrFreeRoom.ConvertIntBusyDateRoom(date);
 
-                         for(int i = dateConvert.Count-1; i>0; i-=3)
-                         {
-                             Order_Calendar.BlackoutDates.Add(new CalendarDateRange(new DateTime(dateConvert[i], dateConvert[i-1], dateConvert[i-2])));                            
-                         }
-                        date.Clear();
-                        dateConvert.Clear();
-                    }                   
+                            for (int i = dateConvert.Count - 1; i > 0; i -= 3)
+                            {
+                                Order_Calendar.BlackoutDates.Add(new CalendarDateRange(new DateTime(dateConvert[i], dateConvert[i - 1], dateConvert[i - 2])));
+                            }
+                            date.Clear();
+                            dateConvert.Clear();
+                            break;
+                    }
+                   
                 }   //
 
             }
 
         }
-        private void Type_ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void Type_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            ChooseWorkplace_Combobox.IsEnabled = false;
-            ChooseWorkplace_Combobox.Items.Clear();
+
+            Combobox_ChooseWorkplace.IsEnabled = false;
+            Combobox_ChooseWorkplace.Items.Clear();
             PurchaseType_Combobox.Items.Clear();
            
             var allService = additionalService.GetAllAdditionalServices();
             var roomName = room.GetAllRooms();
 
-            if (Type_ComboBox.SelectedIndex == 5)
+            switch(Type_ComboBox.SelectedIndex)
             {
-                foreach (var service in allService)
-                {
-                    PurchaseType_Combobox.Items.Add(service.Name);
-                }
-
-            }
-            if (Type_ComboBox.SelectedIndex == 0 || Type_ComboBox.SelectedIndex == 2) // test for room free
-            {
-                
-                
-                for (int i = 0; i < roomName.Count; i++)
-                {
-                    PurchaseType_Combobox.Items.Add(roomName[i].Name);
-
-
-                }
-
-
-            }
-            if (Type_ComboBox.SelectedIndex == 4)
-                {
-                    
-                    ChooseWorkplace_Combobox.IsEnabled = true;
+                case 0:
                     for (int i = 0; i < roomName.Count; i++)
                     {
                         PurchaseType_Combobox.Items.Add(roomName[i].Name);
-                    
+                    }
+                    break;
 
-                }
+                case 1:
+                    break;
 
-            }
+                case 2:
+                    break;
 
-                if (Type_ComboBox.SelectedIndex == 1)
-                {
-                    PurchaseType_Combobox.Items.Clear();
-                }
-            }
+                case 3:
+                    break;
 
-            private void Button_GetReport_Click(object sender, RoutedEventArgs e)
+                case 4:
+                    Combobox_ChooseWorkplace.IsEnabled = true;
+                    for (int i = 0; i < roomName.Count; i++)
+                    {
+                        PurchaseType_Combobox.Items.Add(roomName[i].Name);
+                    }
+                    break;
+
+                case 5:
+                    foreach (var service in allService)
+                    {
+                        PurchaseType_Combobox.Items.Add(service.Name);
+                    }
+                    break;
+            }    
+
+        }
+
+        private void Button_GetReport_Click(object sender, RoutedEventArgs e)
             {
 
                 //switch (ComboBox_TypeOfReport.SelectedIndex)
@@ -173,18 +171,6 @@ namespace CoCoCoWorking.UI
             }
 
             
-
-        private void ChooseWorkplace_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void ButtonSearchByNumber_Click(object sender, RoutedEventArgs e)
-        {
-
-    
-        }
-
         private void ButtonSearchByDate_Click(object sender, RoutedEventArgs e)
         {
             PurchaseType_Combobox.Items.Clear();
@@ -197,4 +183,4 @@ namespace CoCoCoWorking.UI
             }
         }
     }
-    }   
+}   

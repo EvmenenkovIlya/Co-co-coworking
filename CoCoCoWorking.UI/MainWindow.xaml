@@ -31,7 +31,7 @@
                     <Button Name="ButtomCreateNewCustomer" Content="Create New Customer" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="200" Height="30" Margin="38,0,0,30" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonCreateNewCustomer_Click" Grid.Column="1" />
                     <Label Content="Number for search:" Grid.Column="2"  Width="160" HorizontalAlignment="Left" VerticalAlignment= "Top" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Margin="10, 20, 0, 0" Height="30" />
                     <TextBox Name="TextBoxNumberForSearch" Grid.Column="2" Width="160" Height="30" HorizontalAlignment="Left" VerticalAlignment= "Top" Margin="10, 50, 0, 0"/>
-                    <Button Name="ButtonSearchByNumber" Content="Search by Number"  Grid.Column="2" Width="250" Height="30" HorizontalAlignment="Right" VerticalAlignment= "Top" FontWeight="Bold" Margin="0,50,30,0" FontFamily="Arial Black" FontSize="14" Click="ButtonSearchByNumber_Click"/>
+                    <Button Name="ButtonSearchByNumber" Content="Search by Number"  Grid.Column="2" Width="250" Height="30" HorizontalAlignment="Right" VerticalAlignment= "Top" FontWeight="Bold" Margin="0,50,30,0" FontFamily="Arial Black" FontSize="14"/>
                     <Label Content="List of Customers:" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment= "Top" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Margin="0,100,0,0" Height="30" />
                     <DataGrid Name="DataGridCustomers" Grid.Column="2" Margin="10,130,10,80" Grid.RowSpan="2" ColumnHeaderHeight="30" RowBackground="AliceBlue" RowHeight="30" AutoGenerateColumns="False">
                         <DataGrid.Columns>
@@ -63,9 +63,9 @@
                             <DataGridTextColumn Header="OrderCost" Binding="{Binding Path=OrderCost}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="CreateOrder_Button" Content="Create order" HorizontalAlignment="Left" Height="48" Margin="790,677,0,0" VerticalAlignment="Top" Width="145" />
-                    <ComboBox x:Name="ChooseWorkplace_Combobox" HorizontalAlignment="Left" Height="35" Margin="463,98,0,0" VerticalAlignment="Top" Width="477" IsEnabled="False" SelectionChanged="ChooseWorkplace_Combobox_SelectionChanged"  />
-                    <ComboBox x:Name="Type_ComboBox" HorizontalAlignment="Left" Height="33" Margin="45,32,0,0" VerticalAlignment="Top" Width="173" SelectionChanged="Type_ComboBox_SelectionChanged_1" >
+                    <Button x:Name="ButtonCreateOrder" Content="Create order" HorizontalAlignment="Left" Height="48" Margin="790,677,0,0" VerticalAlignment="Top" Width="145" />
+                    <ComboBox x:Name="Combobox_ChooseWorkplace" HorizontalAlignment="Left" Height="35" Margin="463,98,0,0" VerticalAlignment="Top" Width="477" IsEnabled="False"  />
+                    <ComboBox x:Name="Type_ComboBox" HorizontalAlignment="Left" Height="33" Margin="45,32,0,0" VerticalAlignment="Top" Width="173" SelectionChanged="Type_ComboBox_SelectionChanged" >
                         <ComboBoxItem Content="Room"/>
                         <ComboBoxItem Content="Сonference hall"/>
                         <ComboBoxItem Content="Meeting room"/>
