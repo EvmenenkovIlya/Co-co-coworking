@@ -14,6 +14,7 @@ namespace CoCoCoWorking.DAL.DTO
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public List<OrderDTO> Orders { get; set; } = new List<OrderDTO>();
+       
         public bool IsRegular()
         {
             if (Orders==null || Orders.Count==0)

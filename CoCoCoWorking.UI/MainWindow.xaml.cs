@@ -19,6 +19,7 @@ using CoCoCoWorking.DAL.DTO;
 using System.Data;
 using CoCoCoWorking.BLL;
 using CoCoCoWorking.BLL.Models;
+using System.ComponentModel;
 
 namespace CoCoCoWorking.UI
 {
@@ -30,11 +31,11 @@ namespace CoCoCoWorking.UI
         RoomManager room = new RoomManager();
         AdditionalServiceManager additionalService = new AdditionalServiceManager();
         OrderManager order = new OrderManager();
-        FinanceReportManager financereport = new FinanceReportManager();
         AllCustomerWhithOrderWithOrderUnitManager CustomerManager = new AllCustomerWhithOrderWithOrderUnitManager();
+        ModelController modelController = new ModelController();
 
         AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
-        
+        private ICollectionView items;
 
         public MainWindow()
         {
@@ -42,13 +43,13 @@ namespace CoCoCoWorking.UI
             List<CustomersWithOrdersDTO> customers = CustomerManager.GetAllCustomerWhithOrderWithOrderUnit();
             List<CustomerModel> CustomerModel = mapper.Map<List<CustomerModel>>(customers);
             DataGridCustomers.ItemsSource = CustomerModel;
-
-           // DataGrid_Report.ItemsSource = financereport.GetFinanceReport();
+            
+          
         }
 
         private void ButtonCreateNewOrder_Click(object sender, RoutedEventArgs e)
         {
-           TextBoxNumberForSearch.Text = DataGridCustomers.SelectedItem.ToString();
+            TextBoxNumberForSearch.Text = DataGridCustomers.SelectedItem.ToString();
         }
 
         private void ButtonCreateNewCustomer_Click(object sender, RoutedEventArgs e)
@@ -120,5 +121,59 @@ namespace CoCoCoWorking.UI
                 PurchaseType_Combobox.Items.Clear();               
             }
         }
+
+        private void Button_GetReport_Click(object sender, RoutedEventArgs e)
+        {
+            if (ComboBox_TypeOfReport.SelectedIndex == -1
+                || DataPicker_Finance_StartDate.SelectedDate == null 
+                || DataPicker_Finance_EndDate.SelectedDate == null)
+            {
+                popup1.IsOpen = true;
+            }
+
+            else
+            {
+                double sum = 0;
+                switch (ComboBox_TypeOfReport.SelectedIndex)
+                {
+                    case 0:
+                        DataGrid_ReportByCustomer.Visibility = Visibility.Hidden;
+                        DataGrid_Report.Visibility = Visibility.Visible;
+                        DataGrid_Report.ItemsSource = modelController.GetFinanceReportModels(
+                            DataPicker_Finance_StartDate.SelectedDate.Value,
+                            DataPicker_Finance_EndDate.SelectedDate.Value);
+                        foreach (FinanceReportModel a in DataGrid_Report.ItemsSource)
+                        {
+                            sum += a.Summ;
+                        }
+                        TextBox_Total.Text = "" + sum;
+                        break;
+                    case 1:
+                        DataGrid_Report.Visibility = Visibility.Hidden;
+                        DataGrid_ReportByCustomer.Visibility = Visibility.Visible;
+                        DataGrid_ReportByCustomer.ItemsSource = modelController.GetFinanceReportByCustomerModels(
+                            DataPicker_Finance_StartDate.SelectedDate.Value,
+                            DataPicker_Finance_EndDate.SelectedDate.Value);
+                        foreach (FinanceReportByCustomerModel a in DataGrid_ReportByCustomer.ItemsSource)
+                        {
+                            sum += a.OrderSum;
+                        }
+                        TextBox_Total.Text = "" + sum;
+                        break;
+
+                }
+            }
+        }
+
+       
+        private void ButtonSearchByNumber_Click(object sender, RoutedEventArgs e)
+        {
+            string search = TextBoxNumberForSearch.Text;
+            int index = DataGridCustomers.Items.IndexOf(search);
+            DataGridCustomers.SelectedIndex = index;
+        }
+
     }
 }
+
+
