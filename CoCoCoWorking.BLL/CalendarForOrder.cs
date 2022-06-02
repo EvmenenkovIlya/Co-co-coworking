@@ -16,8 +16,6 @@ namespace CoCoCoWorking.BLL
         List<string> BusyDate = new List<string>();
         List <int> DateForCalendar = new List<int>();
 
-
-
         public List <int> ConvertIntBusyDateRoom(List <string> BusyDate)
         {
             for (int j = 0; j < BusyDate.Count; j++)
@@ -32,20 +30,17 @@ namespace CoCoCoWorking.BLL
                 DateForCalendar.Add(month);
                 DateForCalendar.Add(year);
             }
-
             return DateForCalendar;
         }
 
-        
-
-
+      
         public List<string> GetStringBusyDateRoom(int RoomId)
         {
             var orderUnits = orderUnitManager.GetAllOrderUnits();
 
             foreach (var unit in orderUnits)
             {
-                if (unit.WorkPlaceId == null && unit.WorkPlaceInRoomId == null && unit.RoomId == RoomId)
+                if (unit.AdditionalServiceId == null && unit.RoomId == RoomId)
                 {
                     foreach (DateTime day in EachDay(DateTime.Parse(unit.StartDate), DateTime.Parse(unit.EndDate)))
                     {
@@ -53,14 +48,15 @@ namespace CoCoCoWorking.BLL
                         BusyDate.Add(day.ToShortDateString());
                     }
                 }
-            }
 
+                
+            }
             return BusyDate;
         }
 
-        IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
+        IEnumerable<DateTime> EachDay(DateTime start, DateTime end)
         {
-            for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
+            for (var day = start.Date; day.Date <= end.Date; day = day.AddDays(1))
                 yield return day;
 
         }
