@@ -63,12 +63,47 @@ namespace CoCoCoWorking.BLL
         public TypeOfProduct GetTypeOfProductForRentPriceModel(RentPriceDTO r)
         {
             TypeOfProduct type = new TypeOfProduct();
-            foreach(RoomModel a in _instance.Rooms)
+            if (r.RoomId != null)
             {
-                if (a.Id == r.RoomId)
+                foreach (RoomModel a in _instance.Rooms)
                 {
-                    type = a.Type;
+                    if (a.Id == r.RoomId)
+                    {
+                        type = a.Type;
+                    }
                 }
+            }
+            else if (r.AdditionalServiceId != null)
+            {
+                type = TypeOfProduct.AdditionalService;
+            }
+            else
+            {
+                type = TypeOfProduct.WorkPlace;
+            }
+            return type;
+        }
+
+        public string GetNameForRentPriceModel(RentPriceDTO r)
+        {
+            TypeOfProduct type = new TypeOfProduct();
+            if (r.RoomId != null)
+            {
+                foreach (RoomModel a in _instance.Rooms)
+                {
+                    if (a.Id == r.RoomId)
+                    {
+                        type = a.Type;
+                    }
+                }
+            }
+            else if (r.AdditionalServiceId != null)
+            {
+                type = TypeOfProduct.AdditionalService;
+            }
+            else
+            {
+                type = TypeOfProduct.WorkPlace;
             }
             return type;
         }
