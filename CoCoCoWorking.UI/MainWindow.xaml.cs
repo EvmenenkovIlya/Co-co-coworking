@@ -33,6 +33,7 @@ namespace CoCoCoWorking.UI
         OrderManager order = new OrderManager();
         AllCustomerWhithOrderWithOrderUnitManager CustomerManager = new AllCustomerWhithOrderWithOrderUnitManager();
         ModelController modelController = new ModelController();
+        Singleton _instance = Singleton.GetInstance();
 
         AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
         private ICollectionView items;
@@ -40,11 +41,9 @@ namespace CoCoCoWorking.UI
         public MainWindow()
         {
             InitializeComponent();
-            List<CustomersWithOrdersDTO> customers = CustomerManager.GetAllCustomerWhithOrderWithOrderUnit();
-            List<CustomerModel> CustomerModel = mapper.Map<List<CustomerModel>>(customers);
-            DataGridCustomers.ItemsSource = CustomerModel;
-            
-          
+
+            DataGridCustomers.ItemsSource = _instance.Reports;
+
         }
 
         private void ButtonCreateNewOrder_Click(object sender, RoutedEventArgs e)
@@ -168,9 +167,9 @@ namespace CoCoCoWorking.UI
        
         private void ButtonSearchByNumber_Click(object sender, RoutedEventArgs e)
         {
-            string search = TextBoxNumberForSearch.Text;
-            int index = DataGridCustomers.Items.IndexOf(search);
-            DataGridCustomers.SelectedIndex = index;
+
+            DataGridCustomers.ItemsSource = modelController.GetCustomerWithTheMatchedNumberIsReturned(TextBoxNumberForSearch.Text,_instance.Reports);
+           
         }
 
     }
