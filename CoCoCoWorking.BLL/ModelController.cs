@@ -66,5 +66,21 @@ namespace CoCoCoWorking.BLL
             list = mapper.Map<List<FinanceReportByCustomerModel>>(listDto);
             return list;
         }
+
+        public List<CustomerModel> GetCustomerWithTheMatchedNumberIsReturned(string v, List<CustomerModel> Cg)
+        {
+
+            var d = new List<CustomerModel>();
+            
+            foreach (var customermodel in Cg)
+            {
+                if (customermodel.PhoneNumber.Contains(v))
+                {
+                    d.Add(customermodel);
+                }
+               
+            }
+            return d;
+        }
     }
 }
