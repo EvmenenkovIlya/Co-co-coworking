@@ -6,7 +6,26 @@ using System.Threading.Tasks;
 
 namespace CoCoCoWorking.BLL
 {
-    internal class EnumTypeOfProduct
+    public enum TypeOfProduct
     {
+        MiniOffice,
+        WorkPlace,
+        MeetingRoom,
+        ConferenceHall,
+        AdditionalService
     }
+
+    public enum TypeOfPeriod
+    {
+        OneHour,
+        EightHours,
+        OneDay,
+        OneWeek,
+        OneMonth,
+        ThreeMonths,
+        SixMonths,
+        EightMonths,
+        OneYear
+    }
+
 }
