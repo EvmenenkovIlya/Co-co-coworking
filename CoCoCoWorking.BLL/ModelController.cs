@@ -13,6 +13,9 @@ namespace CoCoCoWorking.BLL
     public class ModelController
     {
         private FinanceReportManager financeReportManager = new FinanceReportManager();
+        private RoomManager roomManager = new RoomManager();
+        private OrderUnitManager orderUnitManager = new OrderUnitManager();
+
         private AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
 
         public string GetProductName(FinanceReportDTO f)
@@ -64,6 +67,21 @@ namespace CoCoCoWorking.BLL
             List<FinanceReportByCustomerModel> list = new List<FinanceReportByCustomerModel>();
             List<FinanceReportByCustomerDTO> listDto = financeReportManager.GetFinanceReportByCustomer(startDate, endDate);
             list = mapper.Map<List<FinanceReportByCustomerModel>>(listDto);
+            return list;
+        }
+
+        public List<RoomModel> GetAllRoom()
+        {
+            List<RoomModel> list = new List<RoomModel>();
+            List<RoomDTO> listDto = roomManager.GetAllRooms();
+            list = mapper.Map<List<RoomModel>>(listDto);
+            return list;
+        }
+        public List<OrderUnitModel> GetAllOrderUnit()
+        {
+            List<OrderUnitModel> list = new List<OrderUnitModel>();
+            List<OrderUnitDTO> listDto = orderUnitManager.GetAllOrderUnits();
+            list = mapper.Map<List<OrderUnitModel>>(listDto);
             return list;
         }
     }

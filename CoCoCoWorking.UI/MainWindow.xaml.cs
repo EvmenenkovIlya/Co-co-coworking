@@ -29,7 +29,7 @@ namespace CoCoCoWorking.UI
     /// 
     public partial class MainWindow : Window
     {
-        RoomManager room = new RoomManager();//test
+        
         AdditionalServiceManager additionalService = new AdditionalServiceManager();//test
         OrderManager order = new OrderManager();
         AllCustomerWhithOrderWithOrderUnitManager CustomerManager = new AllCustomerWhithOrderWithOrderUnitManager();
@@ -71,7 +71,7 @@ namespace CoCoCoWorking.UI
             Combobox_ChooseWorkplace.Items.Clear();
             Order_Calendar.BlackoutDates.Clear();
 
-            var rooms = room.GetAllRooms();
+            var rooms = modelController.GetAllRoom();
 
             foreach (var room in rooms)
             {
@@ -110,7 +110,7 @@ namespace CoCoCoWorking.UI
             PurchaseType_Combobox.Items.Clear();
 
             var allService = additionalService.GetAllAdditionalServices();
-            var roomName = room.GetAllRooms();
+            var roomName = modelController.GetAllRoom();
 
             switch (Type_ComboBox.SelectedIndex)
             {

@@ -14,8 +14,8 @@ namespace CoCoCoWorking.BLL
 {
     public class CalendarForOrder
     {
-        OrderUnitManager orderUnitManager = new OrderUnitManager();//test
-        RoomManager room = new RoomManager();                      //test
+
+        ModelController modelController = new ModelController();
         List<string> busyDate = new List<string>();
         List <int> DateForCalendar = new List<int>();
         
@@ -41,7 +41,7 @@ namespace CoCoCoWorking.BLL
       
         public List<string> GetStringBusyDateRoom(int roomId)
         {
-            List <OrderUnitDTO> orderUnits = orderUnitManager.GetAllOrderUnits();//test
+            var orderUnits = modelController.GetAllOrderUnit();
 
             foreach (var unit in orderUnits)
             {
@@ -59,8 +59,8 @@ namespace CoCoCoWorking.BLL
 
 
         public List<string> SearchRoomsForDate(string startDate, string endDate)
-        {         
-            var rooms = room.GetAllRooms();//test
+        {
+            var rooms = modelController.GetAllRoom();
 
             List<string> searchDate = new List<string>();
             List<string> freeRoom = new List<string>();
