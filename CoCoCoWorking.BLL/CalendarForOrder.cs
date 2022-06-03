@@ -52,8 +52,7 @@ namespace CoCoCoWorking.BLL
                         
                         busyDate.Add(day.ToShortDateString());
                     }
-                }
-                
+                }               
             }
             return busyDate;
         }
@@ -65,7 +64,7 @@ namespace CoCoCoWorking.BLL
 
             List<string> searchDate = new List<string>();
             List<string> freeRoom = new List<string>();
-            Dictionary<int, List<string>> busyRoom = new Dictionary<int, List<string>>();
+            Dictionary<int, List<string>> busyRooms = new Dictionary<int, List<string>>();
           
             foreach (DateTime day in EachDay(DateTime.Parse(startDate), DateTime.Parse(endDate)))
             {
@@ -75,37 +74,31 @@ namespace CoCoCoWorking.BLL
 
             foreach (var room in rooms)
             {
-                List<string> asdd = GetStringBusyDateRoom(room.Id);
+                List<string> busyDatesInRooms = GetStringBusyDateRoom(room.Id);
                 var key = room.Id;
-                if (!busyRoom.ContainsKey(key))
+                if (!busyRooms.ContainsKey(key))
                 {
-                    busyRoom[key] = new List<string>();
+                    busyRooms[key] = new List<string>();
                 }
 
-                foreach(var item in asdd)
+                foreach(var date in busyDatesInRooms)
                 {
 
-                    busyRoom[room.Id].Add($"{item}");
+                    busyRooms[room.Id].Add($"{date}");
                 }
-                 asdd.Clear();
-            }
+                busyDatesInRooms.Clear();
 
-            foreach(var room in rooms)
-            {
-               List<string> busyDate = busyRoom[room.Id];
-
-                var intersecting = busyDate.Intersect(searchDate);
-
+                var busyDates = busyRooms[room.Id];
+                var intersecting = busyDates.Intersect(searchDate);
                 bool isEqual = intersecting.Any();
 
-                 if (isEqual== false)
-                 {
-                     freeRoom.Add(room.Name);
-                 }
+                if (isEqual == false)
+                {
+                    freeRoom.Add(room.Name);
+                }
             }
 
             return freeRoom;
-
         }
 
 
