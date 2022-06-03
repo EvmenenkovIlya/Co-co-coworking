@@ -46,6 +46,7 @@ namespace CoCoCoWorking.UI
             InitializeComponent();
 
             DataGridCustomers.ItemsSource = _instance.Reports;
+            DataGridRentPrices.ItemsSource = _instance.RentPrices;
 
         }
 

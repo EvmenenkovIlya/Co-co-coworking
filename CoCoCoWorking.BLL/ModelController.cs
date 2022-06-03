@@ -13,7 +13,9 @@ namespace CoCoCoWorking.BLL
     public class ModelController
     {
         private FinanceReportManager financeReportManager = new FinanceReportManager();
+        private RoomManager roomManager = new RoomManager();
         private AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
+        private Singleton _instance = Singleton.GetInstance();
 
         public string GetProductName(FinanceReportDTO f)
         {
@@ -49,6 +51,33 @@ namespace CoCoCoWorking.BLL
                 i = (int)f.WorkPlaceCount;
             }
             return i;
+        }
+
+        public TypeOfProduct GetTypeOfProduct(RoomDTO r)
+        {
+            TypeOfProduct type = (TypeOfProduct)Enum.Parse(typeof(TypeOfProduct), r.Type);
+
+            return type;
+        }
+
+        public TypeOfProduct GetTypeOfProductForRentPriceModel(RentPriceDTO r)
+        {
+            TypeOfProduct type = new TypeOfProduct();
+            foreach(RoomModel a in _instance.Rooms)
+            {
+                if (a.Id == r.RoomId)
+                {
+                    type = a.Type;
+                }
+            }
+            return type;
+        }
+
+        public TypeOfPeriod GetTypeOfPeriod (RentPriceDTO r)
+        {
+            TypeOfPeriod type = (TypeOfPeriod)Enum.Parse(typeof(TypeOfPeriod), r.PeriodType);
+
+            return type;
         }
 
         public List<FinanceReportModel> GetFinanceReportModels(DateTime startDate, DateTime endDate)
