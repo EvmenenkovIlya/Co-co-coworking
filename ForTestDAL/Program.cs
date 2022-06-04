@@ -12,10 +12,10 @@ using CoCoCoWorking.DAL.DTO;
 //    Console.WriteLine(i.ToString());
 //}
 
-var CM = new AllCustomerWhithOrderWithOrderUnitManager();
-var O = CM.GetAllCustomerWhithOrderWithOrderUnit();
+//var CM = new AllCustomerWhithOrderWithOrderUnitManager();
+//var O = CM.GetAllCustomerWhithOrderWithOrderUnit();
 
-    Console.WriteLine(O);
+//    Console.WriteLine(O);
 
 
 //var CM = new FinanceReportManager();
@@ -53,3 +53,4 @@ var O = CM.GetAllCustomerWhithOrderWithOrderUnit();
 //{
 //    Console.WriteLine(i);
 //}
+

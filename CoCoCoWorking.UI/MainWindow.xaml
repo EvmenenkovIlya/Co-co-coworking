@@ -86,17 +86,17 @@
             </TabItem>
             <TabItem x:Name="TabItemAdministration" Header="Administration">
                 <Grid Background="Bisque">
-                    <DataGrid x:Name="DataGridSheduleRooms" HorizontalAlignment="Left" Height="378" Margin="26,153,0,0" VerticalAlignment="Top" Width="401" d:ItemsSource="{d:SampleData ItemCount=5}" AutoGenerateColumns="False">
+                    <DataGrid x:Name="DataGridRentPrices" HorizontalAlignment="Left" Height="378" Margin="26,153,0,0" VerticalAlignment="Top" Width="958" d:ItemsSource="{d:SampleData ItemCount=5}" AutoGenerateColumns="False">
                         <DataGrid.CellStyle>
                             <Style/>
                         </DataGrid.CellStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Service name"/>
-                            <DataGridTextColumn Header="Room number"/>
-                            <DataGridCheckBoxColumn Header="Name"/>
-                            <DataGridCheckBoxColumn Header="Price"/>
-                            <DataGridCheckBoxColumn Header="Start date"/>
-                            <DataGridCheckBoxColumn Header="End date"/>
+                            <DataGridTextColumn Header="Type of Product" Width="50*" Binding="{Binding Path=Type}"/>
+                            <DataGridTextColumn Header="Name" Width="50*" Binding="{Binding Path=Name}"/>
+                            <DataGridTextColumn Header="Period" Width="50*" Binding="{Binding Path=PeriodType}"/>
+                            <DataGridTextColumn Header="Regular Price" Width="50*" Binding="{Binding Path=RegularPrice}"/>
+                            <DataGridTextColumn Header="Residents Price" Width="50*" Binding="{Binding Path=ResidentPrice}"/>
+                            <DataGridTextColumn Header="Price if Fixed" Width="50*" Binding="{Binding Path=FixedPrice}"/>
                         </DataGrid.Columns>
                     </DataGrid>
 
