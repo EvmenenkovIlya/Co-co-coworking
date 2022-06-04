@@ -153,7 +153,7 @@ namespace CoCoCoWorking.UI
 
             List<OrderModel> customerOrdersModel = mapper.Map<List<OrderModel>>(customerOrders);
 
-            Order_DataGrid.ItemsSource = customerOrdersModel;
+            DataGrid_Order.ItemsSource = customerOrdersModel;
             
         }
     }
