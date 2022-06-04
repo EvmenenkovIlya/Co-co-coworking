@@ -1,9 +1,4 @@
 ﻿using CoCoCoWorking.BLL.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CoCoCoWorking.DAL;
 using CoCoCoWorking.DAL.DTO;
 
@@ -38,14 +33,9 @@ namespace CoCoCoWorking.BLL
             {
               _instance= new Singleton();
             }            
-    
             return _instance;
         }
-    }
-   
 
-    
-
-    
+    }          
 }
 

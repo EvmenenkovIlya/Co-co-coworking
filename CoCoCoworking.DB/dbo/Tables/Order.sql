@@ -5,6 +5,6 @@
     [OrderStatus]   NVARCHAR (255)  NOT NULL,
     [PaidDate]      NVARCHAR (255) NULL,
     CONSTRAINT [PK__Order__3214EC07F0E68909] PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK__Order__CustomerI__48CFD27E] FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customer] ([Id]),  
+    CONSTRAINT [FK__Order__CustomerI__48CFD27E] FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customer] ([Id])
 );
 
