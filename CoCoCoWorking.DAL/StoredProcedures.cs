@@ -40,5 +40,7 @@
         public const string GetAllRoomAndWorkPlaceBusyOrFree = "GetAllRoomAndWorkPlaceBusyOrFree";
         public const string GetFinanceReport = "GetFinanceReport";
         public const string GetFinanceReportByCustomer = "GetFinanceReportByCustomer";
+
+        public const string GetAllUnitOrdersFromSpecificOrder = "GetAllUnitOrdersFromSpecificOrder";
     }
 }
