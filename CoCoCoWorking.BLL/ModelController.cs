@@ -85,7 +85,7 @@ namespace CoCoCoWorking.BLL
             return type;
         }
 
-        public string GetNameForRentPriceModel(RentPriceDTO r)
+        public TypeOfProduct GetNameForRentPriceModel(RentPriceDTO r)
         {
             TypeOfProduct type = new TypeOfProduct();
             if (r.RoomId != null)
