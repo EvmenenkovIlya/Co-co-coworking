@@ -28,21 +28,21 @@ namespace CoCoCoWorking.UI
 
             DataGridCustomers.ItemsSource = _instance.Reports;
             DataGridRentPrices.ItemsSource = _instance.RentPrices;
-
+            _instance.UpdateInstance();
         }
 
         private void ButtonCreateNewOrder_Click(object sender, RoutedEventArgs e)
         {
-            MainTabControl.SelectedItem = Orders;
-            
+            MainTabControl.SelectedItem = Orders;            
         }
 
         private void ButtonCreateNewCustomer_Click(object sender, RoutedEventArgs e)
         {
             modelController.AddCustomerToBase(TextBoxFirstName.Text, TextBoxLastName.Text, TextBoxNumber.Text, TextBoxEmail.Text);
-            _instance.UpdateListOfCustomers();
+            _instance.UpdateInstance();
             DataGridCustomers.ItemsSource = _instance.Reports;
         }
+        
 
         private void PurchaseType_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -182,15 +182,7 @@ namespace CoCoCoWorking.UI
             string startDate = DatePicker_Order_StartDate.Text;
             string endDate = DatePicker_Order_EndDate.Text;
             var freeRooms = busyOrFreeRoom.SearchRoomsForDate(startDate, endDate);
-            foreach (var room in freeRooms)
-            {
-                PurchaseType_Combobox.Items.Add(room);
-            }
+            PurchaseType_Combobox.ItemsSource = freeRooms;
         }
     }
 }
-
-    
-
-
-

@@ -17,16 +17,14 @@ namespace CoCoCoWorking.DAL
                 Dictionary<int, CustomersWithOrdersDto> result = new Dictionary<int, CustomersWithOrdersDto>();   
 
                      connection.Query<CustomersWithOrdersDto, OrderDto, OrderUnitDto, CustomersWithOrdersDto>
-                     ("GetAllCustomerWhithOrderWithOrderUnit",
+                     (StoredProcedures.GetAllCustomerWhithOrderWithOrderUnit,
                      (customer, order, orderunit) =>
                      {
-
                          if (!result.ContainsKey(customer.Id))
                          {
                              result.Add(customer.Id, customer);
                          }
                          CustomersWithOrdersDto crnt = result[customer.Id];
-
                          if (customer!=null)
                          {
                              if (crnt.Orders != null && !crnt.Orders.Contains(order))

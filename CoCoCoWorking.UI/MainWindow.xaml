@@ -11,24 +11,23 @@
             <TabItem Header="Customers">
                 <Grid Background="Bisque">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="101*"/>
-                        <ColumnDefinition Width="397*"/>
-                        <ColumnDefinition Width="497*"/>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="50*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50*"/>
                         <RowDefinition Height="50*"/>
                     </Grid.RowDefinitions>
-                    <Label Content="Form to create new Customer" HorizontalAlignment="Left" VerticalAlignment= "Top"  Margin="28,20,0,0" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Grid.Column="1" />
-                    <Label Content="First name" HorizontalAlignment="Left" VerticalAlignment= "Top"  Margin="30, 70, 0, 0" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Grid.ColumnSpan="2"/>
-                    <Label Content="Last name" HorizontalAlignment="Left" VerticalAlignment= "Top"  Margin="30, 130, 0, 0" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Grid.ColumnSpan="2"/>
+                    <Label Content="Form to create new Customer" HorizontalAlignment="Left" VerticalAlignment= "Top"  Margin="30,20,0,0" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" />
+                    <Label Content="First name" HorizontalAlignment="Left" VerticalAlignment= "Top"  Margin="30, 70, 0, 0" FontWeight="Bold" FontFamily="Arial Black" FontSize="14"/>
+                    <Label Content="Last name" HorizontalAlignment="Left" VerticalAlignment= "Top"  Margin="30, 130, 0, 0" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" />
                     <Label Content="Number" HorizontalAlignment="Left" VerticalAlignment= "Top"  Margin="30, 190, 0, 0" FontWeight="Bold" FontFamily="Arial Black" FontSize="14"/>
                     <Label Content="Email" HorizontalAlignment="Left" VerticalAlignment= "Top"  Margin="30, 250, 0, 0" FontWeight="Bold" FontFamily="Arial Black" FontSize="14"/>
-                    <TextBox Name="TextBoxFirstName" Width="200" Height="30" HorizontalAlignment="Left" VerticalAlignment= "Top" Margin="54,70,0,0" Grid.Column="1"/>
-                    <TextBox Name="TextBoxLastName" Width="200" Height="30" HorizontalAlignment="Left" VerticalAlignment= "Top" Margin="54,130,0,0" Grid.Column="1"/>
-                    <TextBox Name="TextBoxNumber" Width="200" Height="30" HorizontalAlignment="Left" VerticalAlignment= "Top" Margin="54,190,0,0" Grid.Column="1"/>
-                    <TextBox Name="TextBoxEmail" Width="200" Height="30" HorizontalAlignment="Left" VerticalAlignment= "Top" Margin="54,250,0,0" Grid.Column="1"/>
-                    <Button Name="ButtomCreateNewCustomer" Content="Create New Customer" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="200" Height="30" Margin="38,0,0,30" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonCreateNewCustomer_Click" Grid.Column="1" />
+                    <TextBox Name="TextBoxFirstName" Width="200" Height="30" HorizontalAlignment="Center" VerticalAlignment= "Top" Margin="0,70,0,0"/>
+                    <TextBox Name="TextBoxLastName" Width="200" Height="30" HorizontalAlignment="Center" VerticalAlignment= "Top" Margin="0,130,0,0" />
+                    <TextBox Name="TextBoxNumber" Width="200" Height="30" HorizontalAlignment="Center" VerticalAlignment= "Top" Margin="0,190,0,0" />
+                    <TextBox Name="TextBoxEmail" Width="200" Height="30" HorizontalAlignment="Center" VerticalAlignment= "Top" Margin="0,250,0,0" />
+                    <Button Name="ButtomCreateNewCustomer" Content="Create New Customer" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="200" Height="30" Margin="0,0,0,30" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonCreateNewCustomer_Click"  />
                     <Label Content="Number for search:" Grid.Column="2"  Width="160" HorizontalAlignment="Left" VerticalAlignment= "Top" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Margin="10, 20, 0, 0" Height="30" />
                     <TextBox Name="TextBoxNumberForSearch" Grid.Column="2" Width="160" Height="30" HorizontalAlignment="Left" VerticalAlignment= "Top" Margin="10, 50, 0, 0"/>
                     <Button Name="ButtonSearchByNumber" Content="Search by Number"  Grid.Column="2" Width="160" Height="30" HorizontalAlignment="Right" VerticalAlignment= "Top" FontWeight="Bold" Margin="0,50,136,0" FontFamily="Arial Black" FontSize="14" Click="ButtonSearchByNumber_Click"/>
