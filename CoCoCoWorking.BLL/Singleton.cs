@@ -35,7 +35,10 @@ namespace CoCoCoWorking.BLL
             }            
             return _instance;
         }
-
+        public void UpdateListOfCustomers()
+        {
+            Reports = mapper.Map<List<CustomerModel>>(customerManager.GetAllCustomers());
+        }
     }          
 }
 

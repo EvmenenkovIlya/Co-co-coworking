@@ -23,12 +23,21 @@ namespace CoCoCoWorking.BLL
             _instance =new Mapper(new MapperConfiguration(cfg => 
             {
                 cfg.CreateMap<CustomersWithOrdersDto, CustomerModel>()
-                .ForMember("Name", opt => opt.MapFrom(c => $"{c.FirstName} {c.LastName}"))
-                .ForMember("PhoneNumber", opt => opt.MapFrom(c => c.Email))
+                .ForMember("Id", opt => opt.MapFrom(c => c.Id))
+                .ForMember("FirstName", opt => opt.MapFrom(c => c.FirstName))
+                .ForMember("LastName", opt => opt.MapFrom(c =>  c.LastName))
+                .ForMember("PhoneNumber", opt => opt.MapFrom(c => c.PhoneNumber))
                 .ForMember("Email", opt => opt.MapFrom(c => c.Email))
                 .ForMember("Regular", opt => opt.MapFrom(c => modelController.IsRegular(c)))
                 .ForMember("Subscribe", opt => opt.MapFrom(c => modelController.IsSubscribe(c)))
                 .ForMember("EndDate", opt => opt.MapFrom(c => modelController.GetLastDate(c)));
+
+                cfg.CreateMap<CustomerModel, CustomersWithOrdersDto>()
+                .ForMember("Id", opt => opt.MapFrom(c => c.Id))
+                .ForMember("FirstName", opt => opt.MapFrom(c => c.FirstName))
+                .ForMember("LastName", opt => opt.MapFrom(c => c.LastName))
+                .ForMember("PhoneNumber", opt => opt.MapFrom(c => c.PhoneNumber))
+                .ForMember("Email", opt => opt.MapFrom(c => c.Email));
 
                 cfg.CreateMap<RoomDto, RoomModel>()
                 .ForMember("Type", opt => opt.MapFrom(c => modelController.GetTypeOfProduct(c)))

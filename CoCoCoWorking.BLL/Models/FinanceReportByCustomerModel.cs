@@ -1,6 +1,4 @@
-﻿
-
-namespace CoCoCoWorking.BLL.Models
+﻿namespace CoCoCoWorking.BLL.Models
 {
     public class FinanceReportByCustomerModel
     {

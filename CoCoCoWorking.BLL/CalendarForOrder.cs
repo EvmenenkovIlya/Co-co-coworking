@@ -6,10 +6,6 @@ using System.Threading.Tasks;
 using CoCoCoWorking.DAL;
 using CoCoCoWorking.DAL.DTO;
 
-
-
-
-
 namespace CoCoCoWorking.BLL
 {
     public class CalendarForOrder
@@ -100,8 +96,6 @@ namespace CoCoCoWorking.BLL
 
             return freeRoom;
         }
-
-
         IEnumerable<DateTime> EachDay(DateTime start, DateTime end)
         {
             for (var day = start.Date; day.Date <= end.Date; day = day.AddDays(1))

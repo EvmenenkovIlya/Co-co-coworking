@@ -118,40 +118,34 @@ namespace CoCoCoWorking.BLL
 
         public List<FinanceReportModel> GetFinanceReportModels(DateTime startDate, DateTime endDate)
         {
-            List<FinanceReportModel> list = new List<FinanceReportModel>();
             List<FinanceReportDto> listDto = financeReportManager.GetFinanceReport(startDate, endDate);
-            list = mapper.Map<List<FinanceReportModel>>(listDto);
+            List<FinanceReportModel> list = mapper.Map<List<FinanceReportModel>>(listDto);
             return list;
         }
 
         public List<FinanceReportByCustomerModel> GetFinanceReportByCustomerModels(DateTime startDate, DateTime endDate)
         {
-            List<FinanceReportByCustomerModel> list = new List<FinanceReportByCustomerModel>();
             List<FinanceReportByCustomerDto> listDto = financeReportManager.GetFinanceReportByCustomer(startDate, endDate);
-            list = mapper.Map<List<FinanceReportByCustomerModel>>(listDto);
+            List<FinanceReportByCustomerModel> list = mapper.Map<List<FinanceReportByCustomerModel>>(listDto);
             return list;
         }
 
         public List<RoomModel> GetAllRoom()
-        {
-            List<RoomModel> list = new List<RoomModel>();
+        {           
             List<RoomDto> listDto = roomManager.GetAllRooms();
-            list = mapper.Map<List<RoomModel>>(listDto);
+            List<RoomModel>  list = mapper.Map<List<RoomModel>>(listDto);
             return list;
         }
         public List<OrderUnitModel> GetAllOrderUnit()
         {
-            List<OrderUnitModel> list = new List<OrderUnitModel>();
             List<OrderUnitDto> listDto = orderUnitManager.GetAllOrderUnits();
-            list = mapper.Map<List<OrderUnitModel>>(listDto);
+            List<OrderUnitModel> list = mapper.Map<List<OrderUnitModel>>(listDto);
             return list;
         }
 
         public List<CustomerModel> GetCustomerWithTheMatchedNumberIsReturned(string v, List<CustomerModel> Cg)
         {
-
-            var d = new List<CustomerModel>();
-            
+            var d = new List<CustomerModel>();          
             foreach (var customermodel in Cg)
             {
                 if (customermodel.PhoneNumber.Contains(v))
@@ -229,6 +223,19 @@ namespace CoCoCoWorking.BLL
             }
             return lastDate.ToString();
         }
-
+        public void AddCustomerToBase(string firstName, string lastName, string phone, string email)
+        {
+            CustomerManager customerManager = new CustomerManager();
+            CustomerModel customer = new CustomerModel() {FirstName = firstName, LastName = lastName, PhoneNumber = phone, Email = email};
+            CustomersWithOrdersDto customerDto = mapper.Map<CustomersWithOrdersDto>(customer);
+            customerManager.AddCustomer(customerDto);
+        }
+        public void UpdateCustomerInBase(int id, string firstName, string lastName, string phone, string email)
+        {
+            CustomerManager customerManager = new CustomerManager();
+            CustomerModel customer = new CustomerModel() { Id = id, FirstName = firstName, LastName=lastName, PhoneNumber=phone, Email=email};
+            CustomersWithOrdersDto customerDto = mapper.Map<CustomersWithOrdersDto>(customer);
+            customerManager.UpdateCustomer(customerDto);
+        }
     }
 }

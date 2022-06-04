@@ -33,13 +33,15 @@ namespace CoCoCoWorking.UI
 
         private void ButtonCreateNewOrder_Click(object sender, RoutedEventArgs e)
         {
-            TextBoxNumberForSearch.Text = DataGridCustomers.SelectedItem.ToString();
+            MainTabControl.SelectedItem = Orders;
+            
         }
 
         private void ButtonCreateNewCustomer_Click(object sender, RoutedEventArgs e)
         {
-            //customers.AddCustomer(TextBoxFirstName.Text, TextBoxLastName.Text, TextBoxNumber.Text, TextBoxEmail.Text);
-            //DataGridCustomers.ItemsSource = customers.GetAllCustomers();
+            modelController.AddCustomerToBase(TextBoxFirstName.Text, TextBoxLastName.Text, TextBoxNumber.Text, TextBoxEmail.Text);
+            _instance.UpdateListOfCustomers();
+            DataGridCustomers.ItemsSource = _instance.Reports;
         }
 
         private void PurchaseType_Combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -77,11 +79,8 @@ namespace CoCoCoWorking.UI
                             dateConvert.Clear();
                             break;
                     }
-
-                }   //
-
+                }  
             }
-
         }
         private void Type_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -126,9 +125,7 @@ namespace CoCoCoWorking.UI
                     }
                     break;
             }
-
         }
-
         private void Button_GetReport_Click(object sender, RoutedEventArgs e)
         {
             if (ComboBox_TypeOfReport.SelectedIndex == -1

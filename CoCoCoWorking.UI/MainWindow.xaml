@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="CoCoCoWorking" Height="800" Width="1000" ResizeMode="NoResize">
     <Grid>
-        <TabControl>
+        <TabControl x:Name="MainTabControl">
             <TabItem Header="Customers">
                 <Grid Background="Bisque">
                     <Grid.ColumnDefinitions>
@@ -35,11 +35,12 @@
                     <Label Content="List of Customers:" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment= "Top" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Margin="0,100,0,0" Height="30" />
                     <DataGrid Name="DataGridCustomers" Grid.Column="2" Margin="10,130,10,80" Grid.RowSpan="2" ColumnHeaderHeight="30" RowBackground="AliceBlue" RowHeight="30" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name" Width="40*" Binding="{Binding Path=Name}"/>
+                            <DataGridTextColumn Header="First Name" Width="45*" Binding="{Binding Path=FirstName}"/>
+                            <DataGridTextColumn Header="Last Name" Width="45*" Binding="{Binding Path=LastName}"/>
                             <DataGridTextColumn Header="Phone"  Width="40*" Binding="{Binding Path=PhoneNumber}"/>
                             <DataGridTextColumn Header="Email" Width="50*" Binding="{Binding Path=Email}"/>
-                            <DataGridTextColumn Header="Regular" Width="50*" Binding="{Binding Path=Regular}"/>
-                            <DataGridTextColumn Header="Subscribe" Width="50*" Binding="{Binding Path=Subscribe}"/>
+                            <DataGridTextColumn Header="Regular" Width="30*" Binding="{Binding Path=Regular}"/>
+                            <DataGridTextColumn Header="Subscribe" Width="30*" Binding="{Binding Path=Subscribe}"/>
                             <DataGridTextColumn Header="EndDate"  Width="40*" Binding="{Binding Path=EndDate}"/>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -48,7 +49,7 @@
                     <Button x:Name="ButtonSearchByNumber_Copy" Content="reset"  Grid.Column="2" Width="76" Height="30" HorizontalAlignment="Right" VerticalAlignment= "Top" FontWeight="Bold" Margin="0,50,28,0" FontFamily="Arial Black" FontSize="14"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Orders" Height="20" VerticalAlignment="Top">
+            <TabItem Header="Orders" Name="Orders" Height="20" VerticalAlignment="Top">
                 <Grid Background="Bisque">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
