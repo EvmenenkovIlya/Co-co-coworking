@@ -1,9 +1,5 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CoCoCoWorking.BLL;
 using CoCoCoWorking.DAL.DTO;
 using CoCoCoWorking.BLL.Models;
 
@@ -28,9 +24,11 @@ namespace CoCoCoWorking.BLL
             {
                 cfg.CreateMap<CustomersWithOrdersDTO, CustomerModel>()
                 .ForMember("Name", opt => opt.MapFrom(c => $"{c.FirstName} {c.LastName}"))
-                .ForMember("Regular", opt => opt.MapFrom(c => c.IsRegular()))
-                .ForMember("Subscribe", opt => opt.MapFrom(c => c.IsSubscribe()))
-                .ForMember("EndDate", opt => opt.MapFrom(c => c.GetLastDate()));
+                .ForMember("PhoneNumber", opt => opt.MapFrom(c => c.Email))
+                .ForMember("Email", opt => opt.MapFrom(c => c.Email))
+                .ForMember("Regular", opt => opt.MapFrom(c => modelController.IsRegular(c)))
+                .ForMember("Subscribe", opt => opt.MapFrom(c => modelController.IsSubscribe(c)))
+                .ForMember("EndDate", opt => opt.MapFrom(c => modelController.GetLastDate(c)));
 
                 cfg.CreateMap<RoomDTO, RoomModel>()
                 .ForMember("Type", opt => opt.MapFrom(c => modelController.GetTypeOfProduct(c)))

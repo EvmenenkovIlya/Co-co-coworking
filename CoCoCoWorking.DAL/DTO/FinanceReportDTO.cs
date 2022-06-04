@@ -17,20 +17,5 @@ namespace CoCoCoWorking.DAL.DTO
         public string AdditionalServiceName { get; set; }
         public int? AdditionalServiceCount { get; set; }
         public double? Summ { get; set; }
-
-        public override string ToString()
-        {
-            return $"ID={Id} " +
-                $"RoomId={RoomId} " +
-                $"RoomName={RoomName} " +
-                $"RoomCount={RoomCount} " +
-                $"WorkPlaceCount={WorkPlaceCount} " +
-                $"AdditionalServiceId={AdditionalServiceId} " +
-                $"AdditionalServiceName={AdditionalServiceName} " +
-                $"AdditionalServiceCount={AdditionalServiceCount} " +
-                $"Summ={Summ}";
-        }
-    }
-
-    
+    }   
 }

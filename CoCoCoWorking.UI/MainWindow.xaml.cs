@@ -1,22 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Collections.ObjectModel;
-using System.IO;
 using CoCoCoWorking.DAL;
-using CoCoCoWorking.DAL.DTO;
-using System.Data;
 using CoCoCoWorking.BLL;
 using CoCoCoWorking.BLL.Models;
 using System.ComponentModel;
@@ -31,15 +16,11 @@ namespace CoCoCoWorking.UI
     {
         
         AdditionalServiceManager additionalService = new AdditionalServiceManager();//test
-        OrderManager order = new OrderManager();
-        AllCustomerWhithOrderWithOrderUnitManager CustomerManager = new AllCustomerWhithOrderWithOrderUnitManager();
         ModelController modelController = new ModelController();
         Singleton _instance = Singleton.GetInstance();
 
         CalendarForOrder busyOrFreeRoom = new CalendarForOrder();
-        AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
         private ICollectionView items;
-
 
         public MainWindow()
         {
@@ -186,8 +167,6 @@ namespace CoCoCoWorking.UI
                         }
                         TextBox_Total.Text = "" + sum;
                         break;
-
-
                 }
 
             }

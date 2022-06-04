@@ -157,10 +157,78 @@ namespace CoCoCoWorking.BLL
                 if (customermodel.PhoneNumber.Contains(v))
                 {
                     d.Add(customermodel);
-                }
-               
+                }               
             }
             return d;
         }
+        public bool IsRegular(CustomersWithOrdersDTO customer)
+        {
+            if (customer.Orders == null || customer.Orders.Count == 0)
+            {
+                return false;
+            }
+            foreach (OrderDTO order in customer.Orders)
+            {
+                if (order != null)
+                {
+                    foreach (OrderUnitDTO orderUnit in order.OrderUnits!)
+                    {
+                        if ((DateTime.Parse(orderUnit.EndDate!) - DateTime.Parse(orderUnit.EndDate!)).Days > 30)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        public bool IsSubscribe(CustomersWithOrdersDTO customer)
+        {
+            if (customer.Orders == null || customer.Orders.Count == 0)
+            {
+                return false;
+            }
+            foreach (OrderDTO order in customer.Orders)
+            {
+                if (order != null)
+                {
+                    foreach (OrderUnitDTO orderUnit in order.OrderUnits!)
+                    {
+                        if (orderUnit.AdditionalServiceId == 1 && DateTime.Parse(orderUnit.EndDate!) > DateTime.Now.Date)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        public string GetLastDate(CustomersWithOrdersDTO customer)
+        {
+            DateTime lastDate = new DateTime();
+            if (customer.Orders != null)
+            {
+                foreach (OrderDTO order in customer.Orders)
+                {
+                    if (order != null)
+                    {
+                        foreach (OrderUnitDTO orderUnit in order.OrderUnits!)
+                        {
+                            DateTime crnt = DateTime.Parse(orderUnit.EndDate);
+                            if (crnt > lastDate)
+                            {
+                                lastDate = crnt;
+                            }
+                        }
+                    }
+                }
+            }
+            if (lastDate == new DateTime())
+            {
+                return "No orders";
+            }
+            return lastDate.ToString();
+        }
+
     }
 }
