@@ -53,7 +53,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <ComboBox x:Name="PurchaseType_Combobox" HorizontalAlignment="Left" Height="33" Margin="463,38,0,0" VerticalAlignment="Top" Width="477" SelectionChanged="PurchaseType_Combobox_SelectionChanged" >
+                    <ComboBox x:Name="Combobox_PurchaseType" HorizontalAlignment="Left" Height="33" Margin="463,38,0,0" VerticalAlignment="Top" Width="477" SelectionChanged="Combobox_PurchaseType_SelectionChanged" >
                         <ComboBox Height="30" Width="48"/>
                         <ComboBoxItem Background="#FFC10E0E" BorderBrush="#FF691D1D" Content="adadad"/>
                     </ComboBox>
@@ -66,7 +66,7 @@
                     </DataGrid>
                     <Button x:Name="ButtonCreateOrder" Content="Create order" HorizontalAlignment="Left" Height="48" Margin="790,677,0,0" VerticalAlignment="Top" Width="145" />
                     <ComboBox x:Name="Combobox_ChooseWorkplace" HorizontalAlignment="Left" Height="35" Margin="463,98,0,0" VerticalAlignment="Top" Width="477" IsEnabled="False"  />
-                    <ComboBox x:Name="Type_ComboBox" HorizontalAlignment="Left" Height="33" Margin="45,32,0,0" VerticalAlignment="Top" Width="173" SelectionChanged="Type_ComboBox_SelectionChanged" >
+                    <ComboBox x:Name="ComboBox_Type" HorizontalAlignment="Left" Height="33" Margin="45,32,0,0" VerticalAlignment="Top" Width="173" SelectionChanged="ComboBox_Type_SelectionChanged" >
                         <ComboBoxItem Content="Room"/>
                         <ComboBoxItem Content="Сonference hall"/>
                         <ComboBoxItem Content="Meeting room"/>

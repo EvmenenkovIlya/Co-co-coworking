@@ -15,6 +15,7 @@ namespace CoCoCoWorking.BLL
         private FinanceReportManager financeReportManager = new FinanceReportManager();
         private RoomManager roomManager = new RoomManager();
         private OrderUnitManager orderUnitManager = new OrderUnitManager();
+        private WorkplaceManager workplaceManager = new WorkplaceManager();
 
         private AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
 
@@ -84,5 +85,15 @@ namespace CoCoCoWorking.BLL
             list = mapper.Map<List<OrderUnitModel>>(listDto);
             return list;
         }
+
+        public List<WorkPlaceModel> GetAllWorkplace()
+        {
+            List<WorkPlaceModel> list = new List<WorkPlaceModel>();
+            List<WorkplaceDTO> listDto = workplaceManager.GetAllWorkplaces();
+            list = mapper.Map<List<WorkPlaceModel>>(listDto);
+            return list;
+        }
+
+       
     }
 }

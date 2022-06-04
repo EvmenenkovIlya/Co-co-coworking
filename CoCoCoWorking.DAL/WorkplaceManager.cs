@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace CoCoCoWorking.DAL
 {
-    internal class WorkplaceManager
+    public class WorkplaceManager
     {
         public string connectionString = ServerOptions.ConnectionOption;
 

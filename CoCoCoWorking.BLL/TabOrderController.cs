@@ -12,12 +12,13 @@ using CoCoCoWorking.DAL.DTO;
 
 namespace CoCoCoWorking.BLL
 {
-    public class CalendarForOrder
+    public class TabOrderController
     {
 
         ModelController modelController = new ModelController();
         List<string> busyDate = new List<string>();
         List <int> DateForCalendar = new List<int>();
+
         
 
 
@@ -99,6 +100,31 @@ namespace CoCoCoWorking.BLL
             }
 
             return freeRoom;
+        }
+
+        public List<int> GetAllWorkplaceInRoom(int id)
+        {
+            List<int> workPlaceInRoom = new List<int>();
+            var allWorkplace = modelController.GetAllWorkplace();
+            var rooms = modelController.GetAllRoom();
+
+            foreach(var room in rooms)
+            {
+                if(room.Id == id)
+                {
+                    foreach(var workplace in allWorkplace)
+                    {
+                        if(workplace.RoomId == room.Id)
+                        {
+                            workPlaceInRoom.Add((int)workplace.Number);
+                        }
+
+                    }
+
+                }
+            }
+            return workPlaceInRoom;
+
         }
 
 
