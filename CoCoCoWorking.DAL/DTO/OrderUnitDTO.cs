@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoCoCoWorking.DAL.DTO
 {
-    public class OrderUnitDTO
+    public class OrderUnitDto
     {
         public int Id { get; set; }
         public string StartDate { get; set; }

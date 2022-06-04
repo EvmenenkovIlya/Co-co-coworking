@@ -18,7 +18,7 @@ namespace CoCoCoWorking.BLL
         private AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
         private Singleton _instance = Singleton.GetInstance();
 
-        public string GetProductName(FinanceReportDTO f)
+        public string GetProductName(FinanceReportDto f)
         {
             string s = "";
             if (f.RoomName != null)
@@ -36,7 +36,7 @@ namespace CoCoCoWorking.BLL
             return s;
         }
 
-        public int GetProductCount(FinanceReportDTO f)
+        public int GetProductCount(FinanceReportDto f)
         {
             int i = 0;
             if (f.RoomCount != 0)
@@ -54,14 +54,14 @@ namespace CoCoCoWorking.BLL
             return i;
         }
 
-        public TypeOfProduct GetTypeOfProduct(RoomDTO r)
+        public TypeOfProduct GetTypeOfProduct(RoomDto r)
         {
             TypeOfProduct type = (TypeOfProduct)Enum.Parse(typeof(TypeOfProduct), r.Type);
 
             return type;
         }
 
-        public TypeOfProduct GetTypeOfProductForRentPriceModel(RentPriceDTO r)
+        public TypeOfProduct GetTypeOfProductForRentPriceModel(RentPriceDto r)
         {
             TypeOfProduct type = new TypeOfProduct();
             if (r.RoomId != null)
@@ -85,7 +85,7 @@ namespace CoCoCoWorking.BLL
             return type;
         }
 
-        public TypeOfProduct GetNameForRentPriceModel(RentPriceDTO r)
+        public TypeOfProduct GetNameForRentPriceModel(RentPriceDto r)
         {
             TypeOfProduct type = new TypeOfProduct();
             if (r.RoomId != null)
@@ -109,7 +109,7 @@ namespace CoCoCoWorking.BLL
             return type;
         }
 
-        public TypeOfPeriod GetTypeOfPeriod (RentPriceDTO r)
+        public TypeOfPeriod GetTypeOfPeriod (RentPriceDto r)
         {
             TypeOfPeriod type = (TypeOfPeriod)Enum.Parse(typeof(TypeOfPeriod), r.PeriodType);
 
@@ -119,7 +119,7 @@ namespace CoCoCoWorking.BLL
         public List<FinanceReportModel> GetFinanceReportModels(DateTime startDate, DateTime endDate)
         {
             List<FinanceReportModel> list = new List<FinanceReportModel>();
-            List<FinanceReportDTO> listDto = financeReportManager.GetFinanceReport(startDate, endDate);
+            List<FinanceReportDto> listDto = financeReportManager.GetFinanceReport(startDate, endDate);
             list = mapper.Map<List<FinanceReportModel>>(listDto);
             return list;
         }
@@ -127,7 +127,7 @@ namespace CoCoCoWorking.BLL
         public List<FinanceReportByCustomerModel> GetFinanceReportByCustomerModels(DateTime startDate, DateTime endDate)
         {
             List<FinanceReportByCustomerModel> list = new List<FinanceReportByCustomerModel>();
-            List<FinanceReportByCustomerDTO> listDto = financeReportManager.GetFinanceReportByCustomer(startDate, endDate);
+            List<FinanceReportByCustomerDto> listDto = financeReportManager.GetFinanceReportByCustomer(startDate, endDate);
             list = mapper.Map<List<FinanceReportByCustomerModel>>(listDto);
             return list;
         }
@@ -135,14 +135,14 @@ namespace CoCoCoWorking.BLL
         public List<RoomModel> GetAllRoom()
         {
             List<RoomModel> list = new List<RoomModel>();
-            List<RoomDTO> listDto = roomManager.GetAllRooms();
+            List<RoomDto> listDto = roomManager.GetAllRooms();
             list = mapper.Map<List<RoomModel>>(listDto);
             return list;
         }
         public List<OrderUnitModel> GetAllOrderUnit()
         {
             List<OrderUnitModel> list = new List<OrderUnitModel>();
-            List<OrderUnitDTO> listDto = orderUnitManager.GetAllOrderUnits();
+            List<OrderUnitDto> listDto = orderUnitManager.GetAllOrderUnits();
             list = mapper.Map<List<OrderUnitModel>>(listDto);
             return list;
         }
@@ -161,17 +161,17 @@ namespace CoCoCoWorking.BLL
             }
             return d;
         }
-        public bool IsRegular(CustomersWithOrdersDTO customer)
+        public bool IsRegular(CustomersWithOrdersDto customer)
         {
             if (customer.Orders == null || customer.Orders.Count == 0)
             {
                 return false;
             }
-            foreach (OrderDTO order in customer.Orders)
+            foreach (OrderDto order in customer.Orders)
             {
                 if (order != null)
                 {
-                    foreach (OrderUnitDTO orderUnit in order.OrderUnits!)
+                    foreach (OrderUnitDto orderUnit in order.OrderUnits!)
                     {
                         if ((DateTime.Parse(orderUnit.EndDate!) - DateTime.Parse(orderUnit.EndDate!)).Days > 30)
                         {
@@ -182,17 +182,17 @@ namespace CoCoCoWorking.BLL
             }
             return false;
         }
-        public bool IsSubscribe(CustomersWithOrdersDTO customer)
+        public bool IsSubscribe(CustomersWithOrdersDto customer)
         {
             if (customer.Orders == null || customer.Orders.Count == 0)
             {
                 return false;
             }
-            foreach (OrderDTO order in customer.Orders)
+            foreach (OrderDto order in customer.Orders)
             {
                 if (order != null)
                 {
-                    foreach (OrderUnitDTO orderUnit in order.OrderUnits!)
+                    foreach (OrderUnitDto orderUnit in order.OrderUnits!)
                     {
                         if (orderUnit.AdditionalServiceId == 1 && DateTime.Parse(orderUnit.EndDate!) > DateTime.Now.Date)
                         {
@@ -203,16 +203,16 @@ namespace CoCoCoWorking.BLL
             }
             return false;
         }
-        public string GetLastDate(CustomersWithOrdersDTO customer)
+        public string GetLastDate(CustomersWithOrdersDto customer)
         {
             DateTime lastDate = new DateTime();
             if (customer.Orders != null)
             {
-                foreach (OrderDTO order in customer.Orders)
+                foreach (OrderDto order in customer.Orders)
                 {
                     if (order != null)
                     {
-                        foreach (OrderUnitDTO orderUnit in order.OrderUnits!)
+                        foreach (OrderUnitDto orderUnit in order.OrderUnits!)
                         {
                             DateTime crnt = DateTime.Parse(orderUnit.EndDate);
                             if (crnt > lastDate)

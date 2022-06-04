@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace CoCoCoWorking.DAL.DTO
 {
-    public class OrderDTO
+    public class OrderDto
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }
         public int? OrderCost { get; set; }
         public string OrderStatus { get; set; }
         public string PaidDate { get; set; }
-        public List<OrderUnitDTO> OrderUnits { get; set; } = new List<OrderUnitDTO>();
+        public List<OrderUnitDto> OrderUnits { get; set; } = new List<OrderUnitDto>();
     }
 }

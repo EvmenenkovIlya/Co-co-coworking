@@ -8,32 +8,32 @@ namespace CoCoCoWorking.DAL
     {
 
         public string connectionString = ServerOptions.ConnectionOption;
-        public List<RentPriceDTO> GetAllRentPrices()
+        public List<RentPriceDto> GetAllRentPrices()
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                return connection.Query<RentPriceDTO>(
+                return connection.Query<RentPriceDto>(
                     StoredProcedures.RentPrice_GetAll,
                     commandType: System.Data.CommandType.StoredProcedure)
                     .ToList();
             }
         }
-        public RentPriceDTO GetRentPriceByID(int id)
+        public RentPriceDto GetRentPriceByID(int id)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                return connection.QuerySingle<RentPriceDTO>(
+                return connection.QuerySingle<RentPriceDto>(
                     StoredProcedures.RentPrice_GetById,
                     param: new { id = id },
                     commandType: System.Data.CommandType.StoredProcedure);
             }
         }
 
-        public void AddRentPrice(RentPriceDTO rentPrice)
+        public void AddRentPrice(RentPriceDto rentPrice)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -55,7 +55,7 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public void UpdateRentPrice(RentPriceDTO rentPrice)
+        public void UpdateRentPrice(RentPriceDto rentPrice)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -84,7 +84,7 @@ namespace CoCoCoWorking.DAL
             {
                 connection.Open();
 
-                    connection.QuerySingleOrDefault<RentPriceDTO>(
+                    connection.QuerySingleOrDefault<RentPriceDto>(
                     StoredProcedures.RentPrice_SoftDelete,
                     param: new { id = id },
                     commandType: System.Data.CommandType.StoredProcedure);

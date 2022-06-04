@@ -8,15 +8,15 @@ namespace CoCoCoWorking.DAL
     {
         public string connectionString = ServerOptions.ConnectionOption;
 
-        public List<AllRoomsWithPriceWithPeriodRentaHDTO> GetAllRoomsWithPriceWithPeriodRentalWhereRentFromHour()
+        public List<AllRoomsWithPriceWithPeriodRentaHDto> GetAllRoomsWithPriceWithPeriodRentalWhereRentFromHour()
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                Dictionary<string, AllRoomsWithPriceWithPeriodRentaHDTO> result = new Dictionary<string, AllRoomsWithPriceWithPeriodRentaHDTO>();
+                Dictionary<string, AllRoomsWithPriceWithPeriodRentaHDto> result = new Dictionary<string, AllRoomsWithPriceWithPeriodRentaHDto>();
 
-                connection.Query<AllRoomsWithPriceWithPeriodRentaHDTO, RoomDTO, RentPriceDTO, AllRoomsWithPriceWithPeriodRentaHDTO>
+                connection.Query<AllRoomsWithPriceWithPeriodRentaHDto, RoomDto, RentPriceDto, AllRoomsWithPriceWithPeriodRentaHDto>
                 ("GetAllRoomsWithPriceWithPeriodRentalWhereRentFromHour",
                 (allroom, room, rentprice) =>
                 {
@@ -25,7 +25,7 @@ namespace CoCoCoWorking.DAL
                     {
                         result.Add(allroom.StartDate, allroom);
                     }
-                    AllRoomsWithPriceWithPeriodRentaHDTO crnt = result[allroom.StartDate];
+                    AllRoomsWithPriceWithPeriodRentaHDto crnt = result[allroom.StartDate];
 
                     crnt.Rooms.Add(room);
                     crnt.Rentprices.Add(rentprice);

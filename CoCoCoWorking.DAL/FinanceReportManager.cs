@@ -9,12 +9,12 @@ namespace CoCoCoWorking.DAL
     {
         public string connectionString = ServerOptions.ConnectionOption;
 
-        public List<FinanceReportDTO> GetFinanceReport(DateTime startDate, DateTime endDate)
+        public List<FinanceReportDto> GetFinanceReport(DateTime startDate, DateTime endDate)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                return connection.Query<FinanceReportDTO>
+                return connection.Query<FinanceReportDto>
                     (StoredProcedures.GetFinanceReport,
                     param: new { StartDate = startDate, EndDate = endDate },
                     commandType: System.Data.CommandType.StoredProcedure)
@@ -22,12 +22,12 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public List<FinanceReportByCustomerDTO> GetFinanceReportByCustomer(DateTime startDate, DateTime endDate)
+        public List<FinanceReportByCustomerDto> GetFinanceReportByCustomer(DateTime startDate, DateTime endDate)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                return connection.Query<FinanceReportByCustomerDTO>
+                return connection.Query<FinanceReportByCustomerDto>
                     (StoredProcedures.GetFinanceReportByCustomer,
                     param: new { StartDate = startDate, EndDate = endDate },
                        commandType: System.Data.CommandType.StoredProcedure)
