@@ -147,20 +147,30 @@ namespace CoCoCoWorking.BLL
             return list;
         }
 
-        public List<CustomerModel> GetCustomerWithTheMatchedNumberIsReturned(string v, List<CustomerModel> Cg)
+        public List<CustomerModel> GetCustomerWithTheMatchedNumberIsReturned(string v, List<CustomerModel> list)
         {
-
             var d = new List<CustomerModel>();
             
-            foreach (var customermodel in Cg)
+            foreach (var customermodel in list)
             {
                 if (customermodel.PhoneNumber.Contains(v))
                 {
                     d.Add(customermodel);
-                }
-               
+                }             
             }
             return d;
         }
+
+        //public List<CustomerModel> WillGetTheWholeListBack(string n, List<CustomerModel> list)
+        //{
+        //    var d = new List<CustomerModel>();
+        //    if (TextBoxNumberForSearch.Text == "")
+
+        //        return d;
+
+        //}
+
+
+
     }
 }
