@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoCoCoWorking.DAL.DTO
+namespace CoCoCoWorking.BLL.Models
 {
-    public class OrderUnitDTO
+    public class OrderUnitModel
     {
         public int Id { get; set; }
         public string StartDate { get; set; }
@@ -17,8 +17,5 @@ namespace CoCoCoWorking.DAL.DTO
         public int? AdditionalServiceId { get; set; }
         public int OrderId { get; set; }
         public decimal? OrderUnitCost { get; set; }
-        
-
-       
     }
 }
