@@ -63,19 +63,19 @@ namespace CoCoCoWorking.BLL
         }
         
 
-        public List<string> SearcFreeForDate(string startDate, string endDate)
+        public List<string> SearchFreeRoomForDate(string startDate, string endDate)
         {
             
             var rooms = modelController.GetAllRoom();
             
-            List<string> searchDate = new List<string>();
+            List<string> allDates = new List<string>();
             List<string> freeRoom = new List<string>();
             Dictionary<int, List<string>> busyRooms = new Dictionary<int, List<string>>();
           
             foreach (DateTime day in EachDay(DateTime.Parse(startDate), DateTime.Parse(endDate)))
             {
 
-                searchDate.Add(day.ToShortDateString());
+                allDates.Add(day.ToShortDateString());
             }
 
             foreach (var room in rooms)
@@ -99,7 +99,56 @@ namespace CoCoCoWorking.BLL
                     busyDatesInRooms.Clear();
 
                     var busyDates = busyRooms[room.Id];
-                    var intersecting = busyDates.Intersect(searchDate);
+                    var intersecting = busyDates.Intersect(allDates);
+                    bool isEqual = intersecting.Any();
+
+                    if (isEqual == false)
+                    {
+                        freeRoom.Add(room.Name);
+                    }
+                }
+            }
+            var freeRoomResult = freeRoom.Distinct().ToList();
+            return freeRoomResult;
+        }
+
+        public List<string> SearchFreeWorkplaceForDate(string startDate, string endDate)
+        {
+
+            var rooms = modelController.GetAllRoom();
+
+            List<string> allDates = new List<string>();
+            List<string> freeRoom = new List<string>();
+            Dictionary<int, List<string>> busyRooms = new Dictionary<int, List<string>>();
+
+            foreach (DateTime day in EachDay(DateTime.Parse(startDate), DateTime.Parse(endDate)))
+            {
+
+                allDates.Add(day.ToShortDateString());
+            }
+
+            foreach (var room in rooms)
+            {
+                var workplaces = GetAllWorkplaceInRoom(room.Id);
+                foreach (var workplace in workplaces)
+                {
+
+                    List<string> busyDatesInRooms = GetStringBusyDate(room.Id, workplace.Id);
+                    var key = workplace.Id;
+                    if (!busyRooms.ContainsKey(key))
+                    {
+                        busyRooms[key] = new List<string>();
+                    }
+
+                    foreach (var date in busyDatesInRooms)
+                    {
+
+                        busyRooms[workplace.Id].Add($"{date}");
+                    }
+                    busyDatesInRooms.Clear();
+
+                    var busyDates = busyRooms[workplace.Id];
+                    var intersecting = busyDates.Intersect(allDates);
                     bool isEqual = intersecting.Any();
 
                     if (isEqual == false)
@@ -113,7 +162,6 @@ namespace CoCoCoWorking.BLL
         }
 
 
-        
         public List<WorkPlaceModel> GetAllWorkplaceInRoom(int id)
         {
             List<WorkPlaceModel> workPlaceInRoom = new List<WorkPlaceModel>();
@@ -130,13 +178,10 @@ namespace CoCoCoWorking.BLL
                         {
                             workPlaceInRoom.Add(workplace);
                         }
-
                     }
-
                 }
             }
             return workPlaceInRoom;
-
         }
 
 
@@ -145,8 +190,6 @@ namespace CoCoCoWorking.BLL
             for (var day = start.Date; day.Date <= end.Date; day = day.AddDays(1))
                 yield return day;
         }
-
-
     }
 }
 
