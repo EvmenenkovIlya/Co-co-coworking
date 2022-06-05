@@ -83,10 +83,6 @@ namespace CoCoCoWorking.DAL.DTO
             }
             return lastDate.ToString();
         }
-        //public override string ToString()
-        //{
-        //    return $"Id={Id} FirstName={FirstName} LastName={LastName} PhoneNumber={PhoneNumber} Id1={Id1} Id2={Id2} AdditionalServiceId={AdditionalServiceId} StartDate={StartDate} EndDate={EndDate}";
-        //}
     }
 }
        

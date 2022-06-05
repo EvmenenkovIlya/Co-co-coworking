@@ -17,11 +17,5 @@ namespace CoCoCoWorking.DAL.DTO
         public decimal? ResidentPrice { get; set; }
         public decimal? FixedPrice { get; set; }
         public bool IsDeleted { get; set; }
-
-        public override string ToString()
-        {
-            return $"Id={Id} RoomId={RoomId} WorkPlaceInRoomId={WorkPlaceInRoomId} AdditionalServiceId={AdditionalServiceId} PeriodType={PeriodType}" +
-                   $"RegularPrice={RegularPrice} ResidentPrice={ResidentPrice} FixedPrice={FixedPrice} IsDeleted={IsDeleted} ";
-        }
     }
 }

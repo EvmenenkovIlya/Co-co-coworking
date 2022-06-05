@@ -12,10 +12,5 @@ namespace CoCoCoWorking.DAL.DTO
         public string Name { get; set; }
         public string Count { get; set; }
         public bool IsDeleted { get; set; }      
-
-        public override string ToString()
-        {
-            return $"Id={Id} Name={Name} Count={Count} IsDeleted={IsDeleted}";
-        }
     }
 }
