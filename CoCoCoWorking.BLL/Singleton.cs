@@ -6,7 +6,7 @@ namespace CoCoCoWorking.BLL
 {
     public class Singleton
     {
-        public List<CustomerModel> Reports { get; private set; }
+        public List<CustomerModel> Customers { get; private set; }
         public List<RoomModel> Rooms { get; private set; }
         public List<RentPriceModel> RentPrices { get; private set; }
         public List<AdditionalServiceModel> AdditionalServices { get; private set; }
@@ -21,7 +21,7 @@ namespace CoCoCoWorking.BLL
 
         private Singleton()
         {
-            Reports = mapper.Map<List<CustomerModel>>(customerManager.GetAllCustomerWhithOrderWithOrderUnit());
+            Customers = mapper.Map<List<CustomerModel>>(customerManager.GetAllCustomers());
             Rooms = mapper.Map<List<RoomModel>>(roomManager.GetAllRooms());
             
         }

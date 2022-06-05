@@ -27,7 +27,7 @@ namespace CoCoCoWorking.UI
         {
             InitializeComponent();
 
-            DataGridCustomers.ItemsSource = _instance.Reports;
+            DataGridCustomers.ItemsSource = _instance.Customers;
             DataGridRentPrices.ItemsSource = _instance.RentPrices;
             _instance.UpdateInstance();
         }
@@ -178,7 +178,7 @@ namespace CoCoCoWorking.UI
         private void ButtonSearchByNumber_Click(object sender, RoutedEventArgs e)
         {
 
-            DataGridCustomers.ItemsSource = modelController.GetCustomerWithTheMatchedNumberIsReturned(TextBoxNumberForSearch.Text,_instance.Reports);
+            DataGridCustomers.ItemsSource = modelController.GetCustomerWithTheMatchedNumberIsReturned(TextBoxNumberForSearch.Text,_instance.Customers);
            
         }
 
@@ -207,6 +207,16 @@ namespace CoCoCoWorking.UI
                
             }
         }
+
+        private void ButtonReset_Customer_Click(object sender, RoutedEventArgs e)
+        {
+            TextBoxNumberForSearch.Clear();
+            DataGridCustomers.ItemsSource = modelController.GetCustomerWithTheMatchedNumberIsReturned(TextBoxNumberForSearch.Text, _instance.Customers);
+        }
+
+       
+    }
+}
 
         private void Combobox_ChooseWorkplace_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

@@ -251,5 +251,17 @@ namespace CoCoCoWorking.BLL
             CustomersWithOrdersDto customerDto = mapper.Map<CustomersWithOrdersDto>(customer);
             customerManager.UpdateCustomer(customerDto);
         }
+
+        //public List<CustomerModel> WillGetTheWholeListBack(string n, List<CustomerModel> list)
+        //{
+        //    var d = new List<CustomerModel>();
+        //    if (TextBoxNumberForSearch.Text == "")
+
+        //        return d;
+
+        //}
+
+
+
     }
 }

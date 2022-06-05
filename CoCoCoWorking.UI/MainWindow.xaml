@@ -44,8 +44,8 @@
                         </DataGrid.Columns>
                     </DataGrid>
 
-                    <Button Name="ButtonCreateNewOrder" Grid.Column="2" Grid.Row="1" Content="Create New Order" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="200" Height="30" Margin="139,0,0,30" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonCreateNewOrder_Click"/>
-                    <Button x:Name="ButtonSearchByNumber_Copy" Content="reset"  Grid.Column="2" Width="76" Height="30" HorizontalAlignment="Right" VerticalAlignment= "Top" FontWeight="Bold" Margin="0,50,28,0" FontFamily="Arial Black" FontSize="14"/>
+                    <Button Name="ButtonCreateNewOrder" Grid.Column="3" Grid.Row="1" Content="Create New Order" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="200" Height="30" Margin="139,0,0,30" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonCreateNewOrder_Click"/>
+                    <Button x:Name="ButtonReset_Customer" Content="reset"  Grid.Column="3" Width="76" Height="30" HorizontalAlignment="Right" VerticalAlignment= "Top" FontWeight="Bold" Margin="0,50,28,0" FontFamily="Arial Black" FontSize="14" Click="ButtonReset_Customer_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Orders" Name="Orders" Height="20" VerticalAlignment="Top">
