@@ -79,9 +79,8 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="StartDate" Binding="{Binding StartDate}"/>
                             <DataGridTextColumn Header="EndDate" Binding="{Binding EndDate}"/>
-                            <DataGridTextColumn Header="RoomName" Binding="{Binding RoomName}"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                             <DataGridTextColumn Header="Number" Binding="{Binding Number}"/>
-                            <DataGridTextColumn Header="ServiceName" Binding="{Binding ServiceName}"/>
                         </DataGrid.Columns>
                     </DataGrid>
 

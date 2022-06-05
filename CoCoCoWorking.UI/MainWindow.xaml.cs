@@ -146,6 +146,9 @@ namespace CoCoCoWorking.UI
 
             }
 
+
+
+        //to test the procedure and output information to DataGrids
         private void DataGridCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             List<CustomersWithOrdersDTO> customers = customerManager.GetAllCustomerWhithOrderWithOrderUnit();
@@ -160,9 +163,15 @@ namespace CoCoCoWorking.UI
 
         private void DataGrid_Order_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            List <GetAllUnitOrdersFromSpecificOrderDTO> orderUnits = orderUnitManager.GetAllUnitOrdersFromSpecificOrder(2);
+            List<CustomersWithOrdersDTO> customers = customerManager.GetAllCustomerWhithOrderWithOrderUnit();
 
-            DataGrid_UnitOrder.ItemsSource = orderUnits;
+            List<OrderDTO> customerOrders = order.OrderGetByCustomerId(customers[DataGridCustomers.SelectedIndex].Id);
+
+            List <GetAllUnitOrdersFromSpecificOrderDTO> orderUnits = orderUnitManager.GetAllUnitOrdersFromSpecificOrder(customerOrders[DataGrid_Order.SelectedIndex].Id);
+
+            List<GetAllUnitOrdersFromSpecificOrderModel> orderUnitModels = mapper.Map<List<GetAllUnitOrdersFromSpecificOrderModel>>(orderUnits);
+
+            DataGrid_UnitOrder.ItemsSource = orderUnitModels;
         }
     }
 }

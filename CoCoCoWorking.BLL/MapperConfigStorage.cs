@@ -75,6 +75,12 @@ namespace CoCoCoWorking.BLL
                 .ForMember("Name", opt => opt.MapFrom(c => $"{c.FirstName} {c.LastName}"))
                 .ForMember("OrderCount", opt => opt.MapFrom(c => c.OrderCount))
                 .ForMember("OrderSum", opt => opt.MapFrom(c => c.OrderSum));
+
+                cfg.CreateMap<GetAllUnitOrdersFromSpecificOrderDTO, GetAllUnitOrdersFromSpecificOrderModel>()
+                .ForMember("StartDate", opt => opt.MapFrom(c => c.StartDate))
+                .ForMember("EndDate", opt => opt.MapFrom(c => c.EndDate))
+                .ForMember("Name", opt => opt.MapFrom(c => $"{c.RoomName}{c.ServiceName}"))
+                .ForMember("Number", opt => opt.MapFrom(c => c.Number));
             }));
         }
     }
