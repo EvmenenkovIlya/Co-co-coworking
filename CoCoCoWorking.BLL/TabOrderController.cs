@@ -65,9 +65,9 @@ namespace CoCoCoWorking.BLL
 
         public List<string> SearchRoomsForDate(string startDate, string endDate)
         {
-            int? workplaceId = null;
+            
             var rooms = modelController.GetAllRoom();
-
+            
             List<string> searchDate = new List<string>();
             List<string> freeRoom = new List<string>();
             Dictionary<int, List<string>> busyRooms = new Dictionary<int, List<string>>();
@@ -80,31 +80,36 @@ namespace CoCoCoWorking.BLL
 
             foreach (var room in rooms)
             {
-                List<string> busyDatesInRooms = GetStringBusyDate(room.Id, workplaceId);
-                var key = room.Id;
-                if (!busyRooms.ContainsKey(key))
-                {
-                    busyRooms[key] = new List<string>();
-                }
-
-                foreach(var date in busyDatesInRooms)
+                var workplaces = GetAllWorkplaceInRoom(room.Id);
+                foreach (var workplace in workplaces)
                 {
 
-                    busyRooms[room.Id].Add($"{date}");
-                }
-                busyDatesInRooms.Clear();
+                    List<string> busyDatesInRooms = GetStringBusyDate(room.Id, workplace.Id);
+                    var key = room.Id;
+                    if (!busyRooms.ContainsKey(key))
+                    {
+                        busyRooms[key] = new List<string>();
+                    }
 
-                var busyDates = busyRooms[room.Id];
-                var intersecting = busyDates.Intersect(searchDate);
-                bool isEqual = intersecting.Any();
+                    foreach(var date in busyDatesInRooms)
+                    {
 
-                if (isEqual == false)
-                {
-                    freeRoom.Add(room.Name);
+                        busyRooms[room.Id].Add($"{date}");
+                    }
+                    busyDatesInRooms.Clear();
+
+                    var busyDates = busyRooms[room.Id];
+                    var intersecting = busyDates.Intersect(searchDate);
+                    bool isEqual = intersecting.Any();
+
+                    if (isEqual == false)
+                    {
+                        freeRoom.Add(room.Name);
+                    }
                 }
             }
-
-            return freeRoom;
+            var freeRoomResult = freeRoom.Distinct().ToList();
+            return freeRoomResult;
         }
 
 
