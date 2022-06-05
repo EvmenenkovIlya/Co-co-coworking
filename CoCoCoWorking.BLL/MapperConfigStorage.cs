@@ -66,6 +66,10 @@ namespace CoCoCoWorking.BLL
                 //cfg.CreateMap<CustomersWithOrdersDTO, OrderModel>()
                 //.ForMember("Name", opt => opt.MapFrom(c => $"{c.LastName}{c.FirstName}{c.PhoneNumber}"));
 
+
+                //cfg.CreateMap<CustomersWithOrdersDTO, OrderModel>()
+                //.ForMember("Name", opt => opt.MapFrom(c => $"{c.LastName}{c.FirstName}{c.PhoneNumber}"));
+
                 cfg.CreateMap<OrderDTO, OrderModel>()
                 .ForMember("OrderCost", opt => opt.MapFrom(c => c.OrderCost))
                 .ForMember("OrderStatus", opt => opt.MapFrom(c => c.OrderStatus))
@@ -75,6 +79,17 @@ namespace CoCoCoWorking.BLL
                 .ForMember("Name", opt => opt.MapFrom(c => $"{c.FirstName} {c.LastName}"))
                 .ForMember("OrderCount", opt => opt.MapFrom(c => c.OrderCount))
                 .ForMember("OrderSum", opt => opt.MapFrom(c => c.OrderSum));
+
+                cfg.CreateMap<OrderUnitDTO, OrderUnitModel>()
+                .ForMember("StartDate", opt => opt.MapFrom(c => c.StartDate))
+                .ForMember("EndDate", opt => opt.MapFrom(c => c.EndDate))
+                .ForMember("RoomId", opt => opt.MapFrom(c => c.RoomId))
+                .ForMember("WorkPlaceId", opt => opt.MapFrom(c => c.WorkPlaceId))
+                .ForMember("WorkPlaceInRoomId", opt => opt.MapFrom(c => c.WorkPlaceInRoomId))
+                .ForMember("AdditionalServiceId", opt => opt.MapFrom(c => c.AdditionalServiceId))
+                .ForMember("OrderId", opt => opt.MapFrom(c => c.OrderId))
+                .ForMember("OrderUnitCost", opt => opt.MapFrom(c => c.OrderUnitCost));
+
 
                 cfg.CreateMap<GetAllUnitOrdersFromSpecificOrderDTO, GetAllUnitOrdersFromSpecificOrderModel>()
                 .ForMember("StartDate", opt => opt.MapFrom(c => c.StartDate))
