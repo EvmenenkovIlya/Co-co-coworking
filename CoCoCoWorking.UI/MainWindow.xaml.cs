@@ -207,8 +207,8 @@ namespace CoCoCoWorking.UI
             Combobox_PurchaseType.Items.Clear();
             string startDate = DatePicker_Order_StartDate.Text;
             string endDate = DatePicker_Order_EndDate.Text;
-            var freeRooms = orderController.SearchRoomsForDate(startDate, endDate);
-           
+            var freeRooms = orderController.SearchFreeForDate(startDate, endDate);
+            
 
             switch  (ComboBox_Type.SelectedIndex)
             {
@@ -219,7 +219,10 @@ namespace CoCoCoWorking.UI
                     } 
                     break;
                 case 4:
-                    
+                    foreach (var room in freeRooms)
+                    {
+                        Combobox_PurchaseType.Items.Add(room);
+                    }
                     break;
                
             }
