@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CoCoCoWorking.BLL.Models;
 using CoCoCoWorking.DAL;
 using CoCoCoWorking.DAL.DTO;
 
@@ -40,27 +41,31 @@ namespace CoCoCoWorking.BLL
         }
 
       
-        public List<string> GetStringBusyDateRoom(int roomId)
+        public List<string> GetStringBusyDate(int? roomId, int? workplaceId)
         {
             var orderUnits = modelController.GetAllOrderUnit();
 
             foreach (var unit in orderUnits)
             {
-                if (unit.AdditionalServiceId == null && unit.RoomId == roomId || unit.WorkPlaceInRoomId == roomId)
+                if ((((unit.AdditionalServiceId is null && unit.RoomId == roomId && unit.WorkPlaceId is null) ||                    
+                                        (unit.WorkPlaceId is not null && unit.WorkPlaceInRoomId == roomId)))) 
                 {
                     foreach (DateTime day in EachDay(DateTime.Parse(unit.StartDate), DateTime.Parse(unit.EndDate)))
                     {
                         
                         busyDate.Add(day.ToShortDateString());
                     }
-                }               
+                }
+
+               
             }
             return busyDate;
         }
-
+        
 
         public List<string> SearchRoomsForDate(string startDate, string endDate)
         {
+            int? workplaceId = null;
             var rooms = modelController.GetAllRoom();
 
             List<string> searchDate = new List<string>();
@@ -75,7 +80,7 @@ namespace CoCoCoWorking.BLL
 
             foreach (var room in rooms)
             {
-                List<string> busyDatesInRooms = GetStringBusyDateRoom(room.Id);
+                List<string> busyDatesInRooms = GetStringBusyDate(room.Id, workplaceId);
                 var key = room.Id;
                 if (!busyRooms.ContainsKey(key))
                 {
@@ -102,9 +107,11 @@ namespace CoCoCoWorking.BLL
             return freeRoom;
         }
 
-        public List<int> GetAllWorkplaceInRoom(int id)
+
+        
+        public List<WorkPlaceModel> GetAllWorkplaceInRoom(int id)
         {
-            List<int> workPlaceInRoom = new List<int>();
+            List<WorkPlaceModel> workPlaceInRoom = new List<WorkPlaceModel>();
             var allWorkplace = modelController.GetAllWorkplace();
             var rooms = modelController.GetAllRoom();
 
@@ -116,7 +123,7 @@ namespace CoCoCoWorking.BLL
                     {
                         if(workplace.RoomId == room.Id)
                         {
-                            workPlaceInRoom.Add((int)workplace.Number);
+                            workPlaceInRoom.Add(workplace);
                         }
 
                     }

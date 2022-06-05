@@ -66,6 +66,7 @@ namespace CoCoCoWorking.UI
             Combobox_ChooseWorkplace.Items.Clear();
             Order_Calendar.BlackoutDates.Clear();
             var rooms = modelController.GetAllRoom();
+            int? workplaceId = null;
             
             if (Combobox_PurchaseType.SelectedItem is null)
             {
@@ -78,17 +79,17 @@ namespace CoCoCoWorking.UI
                 {
                     var workPlaceInRoom = orderController.GetAllWorkplaceInRoom(room.Id);
 
-                    foreach(var workPlace in workPlaceInRoom)
+                    foreach(var workplace in workPlaceInRoom)
                     {
-                      Combobox_ChooseWorkplace.Items.Add($" Worck place number:{workPlace}");
+                      Combobox_ChooseWorkplace.Items.Add(workplace.Number);
 
                     }
 
-                    
+
                     switch (ComboBox_Type.SelectedIndex)
                     {
                         case 0:
-                            var date = orderController.GetStringBusyDateRoom(room.Id);
+                            var date = orderController.GetStringBusyDate(room.Id, workplaceId);
                             var dateConvert = orderController.ConvertIntBusyDateRoom(date);
 
                             for (int i = dateConvert.Count - 1; i > 0; i -= 3)
@@ -98,7 +99,12 @@ namespace CoCoCoWorking.UI
                             date.Clear();
                             dateConvert.Clear();
                             break;
+
+                        case 4:
+                            
+                            break;
                     }
+
                 }   
             }
         }
@@ -206,10 +212,58 @@ namespace CoCoCoWorking.UI
             string startDate = DatePicker_Order_StartDate.Text;
             string endDate = DatePicker_Order_EndDate.Text;
             var freeRooms = orderController.SearchRoomsForDate(startDate, endDate);
-            foreach (var room in freeRooms)
+           
+
+            switch  (ComboBox_Type.SelectedIndex)
             {
-                Combobox_PurchaseType.Items.Add(room);
+                case 0:
+                    foreach (var room in freeRooms)
+                    {
+                        Combobox_PurchaseType.Items.Add(room);
+                    } 
+                    break;
+                case 4:
+                    
+                    break;
+               
             }
+        }
+
+        private void Combobox_ChooseWorkplace_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(Combobox_ChooseWorkplace.SelectedItem is null)
+            {
+                return;
+            }
+            Order_Calendar.BlackoutDates.Clear();
+            var roomName = Combobox_PurchaseType.SelectedItem as string;
+            var rooms = modelController.GetAllRoom();
+            foreach(var room in rooms)
+            {
+                if(room.Name == roomName)
+                {
+                    var workPlaceInRoom = orderController.GetAllWorkplaceInRoom(room.Id);
+
+                    foreach (var workplace in workPlaceInRoom)
+                    {
+                        if(workplace.Number == (int)Combobox_ChooseWorkplace.SelectedItem )
+                        {
+
+                            var date = orderController.GetStringBusyDate(room.Id,workplace.Id);
+
+                            var dateConvert = orderController.ConvertIntBusyDateRoom(date);
+
+                            for (int i = dateConvert.Count - 1; i > 0; i -= 3)
+                            {
+                                Order_Calendar.BlackoutDates.Add(new CalendarDateRange(new DateTime(dateConvert[i], dateConvert[i - 1], dateConvert[i - 2])));
+                            }
+                            date.Clear();
+                            dateConvert.Clear();
+                        }
+                    }
+                }
+            }
+            
         }
     }
 }
