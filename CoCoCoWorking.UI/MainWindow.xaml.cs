@@ -31,7 +31,8 @@ namespace CoCoCoWorking.UI
         AdditionalServiceManager additionalService = new AdditionalServiceManager();
         OrderManager order = new OrderManager();
         FinanceReportManager financeReportManager = new FinanceReportManager();
-        AllCustomerWhithOrderWithOrderUnitManager CustomerManager = new AllCustomerWhithOrderWithOrderUnitManager();
+        AllCustomerWhithOrderWithOrderUnitManager customerManager = new AllCustomerWhithOrderWithOrderUnitManager();
+        GetAllUnitOrdersFromSpecificOrderManager orderUnitManager = new GetAllUnitOrdersFromSpecificOrderManager();
 
         AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
         
@@ -39,7 +40,7 @@ namespace CoCoCoWorking.UI
         public MainWindow()
         {
             InitializeComponent();
-            List<CustomersWithOrdersDTO> customers = CustomerManager.GetAllCustomerWhithOrderWithOrderUnit();
+            List<CustomersWithOrdersDTO> customers = customerManager.GetAllCustomerWhithOrderWithOrderUnit();
             List<CustomerModel> CustomerModel = mapper.Map<List<CustomerModel>>(customers);
             DataGridCustomers.ItemsSource = CustomerModel;
             
@@ -147,7 +148,7 @@ namespace CoCoCoWorking.UI
 
         private void DataGridCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            List<CustomersWithOrdersDTO> customers = CustomerManager.GetAllCustomerWhithOrderWithOrderUnit();
+            List<CustomersWithOrdersDTO> customers = customerManager.GetAllCustomerWhithOrderWithOrderUnit();
 
             List<OrderDTO> customerOrders = order.OrderGetByCustomerId(customers[DataGridCustomers.SelectedIndex].Id);
 
@@ -155,6 +156,13 @@ namespace CoCoCoWorking.UI
 
             DataGrid_Order.ItemsSource = customerOrdersModel;
             
+        }
+
+        private void DataGrid_Order_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            List <GetAllUnitOrdersFromSpecificOrderDTO> orderUnits = orderUnitManager.GetAllUnitOrdersFromSpecificOrder(2);
+
+            DataGrid_UnitOrder.ItemsSource = orderUnits;
         }
     }
 }
