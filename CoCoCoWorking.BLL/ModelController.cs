@@ -16,7 +16,7 @@ namespace CoCoCoWorking.BLL
         private RoomManager roomManager = new RoomManager();
         private OrderUnitManager orderUnitManager = new OrderUnitManager();
         private WorkplaceManager workplaceManager = new WorkplaceManager();
-
+        private AdditionalServiceManager additionalServiceManager = new AdditionalServiceManager();
         private AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
 
         public string GetProductName(FinanceReportDTO f)
@@ -94,6 +94,14 @@ namespace CoCoCoWorking.BLL
             return list;
         }
 
-       
+        public List<AdditionalServiceModel> GetAllAdditionalService()
+        {
+            List<AdditionalServiceModel> list = new List<AdditionalServiceModel>();
+            List<AdditionalServiceDTO> listDto = additionalServiceManager.GetAllAdditionalServices();
+            list = mapper.Map<List<AdditionalServiceModel>>(listDto);
+            return list;
+        }
+
+
     }
 }

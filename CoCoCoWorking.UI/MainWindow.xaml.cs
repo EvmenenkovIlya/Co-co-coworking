@@ -30,12 +30,13 @@ namespace CoCoCoWorking.UI
     public partial class MainWindow : Window
     {
         
-        AdditionalServiceManager additionalService = new AdditionalServiceManager();//test
+       
         OrderManager order = new OrderManager();
         FinanceReportManager financeReportManager = new FinanceReportManager();
         AllCustomerWhithOrderWithOrderUnitManager customerManager = new AllCustomerWhithOrderWithOrderUnitManager();
         GetAllUnitOrdersFromSpecificOrderManager orderUnitManager = new GetAllUnitOrdersFromSpecificOrderManager();
 
+        GetAllUnitOrdersFromSpecificOrderModel getAllUnitOrdersFromSpecificOrderModel = new GetAllUnitOrdersFromSpecificOrderModel();
         TabOrderController orderController = new TabOrderController();
         ModelController modelController = new ModelController();
         AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
@@ -48,7 +49,7 @@ namespace CoCoCoWorking.UI
             List<CustomersWithOrdersDTO> customers = customerManager.GetAllCustomerWhithOrderWithOrderUnit();
             List<CustomerModel> CustomerModel = mapper.Map<List<CustomerModel>>(customers);
             DataGridCustomers.ItemsSource = CustomerModel;
-
+          
 
         }
 
@@ -113,7 +114,7 @@ namespace CoCoCoWorking.UI
             Combobox_ChooseWorkplace.Items.Clear();
             Combobox_PurchaseType.Items.Clear();
 
-            var allService = additionalService.GetAllAdditionalServices();
+            var allService = modelController.GetAllAdditionalService();
             var roomName = modelController.GetAllRoom();
 
             switch (ComboBox_Type.SelectedIndex)
@@ -293,6 +294,8 @@ namespace CoCoCoWorking.UI
 
             DataGrid_UnitOrder.ItemsSource = orderUnitModels;
         }
+
+        
     }
 }
 

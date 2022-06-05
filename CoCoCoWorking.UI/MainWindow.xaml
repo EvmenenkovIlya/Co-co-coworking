@@ -48,15 +48,12 @@
                     <Button x:Name="ButtonSearchByNumber_Copy" Content="reset"  Grid.Column="2" Width="76" Height="30" HorizontalAlignment="Right" VerticalAlignment= "Top" FontWeight="Bold" Margin="0,50,28,0" FontFamily="Arial Black" FontSize="14"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Orders" Height="20" VerticalAlignment="Top">
+            <TabItem x:Name="TabItem_Orders" Header="Orders" Height="20" VerticalAlignment="Top">
                 <Grid Background="Bisque">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <ComboBox x:Name="Combobox_PurchaseType" HorizontalAlignment="Left" Height="33" Margin="463,38,0,0" VerticalAlignment="Top" Width="477" SelectionChanged="Combobox_PurchaseType_SelectionChanged" >
-                        <ComboBox Height="30" Width="48"/>
-                        <ComboBoxItem Background="#FFC10E0E" BorderBrush="#FF691D1D" Content="adadad"/>
-                    </ComboBox>
+                    <ComboBox x:Name="Combobox_PurchaseType" HorizontalAlignment="Left" Height="33" Margin="463,38,0,0" VerticalAlignment="Top" Width="477" SelectionChanged="Combobox_PurchaseType_SelectionChanged" />
                     <DataGrid x:Name="DataGrid_Order" HorizontalAlignment="Left" Height="446" Margin="45,226,0,0" VerticalAlignment="Top" Width="413" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="DataGrid_Order_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="OrderCost" Binding="{Binding Path=OrderCost}"/>
@@ -74,7 +71,6 @@
                         <ComboBoxItem Content="Worckplace fixed"/>
                         <ComboBoxItem Content="Service"/>
                     </ComboBox>
-                    <Button x:Name="AddToOrder_Button" Content="Add to order" HorizontalAlignment="Left" Height="38" Margin="632,158,0,0" VerticalAlignment="Top" Width="153" Grid.Column="1"/>
                     <DataGrid x:Name="DataGrid_UnitOrder" HorizontalAlignment="Left" Height="446" Margin="535,226,0,0" VerticalAlignment="Top" Width="413" Grid.ColumnSpan="2" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="StartDate" Binding="{Binding StartDate}"/>
@@ -88,7 +84,7 @@
                     <DatePicker x:Name="DatePicker_Order_StartDate" HorizontalAlignment="Left" Height="27" Margin="45,87,0,0" VerticalAlignment="Top" Width="173"/>
                     <DatePicker x:Name="DatePicker_Order_EndDate" HorizontalAlignment="Left" Height="26" Margin="45,133,0,0" VerticalAlignment="Top" Width="173"/>
                     <Button x:Name="ButtonSearchByDateForOrder" Content="Search by date" HorizontalAlignment="Left" Height="38" Margin="45,164,0,0" VerticalAlignment="Top" Width="142" Click="ButtonSearchByDateForOrder_Click"/>
-                    <Button x:Name="ButtonReset" Content="Reset" HorizontalAlignment="Left" Height="38" Margin="834,164,0,0" VerticalAlignment="Top" Width="101"/>
+                    <Button x:Name="ButtonReset" Content="Reset" HorizontalAlignment="Left" Height="38" Margin="834,164,0,0" VerticalAlignment="Top" Width="101" />
 
 
                 </Grid>
