@@ -48,7 +48,7 @@ namespace CoCoCoWorking.BLL
             foreach (var unit in orderUnits)
             {
                 if ((((unit.AdditionalServiceId is null && unit.RoomId == roomId && unit.WorkPlaceId is null) ||                    
-                                        (unit.WorkPlaceId is not null && unit.WorkPlaceInRoomId == roomId)))) 
+                                        (unit.WorkPlaceId == workplaceId && unit.WorkPlaceInRoomId == roomId)))) 
                 {
                     foreach (DateTime day in EachDay(DateTime.Parse(unit.StartDate), DateTime.Parse(unit.EndDate)))
                     {

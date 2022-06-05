@@ -66,8 +66,7 @@ namespace CoCoCoWorking.UI
             Combobox_ChooseWorkplace.Items.Clear();
             Order_Calendar.BlackoutDates.Clear();
             var rooms = modelController.GetAllRoom();
-            int? workplaceId = null;
-            
+
             if (Combobox_PurchaseType.SelectedItem is null)
             {
                 return;
@@ -79,32 +78,29 @@ namespace CoCoCoWorking.UI
                 {
                     var workPlaceInRoom = orderController.GetAllWorkplaceInRoom(room.Id);
 
-                    foreach(var workplace in workPlaceInRoom)
+                    foreach (var workplace in workPlaceInRoom)
                     {
-                      Combobox_ChooseWorkplace.Items.Add(workplace.Number);
+                        Combobox_ChooseWorkplace.Items.Add(workplace.Number);
 
+                        switch (ComboBox_Type.SelectedIndex)
+                        {
+                            case 0:
+                                var date = orderController.GetStringBusyDate(room.Id, workplace.Id);
+                                var dateConvert = orderController.ConvertIntBusyDateRoom(date);
+
+                                for (int i = dateConvert.Count - 1; i > 0; i -= 3)
+                                {
+                                    Order_Calendar.BlackoutDates.Add(new CalendarDateRange(new DateTime(dateConvert[i], dateConvert[i - 1], dateConvert[i - 2])));
+                                }
+                                date.Clear();
+                                dateConvert.Clear();
+                                break;
+
+                            case 4:
+
+                                break;
+                        }
                     }
-
-
-                    switch (ComboBox_Type.SelectedIndex)
-                    {
-                        case 0:
-                            var date = orderController.GetStringBusyDate(room.Id, workplaceId);
-                            var dateConvert = orderController.ConvertIntBusyDateRoom(date);
-
-                            for (int i = dateConvert.Count - 1; i > 0; i -= 3)
-                            {
-                                Order_Calendar.BlackoutDates.Add(new CalendarDateRange(new DateTime(dateConvert[i], dateConvert[i - 1], dateConvert[i - 2])));
-                            }
-                            date.Clear();
-                            dateConvert.Clear();
-                            break;
-
-                        case 4:
-                            
-                            break;
-                    }
-
                 }   
             }
         }
@@ -235,9 +231,11 @@ namespace CoCoCoWorking.UI
             {
                 return;
             }
+
             Order_Calendar.BlackoutDates.Clear();
             var roomName = Combobox_PurchaseType.SelectedItem as string;
             var rooms = modelController.GetAllRoom();
+
             foreach(var room in rooms)
             {
                 if(room.Name == roomName)
