@@ -56,25 +56,46 @@ var O = CM.GetAllCustomerWhithOrderWithOrderUnit();
 
 
 
-OrderUnitDTO OrderUnitDTO = new OrderUnitDTO()
-{
-    Id = 1,
-    StartDate = "01.01.2000",
-    EndDate = "01.03.2000",
-    RoomId = 12,
-    WorkPlaceId = 10,
-    WorkPlaceInRoomId = 100,
-    AdditionalServiceId = 3,
-    OrderId = 13,
-    OrderUnitCost = 300
-};
-
-
-MapperConfigStorage storage = new MapperConfigStorage();
-var config = MapperConfigStorage.GetInstance();
-
-Mapper mapper = new Mapper(config.ConfigurationProvider);
-
-OrderUnitModel OrderUnitModel = mapper.Map<OrderUnitModel>(OrderUnitDTO);
-
+OrderUnitDTO OrderUnitDTO = new OrderUnitDTO()
+
+{
+
+    Id = 1,
+
+    StartDate = "01.01.2000",
+
+    EndDate = "01.03.2000",
+
+    RoomId = 12,
+
+    WorkPlaceId = 10,
+
+    WorkPlaceInRoomId = 100,
+
+    AdditionalServiceId = 3,
+
+    OrderId = 13,
+
+    OrderUnitCost = 300
+
+};
+
+
+
+
+
+MapperConfigStorage storage = new MapperConfigStorage();
+
+var config = MapperConfigStorage.GetInstance();
+
+
+
+Mapper mapper = new Mapper(config.ConfigurationProvider);
+
+
+
+OrderUnitModel OrderUnitModel = mapper.Map<OrderUnitModel>(OrderUnitDTO);
+
+
+
 Console.WriteLine();

@@ -232,7 +232,7 @@ namespace CoCoCoWorking.UI
 
         private void Combobox_ChooseWorkplace_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(Combobox_ChooseWorkplace.SelectedItem is null)
+            if (Combobox_ChooseWorkplace.SelectedItem is null)
             {
                 return;
             }
@@ -241,18 +241,18 @@ namespace CoCoCoWorking.UI
             var roomName = Combobox_PurchaseType.SelectedItem as string;
             var rooms = modelController.GetAllRoom();
 
-            foreach(var room in rooms)
+            foreach (var room in rooms)
             {
-                if(room.Name == roomName)
+                if (room.Name == roomName)
                 {
                     var workPlaceInRoom = orderController.GetAllWorkplaceInRoom(room.Id);
 
                     foreach (var workplace in workPlaceInRoom)
                     {
-                        if(workplace.Number == (int)Combobox_ChooseWorkplace.SelectedItem )
+                        if (workplace.Number == (int)Combobox_ChooseWorkplace.SelectedItem)
                         {
 
-                            var date = orderController.GetStringBusyDate(room.Id,workplace.Id);
+                            var date = orderController.GetStringBusyDate(room.Id, workplace.Id);
 
                             var dateConvert = orderController.ConvertIntBusyDateRoom(date);
 
@@ -266,8 +266,7 @@ namespace CoCoCoWorking.UI
                     }
                 }
             }
-
-
+        }
 
         //to test the procedure and output information to DataGrids
         private void DataGridCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
