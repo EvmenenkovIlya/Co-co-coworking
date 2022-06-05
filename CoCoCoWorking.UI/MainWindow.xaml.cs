@@ -25,11 +25,11 @@ namespace CoCoCoWorking.UI
 
         public MainWindow()
         {
+            _instance.UpdateInstance();
             InitializeComponent();
 
-            DataGridCustomers.ItemsSource = _instance.Customers;
+            DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
             DataGridRentPrices.ItemsSource = _instance.RentPrices;
-            _instance.UpdateInstance();
         }
 
         private void ButtonCreateNewOrder_Click(object sender, RoutedEventArgs e)
@@ -41,7 +41,7 @@ namespace CoCoCoWorking.UI
         {
             modelController.AddCustomerToBase(TextBoxFirstName.Text, TextBoxLastName.Text, TextBoxNumber.Text, TextBoxEmail.Text);
             _instance.UpdateInstance();
-            DataGridCustomers.ItemsSource = _instance.Customers;
+            DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
         }
         
 
@@ -178,7 +178,7 @@ namespace CoCoCoWorking.UI
         private void ButtonSearchByNumber_Click(object sender, RoutedEventArgs e)
         {
 
-            DataGridCustomers.ItemsSource = modelController.GetCustomerWithTheMatchedNumberIsReturned(TextBoxNumberForSearch.Text,_instance.Customers);
+            DataGridCustomers.ItemsSource = modelController.GetCustomerWithTheMatchedNumberIsReturned(TextBoxNumberForSearch.Text,_instance.CustomersToEdit);
            
         }
 
@@ -211,7 +211,7 @@ namespace CoCoCoWorking.UI
         private void ButtonReset_Customer_Click(object sender, RoutedEventArgs e)
         {
             TextBoxNumberForSearch.Clear();
-            DataGridCustomers.ItemsSource = modelController.GetCustomerWithTheMatchedNumberIsReturned(TextBoxNumberForSearch.Text, _instance.Customers);
+            DataGridCustomers.ItemsSource = modelController.GetCustomerWithTheMatchedNumberIsReturned(TextBoxNumberForSearch.Text, _instance.CustomersToEdit);
         }      
         private void Combobox_ChooseWorkplace_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -250,6 +250,12 @@ namespace CoCoCoWorking.UI
                 }
             }
             
+        }
+
+        private void ButtonSavecChanges_Click(object sender, RoutedEventArgs e)
+        {
+            _instance.SaveCustomerChanges();
+            DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
         }
     }
 }

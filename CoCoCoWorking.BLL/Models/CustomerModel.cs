@@ -14,5 +14,19 @@
         {
 
         }
+        public override bool Equals(object? obj)
+        {
+            return base.Equals(obj);
+        }
+        public CustomerModel Copy()
+        {
+            CustomerModel copy = new CustomerModel() 
+            { 
+            Id = this.Id, FirstName = this.FirstName, LastName = this.LastName, 
+            Email = this.Email, PhoneNumber = this.PhoneNumber, EndDate = this.EndDate, 
+            Regular = this.Regular, Subscribe = this.Subscribe
+            };
+            return copy;
+        }     
     }
 }

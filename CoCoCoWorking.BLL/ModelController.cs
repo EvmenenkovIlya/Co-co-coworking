@@ -244,10 +244,9 @@ namespace CoCoCoWorking.BLL
             CustomersWithOrdersDto customerDto = mapper.Map<CustomersWithOrdersDto>(customer);
             customerManager.AddCustomer(customerDto);
         }
-        public void UpdateCustomerInBase(int id, string firstName, string lastName, string phone, string email)
+        public void UpdateCustomerInBase(CustomerModel customer)
         {
             CustomerManager customerManager = new CustomerManager();
-            CustomerModel customer = new CustomerModel() { Id = id, FirstName = firstName, LastName=lastName, PhoneNumber=phone, Email=email};
             CustomersWithOrdersDto customerDto = mapper.Map<CustomersWithOrdersDto>(customer);
             customerManager.UpdateCustomer(customerDto);
         }
