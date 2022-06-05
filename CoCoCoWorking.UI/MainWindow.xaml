@@ -161,35 +161,6 @@
                     </Popup>
                 </Grid>
             </TabItem>
-            <TabItem Header="Old Design">
-                <Grid Background="LightGreen">
-                    <ComboBox HorizontalAlignment="Left" Margin="102,124,0,0" VerticalAlignment="Top" Width="272" Height="25"/>
-                    <ComboBox HorizontalAlignment="Left" Height="25" Margin="136,163,0,0" VerticalAlignment="Top" Width="238"/>
-                    <TextBox HorizontalAlignment="Left" Height="30" Margin="102,200,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="273"/>
-                    <TextBox HorizontalAlignment="Left" Height="285" Margin="400,27,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="373"/>
-                    <TextBox HorizontalAlignment="Left" Height="30" Margin="102,244,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="273"/>
-                    <ComboBox HorizontalAlignment="Left" Height="25" Margin="102,287,0,0" VerticalAlignment="Top" Width="273"/>
-                    <TextBox HorizontalAlignment="Left" Height="30" Margin="280,330,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="95"/>
-                    <TextBox HorizontalAlignment="Left" Height="30" Margin="280,372,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="95"/>
-                    <TextBox HorizontalAlignment="Left" Height="30" Margin="102,330,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="95"/>
-                    <TextBox HorizontalAlignment="Left" Height="30" Margin="102,372,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="95"/>
-                    <Label Content="Тип" HorizontalAlignment="Left" Height="36" Margin="61,118,0,0" VerticalAlignment="Top" Width="36" FontSize="16"/>
-                    <Label Content="Доп. оборудование" HorizontalAlignment="Left" Height="30" Margin="10,160,0,0" VerticalAlignment="Top" Width="121"/>
-                    <Button Content="Отчет" HorizontalAlignment="Left" Margin="400,330,0,0" VerticalAlignment="Top" Height="30" Width="107"/>
-                    <Button Content="Добавить" HorizontalAlignment="Left" Margin="400,372,0,0" VerticalAlignment="Top" Height="30" Width="107"/>
-                    <Label Content="Дата" HorizontalAlignment="Left" Height="30" Margin="238,330,0,0" VerticalAlignment="Top" Width="37"/>
-                    <Label Content="Дата" HorizontalAlignment="Left" Height="30" Margin="60,332,0,0" VerticalAlignment="Top" Width="37"/>
-                    <Label Content="Время" HorizontalAlignment="Left" Height="30" Margin="232,372,0,0" VerticalAlignment="Top" Width="48"/>
-                    <Label Content="Время" HorizontalAlignment="Left" Height="30" Margin="52,372,0,0" VerticalAlignment="Top" Width="45"/>
-                    <Label Content="ПО" HorizontalAlignment="Left" Height="30" Margin="209,350,0,0" VerticalAlignment="Top" Width="37" FontSize="16"/>
-                    <Label Content="С" HorizontalAlignment="Left" Height="30" Margin="34,350,0,0" VerticalAlignment="Top" Width="36" FontSize="16"/>
-                    <Label Content="ФИО" HorizontalAlignment="Left" Height="31" Margin="46,0,0,0" VerticalAlignment="Center" Width="48" FontSize="16"/>
-                    <Label Content="Номер" HorizontalAlignment="Left" Height="31" Margin="34,244,0,0" VerticalAlignment="Top" Width="60" FontSize="16"/>
-                    <Label Content="Офис" HorizontalAlignment="Left" Height="31" Margin="42,284,0,0" VerticalAlignment="Top" Width="52" FontSize="16"/>
-                    <Button Content="Забронировать" HorizontalAlignment="Left" Margin="666,372,0,0" VerticalAlignment="Top" Height="30" Width="107"/>
-                    <Label Content="CoCoCoWorking" HorizontalAlignment="Left" Height="70" Margin="67,27,0,0" VerticalAlignment="Top" Width="307" FontSize="40"/>
-                </Grid>
-            </TabItem>
         </TabControl>
     </Grid>
 </Window>

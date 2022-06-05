@@ -21,7 +21,7 @@ namespace CoCoCoWorking.BLL
 
         private Singleton()
         {
-            Customers = mapper.Map<List<CustomerModel>>(customerManager.GetAllCustomers());
+            Customers = mapper.Map<List<CustomerModel>>(customerManager.GetAllCustomerWhithOrderWithOrderUnit());
             Rooms = mapper.Map<List<RoomModel>>(roomManager.GetAllRooms());
             
         }
@@ -36,7 +36,7 @@ namespace CoCoCoWorking.BLL
         }
         public void UpdateInstance()
         {
-            Reports = mapper.Map<List<CustomerModel>>(customerManager.GetAllCustomerWhithOrderWithOrderUnit());
+            Customers = mapper.Map<List<CustomerModel>>(customerManager.GetAllCustomerWhithOrderWithOrderUnit());
             AdditionalServices = mapper.Map<List<AdditionalServiceModel>>(additionalServiceManager.GetAllAdditionalServices());
             RentPrices = mapper.Map<List<RentPriceModel>>(rentPriceManager.GetAllRentPrices());
         }

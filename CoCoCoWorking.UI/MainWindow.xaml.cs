@@ -41,7 +41,7 @@ namespace CoCoCoWorking.UI
         {
             modelController.AddCustomerToBase(TextBoxFirstName.Text, TextBoxLastName.Text, TextBoxNumber.Text, TextBoxEmail.Text);
             _instance.UpdateInstance();
-            DataGridCustomers.ItemsSource = _instance.Reports;
+            DataGridCustomers.ItemsSource = _instance.Customers;
         }
         
 
@@ -212,12 +212,7 @@ namespace CoCoCoWorking.UI
         {
             TextBoxNumberForSearch.Clear();
             DataGridCustomers.ItemsSource = modelController.GetCustomerWithTheMatchedNumberIsReturned(TextBoxNumberForSearch.Text, _instance.Customers);
-        }
-
-       
-    }
-}
-
+        }      
         private void Combobox_ChooseWorkplace_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(Combobox_ChooseWorkplace.SelectedItem is null)
