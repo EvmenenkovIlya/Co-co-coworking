@@ -8,33 +8,33 @@ namespace CoCoCoWorking.DAL
     {
         public string connectionString = ServerOptions.ConnectionOption;
 
-        public List<WorlplaceDto> GetAllWorkplaces()
+        public List<WorkPlaceDto> GetAllWorkplaces()
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                return connection.Query<WorlplaceDto>(
+                return connection.Query<WorkPlaceDto>(
                     StoredProcedures.Workplace_GetAll,
                     commandType: System.Data.CommandType.StoredProcedure)
                     .ToList();
             }
         }
 
-        public WorlplaceDto GetWorkplaceById(int id)
+        public WorkPlaceDto GetWorkplaceById(int id)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                return connection.QuerySingle<WorlplaceDto>(
+                return connection.QuerySingle<WorkPlaceDto>(
                     StoredProcedures.Workplace_GetById,
                     param: new { id = id },
                     commandType: System.Data.CommandType.StoredProcedure);
             }
         }
 
-        public void AddWorkplace(WorlplaceDto workplace)
+        public void AddWorkplace(WorkPlaceDto workplace)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -49,7 +49,7 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public void UpdateWorkplace(WorlplaceDto workplace)
+        public void UpdateWorkplace(WorkPlaceDto workplace)
         {
             using (var connection = new SqlConnection(connectionString))
             {

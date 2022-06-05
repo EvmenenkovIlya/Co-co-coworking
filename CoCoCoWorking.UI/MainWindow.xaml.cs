@@ -19,7 +19,6 @@ namespace CoCoCoWorking.UI
         ModelController modelController = new ModelController();
         Singleton _instance = Singleton.GetInstance();
 
-        CalendarForOrder busyOrFreeRoom = new CalendarForOrder();
         TabOrderController orderController = new TabOrderController();
         AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
         private ICollectionView items;

@@ -11,7 +11,7 @@ namespace CoCoCoWorking.DAL.DTO
         public int Id { get; set; }
         public string Name { get; set; }
         public int? WorkPlaceNumber { get; set; }
-        public List<WorlplaceDto> Workplaces { get; set; } = new List<WorlplaceDto>();
+        public List<WorkPlaceDto> Workplaces { get; set; } = new List<WorkPlaceDto>();
         public List<RentPriceDto> RentPrices { get; set; } = new List<RentPriceDto>();
         public List<OrderUnitDto> Orderunits { get; set; } = new List<OrderUnitDto>();
     }

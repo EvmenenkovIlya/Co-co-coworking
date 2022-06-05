@@ -44,7 +44,7 @@ namespace CoCoCoWorking.BLL
                 .ForMember("Name", opt => opt.MapFrom(c => c.Name))
                 .ForMember("WorkPlaceNumber", opt => opt.MapFrom(c => c.WorkPlaceNumber));
 
-                cfg.CreateMap<WorlplaceDto, WorkPlaceModel>().ReverseMap()
+                cfg.CreateMap<WorkPlaceDto, WorkPlaceModel>().ReverseMap()
                 .ForMember("RoomId", opt => opt.MapFrom(c => c.RoomId))
                 .ForMember("Number", opt => opt.MapFrom(c => c.Number));
 

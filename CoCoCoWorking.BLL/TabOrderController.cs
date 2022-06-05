@@ -59,7 +59,7 @@ namespace CoCoCoWorking.BLL
         }
         
 
-        public List<string> SearcFreeForDate(string startDate, string endDate)
+        public List<string> SearchFreeForDate(string startDate, string endDate)
         {
             
             var rooms = modelController.GetAllRoom();

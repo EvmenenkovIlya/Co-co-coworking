@@ -16,7 +16,7 @@ namespace CoCoCoWorking.DAL
 
                     Dictionary<int, AllRoomAndWorkPlaceBusyOrFreeDto> result = new Dictionary<int, AllRoomAndWorkPlaceBusyOrFreeDto>();
 
-                    connection.Query<AllRoomAndWorkPlaceBusyOrFreeDto, WorlplaceDto, RentPriceDto,OrderUnitDto, AllRoomAndWorkPlaceBusyOrFreeDto>
+                    connection.Query<AllRoomAndWorkPlaceBusyOrFreeDto, WorkPlaceDto, RentPriceDto,OrderUnitDto, AllRoomAndWorkPlaceBusyOrFreeDto>
                     ("GetAllRoomAndWorkPlaceBusyOrFree",
                     (room, workplace, rentprice,orderunit) =>
                     {
