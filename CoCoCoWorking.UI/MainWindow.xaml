@@ -75,7 +75,6 @@
                         <ComboBoxItem Content="Service"/>
                     </ComboBox>
                     <Button x:Name="AddToOrder_Button" Content="Add to order" HorizontalAlignment="Left" Height="38" Margin="632,158,0,0" VerticalAlignment="Top" Width="153" Grid.Column="1"/>
-                    <Calendar HorizontalAlignment="Left" Height="164" Margin="66,32,0,0" VerticalAlignment="Top" Width="242" Grid.Column="1"/>
                     <DataGrid x:Name="DataGrid_UnitOrder" HorizontalAlignment="Left" Height="446" Margin="535,226,0,0" VerticalAlignment="Top" Width="413" Grid.ColumnSpan="2" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="StartDate" Binding="{Binding StartDate}"/>
