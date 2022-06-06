@@ -53,9 +53,9 @@ namespace CoCoCoWorking.BLL
 
                 cfg.CreateMap<AdditionalServiceDto, AdditionalServiceModel>().ReverseMap()
                 .ForMember("Name", opt => opt.MapFrom(c => c.Name));
-                cfg.CreateMap<OrderUnitDTO, OrderUnitModel>();
+                cfg.CreateMap<OrderUnitDto, OrderUnitModel>();
 
-                cfg.CreateMap<RentPriceDTO, RentPriceCreateModel>().ReverseMap()
+                //cfg.CreateMap<RentPriceDto, RentPriceCreateModel>().ReverseMap();
                 cfg.CreateMap<RentPriceDto, RentPriceModel>()
                 .ForMember("RoomId", opt => opt.MapFrom(c => c.RoomId))
                 .ForMember("WorkPlaceInRoomId", opt => opt.MapFrom(c => c.WorkPlaceInRoomId))
@@ -98,7 +98,6 @@ namespace CoCoCoWorking.BLL
                 .ForMember("AdditionalServiceId", opt => opt.MapFrom(c => c.AdditionalServiceId))
                 .ForMember("OrderId", opt => opt.MapFrom(c => c.OrderId))
                 .ForMember("OrderUnitCost", opt => opt.MapFrom(c => c.OrderUnitCost));
-
 
                 cfg.CreateMap<GetAllUnitOrdersFromSpecificOrderDTO, GetAllUnitOrdersFromSpecificOrderModel>()
                 .ForMember("StartDate", opt => opt.MapFrom(c => c.StartDate))

@@ -30,9 +30,9 @@ namespace CoCoCoWorking.UI
         {
             _instance.UpdateInstance();
             InitializeComponent();
-            List<CustomersWithOrdersDTO> customers = CustomerManager.GetAllCustomerWhithOrderWithOrderUnit();
-            List<CustomerModel> CustomerModel = mapper.Map<List<CustomerModel>>(customers);
-            DataGridCustomers.ItemsSource = CustomerModel;
+            //List<CustomersWithOrdersDTO> customers = CustomerManager.GetAllCustomerWhithOrderWithOrderUnit();
+            //List<CustomerModel> CustomerModel = mapper.Map<List<CustomerModel>>(customers);
+           // DataGridCustomers.ItemsSource = CustomerModel;
 
             DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
             DataGridRentPrices.ItemsSource = _instance.RentPrices;
@@ -40,7 +40,7 @@ namespace CoCoCoWorking.UI
 
         private void ButtonCreateNewOrder_Click(object sender, RoutedEventArgs e)
         {
-            MainTabControl.SelectedItem = Orders;            
+            MainTabControl.SelectedItem = TabItem_Orders;            
         }
 
         private void ButtonCreateNewCustomer_Click(object sender, RoutedEventArgs e)
@@ -257,17 +257,28 @@ namespace CoCoCoWorking.UI
             }
         }
 
-        //to test the procedure and output information to DataGrids
+        // to test the procedure and output information to DataGrids
         private void DataGridCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            List<CustomersWithOrdersDTO> customers = customerManager.GetAllCustomerWhithOrderWithOrderUnit();
+            //List<CustomersWithOrdersDTO> customers = customerManager.GetAllCustomerWhithOrderWithOrderUnit();
 
-            List<OrderDTO> customerOrders = order.OrderGetByCustomerId(customers[DataGridCustomers.SelectedIndex].Id);
+            //List<OrderDTO> customerOrders = order.OrderGetByCustomerId(customers[DataGridCustomers.SelectedIndex].Id);
 
-            List<OrderModel> customerOrdersModel = mapper.Map<List<OrderModel>>(customerOrders);
+            //List<OrderModel> customerOrdersModel = mapper.Map<List<OrderModel>>(customerOrders);
 
-            DataGrid_Order.ItemsSource = customerOrdersModel;
-            
+            //DataGrid_Order.ItemsSource = customerOrdersModel;
+
         }
+        private void DataGrid_Order_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+          
+        }
+
+        private void ButtonSavecChanges_Click(object sender, RoutedEventArgs e)
+        {
+            _instance.SaveCustomerChanges();
+            DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
+        }
+
     }
 }

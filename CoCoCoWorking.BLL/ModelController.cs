@@ -158,7 +158,7 @@ namespace CoCoCoWorking.BLL
         public List<AdditionalServiceModel> GetAllAdditionalService()
         {
             List<AdditionalServiceModel> list = new List<AdditionalServiceModel>();
-            List<AdditionalServiceDTO> listDto = additionalServiceManager.GetAllAdditionalServices();
+            List<AdditionalServiceDto> listDto = additionalServiceManager.GetAllAdditionalServices();
             list = mapper.Map<List<AdditionalServiceModel>>(listDto);
             return list;
         }
