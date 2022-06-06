@@ -20,7 +20,7 @@ namespace CoCoCoWorking.BLL
 
         private static void InitMapperConfigStorage()
         {
-            _instance =new Mapper(new MapperConfiguration(cfg => 
+            _instance = new Mapper(new MapperConfiguration(cfg => 
             {
                 cfg.CreateMap<CustomersWithOrdersDto, CustomerModel>()
                 .ForMember("Id", opt => opt.MapFrom(c => c.Id))
@@ -53,7 +53,9 @@ namespace CoCoCoWorking.BLL
 
                 cfg.CreateMap<AdditionalServiceDto, AdditionalServiceModel>().ReverseMap()
                 .ForMember("Name", opt => opt.MapFrom(c => c.Name));
+                cfg.CreateMap<OrderUnitDTO, OrderUnitModel>();
 
+                cfg.CreateMap<RentPriceDTO, RentPriceCreateModel>().ReverseMap()
                 cfg.CreateMap<RentPriceDto, RentPriceModel>()
                 .ForMember("RoomId", opt => opt.MapFrom(c => c.RoomId))
                 .ForMember("WorkPlaceInRoomId", opt => opt.MapFrom(c => c.WorkPlaceInRoomId))
@@ -97,6 +99,12 @@ namespace CoCoCoWorking.BLL
                 .ForMember("OrderId", opt => opt.MapFrom(c => c.OrderId))
                 .ForMember("OrderUnitCost", opt => opt.MapFrom(c => c.OrderUnitCost));
 
+
+                cfg.CreateMap<GetAllUnitOrdersFromSpecificOrderDTO, GetAllUnitOrdersFromSpecificOrderModel>()
+                .ForMember("StartDate", opt => opt.MapFrom(c => c.StartDate))
+                .ForMember("EndDate", opt => opt.MapFrom(c => c.EndDate))
+                .ForMember("Name", opt => opt.MapFrom(c => $"{c.RoomName}{c.ServiceName}"))
+                .ForMember("Number", opt => opt.MapFrom(c => c.Number));
             }));
         }
     }

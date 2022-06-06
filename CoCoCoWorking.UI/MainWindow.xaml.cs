@@ -16,6 +16,9 @@ namespace CoCoCoWorking.UI
     {
         
         AdditionalServiceManager additionalService = new AdditionalServiceManager();//test
+        GetAllUnitOrdersFromSpecificOrderModel getAllUnitOrdersFromSpecificOrderModel = new GetAllUnitOrdersFromSpecificOrderModel();
+        GetAllUnitOrdersFromSpecificOrderManager orderUnitManager = new GetAllUnitOrdersFromSpecificOrderManager();
+        OrderManager order = new OrderManager();
         ModelController modelController = new ModelController();
         Singleton _instance = Singleton.GetInstance();
 
@@ -27,6 +30,9 @@ namespace CoCoCoWorking.UI
         {
             _instance.UpdateInstance();
             InitializeComponent();
+            List<CustomersWithOrdersDTO> customers = CustomerManager.GetAllCustomerWhithOrderWithOrderUnit();
+            List<CustomerModel> CustomerModel = mapper.Map<List<CustomerModel>>(customers);
+            DataGridCustomers.ItemsSource = CustomerModel;
 
             DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
             DataGridRentPrices.ItemsSource = _instance.RentPrices;
@@ -95,7 +101,7 @@ namespace CoCoCoWorking.UI
             Combobox_ChooseWorkplace.Items.Clear();
             Combobox_PurchaseType.Items.Clear();
 
-            var allService = additionalService.GetAllAdditionalServices();
+            var allService = modelController.GetAllAdditionalService();
             var roomName = modelController.GetAllRoom();
 
             switch (ComboBox_Type.SelectedIndex)
@@ -215,7 +221,7 @@ namespace CoCoCoWorking.UI
         }      
         private void Combobox_ChooseWorkplace_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(Combobox_ChooseWorkplace.SelectedItem is null)
+            if (Combobox_ChooseWorkplace.SelectedItem is null)
             {
                 return;
             }
@@ -224,18 +230,18 @@ namespace CoCoCoWorking.UI
             var roomName = Combobox_PurchaseType.SelectedItem as string;
             var rooms = modelController.GetAllRoom();
 
-            foreach(var room in rooms)
+            foreach (var room in rooms)
             {
-                if(room.Name == roomName)
+                if (room.Name == roomName)
                 {
                     var workPlaceInRoom = orderController.GetAllWorkplaceInRoom(room.Id);
 
                     foreach (var workplace in workPlaceInRoom)
                     {
-                        if(workplace.Number == (int)Combobox_ChooseWorkplace.SelectedItem )
+                        if (workplace.Number == (int)Combobox_ChooseWorkplace.SelectedItem)
                         {
 
-                            var date = orderController.GetStringBusyDate(room.Id,workplace.Id);
+                            var date = orderController.GetStringBusyDate(room.Id, workplace.Id);
 
                             var dateConvert = orderController.ConvertIntBusyDateRoom(date);
 
@@ -249,13 +255,19 @@ namespace CoCoCoWorking.UI
                     }
                 }
             }
-            
         }
 
-        private void ButtonSavecChanges_Click(object sender, RoutedEventArgs e)
+        //to test the procedure and output information to DataGrids
+        private void DataGridCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _instance.SaveCustomerChanges();
-            DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
+            List<CustomersWithOrdersDTO> customers = customerManager.GetAllCustomerWhithOrderWithOrderUnit();
+
+            List<OrderDTO> customerOrders = order.OrderGetByCustomerId(customers[DataGridCustomers.SelectedIndex].Id);
+
+            List<OrderModel> customerOrdersModel = mapper.Map<List<OrderModel>>(customerOrders);
+
+            DataGrid_Order.ItemsSource = customerOrdersModel;
+            
         }
     }
 }
