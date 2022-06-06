@@ -18,7 +18,7 @@ namespace CoCoCoWorking.BLL
         private WorkplaceManager workplaceManager = new WorkplaceManager();
         private AdditionalServiceManager additionalServiceManager = new AdditionalServiceManager();
         private AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
-       // private Singleton _instance = Singleton.GetInstance();
+        private Singleton _instance = Singleton.GetInstance();
 
         public string GetProductName(FinanceReportDto f)
         {
@@ -65,7 +65,7 @@ namespace CoCoCoWorking.BLL
 
         public TypeOfProduct GetTypeOfProductForRentPriceModel(RentPriceDto r)
         {
-            var _instance = Singleton.GetInstance();
+
             TypeOfProduct type = new TypeOfProduct();
             if (r.RoomId != null)
             {
@@ -90,7 +90,7 @@ namespace CoCoCoWorking.BLL
 
         public TypeOfProduct GetNameForRentPriceModel(RentPriceDto r)
         {
-            var _instance = Singleton.GetInstance();
+
             TypeOfProduct type = new TypeOfProduct();
             if (r.RoomId != null)
             {

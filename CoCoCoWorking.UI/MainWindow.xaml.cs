@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Collections.Generic;
 using System.Windows.Controls;
 using CoCoCoWorking.DAL;
 using CoCoCoWorking.BLL;
@@ -42,7 +43,7 @@ namespace CoCoCoWorking.UI
             _instance.UpdateInstance();
             DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
         }
-        
+       
 
         private void Combobox_PurchaseType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
