@@ -274,11 +274,16 @@ namespace CoCoCoWorking.UI
           
         }
 
-        private void ButtonSavecChanges_Click(object sender, RoutedEventArgs e)
+        private void DataGridCustomers_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            _instance.SaveCustomerChanges();
-            DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
+            CustomerModel customer = e.Row.Item as CustomerModel;
+            modelController.UpdateCustomerInBase(customer);          
         }
 
+        private void ButtonRefreshBase_Click(object sender, RoutedEventArgs e)
+        {
+            _instance.UpdateInstance();
+            DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
+        }
     }
 }
