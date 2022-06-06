@@ -4,37 +4,37 @@ using System.Data.SqlClient;
 
 namespace CoCoCoWorking.DAL
 {
-    internal class WorkplaceManager
+    public class WorkplaceManager
     {
         public string connectionString = ServerOptions.ConnectionOption;
 
-        public List<WorkplaceDTO> GetAllWorkplaces()
+        public List<WorkPlaceDto> GetAllWorkplaces()
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                return connection.Query<WorkplaceDTO>(
+                return connection.Query<WorkPlaceDto>(
                     StoredProcedures.Workplace_GetAll,
                     commandType: System.Data.CommandType.StoredProcedure)
                     .ToList();
             }
         }
 
-        public WorkplaceDTO GetWorkplaceById(int id)
+        public WorkPlaceDto GetWorkplaceById(int id)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                return connection.QuerySingle<WorkplaceDTO>(
+                return connection.QuerySingle<WorkPlaceDto>(
                     StoredProcedures.Workplace_GetById,
                     param: new { id = id },
                     commandType: System.Data.CommandType.StoredProcedure);
             }
         }
 
-        public void AddWorkplace(WorkplaceDTO workplace)
+        public void AddWorkplace(WorkPlaceDto workplace)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -49,7 +49,7 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public void UpdateWorkplace(WorkplaceDTO workplace)
+        public void UpdateWorkplace(WorkPlaceDto workplace)
         {
             using (var connection = new SqlConnection(connectionString))
             {

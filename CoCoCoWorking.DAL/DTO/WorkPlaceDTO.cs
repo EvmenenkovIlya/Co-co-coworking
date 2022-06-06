@@ -6,16 +6,11 @@ using System.Threading.Tasks;
 
 namespace CoCoCoWorking.DAL.DTO
 {
-    public class WorkplaceDTO
+    public class WorkPlaceDto
     {
         public int Id { get; set; }
         public int RoomId { get; set; }
         public int? Number { get; set; }
         public int? WorkplaceCount { get; set; }
-
-        public override string ToString()
-        {
-            return $"Id={Id} RommId={RoomId} Number={Number}";
-        }
     }
 }

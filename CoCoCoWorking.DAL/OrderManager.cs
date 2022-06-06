@@ -8,7 +8,7 @@ namespace CoCoCoWorking.DAL
     {
         public string connectionString = ServerOptions.ConnectionOption;
 
-        public OrderDTO AddOrder(OrderDTO order)
+        public OrderDto AddOrder(OrderDto order)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -26,13 +26,13 @@ namespace CoCoCoWorking.DAL
                        commandType: System.Data.CommandType.StoredProcedure);
             }
         }
-        public OrderDTO GetOrderById(int id)
+        public OrderDto GetOrderById(int id)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                return connection.QuerySingle<OrderDTO>(
+                return connection.QuerySingle<OrderDto>(
                     StoredProcedures.Order_GetById,
                     param: new { id = id },
                     commandType: System.Data.CommandType.StoredProcedure
@@ -40,32 +40,32 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public List<OrderDTO> OrderGetByCustomerId(int id)
+        public List<OrderDto> OrderGetByCustomerId(int id)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                return connection.Query<OrderDTO>(
+                return connection.Query<OrderDto>(
                     StoredProcedures.Order_GetByCustomerId,
                     param: new { id = id },
                     commandType: System.Data.CommandType.StoredProcedure
                     ).ToList();
             }
         }
-        public List<OrderDTO> GetAllOrders()
+        public List<OrderDto> GetAllOrders()
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                return connection.Query<OrderDTO>
+                return connection.Query<OrderDto>
                     (StoredProcedures.Order_GetAll,
                        commandType: System.Data.CommandType.StoredProcedure)
                        .ToList();
             }
         }
 
-        public OrderDTO UpdateOrder(OrderDTO order)
+        public OrderDto UpdateOrder(OrderDto order)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -82,6 +82,19 @@ namespace CoCoCoWorking.DAL
                     },
                     commandType: System.Data.CommandType.StoredProcedure
                     );
+            }
+        }
+        public List<GetAllUnitOrdersFromSpecificOrderDTO> GetAllUnitOrdersFromSpecificOrder(int orderId)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                return (List<GetAllUnitOrdersFromSpecificOrderDTO>)connection.Query<GetAllUnitOrdersFromSpecificOrderDTO>(
+                    StoredProcedures.GetAllUnitOrdersFromSpecificOrder,
+                    param: new { OrderId = orderId },
+                    commandType: System.Data.CommandType.StoredProcedure
+                    ).ToList();
             }
         }
     }

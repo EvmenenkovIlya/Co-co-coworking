@@ -1,9 +1,4 @@
 ﻿using CoCoCoWorking.BLL.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CoCoCoWorking.DAL;
 using CoCoCoWorking.DAL.DTO;
 
@@ -11,25 +6,23 @@ namespace CoCoCoWorking.BLL
 {
     public class Singleton
     {
-        public List<CustomerModel> Reports { get; private set; }
+        public List<CustomerModel> CustomersToEdit;
         public List<RoomModel> Rooms { get; private set; }
         public List<RentPriceModel> RentPrices { get; private set; }
         public List<AdditionalServiceModel> AdditionalServices { get; private set; }
 
         private static Singleton _instance;
         
-        private CustomerManager customerManager=new CustomerManager();
+        private CustomerManager customerManager =new CustomerManager();
         private RoomManager roomManager = new RoomManager();
         private RentPriceManager rentPriceManager = new RentPriceManager();
         private AdditionalServiceManager additionalServiceManager = new AdditionalServiceManager();
         AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
 
         private Singleton()
-        {
-            Reports = mapper.Map<List<CustomerModel>>(customerManager.GetAllCustomers());
+        {            
             Rooms = mapper.Map<List<RoomModel>>(roomManager.GetAllRooms());
-            RentPrices = mapper.Map<List<RentPriceModel>>(rentPriceManager.GetAllRentPrices());
-            AdditionalServices = mapper.Map<List<AdditionalServiceModel>>(additionalServiceManager.GetAllAdditionalServices());
+            CustomersToEdit = mapper.Map<List<CustomerModel>>(customerManager.GetAllCustomerWhithOrderWithOrderUnit());
         }
 
         public static Singleton GetInstance()
@@ -38,14 +31,14 @@ namespace CoCoCoWorking.BLL
             {
               _instance= new Singleton();
             }            
-    
             return _instance;
         }
-    }
-   
-
-    
-
-    
+        public void UpdateInstance()
+        {
+            AdditionalServices = mapper.Map<List<AdditionalServiceModel>>(additionalServiceManager.GetAllAdditionalServices());
+            RentPrices = mapper.Map<List<RentPriceModel>>(rentPriceManager.GetAllRentPrices());
+            CustomersToEdit = mapper.Map<List<CustomerModel>>(customerManager.GetAllCustomerWhithOrderWithOrderUnit());
+        }
+    }          
 }
 
