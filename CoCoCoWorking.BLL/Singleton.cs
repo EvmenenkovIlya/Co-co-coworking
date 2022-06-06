@@ -6,7 +6,6 @@ namespace CoCoCoWorking.BLL
 {
     public class Singleton
     {
-        private List<CustomerModel> _customers;
         public List<CustomerModel> CustomersToEdit;
         public List<RoomModel> Rooms { get; private set; }
         public List<RentPriceModel> RentPrices { get; private set; }
@@ -14,7 +13,7 @@ namespace CoCoCoWorking.BLL
 
         private static Singleton _instance;
         
-        private AllCustomerWhithOrderWithOrderUnitManager customerManager =new AllCustomerWhithOrderWithOrderUnitManager();
+        private CustomerManager customerManager =new CustomerManager();
         private RoomManager roomManager = new RoomManager();
         private RentPriceManager rentPriceManager = new RentPriceManager();
         private AdditionalServiceManager additionalServiceManager = new AdditionalServiceManager();

@@ -84,5 +84,18 @@ namespace CoCoCoWorking.DAL
                     );
             }
         }
+        public List<GetAllUnitOrdersFromSpecificOrderDTO> GetAllUnitOrdersFromSpecificOrder(int orderId)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                return (List<GetAllUnitOrdersFromSpecificOrderDTO>)connection.Query<GetAllUnitOrdersFromSpecificOrderDTO>(
+                    StoredProcedures.GetAllUnitOrdersFromSpecificOrder,
+                    param: new { OrderId = orderId },
+                    commandType: System.Data.CommandType.StoredProcedure
+                    ).ToList();
+            }
+        }
     }
 }

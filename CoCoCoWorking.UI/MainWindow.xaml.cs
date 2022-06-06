@@ -16,23 +16,16 @@ namespace CoCoCoWorking.UI
     {
         
         AdditionalServiceManager additionalService = new AdditionalServiceManager();//test
-        GetAllUnitOrdersFromSpecificOrderModel getAllUnitOrdersFromSpecificOrderModel = new GetAllUnitOrdersFromSpecificOrderModel();
-        GetAllUnitOrdersFromSpecificOrderManager orderUnitManager = new GetAllUnitOrdersFromSpecificOrderManager();
-        OrderManager order = new OrderManager();
         ModelController modelController = new ModelController();
         Singleton _instance = Singleton.GetInstance();
 
         TabOrderController orderController = new TabOrderController();
-        AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
         private ICollectionView items;
 
         public MainWindow()
         {
             _instance.UpdateInstance();
             InitializeComponent();
-            //List<CustomersWithOrdersDTO> customers = CustomerManager.GetAllCustomerWhithOrderWithOrderUnit();
-            //List<CustomerModel> CustomerModel = mapper.Map<List<CustomerModel>>(customers);
-           // DataGridCustomers.ItemsSource = CustomerModel;
 
             DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
             DataGridRentPrices.ItemsSource = _instance.RentPrices;
