@@ -8,15 +8,15 @@ namespace CoCoCoWorking.DAL
     {
             public string connectionString = ServerOptions.ConnectionOption;
 
-            public List<AllRoomAndWorkPlaceBusyOrFreeDTO> GetAllRoomAndWorkPlaceBusyOrFree()
+            public List<AllRoomAndWorkPlaceBusyOrFreeDto> GetAllRoomAndWorkPlaceBusyOrFree()
             {
                 using (var connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
 
-                    Dictionary<int, AllRoomAndWorkPlaceBusyOrFreeDTO> result = new Dictionary<int, AllRoomAndWorkPlaceBusyOrFreeDTO>();
+                    Dictionary<int, AllRoomAndWorkPlaceBusyOrFreeDto> result = new Dictionary<int, AllRoomAndWorkPlaceBusyOrFreeDto>();
 
-                    connection.Query<AllRoomAndWorkPlaceBusyOrFreeDTO, WorkplaceDTO, RentPriceDTO,OrderUnitDTO, AllRoomAndWorkPlaceBusyOrFreeDTO>
+                    connection.Query<AllRoomAndWorkPlaceBusyOrFreeDto, WorkPlaceDto, RentPriceDto,OrderUnitDto, AllRoomAndWorkPlaceBusyOrFreeDto>
                     ("GetAllRoomAndWorkPlaceBusyOrFree",
                     (room, workplace, rentprice,orderunit) =>
                     {
@@ -25,7 +25,7 @@ namespace CoCoCoWorking.DAL
                         {
                             result.Add(room.Id, room);
                         }
-                        AllRoomAndWorkPlaceBusyOrFreeDTO crnt = result[room.Id];
+                        AllRoomAndWorkPlaceBusyOrFreeDto crnt = result[room.Id];
 
                         crnt.Workplaces.Add(workplace);
                         crnt.RentPrices.Add(rentprice);

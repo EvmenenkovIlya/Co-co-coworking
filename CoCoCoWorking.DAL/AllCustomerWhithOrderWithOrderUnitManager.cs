@@ -8,25 +8,23 @@ namespace CoCoCoWorking.DAL
     {
         public string connectionString = ServerOptions.ConnectionOption;
 
-        public List<CustomersWithOrdersDTO> GetAllCustomerWhithOrderWithOrderUnit()
+        public List<CustomersWithOrdersDto> GetAllCustomerWhithOrderWithOrderUnit()
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 
-                Dictionary<int, CustomersWithOrdersDTO> result = new Dictionary<int, CustomersWithOrdersDTO>();   
+                Dictionary<int, CustomersWithOrdersDto> result = new Dictionary<int, CustomersWithOrdersDto>();   
 
-                     connection.Query<CustomersWithOrdersDTO, OrderDTO, OrderUnitDTO, CustomersWithOrdersDTO>
-                     ("GetAllCustomerWhithOrderWithOrderUnit",
+                     connection.Query<CustomersWithOrdersDto, OrderDto, OrderUnitDto, CustomersWithOrdersDto>
+                     (StoredProcedures.GetAllCustomerWhithOrderWithOrderUnit,
                      (customer, order, orderunit) =>
                      {
-
                          if (!result.ContainsKey(customer.Id))
                          {
                              result.Add(customer.Id, customer);
                          }
-                         CustomersWithOrdersDTO crnt = result[customer.Id];
-
+                         CustomersWithOrdersDto crnt = result[customer.Id];
                          if (customer!=null)
                          {
                              if (crnt.Orders != null && !crnt.Orders.Contains(order))

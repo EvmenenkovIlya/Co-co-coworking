@@ -1,6 +1,6 @@
 ﻿namespace CoCoCoWorking.DAL.DTO
 {
-    public class RoomDTO
+    public class RoomDto
     {
         public int Id { get; set; }
         public string Type { get; set; }

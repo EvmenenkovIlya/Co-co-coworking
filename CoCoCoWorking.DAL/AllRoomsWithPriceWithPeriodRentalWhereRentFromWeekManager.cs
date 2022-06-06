@@ -8,15 +8,15 @@ namespace CoCoCoWorking.DAL
     {
         public string connectionString = ServerOptions.ConnectionOption;
 
-        public List<AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDTO> GetAllRoomsWithPriceWithPeriodRentalWhereRentFromWeek()
+        public List<AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDto> GetAllRoomsWithPriceWithPeriodRentalWhereRentFromWeek()
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                Dictionary<string, AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDTO> result = new Dictionary<string, AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDTO>();
+                Dictionary<string, AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDto> result = new Dictionary<string, AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDto>();
 
-                connection.Query<AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDTO, RoomDTO, RentPriceDTO, AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDTO>
+                connection.Query<AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDto, RoomDto, RentPriceDto, AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDto>
                 ("GetAllRoomsWithPriceWithPeriodRentalWhereRentFromWeek",
                 (allroom, room, rentprice) =>
                 {
@@ -25,7 +25,7 @@ namespace CoCoCoWorking.DAL
                     {
                         result.Add(allroom.StartDate, allroom);
                     }
-                    AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDTO crnt = result[allroom.StartDate];
+                    AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDto crnt = result[allroom.StartDate];
 
                     crnt.Rooms.Add(room);
                     crnt.Rentprices.Add(rentprice);

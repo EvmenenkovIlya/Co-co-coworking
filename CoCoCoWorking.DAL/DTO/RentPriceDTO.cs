@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoCoCoWorking.DAL.DTO
 {
-    public class RentPriceDTO
+    public class RentPriceDto
     {
         public int Id { get; set; }
         public int RoomId { get; set; }

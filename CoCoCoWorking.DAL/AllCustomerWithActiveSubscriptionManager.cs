@@ -8,15 +8,15 @@ namespace CoCoCoWorking.DAL
     {
         public string connectionString = ServerOptions.ConnectionOption;
       
-            public List<CustomersWithOrdersDTO> GetAllCustomerWithActiveSubscriptiont()
+            public List<CustomersWithOrdersDto> GetAllCustomerWithActiveSubscriptiont()
             {
                 using (var connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
 
-                    Dictionary<int, CustomersWithOrdersDTO> result = new Dictionary<int, CustomersWithOrdersDTO>();
+                    Dictionary<int, CustomersWithOrdersDto> result = new Dictionary<int, CustomersWithOrdersDto>();
 
-                    connection.Query<CustomersWithOrdersDTO, OrderDTO, OrderUnitDTO, CustomersWithOrdersDTO>
+                    connection.Query<CustomersWithOrdersDto, OrderDto, OrderUnitDto, CustomersWithOrdersDto>
                     ("GetAllCustomerWithActiveSubscription",
                     (customer, order, orderunit) =>
                     {
@@ -25,7 +25,7 @@ namespace CoCoCoWorking.DAL
                         {
                             result.Add(customer.Id, customer);
                         }
-                        CustomersWithOrdersDTO crnt = result[customer.Id];
+                        CustomersWithOrdersDto crnt = result[customer.Id];
 
                         if (customer != null)
                         {

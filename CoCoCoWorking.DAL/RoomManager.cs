@@ -7,32 +7,32 @@ namespace CoCoCoWorking.DAL
     public class RoomManager
     {
         public string connectionString = ServerOptions.ConnectionOption;
-        public List<RoomDTO> GetAllRooms()
+        public List<RoomDto> GetAllRooms()
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                return connection.Query<RoomDTO>(
+                return connection.Query<RoomDto>(
                     StoredProcedures.Room_GetAll,
                     commandType: System.Data.CommandType.StoredProcedure)
                     .ToList();
             }
         }
-        public RoomDTO GetRoomByID(int id)
+        public RoomDto GetRoomByID(int id)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                return connection.QuerySingle<RoomDTO>(
+                return connection.QuerySingle<RoomDto>(
                     StoredProcedures.Room_GetById,
                     param: new { id = id },
                     commandType: System.Data.CommandType.StoredProcedure
                     );
             }
         }
-        public void AddRoom(RoomDTO room)
+        public void AddRoom(RoomDto room)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -48,7 +48,7 @@ namespace CoCoCoWorking.DAL
                     );
             }
         }
-        public void UpdateRoom(RoomDTO room)
+        public void UpdateRoom(RoomDto room)
         {
             using (var connection = new SqlConnection(connectionString))
             {

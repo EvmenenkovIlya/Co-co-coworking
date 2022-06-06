@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CoCoCoWorking.BLL.Models
+﻿namespace CoCoCoWorking.BLL.Models
 {
     public class OrderModel
     {
-        public List<CustomerModel> Customers { get; set; }
+       // public List<CustomerModel> Customers { get; set; } = new List<CustomerModel>();
         public int? OrderCost { get; set; }
         public string OrderStatus { get; set; }
         public string PaidDate { get; set; }

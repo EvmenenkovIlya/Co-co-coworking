@@ -8,15 +8,15 @@ namespace CoCoCoWorking.DAL
     {
         public string connectionString = ServerOptions.ConnectionOption;
 
-        public List<AllAdditionalServiceDTO> AllAdditionalService()
+        public List<AllAdditionalServiceDto> AllAdditionalService()
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                Dictionary<int, AllAdditionalServiceDTO> result = new Dictionary<int, AllAdditionalServiceDTO>();
+                Dictionary<int, AllAdditionalServiceDto> result = new Dictionary<int, AllAdditionalServiceDto>();
 
-                connection.Query<AllAdditionalServiceDTO, OrderUnitDTO, RentPriceDTO, AllAdditionalServiceDTO>
+                connection.Query<AllAdditionalServiceDto, OrderUnitDto, RentPriceDto, AllAdditionalServiceDto>
                 ("GetAllAdditionalService",
                 (additionalservice, orderunit, rentprice) =>
                 {
@@ -25,7 +25,7 @@ namespace CoCoCoWorking.DAL
                     {
                         result.Add(additionalservice.Id, additionalservice);
                     }
-                    AllAdditionalServiceDTO crnt = result[additionalservice.Id];
+                    AllAdditionalServiceDto crnt = result[additionalservice.Id];
 
                     if (additionalservice != null)
                     {
