@@ -5,6 +5,7 @@ using CoCoCoWorking.DAL;
 using CoCoCoWorking.BLL;
 using CoCoCoWorking.BLL.Models;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace CoCoCoWorking.UI
 {
@@ -19,9 +20,12 @@ namespace CoCoCoWorking.UI
         ModelController modelController = new ModelController();
         Singleton _instance = Singleton.GetInstance();
 
+        List<GetAllUnitOrdersFromSpecificOrderModel> unitOrdersList = new List<GetAllUnitOrdersFromSpecificOrderModel>();
+
+
         TabOrderController orderController = new TabOrderController();
         private ICollectionView items;
-
+        
         public MainWindow()
         {
             _instance.UpdateInstance();
@@ -278,5 +282,35 @@ namespace CoCoCoWorking.UI
             _instance.UpdateInstance();
             DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
         }
+
+        private void ButtonAddToOrder_Click(object sender, RoutedEventArgs e)
+        {
+            GetAllUnitOrdersFromSpecificOrderModel unitOrder = new GetAllUnitOrdersFromSpecificOrderModel();
+            unitOrder.StartDate = DatePicker_Order_StartDate.Text;
+            unitOrder.EndDate=DatePicker_Order_EndDate.Text;
+            unitOrder.EndDate = DatePicker_Order_EndDate.Text;
+            unitOrder.Type = ComboBox_Type.Text;
+            unitOrder.Name = Combobox_PurchaseType.Text;
+            if(Combobox_ChooseWorkplace.IsEnabled is true)
+            {
+                unitOrder.Number =int.Parse( Combobox_ChooseWorkplace.Text);
+            }
+            unitOrdersList.Add(unitOrder);
+            DataGrid_UnitOrder.ItemsSource= unitOrdersList;
+            DataGrid_UnitOrder.Items.Refresh();
+
+        }
+        private void ContextMenuOrderUnit_ClickDelete(object sender, RoutedEventArgs e)
+        {
+            if(DataGrid_UnitOrder.SelectedIndex == null)
+            {
+                return;
+            }
+            unitOrdersList.RemoveAt(DataGrid_UnitOrder.SelectedIndex);
+            DataGrid_UnitOrder.Items.Refresh();
+
+        }
+
+
     }
 }
