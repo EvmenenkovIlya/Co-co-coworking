@@ -91,7 +91,7 @@ namespace CoCoCoWorking.BLL
                 .ForMember("OrderCount", opt => opt.MapFrom(c => c.OrderCount))
                 .ForMember("OrderSum", opt => opt.MapFrom(c => c.OrderSum));
 
-                cfg.CreateMap<OrderUnitDto, OrderUnitModel>()
+                cfg.CreateMap<OrderUnitDto, OrderUnitModel>().ReverseMap()
                 .ForMember("StartDate", opt => opt.MapFrom(c => c.StartDate))
                 .ForMember("EndDate", opt => opt.MapFrom(c => c.EndDate))
                 .ForMember("RoomId", opt => opt.MapFrom(c => c.RoomId))

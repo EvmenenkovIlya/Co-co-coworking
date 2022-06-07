@@ -270,8 +270,7 @@ namespace CoCoCoWorking.BLL
         //}
 
 
-
-        public void AddOrderInBase(int customerId, int? orderCost, string orderStatus, string paidDate)
+        public string AddOrderInBase(OrderModel order)
         {
             OrderManager orderManager = new OrderManager();
             OrderModel order = new OrderModel() { CustomerId = customerId, OrderCost = orderCost, OrderStatus = orderStatus, PaidDate = paidDate };

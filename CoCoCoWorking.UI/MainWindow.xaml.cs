@@ -58,6 +58,10 @@ namespace CoCoCoWorking.UI
 
         private void Combobox_PurchaseType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //Combobox_ChooseWorkplace.Items.Clear();
+            Order_Calendar.BlackoutDates.Clear();
+            
+            var room = Combobox_PurchaseType.SelectedItem as RoomModel;
             if (Combobox_PurchaseType.SelectedItem is null)
             {
                 return;
@@ -69,6 +73,7 @@ namespace CoCoCoWorking.UI
 
             switch (ComboBox_Type.SelectedIndex)
             {
+                Combobox_ChooseWorkplace.Items.Add(workplace.Number);
 
                 case 0:
                     foreach (WorkPlaceModel workplace in workPlaceInRoom)
@@ -297,7 +302,17 @@ namespace CoCoCoWorking.UI
 
         private void ButtonCreateOrder_Click(object sender, RoutedEventArgs e)
         {
-            OrderModel order = new OrderModel();
+            CustomerModel customerSelected = DataGridCustomers.SelectedItem as CustomerModel;
+            decimal orderCost = modelController.GetSumOrderUnits(unitOrdersToOrder); 
+            OrderModel order = new OrderModel() { CustomerId = customerSelected.Id, OrderCost = orderCost, OrderStatus=ComboBoxOrderStatus.SelectedItem.ToString(), PaidDate=DateTime.Now.ToString() };
+            string orderId = modelController.AddOrderInBase(order); 
+            foreach(OrderUnitModel orderUnit in unitOrdersToOrder)
+            {
+                orderUnit.OrderId =int.Parse(orderId) ;
+                modelController.AddUnitOrdertoBase(orderUnit);
+            }
+            DataGrid_UnitOrder.ItemsSource = null;
+        }
 
             //order.OrderCost = 1;
             //order.OrderStatus = "done";
