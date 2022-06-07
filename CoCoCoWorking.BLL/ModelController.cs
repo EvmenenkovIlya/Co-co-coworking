@@ -88,29 +88,41 @@ namespace CoCoCoWorking.BLL
             return type;
         }
 
-        public TypeOfProduct GetNameForRentPriceModel(RentPriceDto r)
+        public string GetNameForRentPriceModel(RentPriceDto r)
         {
 
-            TypeOfProduct type = new TypeOfProduct();
+            string name = "";
             if (r.RoomId != null)
             {
                 foreach (RoomModel a in _instance.Rooms)
                 {
                     if (a.Id == r.RoomId)
                     {
-                        type = a.Type;
+                        name = a.Name;
                     }
                 }
             }
             else if (r.AdditionalServiceId != null)
             {
-                type = TypeOfProduct.AdditionalService;
+                foreach (AdditionalServiceModel a in _instance.AdditionalServices)
+                {
+                    if (a.Id == r.AdditionalServiceId)
+                    {
+                        name = a.Name;
+                    }
+                }
             }
             else
             {
-                type = TypeOfProduct.WorkPlace;
+                foreach (RoomModel a in _instance.Rooms)
+                {
+                    if (a.Id == r.WorkPlaceInRoomId)
+                    {
+                        name = $"Workplace in {a.Name}";
+                    }
+                }
             }
-            return type;
+            return name;
         }
 
         public TypeOfPeriod GetTypeOfPeriod (RentPriceDto r)
