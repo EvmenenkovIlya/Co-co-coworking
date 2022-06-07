@@ -30,7 +30,7 @@ namespace CoCoCoWorking.UI
 
             DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
             DataGridRentPrices.ItemsSource = _instance.RentPrices;
-            DataGridAdministrationTest.ItemsSource = modelController.GetAllAditionalServices();
+            DataGridAdministrationTest.ItemsSource = _instance.AdditionalServices;
         }
 
         private void ButtonCreateNewOrder_Click(object sender, RoutedEventArgs e)

@@ -8,9 +8,9 @@ namespace CoCoCoWorking.DAL.DTO
 {
     public class AdditionalServiceDto
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public string Count { get; set; }
+        public int? Count { get; set; }
         public bool IsDeleted { get; set; }      
     }
 }
