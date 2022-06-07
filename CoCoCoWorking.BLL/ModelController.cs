@@ -282,14 +282,22 @@ namespace CoCoCoWorking.BLL
 
         //}
 
-        public void AddOrderInBase(OrderModel order)
+
+
+        public void AddOrderInBase(int customerId, int? orderCost, string orderStatus, string paidDate)
         {
             OrderManager orderManager = new OrderManager();
+            OrderModel order = new OrderModel() { CustomerId = customerId, OrderCost = orderCost, OrderStatus = orderStatus, PaidDate = paidDate };
             OrderDto orderDto = mapper.Map<OrderDto>(order);
-            orderManager.AddOrder(orderDto); //----- ??? 7
+            int orderId = orderManager.AddOrder(orderDto);
         }
 
-        public List<OrderModel> GetOrderByID(int id)
+
+
+
+
+
+        public List<OrderModel> GetOrderByCustomerID(int id)
         {
             List<OrderModel> order = new List<OrderModel>();
             List<OrderDto> listDto = orderManager.OrderGetByCustomerId(id);
