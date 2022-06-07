@@ -7,32 +7,32 @@ namespace CoCoCoWorking.DAL
     public class OrderUnitManager
     {
         public string connectionString = ServerOptions.ConnectionOption;
-        public List<OrderUnitDTO> GetAllOrderUnits()
+        public List<OrderUnitDto> GetAllOrderUnits()
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                return connection.Query<OrderUnitDTO>(
+                return connection.Query<OrderUnitDto>(
                     StoredProcedures.OrderUnit_GetAll,
                     commandType: System.Data.CommandType.StoredProcedure)
                     .ToList();
             }
         }
-        public OrderUnitDTO GetOrderUnitByID(int id)
+        public OrderUnitDto GetOrderUnitByID(int id)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                return connection.QuerySingle<OrderUnitDTO>(
+                return connection.QuerySingle<OrderUnitDto>(
                     StoredProcedures.OrderUnit_GetById,
                     param: new { id = id },
                     commandType: System.Data.CommandType.StoredProcedure);
             }
         }
 
-        public void AddOrderUnit(OrderUnitDTO orderUnit)
+        public void AddOrderUnit(OrderUnitDto orderUnit)
         {
            
             using (var connection = new SqlConnection(connectionString))
@@ -57,7 +57,7 @@ namespace CoCoCoWorking.DAL
             }
         }
 
-        public void UpdateOrderUnit(OrderUnitDTO orderUnit)
+        public void UpdateOrderUnit(OrderUnitDto orderUnit)
         {
 
             using (var connection = new SqlConnection(connectionString))

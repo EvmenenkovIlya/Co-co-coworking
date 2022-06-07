@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace CoCoCoWorking.DAL.DTO
 {
-    public class AllRoomsWithPriceWithPeriodRentaHDto
+    public class GetAllUnitOrdersFromSpecificOrderDTO
     {
+        public int Id { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
-        public List<RoomDto> Rooms { get; set; }
-        public List<RentPriceDto> Rentprices { get; set; } = new List<RentPriceDto>();
+        public string RoomName { get; set; }
+        public int? Number { get; set; }
+        public string ServiceName { get; set; }
     }
 }

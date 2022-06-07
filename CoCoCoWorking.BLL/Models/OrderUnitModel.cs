@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CoCoCoWorking.DAL.DTO
+﻿namespace CoCoCoWorking.BLL.Models
 {
-    public class OrderUnitDto
+    public class OrderUnitModel
     {
         public int Id { get; set; }
         public string StartDate { get; set; }
