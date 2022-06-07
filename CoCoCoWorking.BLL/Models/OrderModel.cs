@@ -5,16 +5,18 @@
 
         public int Id { get; set; }
         public int CustomerId { get; set; }
-        public decimal? OrderCost { get; set; }
+        public int? OrderCost { get; set; }
         public string OrderStatus { get; set; }
         public string PaidDate { get; set; }
         public List<OrderUnitModel> OrderUnits { get; set; } = new List<OrderUnitModel>();
 
-        public OrderModel()
-        { }
-        // public List<CustomerModel> Customers { get; set; } = new List<CustomerModel>();
+
+
+        //// public List<CustomerModel> Customers { get; set; } = new List<CustomerModel>();
         // public int? OrderCost { get; set; }
         // public string OrderStatus { get; set; }
         // public string PaidDate { get; set; }
+
+
     }
 }

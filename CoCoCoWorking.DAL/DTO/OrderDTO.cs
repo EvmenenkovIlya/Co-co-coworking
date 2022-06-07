@@ -10,7 +10,7 @@ namespace CoCoCoWorking.DAL.DTO
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }
-        public decimal? OrderCost { get; set; }
+        public int? OrderCost { get; set; }
         public string OrderStatus { get; set; }
         public string PaidDate { get; set; }
         public List<OrderUnitDto> OrderUnits { get; set; } = new List<OrderUnitDto>();

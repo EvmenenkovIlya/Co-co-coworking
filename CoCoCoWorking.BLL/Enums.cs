@@ -22,10 +22,4 @@
         OneYear
     }
 
-    public enum TypeOfOrderStatus
-    {
-        Paid,
-        Unpaid,
-        Cancelled
-    }
 }
