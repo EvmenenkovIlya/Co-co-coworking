@@ -309,7 +309,11 @@ namespace CoCoCoWorking.BLL
             additionalServiceManager.DeleteAdditionalService(serviceId);
         }
 
-        
+        public void AddRoom(RoomDto room)
+        {
+            roomManager.AddRoom(room);
+        }
+
 
 
 
