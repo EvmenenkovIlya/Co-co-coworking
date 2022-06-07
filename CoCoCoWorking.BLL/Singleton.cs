@@ -10,6 +10,12 @@ namespace CoCoCoWorking.BLL
         public List<RoomModel> Rooms { get; private set; }
         public List<RentPriceModel> RentPrices { get; private set; }
         public List<AdditionalServiceModel> AdditionalServices { get; private set; }
+        public List<WorkPlaceModel> WorkPlaces { get; private set; }
+
+        public List<OrderUnitModel> OrderUnits { get; private set; }
+
+        private ModelController _modelController = new ModelController();
+
 
         private static Singleton _instance;
         
@@ -17,12 +23,16 @@ namespace CoCoCoWorking.BLL
         private RoomManager roomManager = new RoomManager();
         private RentPriceManager rentPriceManager = new RentPriceManager();
         private AdditionalServiceManager additionalServiceManager = new AdditionalServiceManager();
+        private OrderUnitManager orderUnitManager = new OrderUnitManager();
+
         AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
 
         private Singleton()
         {            
             Rooms = mapper.Map<List<RoomModel>>(roomManager.GetAllRooms());
             CustomersToEdit = mapper.Map<List<CustomerModel>>(customerManager.GetAllCustomerWhithOrderWithOrderUnit());
+            WorkPlaces = _modelController.GetAllWorkplace();
+            OrderUnits = _modelController.GetAllOrderUnit();
         }
 
         public static Singleton GetInstance()

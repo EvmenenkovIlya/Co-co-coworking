@@ -58,54 +58,44 @@ namespace CoCoCoWorking.UI
 
         private void Combobox_PurchaseType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Combobox_ChooseWorkplace.Items.Clear();
-            Order_Calendar.BlackoutDates.Clear();
-            
-            var room = Combobox_PurchaseType.SelectedItem as RoomModel;
             if (Combobox_PurchaseType.SelectedItem is null)
             {
                 return;
             }
+            Order_Calendar.BlackoutDates.Clear();          
+            var room = Combobox_PurchaseType.SelectedItem as RoomModel;
+            var workPlaceInRoom = orderController.GetAllWorkplaceInRoom(room.Id);            
+            Combobox_ChooseWorkplace.ItemsSource = workPlaceInRoom;
 
-            var workPlaceInRoom = orderController.GetAllWorkplaceInRoom(room.Id);
-            foreach (var workplace in workPlaceInRoom)
+            switch (ComboBox_Type.SelectedIndex)
             {
-                Combobox_ChooseWorkplace.Items.Add(workplace.Number);
 
-                switch (ComboBox_Type.SelectedIndex)
-                {
-                    case 0:
+                case 0:
+                    foreach (WorkPlaceModel workplace in workPlaceInRoom)
+                    {
                         var date = orderController.GetStringBusyDate(room.Id, workplace.Id);
                         var dateConvert = orderController.ConvertIntBusyDateRoom(date);
-
                         for (int i = dateConvert.Count - 1; i > 0; i -= 3)
                         {
                             Order_Calendar.BlackoutDates.Add(new CalendarDateRange(new DateTime(dateConvert[i], dateConvert[i - 1], dateConvert[i - 2])));
                         }
                         date.Clear();
                         dateConvert.Clear();
-                        break;
+                    }
+                    break;
 
                     case 4:
 
                         break;
-                }
-
-
-
 
             }
+           
         }
         private void ComboBox_Type_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            Combobox_ChooseWorkplace.IsEnabled = false;
-            Combobox_ChooseWorkplace.Items.Clear();
-           
             
-
-            var allService = modelController.GetAllAdditionalService();
-            //var roomName = modelController.GetAllRoom();
+            Combobox_ChooseWorkplace.IsEnabled = false;
 
             switch (ComboBox_Type.SelectedIndex)
             {
@@ -130,10 +120,12 @@ namespace CoCoCoWorking.UI
                     break;
 
                 case 5:
-                    foreach (var service in allService)
-                    {
-                        Combobox_PurchaseType.Items.Add(service.Name);
-                    }
+
+                    Combobox_PurchaseType.ItemsSource = _instance.AdditionalServices;
+                    //foreach (var service in allService)
+                    //{
+                    //    Combobox_PurchaseType.Items.Add(service.Name);
+                    //}
                     break;
             }
         }
@@ -187,25 +179,23 @@ namespace CoCoCoWorking.UI
         }
 
         private void ButtonSearchByDateForOrder_Click(object sender, RoutedEventArgs e)
-        {            
+        {
+            
             string startDate = DatePicker_Order_StartDate.Text;
             string endDate = DatePicker_Order_EndDate.Text;
-            var freeRoomsId = orderController.SearchFreeRoomForDate(startDate, endDate);
-            var freeRooms = _instance.Rooms.Where(r => freeRoomsId.Contains(r.Id));
-            var freeWorkplace = orderController.SearchFreeWorkplaceForDate(startDate, endDate);
             
             switch  (ComboBox_Type.SelectedIndex)
             {
                 case 0:
+                    var freeRoomsId = orderController.SearchFreeForDate(startDate, endDate);
+                    var freeRooms = _instance.Rooms.Where(r => freeRoomsId.Contains(r.Id));
                     Combobox_PurchaseType.ItemsSource = freeRooms;                   
                     break;
                 case 4:
-                    foreach (var workplace in freeWorkplace)
-                    {
-                        Combobox_PurchaseType.Items.Add(workplace);
-                    }
-                    break;
-               
+                    var freeRoomsIdForWorkplace = orderController.SearchFreeForDate(startDate, endDate, true);
+                    var freeRoomsForWorkplace = _instance.Rooms.Where(r => freeRoomsIdForWorkplace.Contains(r.Id));
+                    Combobox_PurchaseType.ItemsSource = freeRoomsForWorkplace;
+                    break;              
             }
         }
 
@@ -214,6 +204,7 @@ namespace CoCoCoWorking.UI
             TextBoxNumberForSearch.Clear();
             DataGridCustomers.ItemsSource = modelController.GetCustomerWithTheMatchedNumberIsReturned(TextBoxNumberForSearch.Text, _instance.CustomersToEdit);
         }      
+
         private void Combobox_ChooseWorkplace_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (Combobox_ChooseWorkplace.SelectedItem is null)
@@ -222,34 +213,26 @@ namespace CoCoCoWorking.UI
             }
 
             Order_Calendar.BlackoutDates.Clear();
-            var roomName = Combobox_PurchaseType.SelectedItem as string;
-            var rooms = modelController.GetAllRoom();
+            var room = Combobox_PurchaseType.SelectedItem as RoomModel;
+            var workPlaceInRoom = orderController.GetAllWorkplaceInRoom(room.Id);
 
-            foreach (var room in rooms)
+            foreach (WorkPlaceModel workplace in workPlaceInRoom)
             {
-                if (room.Name == roomName)
+                if (workplace.Number == Combobox_ChooseWorkplace.SelectedIndex+1)
                 {
-                    var workPlaceInRoom = orderController.GetAllWorkplaceInRoom(room.Id);
+                    var date = orderController.GetStringBusyDate(room.Id, workplace.Id);
+                    var dateConvert = orderController.ConvertIntBusyDateRoom(date);
 
-                    foreach (var workplace in workPlaceInRoom)
+                    for (int i = dateConvert.Count - 1; i > 0; i -= 3)
                     {
-                        if (workplace.Number == (int)Combobox_ChooseWorkplace.SelectedItem)
-                        {
-
-                            var date = orderController.GetStringBusyDate(room.Id, workplace.Id);
-
-                            var dateConvert = orderController.ConvertIntBusyDateRoom(date);
-
-                            for (int i = dateConvert.Count - 1; i > 0; i -= 3)
-                            {
-                                Order_Calendar.BlackoutDates.Add(new CalendarDateRange(new DateTime(dateConvert[i], dateConvert[i - 1], dateConvert[i - 2])));
-                            }
-                            date.Clear();
-                            dateConvert.Clear();
-                        }
+                        Order_Calendar.BlackoutDates.Add(new CalendarDateRange(new DateTime(dateConvert[i], dateConvert[i - 1], dateConvert[i - 2])));
                     }
+                    date.Clear();
+                    dateConvert.Clear();
                 }
             }
+                
+            
         }
 
         // to test the procedure and output information to DataGrids
@@ -302,7 +285,8 @@ namespace CoCoCoWorking.UI
         }
         private void ContextMenuOrderUnit_ClickDelete(object sender, RoutedEventArgs e)
         {
-            if(DataGrid_UnitOrder.SelectedIndex == null)
+          
+            if (DataGrid_UnitOrder.SelectedIndex == null)
             {
                 return;
             }

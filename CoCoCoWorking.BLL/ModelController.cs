@@ -149,10 +149,9 @@ namespace CoCoCoWorking.BLL
         }
 
         public List<WorkPlaceModel> GetAllWorkplace()
-        {
-            List<WorkPlaceModel> list = new List<WorkPlaceModel>();
+        {           
             List<WorkPlaceDto> listDto = workplaceManager.GetAllWorkplaces();
-            list = mapper.Map<List<WorkPlaceModel>>(listDto);
+            List<WorkPlaceModel> list = mapper.Map<List<WorkPlaceModel>>(listDto);
             return list;
         }
 
