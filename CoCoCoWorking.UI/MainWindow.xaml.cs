@@ -20,7 +20,7 @@ namespace CoCoCoWorking.UI
         ModelController modelController = new ModelController();
         Singleton _instance = Singleton.GetInstance();
 
-        List<AllUnitOrdersFromSpecificOrderModel> unitOrdersList = new List<AllUnitOrdersFromSpecificOrderModel>();
+        List<OrderUnitModel> unitOrdersList = new List<OrderUnitModel>();
 
 
         TabOrderController orderController = new TabOrderController();
@@ -104,6 +104,7 @@ namespace CoCoCoWorking.UI
             Combobox_ChooseWorkplace.IsEnabled = false;
             Combobox_ChooseWorkplace.Items.Clear();
             Combobox_PurchaseType.Items.Clear();
+            
 
             var allService = modelController.GetAllAdditionalService();
             var roomName = modelController.GetAllRoom();
@@ -111,10 +112,9 @@ namespace CoCoCoWorking.UI
             switch (ComboBox_Type.SelectedIndex)
             {
                 case 0:
-                    for (int i = 0; i < roomName.Count; i++)
-                    {
-                        Combobox_PurchaseType.Items.Add(roomName[i].Name);
-                    }
+
+                     Combobox_PurchaseType.ItemsSource = _instance.Rooms;
+                    
                     break;
 
                 case 1:
@@ -292,19 +292,21 @@ namespace CoCoCoWorking.UI
 
         private void ButtonAddToOrder_Click(object sender, RoutedEventArgs e)
         {
-            AllUnitOrdersFromSpecificOrderModel unitOrders = new AllUnitOrdersFromSpecificOrderModel();
-            unitOrders.StartDate = DatePicker_Order_StartDate.Text;
-            unitOrders.EndDate=DatePicker_Order_EndDate.Text;
-            unitOrders.EndDate = DatePicker_Order_EndDate.Text;
-            unitOrders.Type = ComboBox_Type.Text;
-            unitOrders.Name = Combobox_PurchaseType.Text;
-            if(Combobox_ChooseWorkplace.IsEnabled is true)
-            {
-                unitOrders.Number =int.Parse( Combobox_ChooseWorkplace.Text);
-            }
-            unitOrdersList.Add(unitOrders);
-            DataGrid_UnitOrder.ItemsSource= unitOrdersList;
-            DataGrid_UnitOrder.Items.Refresh();
+            //OrderUnitModel orderUnit = new OrderUnitModel();
+            //orderUnit.StartDate = DatePicker_Order_StartDate.Text;
+            //orderUnit.EndDate=DatePicker_Order_EndDate.Text;
+            //orderUnit.EndDate = DatePicker_Order_EndDate.Text;
+            //orderUnit.Type = ComboBox_Type.Text;
+            //orderUnit.Name = Combobox_PurchaseType.Text;
+            //if(Combobox_ChooseWorkplace.IsEnabled is true)
+            //{
+            //    orderUnit.Number =int.Parse( Combobox_ChooseWorkplace.Text);
+            //}
+            //unitOrdersList.Add(orderUnit);
+            //DataGrid_UnitOrder.ItemsSource= unitOrdersList;
+            //DataGrid_UnitOrder.Items.Refresh();
+
+            
 
         }
         private void ContextMenuOrderUnit_ClickDelete(object sender, RoutedEventArgs e)
@@ -321,12 +323,15 @@ namespace CoCoCoWorking.UI
         private void ButtonCreateOrder_Click(object sender, RoutedEventArgs e)
         {
             OrderModel order = new OrderModel();
-            order.Id = 2009;
-            order.OrderCost = 1;
-            order.OrderStatus = "done";
-            order.PaidDate = DatePicker_Order_StartDate.Text;
-            order.CustomerId = 1;
-            modelController.AddOrderInBase(order); //----------??????? order unit model list ?????????
+
+            //order.OrderCost = 1;
+            //order.OrderStatus = "done";
+            //order.PaidDate = DatePicker_Order_StartDate.Text;
+            //order.CustomerId = 1;
+
+            List<OrderUnitModel> orderUnit = new List<OrderUnitModel>(); 
+
+            modelController.AddOrderInBase(1,1,"done", DatePicker_Order_StartDate.Text); //----------??????? order unit model list ?????????
         }
     }
 }
