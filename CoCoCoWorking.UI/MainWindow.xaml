@@ -81,7 +81,7 @@
             </TabItem>
             <TabItem x:Name="TabItemAdministration" Header="Administration">
                 <Grid Background="Bisque">
-                    <DataGrid x:Name="DataGridSheduleRooms" HorizontalAlignment="Left" Height="378" Margin="26,153,0,0" VerticalAlignment="Top" Width="401" d:ItemsSource="{d:SampleData ItemCount=5}" AutoGenerateColumns="False">
+                    <DataGrid x:Name="DataGridSheduleRooms" HorizontalAlignment="Left" Height="122" Margin="597,158,0,0" VerticalAlignment="Top" Width="370" d:ItemsSource="{d:SampleData ItemCount=5}" AutoGenerateColumns="False">
                         <DataGrid.CellStyle>
                             <Style/>
                         </DataGrid.CellStyle>
@@ -95,7 +95,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
 
-                    <ComboBox x:Name="ComboBoxTypeAdministration" HorizontalAlignment="Left" Height="35" Margin="26,33,0,0" VerticalAlignment="Top" Width="401">
+                    <ComboBox x:Name="ComboBoxTypeAdministration" HorizontalAlignment="Left" Height="35" Margin="26,33,0,0" VerticalAlignment="Top" Width="246">
                         <ComboBoxItem Content="Room"/>
                         <ComboBoxItem Content="Additional Service"/>
                         <ComboBoxItem Content="Work Place"/>
@@ -103,12 +103,29 @@
                         <ComboBoxItem Content="Conference Hall"/>
                         <ComboBoxItem Content="Work Place Fixed"/>
                     </ComboBox>
-                    <ComboBox HorizontalAlignment="Left" Height="35" Margin="26,87,0,0" VerticalAlignment="Top" Width="401">
+                    <ComboBox x:Name="ComboBoxNameOfRoom" HorizontalAlignment="Left" Height="35" Margin="297,33,0,0" VerticalAlignment="Top" Width="246">
                         <ComboBoxItem Content="Classic Room"/>
                         <ComboBoxItem Content="Second Classic Room"/>
                         <ComboBoxItem Content="Business Room"/>
                         <ComboBoxItem Content="VIP Room"/>
                     </ComboBox>
+                    <Button x:Name="ButtonAddNew" Content="Add New" HorizontalAlignment="Left" Height="35" Margin="597,33,0,0" VerticalAlignment="Top" Width="165"/>
+                    <Label x:Name="LabelNameAdministration" Content="Name" HorizontalAlignment="Left" Height="24" Margin="26,86,0,0" VerticalAlignment="Top" Width="46"/>
+                    <TextBox x:Name="TextBoxName" HorizontalAlignment="Left" Height="26" Margin="26,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="124" Text="Enter Name"/>
+                    <Label x:Name="LabelCountAdministration" Content="Label" HorizontalAlignment="Left" Height="24" Margin="26,146,0,0" VerticalAlignment="Top" Width="56"/>
+                    <TextBox x:Name="TextBoxCountAdministration" HorizontalAlignment="Left" Height="26" Margin="27,175,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="123"/>
+                    <ComboBox x:Name="ComboBoxTypePeriod" HorizontalAlignment="Left" Height="37" Margin="26,378,0,0" VerticalAlignment="Top" Width="262">
+                        <ComboBoxItem Content="Regular"/>
+                        <ComboBoxItem Content="Resident"/>
+                        <ComboBoxItem Content="Fixed"/>
+                    </ComboBox>
+                    <Button x:Name="ButtonAddPriceAdministration" Content="Add Price" HorizontalAlignment="Left" Height="37" Margin="289,231,0,0" VerticalAlignment="Top" Width="154"/>
+                    <TextBox x:Name="TextBoxRegularAdministration" HorizontalAlignment="Left" Height="42" Margin="27,441,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="76"/>
+                    <TextBox x:Name="TextBoxResidentAdministration" HorizontalAlignment="Left" Height="42" Margin="117,441,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="76"/>
+                    <TextBox x:Name="TextBoxFixedAdministration" HorizontalAlignment="Left" Height="42" Margin="212,441,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="76"/>
+                    <Button x:Name="ButtonAddAdministration" Content="Add" HorizontalAlignment="Left" Height="46" Margin="212,508,0,0" VerticalAlignment="Top" Width="76"/>
+                    <Button x:Name="ButtonSave" Content="Save" HorizontalAlignment="Left" Height="76" Margin="597,554,0,0" VerticalAlignment="Top" Width="158"/>
+                    <Button x:Name="ButtonDelete" Content="Delete" HorizontalAlignment="Left" Height="76" Margin="821,554,0,0" VerticalAlignment="Top" Width="158"/>
 
                 </Grid>
             </TabItem>
