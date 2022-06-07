@@ -17,6 +17,7 @@ namespace CoCoCoWorking.BLL
         private OrderUnitManager orderUnitManager = new OrderUnitManager();
         private WorkplaceManager workplaceManager = new WorkplaceManager();
         private AdditionalServiceManager additionalServiceManager = new AdditionalServiceManager();
+        private OrderManager  orderManager = new OrderManager();
         private AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
         private Singleton _instance = Singleton.GetInstance();
 
@@ -281,7 +282,21 @@ namespace CoCoCoWorking.BLL
 
         //}
 
+        public void AddOrderInBase(OrderModel order)
+        {
+            OrderManager orderManager = new OrderManager();
+            OrderDto orderDto = mapper.Map<OrderDto>(order);
+            orderManager.AddOrder(orderDto); //----- ??? 7
+        }
 
+        public List<OrderModel> GetOrderByID(int id)
+        {
+            List<OrderModel> order = new List<OrderModel>();
+            List<OrderDto> listDto = orderManager.OrderGetByCustomerId(id);
+            order = mapper.Map<List<OrderModel>>(listDto);
+            return order;
+
+        }
 
     }
 }

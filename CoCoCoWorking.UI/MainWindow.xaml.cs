@@ -6,6 +6,7 @@ using CoCoCoWorking.DAL;
 using CoCoCoWorking.BLL;
 using CoCoCoWorking.BLL.Models;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace CoCoCoWorking.UI
 {
@@ -20,8 +21,12 @@ namespace CoCoCoWorking.UI
         ModelController modelController = new ModelController();
         Singleton _instance = Singleton.GetInstance();
 
+        List<AllUnitOrdersFromSpecificOrderModel> unitOrdersList = new List<AllUnitOrdersFromSpecificOrderModel>();
+
+
         TabOrderController orderController = new TabOrderController();
         private ICollectionView items;
+        
 
         public MainWindow()
         {
@@ -34,7 +39,12 @@ namespace CoCoCoWorking.UI
 
         private void ButtonCreateNewOrder_Click(object sender, RoutedEventArgs e)
         {
-            MainTabControl.SelectedItem = TabItem_Orders;            
+            MainTabControl.SelectedItem = TabItem_Orders;
+
+            var customerSelected = DataGridCustomers.SelectedItems;
+            var customer = customerSelected[0] as CustomerModel;
+            DataGrid_Order.ItemsSource=modelController.GetOrderByCustomerID(customer.Id);
+            DataGrid_Order.Items.Refresh();
         }
 
         private void ButtonCreateNewCustomer_Click(object sender, RoutedEventArgs e)
@@ -42,6 +52,7 @@ namespace CoCoCoWorking.UI
             modelController.AddCustomerToBase(TextBoxFirstName.Text, TextBoxLastName.Text, TextBoxNumber.Text, TextBoxEmail.Text);
             _instance.UpdateInstance();
             DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
+           
         }
        
 
@@ -278,6 +289,45 @@ namespace CoCoCoWorking.UI
         {
             _instance.UpdateInstance();
             DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
+        }
+
+        private void ButtonAddToOrder_Click(object sender, RoutedEventArgs e)
+        {
+            AllUnitOrdersFromSpecificOrderModel unitOrders = new AllUnitOrdersFromSpecificOrderModel();
+            unitOrders.StartDate = DatePicker_Order_StartDate.Text;
+            unitOrders.EndDate=DatePicker_Order_EndDate.Text;
+            unitOrders.EndDate = DatePicker_Order_EndDate.Text;
+            unitOrders.Type = ComboBox_Type.Text;
+            unitOrders.Name = Combobox_PurchaseType.Text;
+            if(Combobox_ChooseWorkplace.IsEnabled is true)
+            {
+                unitOrders.Number =int.Parse( Combobox_ChooseWorkplace.Text);
+            }
+            unitOrdersList.Add(unitOrders);
+            DataGrid_UnitOrder.ItemsSource= unitOrdersList;
+            DataGrid_UnitOrder.Items.Refresh();
+
+        }
+        private void ContextMenuOrderUnit_ClickDelete(object sender, RoutedEventArgs e)
+        {
+            if(DataGrid_UnitOrder.SelectedIndex == null)
+            {
+                return;
+            }
+            unitOrdersList.RemoveAt(DataGrid_UnitOrder.SelectedIndex);
+            DataGrid_UnitOrder.Items.Refresh();
+
+        }
+
+        private void ButtonCreateOrder_Click(object sender, RoutedEventArgs e)
+        {
+            OrderModel order = new OrderModel();
+            order.Id = 2009;
+            order.OrderCost = 1;
+            order.OrderStatus = "done";
+            order.PaidDate = DatePicker_Order_StartDate.Text;
+            order.CustomerId = 1;
+            modelController.AddOrderInBase(order); //----------??????? order unit model list ?????????
         }
     }
 }
