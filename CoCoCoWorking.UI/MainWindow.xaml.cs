@@ -42,7 +42,7 @@ namespace CoCoCoWorking.UI
 
             var customerSelected = DataGridCustomers.SelectedItems;
             var customer = customerSelected[0] as CustomerModel;
-            DataGrid_Order.ItemsSource=modelController.GetOrderByCustomerID(customer.Id);
+            DataGrid_Order.ItemsSource = modelController.GetOrderByID(customer.Id);
             DataGrid_Order.Items.Refresh();
         }
 
