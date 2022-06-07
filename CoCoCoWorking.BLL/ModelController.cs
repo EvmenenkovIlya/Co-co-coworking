@@ -16,6 +16,7 @@ namespace CoCoCoWorking.BLL
         private RoomManager roomManager = new RoomManager();
         private OrderUnitManager orderUnitManager = new OrderUnitManager();
         private WorkplaceManager workplaceManager = new WorkplaceManager();
+        private CustomerManager customerManager = new CustomerManager();
         private AdditionalServiceManager additionalServiceManager = new AdditionalServiceManager();
         private AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
         private Singleton _instance = Singleton.GetInstance();
@@ -260,14 +261,13 @@ namespace CoCoCoWorking.BLL
         }
         public void AddCustomerToBase(string firstName, string lastName, string phone, string email)
         {
-            CustomerManager customerManager = new CustomerManager();
             CustomerModel customer = new CustomerModel() {FirstName = firstName, LastName = lastName, PhoneNumber = phone, Email = email};
             CustomersWithOrdersDto customerDto = mapper.Map<CustomersWithOrdersDto>(customer);
             customerManager.AddCustomer(customerDto);
         }
         public void UpdateCustomerInBase(CustomerModel customer)
         {
-            CustomerManager customerManager = new CustomerManager();
+            
             CustomersWithOrdersDto customerDto = mapper.Map<CustomersWithOrdersDto>(customer);
             customerManager.UpdateCustomer(customerDto);
         }
@@ -280,6 +280,37 @@ namespace CoCoCoWorking.BLL
         //        return d;
 
         //}
+        public void AddAditionalService(AdditionalServiceModel service)
+        {
+            AdditionalServiceDto serviceDto = mapper.Map<AdditionalServiceDto>(service);
+            additionalServiceManager.AddAdditionalService(serviceDto);
+        }
+
+
+        public AdditionalServiceModel GetAditionalServiceById(int serviceId)
+        {
+            AdditionalServiceModel additionalServiceModel = new AdditionalServiceModel();
+            AdditionalServiceDto additionalServiceDto = additionalServiceManager.GetAdditionalServiceByID(serviceId);
+            additionalServiceModel = mapper.Map<AdditionalServiceModel>(additionalServiceDto);
+            return additionalServiceModel;
+        }
+        
+        public void UpdateAdditionalService(AdditionalServiceModel additionalService) //на вход AdditionalServiceModel
+        {
+            AdditionalServiceDto additionalServiceDto = mapper.Map<AdditionalServiceDto>(additionalService);
+            additionalServiceManager.UpdateAdditionalService(additionalServiceDto);
+        }
+
+        public void DeleteAdditionalService(int serviceId)
+        {
+            additionalServiceManager.DeleteAdditionalService(serviceId);
+        }
+
+        public void AddRoom(RoomDto room)
+        {
+            roomManager.AddRoom(room);
+        }
+
 
 
 
