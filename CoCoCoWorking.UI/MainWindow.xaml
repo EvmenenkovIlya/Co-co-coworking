@@ -62,7 +62,7 @@
                             <DataGridTextColumn Header="PaidDate" Binding="{Binding Path=PaidDate}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="ButtonCreateOrder" Content="Create order" HorizontalAlignment="Left" Height="48" Margin="790,677,0,0" VerticalAlignment="Top" Width="145" />
+                    <Button x:Name="ButtonCreateOrder" Content="Create order" HorizontalAlignment="Left" Height="48" Margin="790,677,0,0" VerticalAlignment="Top" Width="145" Click="ButtonCreateOrder_Click" />
                     <ComboBox x:Name="Combobox_ChooseWorkplace" HorizontalAlignment="Left" Height="35" Margin="463,98,0,0" VerticalAlignment="Top" Width="477" IsEnabled="False" SelectionChanged="Combobox_ChooseWorkplace_SelectionChanged"  />
                     <ComboBox x:Name="ComboBox_Type" HorizontalAlignment="Left" Height="33" Margin="45,32,0,0" VerticalAlignment="Top" Width="173" SelectionChanged="ComboBox_Type_SelectionChanged" >
                         <ComboBoxItem Content="Room"/>

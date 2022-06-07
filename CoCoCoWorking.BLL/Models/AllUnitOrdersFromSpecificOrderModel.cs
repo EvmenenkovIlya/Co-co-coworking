@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoCoCoWorking.BLL.Models
 {
-    public class GetAllUnitOrdersFromSpecificOrderModel
+    public class AllUnitOrdersFromSpecificOrderModel
     {
         public int Id { get; set; }
         public string StartDate { get; set; }
