@@ -280,6 +280,36 @@ namespace CoCoCoWorking.BLL
         //        return d;
 
         //}
+        public void AddAditionalService(AdditionalServiceDto service)
+        {
+            additionalServiceManager.AddAdditionalService(service);
+        }
+
+        public List<AdditionalServiceDto> GetAllAditionalServices()
+        {
+            return additionalServiceManager.GetAllAdditionalServices();
+        }
+
+        public AdditionalServiceDto GetAditionalServiceById(int serviceId)
+        {
+            return additionalServiceManager.GetAdditionalServiceByID(serviceId);
+        }
+        
+        public void UpdateAdditionalService(AdditionalServiceDto additionalService)
+        {
+            if(!additionalService.Id.HasValue)
+            {
+                 throw new ArgumentNullException("Additional service Id cannot be null");
+            }
+            additionalServiceManager.UpdateAdditionalService(additionalService);
+        }
+
+        public void DeleteAdditionalService(int serviceId)
+        {
+            additionalServiceManager.DeleteAdditionalService(serviceId);
+        }
+
+        
 
 
 

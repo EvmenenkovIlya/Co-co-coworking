@@ -92,7 +92,7 @@
             </TabItem>
             <TabItem x:Name="TabItemAdministration" Header="Administration">
                 <Grid Background="Bisque">
-                    <DataGrid x:Name="DataGridRentPrices" HorizontalAlignment="Left" Height="378" Margin="26,153,0,0" VerticalAlignment="Top" Width="958" d:ItemsSource="{d:SampleData ItemCount=5}" AutoGenerateColumns="False">
+                    <DataGrid x:Name="DataGridRentPrices" HorizontalAlignment="Left" Height="240" Margin="472,140,0,0" VerticalAlignment="Top" Width="507" d:ItemsSource="{d:SampleData ItemCount=5}" AutoGenerateColumns="False">
                         <DataGrid.CellStyle>
                             <Style/>
                         </DataGrid.CellStyle>
