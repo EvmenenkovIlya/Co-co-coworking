@@ -140,6 +140,29 @@ namespace CoCoCoWorking.BLL
             for (var day = start.Date; day.Date <= end.Date; day = day.AddDays(1))
                 yield return day;
         }
+        public void FillId(OrderUnitModel orderUnit, int indexType, RoomModel room = null, AdditionalServiceModel additionalService = null, WorkPlaceModel workplace = null)
+        {
+            if (indexType != 3)
+            {
+                orderUnit.WorkPlaceInRoomId = room.Id;
+                return;
+            }
+            if (room != null)
+            {
+                orderUnit.RoomId = room.Id;
+                return;
+            }
+            if (additionalService != null)
+            {
+                orderUnit.AdditionalServiceId = additionalService.Id;
+                return;
+            }
+            if (workplace != null)
+            {
+                orderUnit.WorkPlaceId= workplace.Id;
+                return;
+            }
+        }
     }
 }
 
