@@ -10,7 +10,7 @@ using CoCoCoWorking.BLL.Models;
 
 namespace CoCoCoWorking.BLL
 {
-    public class ModelController
+    public class ModelController:IModelController
     {
         private FinanceReportManager financeReportManager = new FinanceReportManager();
         private RoomManager roomManager = new RoomManager();
