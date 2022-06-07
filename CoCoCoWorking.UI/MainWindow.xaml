@@ -43,28 +43,36 @@
                             <DataGridTextColumn Header="EndDate"  Width="40*" IsReadOnly="True" Binding="{Binding Path=EndDate}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-
                     <Button Name="ButtonCreateNewOrder" Grid.Column="1" Grid.Row="1" Content="Create New Order" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="200" Height="30" Margin="0,0,10,30" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonCreateNewOrder_Click"/>
                     <Button x:Name="ButtonReset_Customer" Content="reset"  Grid.Column="3" Width="76" Height="30" HorizontalAlignment="Right" VerticalAlignment= "Top" FontWeight="Bold" Margin="0,50,28,0" FontFamily="Arial Black" FontSize="14" Click="ButtonReset_Customer_Click"/>
                     <Button Name="ButtonRefreshBase" Grid.Column="1" Grid.Row="1" Content="Update customers" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="200" Height="30" Margin="10,0,0,30" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonRefreshBase_Click"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="TabItem_Orders" Header="Orders" Height="20" VerticalAlignment="Top">
+            <TabItem x:Name="TabItem_Orders" Header="Orders" Height="20" VerticalAlignment="Bottom">
                 <Grid Background="Bisque">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <ComboBox x:Name="Combobox_PurchaseType" HorizontalAlignment="Left" Height="33" Margin="463,38,0,0" VerticalAlignment="Top" Width="477" SelectionChanged="Combobox_PurchaseType_SelectionChanged" />
-                    <DataGrid x:Name="DataGrid_Order" HorizontalAlignment="Left" Height="446" Margin="45,226,0,0" VerticalAlignment="Top" Width="413" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="DataGrid_Order_SelectionChanged">
+                    <TextBlock Name="TextBlockChoosenCustomer" Height="30" Width="200" VerticalAlignment="Top" Margin="0, 15, 200, 0">
+                        <TextBlock.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black"/>
+                                <GradientStop Color="White" Offset="0"/>
+                            </LinearGradientBrush>
+                        </TextBlock.Background>
+                    </TextBlock>
+                    <Button Name="ButtonResetCustomer" Content="Reset Customer" Height="30" Width="150" VerticalAlignment="Top" Margin="200, 15, 0, 0" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonResetCustomer_Click"/>
+                    <ComboBox x:Name="Combobox_PurchaseType" HorizontalAlignment="Left" Height="33" Margin="463,60,0,0" VerticalAlignment="Top" Width="477" SelectionChanged="Combobox_PurchaseType_SelectionChanged" />
+                    <DataGrid x:Name="DataGrid_Order" HorizontalAlignment="Left" Height="446" Margin="45,250,0,0" VerticalAlignment="Top" Width="413" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="DataGrid_Order_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="OrderCost" Binding="{Binding Path=OrderCost}"/>
                             <DataGridTextColumn Header="OrderStatus" Binding="{Binding Path=OrderStatus}"/>
                             <DataGridTextColumn Header="PaidDate" Binding="{Binding Path=PaidDate}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="ButtonCreateOrder" Content="Create order" HorizontalAlignment="Left" Height="48" Margin="790,677,0,0" VerticalAlignment="Top" Width="145" Click="ButtonCreateOrder_Click" />
-                    <ComboBox x:Name="Combobox_ChooseWorkplace" HorizontalAlignment="Left" Height="35" Margin="463,98,0,0" VerticalAlignment="Top" Width="477" IsEnabled="False" SelectionChanged="Combobox_ChooseWorkplace_SelectionChanged"  />
-                    <ComboBox x:Name="ComboBox_Type" HorizontalAlignment="Left" Height="33" Margin="45,32,0,0" VerticalAlignment="Top" Width="173" SelectionChanged="ComboBox_Type_SelectionChanged" >
+                    <Button x:Name="ButtonCreateOrder" Content="Create order" HorizontalAlignment="Left" Height="48" Margin="800,700,0,0" VerticalAlignment="Top" Width="145"  FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonCreateOrder_Click" />
+                    <ComboBox x:Name="Combobox_ChooseWorkplace" HorizontalAlignment="Left" Height="35" Margin="463,125,0,0" VerticalAlignment="Top" Width="477" IsEnabled="False" SelectionChanged="Combobox_ChooseWorkplace_SelectionChanged"  />
+                    <ComboBox x:Name="ComboBox_Type" HorizontalAlignment="Left" Height="33" Margin="45,60,0,0" VerticalAlignment="Top" Width="173" SelectionChanged="ComboBox_Type_SelectionChanged" >
                         <ComboBoxItem Content="Room"/>
                         <ComboBoxItem Content="Сonference hall"/>
                         <ComboBoxItem Content="Meeting room"/>
@@ -72,7 +80,7 @@
                         <ComboBoxItem Content="Worckplace fixed"/>
                         <ComboBoxItem Content="Service"/>
                     </ComboBox>
-                    <DataGrid x:Name="DataGrid_UnitOrder" HorizontalAlignment="Left" Height="446" Margin="535,226,0,0" VerticalAlignment="Top" Width="413" Grid.ColumnSpan="2" AutoGenerateColumns="False" >
+                    <DataGrid x:Name="DataGrid_UnitOrder" HorizontalAlignment="Left" Height="446" Margin="530,250,0,0" VerticalAlignment="Top" Width="415" Grid.ColumnSpan="2" AutoGenerateColumns="False" >
                         <DataGrid.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="Удалить" Click="ContextMenuOrderUnit_ClickDelete"/>
@@ -86,14 +94,14 @@
                             <DataGridTextColumn Header="Number" Binding="{Binding Number}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="ButtonAddToOrder" Content="Add to order" HorizontalAlignment="Left" Height="38" Margin="463,164,0,0" VerticalAlignment="Top" Width="114" Click="ButtonAddToOrder_Click" />
-                    <Calendar x:Name="Order_Calendar" HorizontalAlignment="Left" Height="164" Margin="216,32,0,0" VerticalAlignment="Top" Width="242" SelectionMode="MultipleRange" />
-                    <DatePicker x:Name="DatePicker_Order_StartDate" HorizontalAlignment="Left" Height="27" Margin="45,87,0,0" VerticalAlignment="Top" Width="173"/>
-                    <DatePicker x:Name="DatePicker_Order_EndDate" HorizontalAlignment="Left" Height="26" Margin="45,133,0,0" VerticalAlignment="Top" Width="173"/>
-                    <Button x:Name="ButtonSearchByDateForOrder" Content="Search by date" HorizontalAlignment="Left" Height="38" Margin="45,164,0,0" VerticalAlignment="Top" Width="142" Click="ButtonSearchByDateForOrder_Click"/>
-                    <Button x:Name="ButtonReset" Content="Reset" HorizontalAlignment="Left" Height="38" Margin="834,164,0,0" VerticalAlignment="Top" Width="101" />
-
-
+                    <Button x:Name="ButtonAddToOrder" Content="Add to order" HorizontalAlignment="Left" Height="38" Margin="463,200,0,0" VerticalAlignment="Top" Width="114"  FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonAddToOrder_Click" />
+                    <Calendar x:Name="Order_Calendar" HorizontalAlignment="Left" Height="178" Margin="218,60,0,0" VerticalAlignment="Top" Width="240" SelectionMode="MultipleRange" />
+                    <DatePicker x:Name="DatePicker_Order_StartDate" HorizontalAlignment="Left" Height="27" Margin="45,120,0,0" VerticalAlignment="Top" Width="173"/>
+                    <DatePicker x:Name="DatePicker_Order_EndDate" HorizontalAlignment="Left" Height="26" Margin="45,160
+                                ,0,0" VerticalAlignment="Top" Width="173"/>
+                    <Button x:Name="ButtonSearchByDateForOrder" Content="Search by date" HorizontalAlignment="Left" Height="38" Margin="45,200,0,0" VerticalAlignment="Top" Width="142"  FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonSearchByDateForOrder_Click"/>
+                    <Button x:Name="ButtonReset" Content="Reset" HorizontalAlignment="Left" Height="38" Margin="834,200,0,0" VerticalAlignment="Top" Width="110"  FontWeight="Bold" FontFamily="Arial Black" FontSize="14"/>
+                    <ComboBox Name="ComboBoxOrderStatus" HorizontalAlignment="Left" Margin="530,716,0,0" VerticalAlignment="Top" Width="167" Height="30"></ComboBox>
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabItemAdministration" Header="Administration">

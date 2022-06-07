@@ -23,6 +23,7 @@ namespace CoCoCoWorking.UI
         Singleton _instance = Singleton.GetInstance();
 
         List<OrderUnitModel> unitOrdersList = new List<OrderUnitModel>();
+        List<OrderUnitModel> unitOrdersToOrder = new List<OrderUnitModel>();
 
 
         TabOrderController orderController = new TabOrderController();
@@ -36,24 +37,27 @@ namespace CoCoCoWorking.UI
 
             DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
             DataGridRentPrices.ItemsSource = _instance.RentPrices;
+            ComboBoxOrderStatus.ItemsSource = new List<string>() { "Paid", "Unpaid", "Cancelled" }; 
         }
 
         private void ButtonCreateNewOrder_Click(object sender, RoutedEventArgs e)
-        {
-            MainTabControl.SelectedItem = TabItem_Orders;
+        {           
+            if (DataGridCustomers.SelectedItem != null)
+            {
+                MainTabControl.SelectedItem = TabItem_Orders;
+                CustomerModel customerSelected = DataGridCustomers.SelectedItem as CustomerModel;         
+                DataGrid_Order.ItemsSource = modelController.GetOrderByCustomerID(customerSelected.Id);
+                DataGrid_Order.Items.Refresh();
+                TextBlockChoosenCustomer.Text = customerSelected.ToString();
+            }
 
-            var customerSelected = DataGridCustomers.SelectedItems;
-            var customer = customerSelected[0] as CustomerModel;
-            DataGrid_Order.ItemsSource = modelController.GetOrderByCustomerID(customer.Id);
-            DataGrid_Order.Items.Refresh();
         }
 
         private void ButtonCreateNewCustomer_Click(object sender, RoutedEventArgs e)
         {
             modelController.AddCustomerToBase(TextBoxFirstName.Text, TextBoxLastName.Text, TextBoxNumber.Text, TextBoxEmail.Text);
             _instance.UpdateInstance();
-            DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
-           
+            DataGridCustomers.ItemsSource = _instance.CustomersToEdit;          
         }
        
 
@@ -284,22 +288,17 @@ namespace CoCoCoWorking.UI
 
         private void ButtonAddToOrder_Click(object sender, RoutedEventArgs e)
         {
-            //OrderUnitModel orderUnit = new OrderUnitModel();
-            //orderUnit.StartDate = DatePicker_Order_StartDate.Text;
-            //orderUnit.EndDate=DatePicker_Order_EndDate.Text;
-            //orderUnit.EndDate = DatePicker_Order_EndDate.Text;
-            //orderUnit.Type = ComboBox_Type.Text;
-            //orderUnit.Name = Combobox_PurchaseType.Text;
-            //if(Combobox_ChooseWorkplace.IsEnabled is true)
-            //{
-            //    orderUnit.Number =int.Parse( Combobox_ChooseWorkplace.Text);
-            //}
-            //unitOrdersList.Add(orderUnit);
-            //DataGrid_UnitOrder.ItemsSource= unitOrdersList;
-            //DataGrid_UnitOrder.Items.Refresh();
+            OrderUnitModel orderUnit = new OrderUnitModel() 
+            {
+                StartDate = DatePicker_Order_StartDate.Text,
+                EndDate = DatePicker_Order_EndDate.Text
+            };
+            orderController.FillId(orderUnit, ComboBox_Type.SelectedIndex, Combobox_PurchaseType.SelectedItem as RoomModel, Combobox_PurchaseType.SelectedItem as AdditionalServiceModel, Combobox_ChooseWorkplace.SelectedItem as WorkPlaceModel);
+            orderUnit.OrderUnitCost = 10; // Method which get customer and choose rentprice by data
 
-            
-
+            unitOrdersToOrder.Add(orderUnit);
+            DataGrid_UnitOrder.ItemsSource = unitOrdersToOrder;
+            DataGrid_UnitOrder.Items.Refresh();
         }
         private void ContextMenuOrderUnit_ClickDelete(object sender, RoutedEventArgs e)
         {
@@ -309,21 +308,26 @@ namespace CoCoCoWorking.UI
             }
             unitOrdersList.RemoveAt(DataGrid_UnitOrder.SelectedIndex);
             DataGrid_UnitOrder.Items.Refresh();
-
         }
 
         private void ButtonCreateOrder_Click(object sender, RoutedEventArgs e)
         {
-            OrderModel order = new OrderModel();
+            CustomerModel customerSelected = DataGridCustomers.SelectedItem as CustomerModel;
+            decimal orderCost = modelController.GetSumOrderUnits(unitOrdersToOrder); 
+            OrderModel order = new OrderModel() { CustomerId = customerSelected.Id, OrderCost = orderCost, OrderStatus=ComboBoxOrderStatus.SelectedItem.ToString(), PaidDate=DateTime.Now.ToString() };
+            int orderId = modelController.AddOrderInBase(order); 
+            foreach(OrderUnitModel orderUnit in unitOrdersToOrder)
+            {
+                orderUnit.OrderId = orderId;
+                modelController.AddUnitOrdertoBase(orderUnit);
+            }
+            DataGrid_UnitOrder.Items.Clear();
+        }
 
-            //order.OrderCost = 1;
-            //order.OrderStatus = "done";
-            //order.PaidDate = DatePicker_Order_StartDate.Text;
-            //order.CustomerId = 1;
-
-            List<OrderUnitModel> orderUnit = new List<OrderUnitModel>(); 
-
-            modelController.AddOrderInBase(1,1,"done", DatePicker_Order_StartDate.Text); //----------??????? order unit model list ?????????
+        private void ButtonResetCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            TextBlockChoosenCustomer.Text = "";
+            DataGridCustomers.SelectedIndex = -1;
         }
     }
 }
