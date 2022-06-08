@@ -8,13 +8,13 @@ namespace CoCoCoWorking.DAL
     {
         public string connectionString = ServerOptions.ConnectionOption;
 
-        public int AddOrder(OrderDto order)
+        public string AddOrder(OrderDto order)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                return connection.QuerySingle
+                return connection.QuerySingle<string>
                        (StoredProcedures.Order_Add,
                        param: new
                        {
@@ -23,7 +23,8 @@ namespace CoCoCoWorking.DAL
                            OrderStatus = order.OrderStatus,
                            PaidDate = order.PaidDate
                        },
-                       commandType: System.Data.CommandType.StoredProcedure);
+                       commandType: System.Data.CommandType.StoredProcedure
+                       ).ToString();    
             }
         }
         public OrderDto GetOrderById(int id)
