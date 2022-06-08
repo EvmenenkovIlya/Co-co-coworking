@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Collections.Generic;
 using System.Windows.Controls;
-using CoCoCoWorking.DAL;
 using CoCoCoWorking.BLL;
 using CoCoCoWorking.BLL.Models;
 using System.ComponentModel;
@@ -18,7 +17,6 @@ namespace CoCoCoWorking.UI
     public partial class MainWindow : Window
     {
         
-        AdditionalServiceManager additionalService = new AdditionalServiceManager();//test
         ModelController modelController = new ModelController();
         Singleton _instance = Singleton.GetInstance();
 
@@ -38,7 +36,10 @@ namespace CoCoCoWorking.UI
             DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
             DataGridRentPrices.ItemsSource = _instance.RentPrices;
             DataGridAdministrationTest.ItemsSource = _instance.AdditionalServices;
-            ComboBoxOrderStatus.ItemsSource = new List<string>() { "Paid", "Unpaid", "Cancelled" }; 
+            ComboBoxOrderStatus.ItemsSource = new List<string>() { "Paid", "Unpaid", "Cancelled" };
+            ComboBoxTypeOfRoom.ItemsSource = modelController.GetRoomsTypes();
+            ComboBoxTypePeriodForWorkPlace.ItemsSource = modelController.GetPeriodTypesForWorkPlace();
+            ComboBoxTypePeriod.ItemsSource = Enum.GetValues(typeof(TypeOfPeriod));
         }
 
         private void ButtonCreateNewOrder_Click(object sender, RoutedEventArgs e)
@@ -284,7 +285,7 @@ namespace CoCoCoWorking.UI
                     {
                         RoomModel newRoom = new RoomModel();
                         newRoom.Name = TextBoxProductName.Text;
-                        newRoom.Type = TypeOfProduct.MiniOffice;
+                        newRoom.Type = (TypeOfProduct)Enum.Parse(typeof(TypeOfProduct), ComboBoxTypeOfRoom.SelectedValue.ToString());
                         if (ComboBoxTypeOfRoom.SelectedIndex == 0)
                         {
                             newRoom.WorkPlaceNumber = Int32.Parse(TextBoxProductCount.Text);
@@ -351,6 +352,18 @@ namespace CoCoCoWorking.UI
         {
             TextBlockChoosenCustomer.Text = "";
             DataGridCustomers.SelectedIndex = -1;
+        }
+
+        private void ComboBoxTypeOfRoom_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (ComboBoxTypeOfRoom.SelectedIndex)
+            {
+                case 0:
+                    GridWorkPlaceAdministration.Visibility = Visibility.Visible;
+                    LabelCount.Visibility = Visibility.Visible;
+                    TextBoxProductCount.Visibility = Visibility.Visible;
+                    break;
+            }
         }
     }
 }

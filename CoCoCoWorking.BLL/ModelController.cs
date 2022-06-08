@@ -343,7 +343,59 @@ namespace CoCoCoWorking.BLL
             roomManager.AddRoom(roomDto);
         }
 
+        public List<string> GetRoomsTypes()
+        {
+            List<string> roomsTypes = new List<string>();
+            roomsTypes.Add(TypeOfProduct.MiniOffice.ToString());
+            roomsTypes.Add(TypeOfProduct.MeetingRoom.ToString());
+            roomsTypes.Add(TypeOfProduct.ConferenceHall.ToString());
+            return roomsTypes;
+        }
 
+
+         public List<string> GetPeriodTypesForWorkPlace()
+        {
+            List<string> workplacePeriodTypes = new List<string>();
+            workplacePeriodTypes.Add(TypeOfPeriod.OneDay.ToString());
+            workplacePeriodTypes.Add(TypeOfPeriod.OneWeek.ToString());
+            return workplacePeriodTypes;
+        }
+
+        public int GetTypeOfPeriod(TypeOfPeriod typeEnum)
+        {
+            int type = 0;
+            switch (typeEnum)
+            {
+                case TypeOfPeriod.OneHour:
+                    type = 1;
+                    break;
+                case TypeOfPeriod.EightHours:
+                    type = 8;
+                    break;
+                case TypeOfPeriod.OneDay:
+                    type = 24;
+                    break;
+                case TypeOfPeriod.OneWeek:
+                    type = 168;
+                    break;
+                case TypeOfPeriod.OneMonth:
+                    type = 720;
+                    break;
+                case TypeOfPeriod.ThreeMonths:
+                    type = 2160;
+                    break;
+                case TypeOfPeriod.SixMonths:
+                    type = 4320;
+                    break;
+                case TypeOfPeriod.EightMonths:
+                    type = 4320;
+                    break;
+                case TypeOfPeriod.OneYear:
+                    type = 8640;
+                    break;
+            }
+            return type;
+        }
 
 
     }
