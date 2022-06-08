@@ -292,11 +292,12 @@ namespace CoCoCoWorking.BLL
             return unitOrders.Sum(unit => unit.OrderUnitCost);
         }
 
-        public int AddOrderInBase(OrderModel order)
+        public string AddOrderInBase(OrderModel order)
         {
             OrderManager orderManager = new OrderManager();
             OrderDto orderDto = mapper.Map<OrderDto>(order);
-            return orderManager.AddOrder(orderDto);
+            var idEnd = orderManager.AddOrder(orderDto);
+            return idEnd;
         }
         public AdditionalServiceModel GetAditionalServiceById(int serviceId)
         {
