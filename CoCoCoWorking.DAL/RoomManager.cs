@@ -41,11 +41,12 @@ namespace CoCoCoWorking.DAL
                     StoredProcedures.Room_Add,
                     param: new
                     {
+                        Type = room.Type,
                         Name = room.Name,
                         WorkPlaceNumber = room.WorkPlaceNumber
                     },
                     commandType: System.Data.CommandType.StoredProcedure
-                    );
+                    ); ;
             }
         }
         public void UpdateRoom(RoomDto room)
