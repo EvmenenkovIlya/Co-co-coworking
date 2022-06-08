@@ -49,14 +49,14 @@ namespace CoCoCoWorking.BLL
                 case 0:
                 case 1:
                 case 2:
-                    result = (List<RentPriceModel>)_instance.RentPrices.Where(r => r.RoomId == modelId);          
+                    result = _instance.RentPrices.Where(r => r.RoomId == modelId).ToList();          
                     break;
                 case 3:
                 case 4:
-                    result = (List<RentPriceModel>)_instance.RentPrices.Where(r => r.WorkPlaceInRoomId == modelId);
+                    result = _instance.RentPrices.Where(r => r.WorkPlaceInRoomId == modelId).ToList();
                     break;
                 case 5:
-                    result = (List<RentPriceModel>)_instance.RentPrices.Where(r => r.AdditionalServiceId == modelId);
+                    result = _instance.RentPrices.Where(r => r.AdditionalServiceId == modelId).ToList();
                     break;
             }
             return result;

@@ -290,8 +290,10 @@ namespace CoCoCoWorking.UI
         }
         private void ButtonAddToOrder_Click(object sender, RoutedEventArgs e)
         {
-            var model = Combobox_PurchaseType.SelectedItem;
-           // List<RentPriceModel> rentPriceModels= orderController.SearchRentPricesById(ComboBox_Type.SelectedIndex, model.Id)
+            
+            dynamic model = Combobox_PurchaseType.SelectedItem;
+
+            //List<RentPriceModel> rentPriceModels = orderController.SearchRentPricesById(ComboBox_Type.SelectedIndex, model.Id);
 
             OrderUnitModel orderUnit = new OrderUnitModel()
             {
@@ -311,7 +313,7 @@ namespace CoCoCoWorking.UI
 
         private void ContextMenuOrderUnit_ClickDelete(object sender, RoutedEventArgs e)
         {
-            if(DataGrid_UnitOrder.SelectedIndex == null || DataGrid_UnitOrder.SelectedItem is null || DataGrid_UnitOrder.SelectedIndex == DataGrid_UnitOrder.Items.Count-1)
+            if(DataGrid_UnitOrder.SelectedIndex == null || DataGrid_UnitOrder.SelectedItem is null )
             {
                 return;
             }
