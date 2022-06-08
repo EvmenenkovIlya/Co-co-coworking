@@ -274,6 +274,23 @@ namespace CoCoCoWorking.UI
             DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
         }
 
+        private void ButtonSaveProduct_Click(object sender, RoutedEventArgs e)
+        {
+            switch (ComboBoxChooseAddOrEdit.SelectedIndex)
+            {
+                case 0:
+                    if (ComboBoxTypeAdministration.SelectedIndex == 0)
+                    {
+                        RoomModel newRoom = new RoomModel();
+                        newRoom.Name = TextBoxProductName.Text;
+                        newRoom.Type = TypeOfProduct.MiniOffice;
+                        if (ComboBoxTypeOfRoom.SelectedIndex == 0)
+                        {
+                            newRoom.WorkPlaceNumber = Int32.Parse(TextBoxProductCount.Text);
+                        }
+                        modelController.AddRoom(newRoom);
+                        _instance.UpdateInstance();
+                        DataGridAdministrationTest.ItemsSource = _instance.Rooms;
         private void ButtonAddToOrder_Click(object sender, RoutedEventArgs e)
         {
             OrderUnitModel orderUnit = new OrderUnitModel() 
@@ -284,6 +301,21 @@ namespace CoCoCoWorking.UI
             orderController.FillId(orderUnit, ComboBox_Type.SelectedIndex, Combobox_PurchaseType.SelectedItem as RoomModel, Combobox_PurchaseType.SelectedItem as AdditionalServiceModel, Combobox_ChooseWorkplace.SelectedItem as WorkPlaceModel);
             orderUnit.OrderUnitCost = 10; // Method which get customer and choose rentprice by data
 
+                    }
+                    
+                    
+                    break;
+                case 1:
+                    
+                    break;
+                    
+            }
+        }
+
+        private void ComboBoxTypeAdministration_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
             unitOrdersToOrder.Add(orderUnit);
             DataGrid_UnitOrder.ItemsSource = unitOrdersToOrder;
             DataGrid_UnitOrder.Items.Refresh();

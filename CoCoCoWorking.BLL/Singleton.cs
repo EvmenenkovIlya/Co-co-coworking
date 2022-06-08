@@ -47,6 +47,7 @@ namespace CoCoCoWorking.BLL
             AdditionalServices = mapper.Map<List<AdditionalServiceModel>>(additionalServiceManager.GetAllAdditionalServices());
             RentPrices = mapper.Map<List<RentPriceModel>>(rentPriceManager.GetAllRentPrices());
             CustomersToEdit = mapper.Map<List<CustomerModel>>(customerManager.GetAllCustomerWhithOrderWithOrderUnit());
+            Rooms = mapper.Map<List<RoomModel>>(roomManager.GetAllRooms());
         }
     }          
 }
