@@ -216,6 +216,7 @@ namespace CoCoCoWorking.UI
             Order_Calendar.BlackoutDates.Clear();
             var roomName= Combobox_PurchaseType.SelectedItem ;
             var rooms = modelController.GetAllRoom();
+        
             
             
             foreach (var room in rooms)
@@ -291,15 +292,6 @@ namespace CoCoCoWorking.UI
                         modelController.AddRoom(newRoom);
                         _instance.UpdateInstance();
                         DataGridAdministrationTest.ItemsSource = _instance.Rooms;
-        private void ButtonAddToOrder_Click(object sender, RoutedEventArgs e)
-        {
-            OrderUnitModel orderUnit = new OrderUnitModel() 
-            {
-                StartDate = DatePicker_Order_StartDate.Text,
-                EndDate = DatePicker_Order_EndDate.Text
-            };
-            orderController.FillId(orderUnit, ComboBox_Type.SelectedIndex, Combobox_PurchaseType.SelectedItem as RoomModel, Combobox_PurchaseType.SelectedItem as AdditionalServiceModel, Combobox_ChooseWorkplace.SelectedItem as WorkPlaceModel);
-            orderUnit.OrderUnitCost = 10; // Method which get customer and choose rentprice by data
 
                     }
                     
@@ -314,13 +306,22 @@ namespace CoCoCoWorking.UI
 
         private void ComboBoxTypeAdministration_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+           
         }
+        private void ButtonAddToOrder_Click(object sender, RoutedEventArgs e)
+        {
+            OrderUnitModel orderUnit = new OrderUnitModel()
+            {
+                StartDate = DatePicker_Order_StartDate.Text,
+                EndDate = DatePicker_Order_EndDate.Text
+            };
+            orderController.FillId(orderUnit, ComboBox_Type.SelectedIndex, Combobox_PurchaseType.SelectedItem as RoomModel, Combobox_PurchaseType.SelectedItem as AdditionalServiceModel, Combobox_ChooseWorkplace.SelectedItem as WorkPlaceModel);
+            orderUnit.OrderUnitCost = 10; // Method which get customer and choose rentprice by data
             unitOrdersToOrder.Add(orderUnit);
             DataGrid_UnitOrder.ItemsSource = unitOrdersToOrder;
             DataGrid_UnitOrder.Items.Refresh();
         }
-        private void ContextMenuOrderUnit_ClickDelete(object sender, RoutedEventArgs e)
+            private void ContextMenuOrderUnit_ClickDelete(object sender, RoutedEventArgs e)
         {
             if(DataGrid_UnitOrder.SelectedIndex == null)
             {
