@@ -22,6 +22,13 @@ namespace CoCoCoWorking.BLL
         private AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
         private Singleton _instance = Singleton.GetInstance();
 
+        private IModelController _controller;
+
+        public ModelController(IModelController controller)
+        {
+            _controller = controller;
+        }
+
         public string GetProductName(FinanceReportDto f)
         {
             string s = "";
@@ -342,9 +349,6 @@ namespace CoCoCoWorking.BLL
             RoomDto roomDto = mapper.Map<RoomDto>(room);
             roomManager.AddRoom(roomDto);
         }
-
-
-
 
     }
 }
