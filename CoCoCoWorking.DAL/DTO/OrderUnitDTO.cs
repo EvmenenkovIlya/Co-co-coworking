@@ -17,5 +17,33 @@ namespace CoCoCoWorking.DAL.DTO
         public int? AdditionalServiceId { get; set; }
         public int OrderId { get; set; }
         public decimal? OrderUnitCost { get; set; }
+
+        public OrderUnitDto()
+        {
+
+        }
+
+        public override bool Equals(object? obj)
+        {
+            bool flag = true;
+            if (obj == null || !(obj is OrderUnitDto))
+            {
+                flag = false;
+            }
+            OrderUnitDto oruDto = (OrderUnitDto)obj;
+            if (oruDto.Id != this.Id ||
+               oruDto.StartDate != this.StartDate ||
+               oruDto.EndDate != this.EndDate||
+               oruDto.RoomId != this.RoomId ||
+               oruDto.WorkPlaceId != this.WorkPlaceId||
+               oruDto.WorkPlaceInRoomId!=this.WorkPlaceInRoomId||
+               oruDto.AdditionalServiceId!=this.AdditionalServiceId||
+               oruDto.OrderId!=this.OrderId||
+               oruDto.OrderUnitCost!=this.OrderUnitCost)
+            {
+                flag = false;
+            }
+            return flag;
+        }
     }
 }
