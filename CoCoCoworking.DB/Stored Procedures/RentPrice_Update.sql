@@ -3,7 +3,7 @@
 	@RoomId int,
 	@WorkPlaceInRoomId int,
 	@AdditionalServiceId int,
-	@PeriodType nvarchar(255),
+	@Hours int,
 	@RegularPrice decimal(18,2),
 	@ResidentPrice decimal(18,2),
 	@FixedPrice decimal(18,2)
@@ -15,7 +15,7 @@ BEGIN
 	SET [RoomId] = @RoomId,
 		WorkPlaceInRoomId = @WorkPlaceInRoomId,
 	    AdditionalServiceId = @AdditionalServiceId,
-	    PeriodType = @PeriodType,
+	    Hours = @Hours,
 		RegularPrice = @RegularPrice,
 		ResidentPrice = @ResidentPrice,
 		FixedPrice = @FixedPrice,

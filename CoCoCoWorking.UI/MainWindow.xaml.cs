@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Collections.Generic;
 using System.Windows.Controls;
-using CoCoCoWorking.DAL;
 using CoCoCoWorking.BLL;
 using CoCoCoWorking.BLL.Models;
 using System.ComponentModel;
@@ -17,8 +16,7 @@ namespace CoCoCoWorking.UI
     /// 
     public partial class MainWindow : Window
     {
-        
-        AdditionalServiceManager additionalService = new AdditionalServiceManager();//test
+       
         ModelController modelController = new ModelController();
         Singleton _instance = Singleton.GetInstance();
 
@@ -246,18 +244,6 @@ namespace CoCoCoWorking.UI
             }
         }
 
-        // to test the procedure and output information to DataGrids
-        private void DataGridCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //List<CustomersWithOrdersDTO> customers = customerManager.GetAllCustomerWhithOrderWithOrderUnit();
-
-            //List<OrderDTO> customerOrders = order.OrderGetByCustomerId(customers[DataGridCustomers.SelectedIndex].Id);
-
-            //List<OrderModel> customerOrdersModel = mapper.Map<List<OrderModel>>(customerOrders);
-
-            //DataGrid_Order.ItemsSource = customerOrdersModel;
-
-        }
         private void DataGrid_Order_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
           

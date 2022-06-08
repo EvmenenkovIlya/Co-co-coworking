@@ -46,7 +46,7 @@ namespace CoCoCoWorking.DAL
                          roomId = rentPrice.RoomId,
                          workPlaceInRoomId = rentPrice.WorkPlaceInRoomId,
                          additionalServiceId = rentPrice.AdditionalServiceId,
-                         periodType = rentPrice.PeriodType,
+                         hours = rentPrice.Hours,
                          regularPrice = rentPrice.RegularPrice,
                          residentPrice = rentPrice.ResidentPrice,
                          fixedPrice = rentPrice.FixedPrice
@@ -69,7 +69,7 @@ namespace CoCoCoWorking.DAL
                         roomId = rentPrice.RoomId,
                         workPlaceInRoomId = rentPrice.WorkPlaceInRoomId,
                         additionalServiceId = rentPrice.AdditionalServiceId,
-                        periodType = rentPrice.PeriodType,
+                        hours = rentPrice.Hours,
                         regularPrice = rentPrice.RegularPrice,
                         residentPrice = rentPrice.ResidentPrice,
                         fixedPrice = rentPrice.FixedPrice
