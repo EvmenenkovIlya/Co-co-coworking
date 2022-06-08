@@ -35,7 +35,7 @@ namespace CoCoCoWorking.DAL.DTO
                rpDto.RoomId != this.RoomId ||
                rpDto.WorkPlaceInRoomId != this.WorkPlaceInRoomId ||
                rpDto.AdditionalServiceId != this.AdditionalServiceId ||
-               rpDto.PeriodType != this.PeriodType ||
+               rpDto.Hours != this.Hours ||
                rpDto.RegularPrice != this.RegularPrice ||
                rpDto.ResidentPrice != this.ResidentPrice||
                rpDto.FixedPrice!=this.FixedPrice
