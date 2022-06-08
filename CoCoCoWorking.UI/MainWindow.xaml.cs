@@ -281,6 +281,38 @@ namespace CoCoCoWorking.UI
             DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
         }
 
+        private void ButtonSaveProduct_Click(object sender, RoutedEventArgs e)
+        {
+            switch (ComboBoxChooseAddOrEdit.SelectedIndex)
+            {
+                case 0:
+                    if (ComboBoxTypeAdministration.SelectedIndex == 0)
+                    {
+                        RoomModel newRoom = new RoomModel();
+                        newRoom.Name = TextBoxProductName.Text;
+                        newRoom.Type = TypeOfProduct.MiniOffice;
+                        if (ComboBoxTypeOfRoom.SelectedIndex == 0)
+                        {
+                            newRoom.WorkPlaceNumber = Int32.Parse(TextBoxProductCount.Text);
+                        }
+                        modelController.AddRoom(newRoom);
+                        _instance.UpdateInstance();
+                        DataGridAdministrationTest.ItemsSource = _instance.Rooms;
 
+                    }
+                    
+                    
+                    break;
+                case 1:
+                    
+                    break;
+                    
+            }
+        }
+
+        private void ComboBoxTypeAdministration_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

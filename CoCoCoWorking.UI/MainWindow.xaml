@@ -116,20 +116,20 @@
                         </DataGrid.Columns>
                     </DataGrid>
 
-                    <ComboBox x:Name="ComboBoxTypeAdministration" HorizontalAlignment="Left" Height="35" Margin="269,16,0,0" VerticalAlignment="Top" Width="220">
+                    <ComboBox x:Name="ComboBoxTypeAdministration" HorizontalAlignment="Left" Height="35" Margin="269,16,0,0" VerticalAlignment="Top" Width="220" SelectionChanged="ComboBoxTypeAdministration_SelectionChanged">
                         <ComboBoxItem Content="Room" IsSelected="True"/>
                         <ComboBoxItem Content="Additional Service"/>
                     </ComboBox>
-                    <ComboBox x:Name="ComboBoxNameOfRoom" HorizontalAlignment="Left" Height="35" Margin="16,66,0,0" VerticalAlignment="Top" Width="221">
-                        <ComboBoxItem Content="Mini office"/>
-                        <ComboBoxItem Content="Meeting room"/>
-                        <ComboBoxItem Content="Conference hall"/>
+                    <ComboBox x:Name="ComboBoxTypeOfRoom" HorizontalAlignment="Left" Height="35" Margin="16,66,0,0" VerticalAlignment="Top" Width="221">
+                        <ComboBoxItem Content="MiniOffice"/>
+                        <ComboBoxItem Content="MeetingRoom"/>
+                        <ComboBoxItem Content="ConferenceHall"/>
                     </ComboBox>
                     <Label x:Name="LabelNameAdministration" Content="Name" HorizontalAlignment="Left" Height="29" Margin="17,136,0,0" VerticalAlignment="Top" Width="64" FontWeight="Bold" FontSize="14"/>
-                    <TextBox x:Name="TextBoxName" HorizontalAlignment="Left" Height="35" Margin="95,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="269" Text="Enter Name"/>
+                    <TextBox x:Name="TextBoxProductName" HorizontalAlignment="Left" Height="35" Margin="95,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="269" Text="Enter Name"/>
                     <Label x:Name="LabelCount" Content="Count " HorizontalAlignment="Left" Height="30" Margin="17,187,0,0" VerticalAlignment="Top" Width="61" FontSize="14" FontWeight="Bold"/>
-                    <TextBox x:Name="TextBoxCount" HorizontalAlignment="Left" Height="35" Margin="95,188,0,0" TextWrapping="Wrap" Text="Enter Count" VerticalAlignment="Top" Width="269"/>
-                    <Button x:Name="ButtonSave" Content="Save " HorizontalAlignment="Left" Height="35" Margin="380,188,0,0" VerticalAlignment="Top" Width="107" FontWeight="Bold" FontSize="14" Background="#FF9FDFF2"/>
+                    <TextBox x:Name="TextBoxProductCount" HorizontalAlignment="Left" Height="35" Margin="95,188,0,0" TextWrapping="Wrap" Text="Enter Count" VerticalAlignment="Top" Width="269"/>
+                    <Button x:Name="ButtonSaveProduct" Content="Save " HorizontalAlignment="Left" Height="35" Margin="380,188,0,0" VerticalAlignment="Top" Width="107" FontWeight="Bold" FontSize="14" Background="#FF9FDFF2" Click="ButtonSaveProduct_Click"/>
                     <Grid x:Name="GridWorkPlaceAdministration" HorizontalAlignment="Center" Height="217" VerticalAlignment="Top" Width="446" Visibility="Visible" Background="#FFE6C297" Grid.Column="1" Grid.Row="1" Margin="0,10,0,0">
                         <Label x:Name="LabelAddPriceForWorkPlaceInRoom" Content="Add Price For Workplace In Room" HorizontalAlignment="Left" Height="35" Margin="34,10,0,0" VerticalAlignment="Top" Width="278" FontSize="16" FontWeight="Bold"/>
                         <ComboBox x:Name="ComboBoxTypePeriodForWorkPlace" HorizontalAlignment="Left" Height="37" Margin="34,49,0,0" VerticalAlignment="Top" Width="262">
@@ -161,8 +161,8 @@
                         <ComboBoxItem Content="Add New" IsSelected="True"/>
                         <ComboBoxItem Content="Edit"/>
                     </ComboBox>
-                    <Button x:Name="ButtonSave1" Content="Save" HorizontalAlignment="Left" Height="35" Margin="248,207,0,0" VerticalAlignment="Top" Width="108" FontWeight="Bold" FontSize="14" Background="#FF9FDFF2" Grid.Row="2"/>
-                    <Button x:Name="ButtonDelete" Content="Delete" HorizontalAlignment="Left" Height="35" Margin="364,207,0,0" VerticalAlignment="Top" Width="108" FontSize="14" FontWeight="Bold" Background="#FFF45050" Grid.Row="2"/>
+                    <Button x:Name="ButtonSavePriceAdminDatagrid" Content="Save" HorizontalAlignment="Left" Height="35" Margin="248,207,0,0" VerticalAlignment="Top" Width="108" FontWeight="Bold" FontSize="14" Background="#FF9FDFF2" Grid.Row="2"/>
+                    <Button x:Name="ButtonDeletePriceAdminDatagrid" Content="Delete" HorizontalAlignment="Left" Height="35" Margin="364,207,0,0" VerticalAlignment="Top" Width="108" FontSize="14" FontWeight="Bold" Background="#FFF45050" Grid.Row="2"/>
                     <ComboBox x:Name="ComboBoxNameOfProduct" HorizontalAlignment="Left" Height="35" Margin="269,68,0,0" VerticalAlignment="Top" Width="220" Background="{x:Null}"/>
                     <DataGrid x:Name="DataGridAdministrationTest" HorizontalAlignment="Center" Height="166" VerticalAlignment="Top" Width="446" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="1" Grid.Row="2" Margin="0,34,0,0"/>
                     <Label Content="Prices" HorizontalAlignment="Left" Margin="26,5,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>

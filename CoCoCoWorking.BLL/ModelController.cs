@@ -63,6 +63,12 @@ namespace CoCoCoWorking.BLL
 
             return type;
         }
+        public string GetTypeOfProduct(RoomModel r)
+        {
+            string type = r.Type.ToString();
+
+            return type;
+        }
 
         public TypeOfProduct GetTypeOfProductForRentPriceModel(RentPriceDto r)
         {
@@ -306,9 +312,10 @@ namespace CoCoCoWorking.BLL
             additionalServiceManager.DeleteAdditionalService(serviceId);
         }
 
-        public void AddRoom(RoomDto room)
+        public void AddRoom(RoomModel room)
         {
-            roomManager.AddRoom(room);
+            RoomDto roomDto = mapper.Map<RoomDto>(room);
+            roomManager.AddRoom(roomDto);
         }
 
 

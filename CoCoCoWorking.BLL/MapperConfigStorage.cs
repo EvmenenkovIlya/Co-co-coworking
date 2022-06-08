@@ -39,7 +39,7 @@ namespace CoCoCoWorking.BLL
                 .ForMember("PhoneNumber", opt => opt.MapFrom(c => c.PhoneNumber))
                 .ForMember("Email", opt => opt.MapFrom(c => c.Email));
 
-                cfg.CreateMap<RoomDto, RoomModel>()
+                cfg.CreateMap<RoomDto, RoomModel>().ReverseMap()
                 .ForMember("Type", opt => opt.MapFrom(c => modelController.GetTypeOfProduct(c)))
                 .ForMember("Name", opt => opt.MapFrom(c => c.Name))
                 .ForMember("WorkPlaceNumber", opt => opt.MapFrom(c => c.WorkPlaceNumber));
