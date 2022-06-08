@@ -310,6 +310,7 @@ namespace CoCoCoWorking.UI
                 modelController.AddUnitOrdertoBase(orderUnit);
             }
             DataGrid_UnitOrder.ItemsSource = null;
+            unitOrdersToOrder.Clear();
             DataGrid_Order.Items.Refresh();
         }
 
