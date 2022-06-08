@@ -290,6 +290,9 @@ namespace CoCoCoWorking.UI
         }
         private void ButtonAddToOrder_Click(object sender, RoutedEventArgs e)
         {
+            var model = Combobox_PurchaseType.SelectedItem;
+           // List<RentPriceModel> rentPriceModels= orderController.SearchRentPricesById(ComboBox_Type.SelectedIndex, model.Id)
+
             OrderUnitModel orderUnit = new OrderUnitModel()
             {
                 StartDate = DatePicker_Order_StartDate.Text,
@@ -300,7 +303,7 @@ namespace CoCoCoWorking.UI
 
             };
             orderController.FillId(orderUnit, ComboBox_Type.SelectedIndex, Combobox_PurchaseType.SelectedItem as RoomModel, Combobox_PurchaseType.SelectedItem as AdditionalServiceModel, Combobox_ChooseWorkplace.SelectedItem as WorkPlaceModel);
-            orderUnit.OrderUnitCost = 10; // Method which get customer and choose rentprice by data
+            //orderUnit.OrderUnitCost = SearchRentPricesById();
             unitOrdersToOrder.Add(orderUnit);
             DataGrid_UnitOrder.ItemsSource = unitOrdersToOrder;
             DataGrid_UnitOrder.Items.Refresh();

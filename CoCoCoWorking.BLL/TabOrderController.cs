@@ -41,8 +41,49 @@ namespace CoCoCoWorking.BLL
             return allHours;
         }
 
+        public List<RentPriceModel> SearchRentPricesById(int selectedIndexType, int modelId)
+        {
+            List<RentPriceModel> result = new List<RentPriceModel> ();
+            switch (selectedIndexType)
+            {
+                case 0:
+                case 1:
+                case 2:
+                    result = (List<RentPriceModel>)_instance.RentPrices.Where(r => r.RoomId == modelId);          
+                    break;
+                case 3:
+                case 4:
+                    result = (List<RentPriceModel>)_instance.RentPrices.Where(r => r.WorkPlaceInRoomId == modelId);
+                    break;
+                case 5:
+                    result = (List<RentPriceModel>)_instance.RentPrices.Where(r => r.AdditionalServiceId == modelId);
+                    break;
+            }
+            return result;
+        }
 
+        public decimal GetPriceForCustomer(RentPriceModel model, CustomerModel customer)
+        {
+            decimal price = model.RegularPrice;
+            if (customer.Subscribe is true)
+            {
+                price = (decimal)model.ResidentPrice;
+            }
+            return price;
 
+        }
+
+        public RentPriceModel GetRequiredRentPrice(List<RentPriceModel> list, int hours)
+        {
+            list.Sort((n1, n2) => n1.Hours.CompareTo(n2.Hours));
+            int requiredIndex= list.FindIndex(r => r.Hours > hours)-1;
+
+            if(requiredIndex == -2)
+            {
+                requiredIndex= list.Count - 1;
+            }
+            return list[requiredIndex];
+        }
 
         public List<DateTime> GetStringBusyDate(int? roomId, int? workplaceId)
         {
