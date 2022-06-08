@@ -87,11 +87,12 @@
                             </ContextMenu>
                         </DataGrid.ContextMenu>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="StartDate" Binding="{Binding StartDate}"/>
-                            <DataGridTextColumn Header="StartDate" Binding="{Binding EndDate}"/>
-                            <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Number" Binding="{Binding Number}"/>
+                            <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}"/>
+                            <DataGridTextColumn Header="Start Date" Binding="{Binding EndDate}"/>
+                            <DataGridTextColumn Header="Type" Binding="{Binding TypeForUi}"/>
+                            <DataGridTextColumn Header="Office Name" Binding="{Binding NameOfficeForUi}"/>
+                            <DataGridTextColumn Header="Workplace" Binding="{Binding NumberWorkplaceForUi}"/>
+                            <DataGridTextColumn Header="Price" Binding="{Binding OrderUnitCost}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="ButtonAddToOrder" Content="Add to order" HorizontalAlignment="Left" Height="38" Margin="463,200,0,0" VerticalAlignment="Top" Width="114"  FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonAddToOrder_Click" />
