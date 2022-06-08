@@ -342,9 +342,5 @@ namespace CoCoCoWorking.BLL
             RoomDto roomDto = mapper.Map<RoomDto>(room);
             roomManager.AddRoom(roomDto);
         }
-
-
-
-
     }
 }

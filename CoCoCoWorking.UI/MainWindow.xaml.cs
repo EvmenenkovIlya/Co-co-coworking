@@ -21,8 +21,6 @@ namespace CoCoCoWorking.UI
         AdditionalServiceManager additionalService = new AdditionalServiceManager();//test
         ModelController modelController = new ModelController();
         Singleton _instance = Singleton.GetInstance();
-
-        List<OrderUnitModel> unitOrdersList = new List<OrderUnitModel>();
         List<OrderUnitModel> unitOrdersToOrder = new List<OrderUnitModel>();
 
 
@@ -183,21 +181,21 @@ namespace CoCoCoWorking.UI
         private void ButtonSearchByDateForOrder_Click(object sender, RoutedEventArgs e)
         {
 
-            string startDate = DatePicker_Order_StartDate.Text;
+            var startDate = DatePicker_Order_StartDate;
             string endDate = DatePicker_Order_EndDate.Text;
 
             switch (ComboBox_Type.SelectedIndex)
             {
-                case 0:
-                    var freeRoomsId = orderController.SearchFreeForDate(startDate, endDate);
-                    var freeRooms = _instance.Rooms.Where(r => freeRoomsId.Contains(r.Id));
-                    Combobox_PurchaseType.ItemsSource = freeRooms;
-                    break;
-                case 4:
-                    var freeRoomsIdForWorkplace = orderController.SearchFreeForDate(startDate, endDate, true);
-                    var freeRoomsForWorkplace = _instance.Rooms.Where(r => freeRoomsIdForWorkplace.Contains(r.Id));
-                    Combobox_PurchaseType.ItemsSource = freeRoomsForWorkplace;
-                    break;
+                //case 0:
+                //    var freeRoomsId = orderController.SearchFreeForDate(startDate, endDate);
+                //    var freeRooms = _instance.Rooms.Where(r => freeRoomsId.Contains(r.Id));
+                //    Combobox_PurchaseType.ItemsSource = freeRooms;
+                //    break;
+                //case 4:
+                //    var freeRoomsIdForWorkplace = orderController.SearchFreeForDate(startDate, endDate, true);
+                //    var freeRoomsForWorkplace = _instance.Rooms.Where(r => freeRoomsIdForWorkplace.Contains(r.Id));
+                //    Combobox_PurchaseType.ItemsSource = freeRoomsForWorkplace;
+                //    break;
             }
         }
 
@@ -324,11 +322,11 @@ namespace CoCoCoWorking.UI
 
         private void ContextMenuOrderUnit_ClickDelete(object sender, RoutedEventArgs e)
         {
-            if(DataGrid_UnitOrder.SelectedIndex == null)
+            if(DataGrid_UnitOrder.SelectedIndex == null || DataGrid_UnitOrder.SelectedItem is null || DataGrid_UnitOrder.SelectedIndex == DataGrid_UnitOrder.Items.Count-1)
             {
                 return;
             }
-            unitOrdersList.RemoveAt(DataGrid_UnitOrder.SelectedIndex);
+            unitOrdersToOrder.RemoveAt(DataGrid_UnitOrder.SelectedIndex);
             DataGrid_UnitOrder.Items.Refresh();
         }
 
