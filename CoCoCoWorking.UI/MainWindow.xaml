@@ -52,7 +52,6 @@
                 <Grid Background="Bisque">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="25*"/>
-                        <ColumnDefinition Width="969*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Name="TextBlockChoosenCustomer" Height="30" Width="200" VerticalAlignment="Top" Margin="0, 15, 200, 0">
                         <TextBlock.Background>
