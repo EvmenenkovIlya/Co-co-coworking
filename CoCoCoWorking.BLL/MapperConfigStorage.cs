@@ -49,11 +49,12 @@ namespace CoCoCoWorking.BLL
                 .ForMember("Number", opt => opt.MapFrom(c => c.Number));
 
                 cfg.CreateMap<AdditionalServiceDto, AdditionalServiceModel>().ReverseMap()
-                .ForMember("Name", opt => opt.MapFrom(c => c.Name));
+                .ForMember("Name", opt => opt.MapFrom(c => c.Name))
+                .ForMember("Count", opt => opt.MapFrom(c => c.Count));
 
-                cfg.CreateMap<AdditionalServiceDto, AdditionalServiceModel>().ReverseMap()
-                .ForMember("Name", opt => opt.MapFrom(c => c.Name));
-                cfg.CreateMap<OrderUnitDto, OrderUnitModel>();
+                //cfg.CreateMap<AdditionalServiceDto, AdditionalServiceModel>().ReverseMap() // это м.б. AllAdditionalServiceDto?
+                //.ForMember("Name", opt => opt.MapFrom(c => c.Name));
+                //cfg.CreateMap<OrderUnitDto, OrderUnitModel>();
 
                 //cfg.CreateMap<RentPriceDto, RentPriceCreateModel>().ReverseMap();
                 cfg.CreateMap<RentPriceDto, RentPriceModel>()

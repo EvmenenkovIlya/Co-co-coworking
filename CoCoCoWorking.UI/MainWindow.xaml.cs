@@ -37,6 +37,7 @@ namespace CoCoCoWorking.UI
 
             DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
             DataGridRentPrices.ItemsSource = _instance.RentPrices;
+            DataGridAdministrationTest.ItemsSource = _instance.AdditionalServices;
             ComboBoxOrderStatus.ItemsSource = new List<string>() { "Paid", "Unpaid", "Cancelled" }; 
         }
 
