@@ -10,6 +10,6 @@
         public int? WorkPlaceInRoomId { get; set; }
         public int? AdditionalServiceId { get; set; }
         public int OrderId { get; set; }
-        public decimal? OrderUnitCost { get; set; }
+        public decimal OrderUnitCost { get; set; }
     }
 }

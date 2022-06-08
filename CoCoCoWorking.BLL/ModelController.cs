@@ -18,6 +18,7 @@ namespace CoCoCoWorking.BLL
         private WorkplaceManager workplaceManager = new WorkplaceManager();
         private CustomerManager customerManager = new CustomerManager();
         private AdditionalServiceManager additionalServiceManager = new AdditionalServiceManager();
+        private OrderManager orderManager = new OrderManager();
         private AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
         private Singleton _instance = Singleton.GetInstance();
 
@@ -132,7 +133,7 @@ namespace CoCoCoWorking.BLL
             return name;
         }
 
-        public TypeOfPeriod GetTypeOfPeriod (RentPriceDto r)
+        public TypeOfPeriod GetTypeOfPeriod(RentPriceDto r)
         {
             TypeOfPeriod type = (TypeOfPeriod)Enum.Parse(typeof(TypeOfPeriod), r.PeriodType);
 
@@ -154,9 +155,9 @@ namespace CoCoCoWorking.BLL
         }
 
         public List<RoomModel> GetAllRoom()
-        {           
+        {
             List<RoomDto> listDto = roomManager.GetAllRooms();
-            List<RoomModel>  list = mapper.Map<List<RoomModel>>(listDto);
+            List<RoomModel> list = mapper.Map<List<RoomModel>>(listDto);
             return list;
         }
         public List<OrderUnitModel> GetAllOrderUnit()
@@ -183,17 +184,17 @@ namespace CoCoCoWorking.BLL
         }
 
 
-       
+
 
         public List<CustomerModel> GetCustomerWithTheMatchedNumberIsReturned(string v, List<CustomerModel> Cg)
         {
-            var d = new List<CustomerModel>();          
+            var d = new List<CustomerModel>();
             foreach (var customermodel in Cg)
             {
                 if (customermodel.PhoneNumber.Contains(v))
                 {
                     d.Add(customermodel);
-                }               
+                }
             }
             return d;
         }
@@ -292,7 +293,18 @@ namespace CoCoCoWorking.BLL
             additionalServiceManager.AddAdditionalService(serviceDto);
         }
 
+        public decimal GetSumOrderUnits(List<OrderUnitModel> unitOrders)
+        {
+            return unitOrders.Sum(unit => unit.OrderUnitCost);
+        }
 
+        public string AddOrderInBase(OrderModel order)
+        {
+            OrderManager orderManager = new OrderManager();
+            OrderDto orderDto = mapper.Map<OrderDto>(order);
+            var idEnd = orderManager.AddOrder(orderDto);
+            return idEnd;
+        }
         public AdditionalServiceModel GetAditionalServiceById(int serviceId)
         {
             AdditionalServiceModel additionalServiceModel = new AdditionalServiceModel();
@@ -307,6 +319,19 @@ namespace CoCoCoWorking.BLL
             additionalServiceManager.UpdateAdditionalService(additionalServiceDto);
         }
 
+        public List<OrderModel> GetOrderByCustomerID(int id)
+        {
+            List<OrderModel> order = new List<OrderModel>();
+            List<OrderDto> listDto = orderManager.OrderGetByCustomerId(id);
+            order = mapper.Map<List<OrderModel>>(listDto);
+            return order;
+        }
+        public void AddUnitOrdertoBase(OrderUnitModel orderUnit)
+        {
+            OrderUnitManager orderUnitManager = new OrderUnitManager();
+            OrderUnitDto orderDto = mapper.Map<OrderUnitDto>(orderUnit);
+            orderUnitManager.AddOrderUnit(orderDto);
+        }
         public void DeleteAdditionalService(int serviceId)
         {
             additionalServiceManager.DeleteAdditionalService(serviceId);

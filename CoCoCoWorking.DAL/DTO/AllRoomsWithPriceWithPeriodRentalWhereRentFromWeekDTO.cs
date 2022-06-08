@@ -13,4 +13,6 @@ namespace CoCoCoWorking.DAL.DTO
         public List<RoomDto> Rooms { get; set; }
         public List<RentPriceDto> Rentprices { get; set; } = new List<RentPriceDto>();
     }
+
+   
 }
