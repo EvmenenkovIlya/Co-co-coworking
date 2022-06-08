@@ -1,6 +1,8 @@
 using CoCoCoWorking.BLL;
 using Moq;
 using CoCoCoWorking;
+using CoCoCoWorking.DAL.DTO;
+using CoCoCoWorking.Tests.ModelControllerSources;
 
 namespace CoCoCoWorking.Tests
 {
@@ -12,9 +14,16 @@ namespace CoCoCoWorking.Tests
         [SetUp]
         public void SetUp()
         {
-            //_modelcontrollerMock = new Mock<IModelController>();
-            //_modelController = new ModelController(_modelcontrollerMock.Object) ;
+            _modelcontrollerMock = new Mock<IModelController>();
+            _modelController = new ModelController();
         }
 
+        [TestCaseSource(typeof(GetProductNameTestSource))]
+        public void GetProductNameTest(FinanceReportDto report, string expected)
+        {
+            string actual = _modelController.GetProductName(report);
+
+            Assert.AreEqual(expected, actual);  
+        } 
     }
 }

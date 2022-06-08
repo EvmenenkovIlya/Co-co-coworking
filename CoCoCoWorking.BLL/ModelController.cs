@@ -10,7 +10,7 @@ using CoCoCoWorking.BLL.Models;
 
 namespace CoCoCoWorking.BLL
 {
-    public class ModelController:IModelController
+    public class ModelController : IModelController
     {
         private FinanceReportManager financeReportManager = new FinanceReportManager();
         private RoomManager roomManager = new RoomManager();
@@ -23,7 +23,7 @@ namespace CoCoCoWorking.BLL
         public string GetProductName(FinanceReportDto f)
         {
             string s = "";
-            if (f.RoomName != null)
+            if (f.RoomName != null) 
             {
                 s = f.RoomName;
             }
