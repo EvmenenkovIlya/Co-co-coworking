@@ -59,12 +59,12 @@ namespace CoCoCoWorking.BLL
         }
         
 
-        public List<string> SearchFreeRoomForDate(string startDate, string endDate)
+        public List<int> SearchFreeRoomForDate(string startDate, string endDate)
         {
             
             var rooms = modelController.GetAllRoom();
             List<string> allDates = new List<string>();
-            List<string> freeRoom = new List<string>();
+            List<int> freeRoom = new List<int>();
             Dictionary<int, List<string>> busyRooms = new Dictionary<int, List<string>>();
                     
             foreach (DateTime day in EachDay(DateTime.Parse(startDate), DateTime.Parse(endDate)))
@@ -118,7 +118,7 @@ namespace CoCoCoWorking.BLL
                 {
                     if(room.Id == key)
                     {
-                        freeRoom.Add(room.Name);
+                        freeRoom.Add(room.Id);
                     }
                 }
             }        
@@ -200,6 +200,29 @@ namespace CoCoCoWorking.BLL
         {
             for (var day = start.Date; day.Date <= end.Date; day = day.AddDays(1))
                 yield return day;
+        }
+        public void FillId(OrderUnitModel orderUnit, int indexType, RoomModel room = null, AdditionalServiceModel additionalService = null, WorkPlaceModel workplace = null)
+        {
+            if (indexType != 3)
+            {
+                orderUnit.WorkPlaceInRoomId = room.Id;
+                return;
+            }
+            if (room != null)
+            {
+                orderUnit.RoomId = room.Id;
+                return;
+            }
+            if (additionalService != null)
+            {
+                orderUnit.AdditionalServiceId = additionalService.Id;
+                return;
+            }
+            if (workplace != null)
+            {
+                orderUnit.WorkPlaceId= workplace.Id;
+                return;
+            }
         }
     }
 }

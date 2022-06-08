@@ -8,7 +8,7 @@ namespace CoCoCoWorking.DAL
     {
         public string connectionString = ServerOptions.ConnectionOption;
 
-        public OrderDto AddOrder(OrderDto order)
+        public int AddOrder(OrderDto order)
         {
             using (var connection = new SqlConnection(connectionString))
             {

@@ -49,11 +49,12 @@ namespace CoCoCoWorking.BLL
                 .ForMember("Number", opt => opt.MapFrom(c => c.Number));
 
                 cfg.CreateMap<AdditionalServiceDto, AdditionalServiceModel>().ReverseMap()
-                .ForMember("Name", opt => opt.MapFrom(c => c.Name));
+                .ForMember("Name", opt => opt.MapFrom(c => c.Name))
+                .ForMember("Count", opt => opt.MapFrom(c => c.Count));
 
-                cfg.CreateMap<AdditionalServiceDto, AdditionalServiceModel>().ReverseMap()
-                .ForMember("Name", opt => opt.MapFrom(c => c.Name));
-                cfg.CreateMap<OrderUnitDto, OrderUnitModel>();
+                //cfg.CreateMap<AdditionalServiceDto, AdditionalServiceModel>().ReverseMap() // это м.б. AllAdditionalServiceDto?
+                //.ForMember("Name", opt => opt.MapFrom(c => c.Name));
+                //cfg.CreateMap<OrderUnitDto, OrderUnitModel>();
 
                 //cfg.CreateMap<RentPriceDto, RentPriceCreateModel>().ReverseMap();
                 cfg.CreateMap<RentPriceDto, RentPriceModel>()
@@ -80,10 +81,12 @@ namespace CoCoCoWorking.BLL
                 //cfg.CreateMap<CustomersWithOrdersDTO, OrderModel>()
                 //.ForMember("Name", opt => opt.MapFrom(c => $"{c.LastName}{c.FirstName}{c.PhoneNumber}"));
 
-                cfg.CreateMap<OrderDto, OrderModel>()
-                .ForMember("OrderCost", opt => opt.MapFrom(c => c.OrderStatus))
-                .ForMember("OrderStatus", opt => opt.MapFrom(c => c.OrderCost))
+                cfg.CreateMap<OrderDto, OrderModel>().ReverseMap()
+               // cfg.CreateMap<OrderModel, OrderDto>()
+                .ForMember("OrderCost", opt => opt.MapFrom(c => c.OrderCost))
+                .ForMember("OrderStatus", opt => opt.MapFrom(c => c.OrderStatus))
                 .ForMember("PaidDate", opt => opt.MapFrom(c => c.PaidDate));
+
 
                 cfg.CreateMap<FinanceReportByCustomerDto, FinanceReportByCustomerModel>()
                 .ForMember("Name", opt => opt.MapFrom(c => $"{c.FirstName} {c.LastName}"))
@@ -100,7 +103,7 @@ namespace CoCoCoWorking.BLL
                 .ForMember("OrderId", opt => opt.MapFrom(c => c.OrderId))
                 .ForMember("OrderUnitCost", opt => opt.MapFrom(c => c.OrderUnitCost));
 
-                cfg.CreateMap<GetAllUnitOrdersFromSpecificOrderDTO, GetAllUnitOrdersFromSpecificOrderModel>()
+                cfg.CreateMap<GetAllUnitOrdersFromSpecificOrderDTO, AllUnitOrdersFromSpecificOrderModel>()
                 .ForMember("StartDate", opt => opt.MapFrom(c => c.StartDate))
                 .ForMember("EndDate", opt => opt.MapFrom(c => c.EndDate))
                 .ForMember("Name", opt => opt.MapFrom(c => $"{c.RoomName}{c.ServiceName}"))
