@@ -12,7 +12,7 @@ namespace CoCoCoWorking.Tests
         [SetUp]
         public void SetUp()
         {
-            _modelcontrollerMock = new Mock<IModelController>();
+            //_modelcontrollerMock = new Mock<IModelController>();
             //_modelController = new ModelController(_modelcontrollerMock.Object) ;
         }
 
