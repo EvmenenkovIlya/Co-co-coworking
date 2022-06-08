@@ -43,7 +43,7 @@ namespace CoCoCoWorking.BLL
                 if ((((unit.AdditionalServiceId is null && unit.RoomId == roomId && unit.WorkPlaceId is null) ||                    
                                         (unit.WorkPlaceId == workplaceId && unit.WorkPlaceInRoomId == roomId)))) 
                 {
-                    foreach (DateTime day in EachDay(DateTime.Parse(unit.StartDate), DateTime.Parse(unit.EndDate)))
+                    foreach (DateTime day in GetEveryDayInRange(DateTime.Parse(unit.StartDate), DateTime.Parse(unit.EndDate)))
                     {                        
                         busyDate.Add(day);
                     }
@@ -61,7 +61,7 @@ namespace CoCoCoWorking.BLL
             List<int> freeRoom = new List<int>();
             Dictionary<int, List<DateTime>> busyRooms = new Dictionary<int, List<DateTime>>();
 
-            foreach (DateTime day in EachDay(DateTime.Parse(startDate), DateTime.Parse(endDate)))
+            foreach (DateTime day in GetEveryDayInRange(DateTime.Parse(startDate), DateTime.Parse(endDate)))
             {
                 allDatesForFree.Add(day);
             }
@@ -135,7 +135,7 @@ namespace CoCoCoWorking.BLL
             }
             return workPlaceIdInRoom;
         }
-        IEnumerable<DateTime> EachDay(DateTime start, DateTime end)
+        public IEnumerable<DateTime> GetEveryDayInRange(DateTime start, DateTime end)
         {
             for (var day = start.Date; day.Date <= end.Date; day = day.AddDays(1))
                 yield return day;
@@ -143,25 +143,27 @@ namespace CoCoCoWorking.BLL
     
         public void FillId(OrderUnitModel orderUnit, int indexType, RoomModel room = null, AdditionalServiceModel additionalService = null, WorkPlaceModel workplace = null)
         {
-            if (indexType != 3)
+            if (indexType == 3)
             {
                 orderUnit.WorkPlaceInRoomId = room.Id;
-                return;
+                
+               
             }
-            if (room != null)
+            if (room != null && indexType == 0)
             {
                 orderUnit.RoomId = room.Id;
-                return;
+                
             }
             if (additionalService != null)
             {
                 orderUnit.AdditionalServiceId = additionalService.Id;
-                return;
+                
             }
             if (workplace != null)
             {
                 orderUnit.WorkPlaceId= workplace.Id;
-                return;
+                orderUnit.WorkPlaceInRoomId = room.Id;
+
             }
         }
     }

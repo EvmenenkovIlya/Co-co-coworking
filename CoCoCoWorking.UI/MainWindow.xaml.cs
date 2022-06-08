@@ -278,15 +278,11 @@ namespace CoCoCoWorking.UI
                         modelController.AddRoom(newRoom);
                         _instance.UpdateInstance();
                         DataGridAdministrationTest.ItemsSource = _instance.Rooms;
-
-                    }
-                    
+                    }                   
                     
                     break;
-                case 1:
-                    
-                    break;
-                    
+                case 1:                    
+                    break;                  
             }
         }
 
@@ -299,7 +295,11 @@ namespace CoCoCoWorking.UI
             OrderUnitModel orderUnit = new OrderUnitModel()
             {
                 StartDate = DatePicker_Order_StartDate.Text,
-                EndDate = DatePicker_Order_EndDate.Text
+                EndDate = DatePicker_Order_EndDate.Text,       
+                TypeForUi =ComboBox_Type.Text,
+                NameOfficeForUi = Combobox_PurchaseType.Text,
+                NumberWorkplaceForUi = Combobox_ChooseWorkplace.Text
+
             };
             orderController.FillId(orderUnit, ComboBox_Type.SelectedIndex, Combobox_PurchaseType.SelectedItem as RoomModel, Combobox_PurchaseType.SelectedItem as AdditionalServiceModel, Combobox_ChooseWorkplace.SelectedItem as WorkPlaceModel);
             orderUnit.OrderUnitCost = 10; // Method which get customer and choose rentprice by data
@@ -307,7 +307,8 @@ namespace CoCoCoWorking.UI
             DataGrid_UnitOrder.ItemsSource = unitOrdersToOrder;
             DataGrid_UnitOrder.Items.Refresh();
         }
-            private void ContextMenuOrderUnit_ClickDelete(object sender, RoutedEventArgs e)
+
+        private void ContextMenuOrderUnit_ClickDelete(object sender, RoutedEventArgs e)
         {
             if(DataGrid_UnitOrder.SelectedIndex == null)
             {
@@ -326,7 +327,7 @@ namespace CoCoCoWorking.UI
             foreach(OrderUnitModel orderUnit in unitOrdersToOrder)
             {
                 orderUnit.OrderId = Int32.Parse( orderId);
-                modelController.AddUnitOrdertoBase(orderUnit);
+                modelController.AddUnitOrdertoBase(orderUnit); 
             }
             DataGrid_UnitOrder.ItemsSource = null;
             unitOrdersToOrder.Clear();

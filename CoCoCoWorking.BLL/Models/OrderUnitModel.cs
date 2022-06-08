@@ -11,5 +11,9 @@
         public int? AdditionalServiceId { get; set; }
         public int OrderId { get; set; }
         public decimal OrderUnitCost { get; set; }
+
+        public string TypeForUi { get; set; }
+        public string NameOfficeForUi { get; set; }
+        public string NumberWorkplaceForUi { get; set; }
     }
 }
