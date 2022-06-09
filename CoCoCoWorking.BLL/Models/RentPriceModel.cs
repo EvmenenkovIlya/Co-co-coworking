@@ -30,8 +30,6 @@
                rpDto.RoomId != this.RoomId ||
                rpDto.WorkPlaceInRoomId != this.WorkPlaceInRoomId ||
                rpDto.AdditionalServiceId != this.AdditionalServiceId ||
-               rpDto.Type != this.Type ||
-               rpDto.Name != this.Name ||
                rpDto.Hours != this.Hours ||
                rpDto.RegularPrice != this.RegularPrice ||
                rpDto.ResidentPrice != this.ResidentPrice ||

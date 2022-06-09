@@ -11,7 +11,7 @@ namespace CoCoCoWorking.BLL
 {
     public class TabAdministrationController
     {
-        Singleton _instance = Singleton.GetInstance();
+        DataStorage _instance = DataStorage.GetInstance();
 
         public List<string> GetRoomsTypes()
         {
@@ -21,8 +21,6 @@ namespace CoCoCoWorking.BLL
             roomsTypes.Add(TypeOfProduct.ConferenceHall.ToString());
             return roomsTypes;
         }
-
-
 
         public List<RentPriceModel> GetRentPrices(int selectedIndex, int Id)
         {
@@ -35,10 +33,7 @@ namespace CoCoCoWorking.BLL
                 case 1:
                     result = _instance.RentPrices.Where(r => r.AdditionalServiceId == Id).ToList();
                     break;
-            }
-            
-            
-            
+            }                                 
             return result;
         }
 
@@ -74,10 +69,8 @@ namespace CoCoCoWorking.BLL
                 case "OneYear":
                     a = 8640;
                     break;
-            }
-                
+            }                
             return a;
-        }
-        
+        }       
     }
 }

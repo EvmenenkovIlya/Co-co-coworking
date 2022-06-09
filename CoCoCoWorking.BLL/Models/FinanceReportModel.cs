@@ -6,7 +6,6 @@
         public string ProductName { get; set; }
         public int Count { get; set; }
         public double Summ { get; set; }
-
         public FinanceReportModel()
         {
 

@@ -11,7 +11,6 @@
 
       }
        
-
        public override bool Equals(object? obj)
        {
             bool flag = false;
@@ -30,8 +29,5 @@
             }
             return flag;
        }
-
-
-
     }
 }

@@ -16,7 +16,7 @@ namespace CoCoCoWorking.BLL
         private OrderManager orderManager = new OrderManager();
         private RentPriceManager rentPriceManager = new RentPriceManager();
         private AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
-        private Singleton _instance = Singleton.GetInstance();
+        private DataStorage _instance = DataStorage.GetInstance();
 
         private IModelController _controller;
 
@@ -78,77 +78,6 @@ namespace CoCoCoWorking.BLL
 
             return type;
         }
-
-        //public TypeOfProduct GetTypeOfProductForRentPriceModel(RentPriceDto r)
-        //{
-
-        //    TypeOfProduct type = new TypeOfProduct();
-        //    if (r.RoomId != null)
-        //    {
-        //        foreach (RoomModel a in _instance.Rooms)
-        //        {
-        //            if (a.Id == r.RoomId)
-        //            {
-        //                type = a.Type;
-        //            }
-        //        }
-        //    }
-        //    else if (r.AdditionalServiceId != null)
-        //    {
-        //        type = TypeOfProduct.AdditionalService;
-        //    }
-        //    else
-        //    {
-        //        type = TypeOfProduct.WorkPlace;
-        //    }
-        //    return type;
-        //}
-
-        //public string GetNameForRentPriceModel(RentPriceDto r)
-        //{
-
-        //    string name = "";
-        //    if (r.RoomId != null)
-        //    {
-        //        foreach (RoomModel a in _instance.Rooms)
-        //        {
-        //            if (a.Id == r.RoomId)
-        //            {
-        //                name = a.Name;
-        //            }
-        //        }
-        //    }
-        //    else if (r.AdditionalServiceId != null)
-        //    {
-        //        foreach (AdditionalServiceModel a in _instance.AdditionalServices)
-        //        {
-        //            if (a.Id == r.AdditionalServiceId)
-        //            {
-        //                name = a.Name;
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        foreach (RoomModel a in _instance.Rooms)
-        //        {
-        //            if (a.Id == r.WorkPlaceInRoomId)
-        //            {
-        //                name = $"Workplace in {a.Name}";
-        //            }
-        //        }
-        //    }
-        //    return name;
-        //}
-
-        //public TypeOfPeriod GetTypeOfPeriod(RentPriceDto r)
-        //{
-        //    TypeOfPeriod type = (TypeOfPeriod)Enum.Parse(typeof(TypeOfPeriod), r.PeriodType);
-
-        //    return type;
-        //}
-
-        //
         public List<FinanceReportModel> GetFinanceReportModels(DateTime startDate, DateTime endDate)
         {
             List<FinanceReportDto> listDto = financeReportManager.GetFinanceReport(startDate, endDate);
@@ -308,13 +237,12 @@ namespace CoCoCoWorking.BLL
         //
         public AdditionalServiceModel GetAditionalServiceById(int serviceId)
         {
-            AdditionalServiceModel additionalServiceModel = new AdditionalServiceModel();
             AdditionalServiceDto additionalServiceDto = additionalServiceManager.GetAdditionalServiceByID(serviceId);
-            additionalServiceModel = mapper.Map<AdditionalServiceModel>(additionalServiceDto);
+            AdditionalServiceModel additionalServiceModel = mapper.Map<AdditionalServiceModel>(additionalServiceDto);
             return additionalServiceModel;
         }
         //
-        public void UpdateAdditionalService(AdditionalServiceModel additionalService) //на вход AdditionalServiceModel
+        public void UpdateAdditionalService(AdditionalServiceModel additionalService)
         {
             AdditionalServiceDto additionalServiceDto = mapper.Map<AdditionalServiceDto>(additionalService);
             additionalServiceManager.UpdateAdditionalService(additionalServiceDto);
@@ -355,7 +283,5 @@ namespace CoCoCoWorking.BLL
         {
             rentPriceManager.DeleteRentPrice(id);
         }
-    }
-
-    
+    }  
 }

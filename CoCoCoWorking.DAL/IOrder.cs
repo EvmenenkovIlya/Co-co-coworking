@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CoCoCoWorking.DAL.DTO;
-
+﻿using CoCoCoWorking.DAL.DTO;
 
 namespace CoCoCoWorking.DAL
 {
@@ -18,7 +12,6 @@ namespace CoCoCoWorking.DAL
         public List<int> GetAllWorkplaceInRoom(int id);
         public IEnumerable<DateTime> GetEveryDayInRange(DateTime start, DateTime end);
         public void FillId(OrderUnitDto orderUnit, int indexType, RoomDto room = null, AdditionalServiceDto additionalService = null, WorkPlaceDto workplace = null);
-
 
     }
 }

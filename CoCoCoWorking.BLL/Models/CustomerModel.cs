@@ -15,19 +15,6 @@
         {
 
         }
-        //public CustomerModel(int id, string FirstName, string LastName,string PhoneNumber, string Email, bool Regular, bool Subscribe, string EndDate)
-        //{
-        //    id = id;
-        //    FirstName=FirstName;
-        //    LastName=LastName;
-        //    PhoneNumber=PhoneNumber;
-        //    Email=Email;
-        //    Regular=Regular;
-        //    Subscribe=Subscribe;
-        //    EndDate=EndDate;
-        //}
-
-
         public override bool Equals(object? obj)
         {
             bool flag = true;

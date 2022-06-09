@@ -77,10 +77,9 @@
             <TabItem x:Name="TabItem_Orders" Header="Orders" Height="20" VerticalAlignment="Bottom">
                 <Grid Background="Bisque">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="165*"/>
-                        <ColumnDefinition Width="829*"/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Name="TextBlockChoosenCustomer" Height="30" Width="200" VerticalAlignment="Top" Margin="132,15,497,0" Grid.Column="1">
+                    <TextBlock Name="TextBlockChoosenCustomer" Height="30" Width="200" VerticalAlignment="Top" Margin="297,15,497,0">
                         <TextBlock.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="Black"/>
@@ -88,38 +87,37 @@
                             </LinearGradientBrush>
                         </TextBlock.Background>
                     </TextBlock>
-                    <Button Name="ButtonResetCustomer" Content="Reset Customer" Height="30" Width="150" VerticalAlignment="Top" Margin="357,15,322,0" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonResetCustomer_Click" Grid.Column="1"/>
-                    <ComboBox x:Name="Combobox_PurchaseType" HorizontalAlignment="Left" Height="33" Margin="298,60,0,0" VerticalAlignment="Top" Width="477" SelectionChanged="Combobox_PurchaseType_SelectionChanged" Grid.Column="1" />
-                    <DataGrid x:Name="DataGrid_Order" CanUserAddRows="False" HorizontalAlignment="Left" Height="446" Margin="45,250,0,0" VerticalAlignment="Top" Width="413" Grid.ColumnSpan="2" AutoGenerateColumns="False">
+                    <Button Name="ButtonResetCustomer" Content="Reset Customer" Height="30" Width="150" VerticalAlignment="Top" Margin="522,15,322,0" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonResetCustomer_Click"/>
+                    <ComboBox x:Name="Combobox_PurchaseType" HorizontalAlignment="Left" Height="33" Margin="463,60,0,0" VerticalAlignment="Top" Width="477" SelectionChanged="Combobox_PurchaseType_SelectionChanged" />
+                    <DataGrid x:Name="DataGrid_Order" CanUserAddRows="False" HorizontalAlignment="Left" Height="446" Margin="45,250,0,0" VerticalAlignment="Top" Width="413" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="OrderCost" Binding="{Binding Path=OrderCost}"/>
-                            <DataGridTextColumn Header="OrderStatus" Binding="{Binding Path=OrderStatus}"/>
-                            <DataGridTextColumn Header="PaidDate" Binding="{Binding Path=PaidDate}"/>
+                            <DataGridTextColumn Header="OrderCost" IsReadOnly ="True" Binding="{Binding Path=OrderCost}"/>
+                            <DataGridTextColumn Header="OrderStatus" IsReadOnly ="True" Binding="{Binding Path=OrderStatus}"/>
+                            <DataGridTextColumn Header="PaidDate" IsReadOnly ="True" Binding="{Binding Path=PaidDate}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="ButtonCreateOrder" Content="Create order" HorizontalAlignment="Left" Height="30" Margin="800,701,0,0" VerticalAlignment="Top" Width="145"  FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonCreateOrder_Click" />
                     <ComboBox x:Name="Combobox_ChooseWorkplace" HorizontalAlignment="Left" Height="35" Margin="463,125,0,0" VerticalAlignment="Top" Width="477" IsEnabled="False" SelectionChanged="Combobox_ChooseWorkplace_SelectionChanged"  />
                     <ComboBox x:Name="ComboBox_Type" HorizontalAlignment="Left" Height="33" Margin="45,60,0,0" VerticalAlignment="Top" Width="173" SelectionChanged="ComboBox_Type_SelectionChanged" >
-
                     </ComboBox>
-                    <DataGrid x:Name="DataGrid_UnitOrder" CanUserAddRows="False" HorizontalAlignment="Left" Height="446" Margin="365,250,0,0" VerticalAlignment="Top" Width="415" AutoGenerateColumns="False" Grid.Column="1" >
+                    <DataGrid x:Name="DataGrid_UnitOrder" CanUserAddRows="False" HorizontalAlignment="Left" Height="446" Margin="530,250,0,0" VerticalAlignment="Top" Width="415" AutoGenerateColumns="False" >
                         <DataGrid.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="Удалить" Click="ContextMenuOrderUnit_ClickDelete"/>
                             </ContextMenu>
                         </DataGrid.ContextMenu>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}"/>
-                            <DataGridTextColumn Header="Start Date" Binding="{Binding EndDate}"/>
-                            <DataGridTextColumn Header="Type" Binding="{Binding TypeForUi}"/>
-                            <DataGridTextColumn Header="Office Name" Binding="{Binding NameOfficeForUi}"/>
-                            <DataGridTextColumn Header="Workplace" Binding="{Binding NumberWorkplaceForUi}"/>
-                            <DataGridTextColumn Header="Price" Binding="{Binding OrderUnitCost}"/>
+                            <DataGridTextColumn Header="Start Date" IsReadOnly ="True" Binding="{Binding StartDate}"/>
+                            <DataGridTextColumn Header="Start Date" IsReadOnly ="True" Binding="{Binding EndDate}"/>
+                            <DataGridTextColumn Header="Type" IsReadOnly ="True" Binding="{Binding TypeForUi}"/>
+                            <DataGridTextColumn Header="Office Name" IsReadOnly ="True" Binding="{Binding NameOfficeForUi}"/>
+                            <DataGridTextColumn Header="Workplace" IsReadOnly ="True" Binding="{Binding NumberWorkplaceForUi}"/>
+                            <DataGridTextColumn Header="Price" IsReadOnly ="True" Binding="{Binding OrderUnitCost}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="ButtonAddToOrder" Content="Add to order" HorizontalAlignment="Left" Height="38" Margin="298,200,0,0" VerticalAlignment="Top" Width="114"  FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonAddToOrder_Click" Grid.Column="1" />
-                    <Calendar x:Name="Order_Calendar" HorizontalAlignment="Left" Height="178" Margin="53,60,0,0" VerticalAlignment="Top" Width="240" SelectionMode="MultipleRange" Grid.Column="1" />
-                    <DatePicker x:Name="DatePicker_Order_StartDate" HorizontalAlignment="Left" Height="27" Margin="45,120,0,0" VerticalAlignment="Top" Width="173" Grid.ColumnSpan="2"/>
+                    <Button x:Name="ButtonAddToOrder" Content="Add to order" HorizontalAlignment="Left" Height="38" Margin="463,200,0,0" VerticalAlignment="Top" Width="114"  FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonAddToOrder_Click" />
+                    <Calendar x:Name="Order_Calendar" HorizontalAlignment="Left" Height="178" Margin="218,60,0,0" VerticalAlignment="Top" Width="240" SelectionMode="MultipleRange" />
+                    <DatePicker x:Name="DatePicker_Order_StartDate" HorizontalAlignment="Left" Height="27" Margin="45,120,0,0" VerticalAlignment="Top" Width="173"/>
                     <DatePicker x:Name="DatePicker_Order_EndDate" HorizontalAlignment="Left" Height="26" Margin="45,160
                                 ,0,0" VerticalAlignment="Top" Width="173"/>
                     <Button x:Name="ButtonSearchByDateForOrder" Content="Search by date" HorizontalAlignment="Left" Height="38" Margin="45,200,0,0" VerticalAlignment="Top" Width="142"  FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonSearchByDateForOrder_Click"/>
@@ -141,7 +139,7 @@
                         <ColumnDefinition Width="467*"/>
                         <ColumnDefinition Width="497*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <DataGrid x:Name="DataGridRentPrices" HorizontalAlignment="Center" Height="289" VerticalAlignment="Top" Width="446" d:ItemsSource="{d:SampleData ItemCount=5}" AutoGenerateColumns="False" Grid.Row="2" Grid.Column="2" Margin="0,11,0,0">
+                    <DataGrid x:Name="DataGridRentPrices" HorizontalAlignment="Center" Height="289" VerticalAlignment="Top" Width="446" AutoGenerateColumns="False" Grid.Row="2" Grid.Column="2" Margin="0,11,0,0" CanUserAddRows = "False">
                         <DataGrid.CellStyle>
                             <Style/>
                         </DataGrid.CellStyle>
@@ -182,7 +180,7 @@
                         <CheckBox x:Name="CheckBoxPriceForWorkplace" Content="for workplace in this room" HorizontalAlignment="Left" Margin="152,20,0,0" VerticalAlignment="Top"/>
                         <Label x:Name="LabelRegularPrice_Copy" Content="Period:" HorizontalAlignment="Left" Height="36" Margin="34,62,0,0" VerticalAlignment="Top" Width="86" FontWeight="Bold" FontSize="14"/>
                     </Grid>
-                    <DataGrid x:Name="DataGridProductsAdministration" HorizontalAlignment="Center" Height="284" VerticalAlignment="Top" Width="446" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,18,0,0" Grid.Column="2" CellEditEnding="DataGridProductsAdministration_EditEnded" SelectionChanged="DataGridProductsAdministration_SelectionChanged">
+                    <DataGrid x:Name="DataGridProductsAdministration" HorizontalAlignment="Center" Height="284" VerticalAlignment="Top" Width="446" CanUserAddRows = "False" Margin="0,18,0,0" Grid.Column="2" CellEditEnding="DataGridProductsAdministration_EditEnded" SelectionChanged="DataGridProductsAdministration_SelectionChanged">
                         <DataGrid.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="Удалить" Click="ContextMenuProductsAdministration_ClickDelete"/>
@@ -192,8 +190,6 @@
                     <Label Content="Add new" HorizontalAlignment="Left" Margin="17,70,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Height="31" Width="77" Grid.ColumnSpan="2"/>
                     <Label x:Name="LabelTypeRoomAdministration" Content="Type" HorizontalAlignment="Left" Height="29" Margin="17,116,0,0" VerticalAlignment="Top" Width="64" FontWeight="Bold" FontSize="14" Grid.ColumnSpan="2"/>
                     <ComboBox x:Name="ComboBoxTypeOfRoom" HorizontalAlignment="Left" Margin="65,120,0,0" VerticalAlignment="Top" Width="269" Height="22" SelectedIndex="0" Grid.Column="1" SelectionChanged="ComboBoxTypeOfRoom_SelectionChanged"/>
-
-
                 </Grid>
             </TabItem>
             <TabItem Header="Finance">
@@ -215,14 +211,14 @@
                         <TextBlock>Customers</TextBlock>
                     </ComboBox>
                     <Button x:Name="Button_GetReport" Grid.Column="2" Content="Get Report" HorizontalAlignment="Left" Margin="46,34,0,0" VerticalAlignment="Top" Height="52" Width="250" BorderBrush="{x:Null}" Background="#FF2794B8" Foreground="White" FontSize="16" FontWeight="Bold" Click="Button_GetReport_Click"/>
-                    <DataGrid Name="DataGrid_Report" Grid.ColumnSpan="3" Margin="10,10,10,10" ColumnHeaderHeight="30" RowBackground="AliceBlue" RowHeight="30" AutoGenerateColumns="False" Visibility="Visible" Grid.Row="2">
+                    <DataGrid Name="DataGrid_Report" Grid.ColumnSpan="3" Margin="10,10,10,10" ColumnHeaderHeight="30" RowBackground="AliceBlue" RowHeight="30" AutoGenerateColumns="False" Visibility="Visible" Grid.Row="2" CanUserAddRows = "False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name of Product" Width="50*" Binding="{Binding Path=ProductName}"/>
                             <DataGridTextColumn Header="Count" Width="50*" Binding="{Binding Path=Count}"/>
                             <DataGridTextColumn Header="Summ" Width="50*" Binding="{Binding Path=Summ}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid Name="DataGrid_ReportByCustomer" Grid.ColumnSpan="3" Margin="10,10,10,10" ColumnHeaderHeight="30" RowBackground="AliceBlue" RowHeight="30" AutoGenerateColumns="False" Visibility="Hidden" Grid.Row="2">
+                    <DataGrid Name="DataGrid_ReportByCustomer" Grid.ColumnSpan="3" Margin="10,10,10,10" ColumnHeaderHeight="30" RowBackground="AliceBlue" RowHeight="30" AutoGenerateColumns="False" Visibility="Hidden" Grid.Row="2" CanUserAddRows = "False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name" Width="50*" Binding="{Binding Path=Name}"/>
                             <DataGridTextColumn Header="Count of orders" Width="50*" Binding="{Binding Path=OrderCount}"/>

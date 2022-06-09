@@ -8,7 +8,7 @@ namespace CoCoCoWorking.BLL
         ModelController modelController = new ModelController();
         List<DateTime> busyDate = new List<DateTime>();
         List <int> DateForCalendar = new List<int>();
-        Singleton _instance = Singleton.GetInstance();
+        DataStorage _instance = DataStorage.GetInstance();
 
 
        private ITabOrderController _controller;
@@ -48,7 +48,6 @@ namespace CoCoCoWorking.BLL
             return result;
         }
 
-
         public decimal GetPriceForCustomer(RentPriceModel model, CustomerModel customer, int typeIndex)
         {
             
@@ -62,9 +61,7 @@ namespace CoCoCoWorking.BLL
                 price = (decimal) model.FixedPrice;
             }
             return price;
-
         }
-
 
         public decimal GetOrderPriceSum(List<OrderUnitModel> unitOrdersToOrder)
         {
@@ -91,7 +88,6 @@ namespace CoCoCoWorking.BLL
             return list[requiredIndex];
         }
 
-
         public List<int> GetAllWorkplaceInRoom(int id)
         {
             List<int> workPlaceIdInRoom = new List<int>();
@@ -113,14 +109,11 @@ namespace CoCoCoWorking.BLL
             }
             return workPlaceIdInRoom;
         }
-
-
         public IEnumerable<DateTime> GetEveryDayInRange(DateTime start, DateTime end)
         {
             for (var day = start.Date; day.Date <= end.Date; day = day.AddDays(1))
                 yield return day;
         }
-
 
         public List<DateTime> GetStringBusyDate(int? roomId, int? workplaceId)
         {
@@ -137,7 +130,6 @@ namespace CoCoCoWorking.BLL
             }
             return busyDate;
         }
-
 
         public List<int> SearchFreeForDate(string startDate, string endDate, bool forWorkplace = false)
         {
@@ -227,8 +219,7 @@ namespace CoCoCoWorking.BLL
             {
                 orderUnit.WorkPlaceId= workplace.Id;
                 orderUnit.WorkPlaceInRoomId = room.Id;
-            }
-            
+            }           
         }
         public ITabOrderController GetITabOrderController()
         {

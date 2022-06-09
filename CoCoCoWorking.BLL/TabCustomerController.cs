@@ -22,7 +22,6 @@ namespace CoCoCoWorking.BLL
                     return false;
                 }
             }
-
             return true;
             //return IsNumberValid;
         }
@@ -49,7 +48,6 @@ namespace CoCoCoWorking.BLL
                     return false;
                 }
             }
-
             return true;
         }
 
@@ -62,9 +60,7 @@ namespace CoCoCoWorking.BLL
                     return false;
                 }
             }
-
             return true;
         }
-
     }
 }
