@@ -4,6 +4,7 @@
     {
         MiniOffice,
         WorkPlace,
+        WorkPlaceFixed,
         MeetingRoom,
         ConferenceHall,
         AdditionalService

@@ -10,26 +10,9 @@ namespace CoCoCoWorking.BLL
         List <int> DateForCalendar = new List<int>();
         Singleton _instance = Singleton.GetInstance();
 
-
-
-        public List <int> ConvertIntBusyDateRoom(List <DateTime> BusyDate)
-        {
-            for (int j = 0; j < BusyDate.Count; j++)
-            {
-                var day = BusyDate[j].Day;
-                var month = BusyDate[j].Month; 
-                var year = BusyDate[j].Year;
-
-                DateForCalendar.Add(day);
-                DateForCalendar.Add(month);
-                DateForCalendar.Add(year);
-            }
-            return DateForCalendar;
-        }
-
         public int ConvertRentalDaysInHour(DateTime startDate, DateTime endDate)
         {
-            int allHours = Convert.ToInt32(( (endDate - startDate).TotalHours));
+            int allHours = Convert.ToInt32(((endDate - startDate).TotalHours));
             return allHours;
         }
 
@@ -75,6 +58,26 @@ namespace CoCoCoWorking.BLL
                 requiredIndex= list.Count - 1;
             }
             return list[requiredIndex];
+        }
+
+        public IEnumerable<DateTime> GetEveryDayInRange(DateTime start, DateTime end)
+        {
+            for (var day = start.Date; day.Date <= end.Date; day = day.AddDays(1))
+                yield return day;
+        }
+
+
+        public List<int> ConvertIntBusyDateRoom(List<DateTime> BusyDate)
+        {
+     
+            foreach (var date in BusyDate)
+            {
+                DateForCalendar.Add(date.Day);
+                DateForCalendar.Add(date.Month);
+                DateForCalendar.Add(date.Year);
+            }
+
+            return DateForCalendar;
         }
 
         public List<DateTime> GetStringBusyDate(int? roomId, int? workplaceId)
@@ -178,13 +181,7 @@ namespace CoCoCoWorking.BLL
             return workPlaceIdInRoom;
         }
 
-        public IEnumerable<DateTime> GetEveryDayInRange(DateTime start, DateTime end)
-        {
-            for (var day = start.Date; day.Date <= end.Date; day = day.AddDays(1))
-                yield return day;
-        }
-
-    
+       
         public void FillId(OrderUnitModel orderUnit, int indexType, RoomModel room = null, AdditionalServiceModel additionalService = null, WorkPlaceModel workplace = null)
         {
             if (indexType == 3)

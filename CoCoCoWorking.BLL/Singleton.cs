@@ -12,6 +12,9 @@ namespace CoCoCoWorking.BLL
         public List<WorkPlaceModel> WorkPlaces { get; private set; }
         public List<OrderUnitModel> OrderUnits { get; private set; }
 
+        public List<TypeOfProduct> typeOfProducts= new List<TypeOfProduct>() { TypeOfProduct.MiniOffice,TypeOfProduct.ConferenceHall,TypeOfProduct.MeetingRoom,TypeOfProduct.WorkPlace, TypeOfProduct.WorkPlaceFixed, TypeOfProduct.AdditionalService};
+        
+
         private static Singleton _instance;
         
         private CustomerManager customerManager =new CustomerManager();
@@ -30,6 +33,7 @@ namespace CoCoCoWorking.BLL
             CustomersToEdit = mapper.Map<List<CustomerModel>>(customerManager.GetAllCustomerWhithOrderWithOrderUnit());
             WorkPlaces = mapper.Map<List<WorkPlaceModel>>(workplaceManager.GetAllWorkplaces());
             OrderUnits = mapper.Map<List<OrderUnitModel>>(orderUnitManager.GetAllOrderUnits());
+            
         }
 
         public static Singleton GetInstance()
@@ -46,6 +50,8 @@ namespace CoCoCoWorking.BLL
             RentPrices = mapper.Map<List<RentPriceModel>>(rentPriceManager.GetAllRentPrices());
             CustomersToEdit = mapper.Map<List<CustomerModel>>(customerManager.GetAllCustomerWhithOrderWithOrderUnit());
             Rooms = mapper.Map<List<RoomModel>>(roomManager.GetAllRooms());
+            WorkPlaces = mapper.Map<List<WorkPlaceModel>>(workplaceManager.GetAllWorkplaces());
+            OrderUnits = mapper.Map<List<OrderUnitModel>>(orderUnitManager.GetAllOrderUnits());
         }
     }          
 }
