@@ -27,7 +27,57 @@ namespace CoCoCoWorking.BLL
             return DateForCalendar;
         }
 
-      
+        public int ConvertRentalDaysInHour(DateTime startDate, DateTime endDate)
+        {
+            int allHours = (endDate - startDate).Hours;
+
+            return allHours;
+        }
+
+        public List<RentPriceModel> SearchRentPricesById(int selectedIndexType, int modelId)
+        {
+            List<RentPriceModel> result = new List<RentPriceModel> ();
+            switch (selectedIndexType)
+            {
+                case 0:
+                case 1:
+                case 2:
+                    result = _instance.RentPrices.Where(r => r.RoomId == modelId).ToList();          
+                    break;
+                case 3:
+                case 4:
+                    result = _instance.RentPrices.Where(r => r.WorkPlaceInRoomId == modelId).ToList();
+                    break;
+                case 5:
+                    result = _instance.RentPrices.Where(r => r.AdditionalServiceId == modelId).ToList();
+                    break;
+            }
+            return result;
+        }
+
+        public decimal GetPriceForCustomer(RentPriceModel model, CustomerModel customer)
+        {
+            decimal price = model.RegularPrice;
+            if (customer.Subscribe is true)
+            {
+                price = (decimal)model.ResidentPrice;
+            }
+            return price;
+
+        }
+
+        public RentPriceModel GetRequiredRentPrice(List<RentPriceModel> list, int hours)
+        {
+            list.Sort((n1, n2) => n1.Hours.CompareTo(n2.Hours));
+            int requiredIndex= list.FindIndex(r => r.Hours > hours)-1;
+
+            if(requiredIndex == -2)
+            {
+                requiredIndex= list.Count - 1;
+            }
+            return list[requiredIndex];
+        }
+
         public List<DateTime> GetStringBusyDate(int? roomId, int? workplaceId)
         {
 
@@ -128,11 +178,13 @@ namespace CoCoCoWorking.BLL
             }
             return workPlaceIdInRoom;
         }
+
         public IEnumerable<DateTime> GetEveryDayInRange(DateTime start, DateTime end)
         {
             for (var day = start.Date; day.Date <= end.Date; day = day.AddDays(1))
                 yield return day;
         }
+
     
         public void FillId(OrderUnitModel orderUnit, int indexType, RoomModel room = null, AdditionalServiceModel additionalService = null, WorkPlaceModel workplace = null)
         {

@@ -14,14 +14,12 @@ namespace CoCoCoWorking.UI
        
         ModelController modelController = new ModelController();
         Singleton _instance = Singleton.GetInstance();
-
-        List<OrderUnitModel> unitOrdersList = new List<OrderUnitModel>();
         List<OrderUnitModel> unitOrdersToOrder = new List<OrderUnitModel>();
 
 
         TabOrderController orderController = new TabOrderController();
+        TabAdministrationController administrationController = new TabAdministrationController();
         TabCustomerController customerController = new TabCustomerController();
-
         private ICollectionView items;
         
 
@@ -33,7 +31,10 @@ namespace CoCoCoWorking.UI
             DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
             DataGridRentPrices.ItemsSource = _instance.RentPrices;
             DataGridAdministrationTest.ItemsSource = _instance.AdditionalServices;
-            ComboBoxOrderStatus.ItemsSource = new List<string>() { "Paid", "Unpaid", "Cancelled" }; 
+            ComboBoxOrderStatus.ItemsSource = new List<string>() { "Paid", "Unpaid", "Cancelled" };
+            ComboBoxTypeOfRoom.ItemsSource = administrationController.GetRoomsTypes();
+            
+            ComboBoxTypePeriod.ItemsSource = Enum.GetValues(typeof(TypeOfPeriod));
         }
 
         private void ButtonCreateNewOrder_Click(object sender, RoutedEventArgs e)
@@ -208,21 +209,21 @@ namespace CoCoCoWorking.UI
         private void ButtonSearchByDateForOrder_Click(object sender, RoutedEventArgs e)
         {
 
-            string startDate = DatePicker_Order_StartDate.Text;
+            var startDate = DatePicker_Order_StartDate;
             string endDate = DatePicker_Order_EndDate.Text;
 
             switch (ComboBox_Type.SelectedIndex)
             {
-                case 0:
-                    var freeRoomsId = orderController.SearchFreeForDate(startDate, endDate);
-                    var freeRooms = _instance.Rooms.Where(r => freeRoomsId.Contains(r.Id));
-                    Combobox_PurchaseType.ItemsSource = freeRooms;
-                    break;
-                case 4:
-                    var freeRoomsIdForWorkplace = orderController.SearchFreeForDate(startDate, endDate, true);
-                    var freeRoomsForWorkplace = _instance.Rooms.Where(r => freeRoomsIdForWorkplace.Contains(r.Id));
-                    Combobox_PurchaseType.ItemsSource = freeRoomsForWorkplace;
-                    break;
+                //case 0:
+                //    var freeRoomsId = orderController.SearchFreeForDate(startDate, endDate);
+                //    var freeRooms = _instance.Rooms.Where(r => freeRoomsId.Contains(r.Id));
+                //    Combobox_PurchaseType.ItemsSource = freeRooms;
+                //    break;
+                //case 4:
+                //    var freeRoomsIdForWorkplace = orderController.SearchFreeForDate(startDate, endDate, true);
+                //    var freeRoomsForWorkplace = _instance.Rooms.Where(r => freeRoomsIdForWorkplace.Contains(r.Id));
+                //    Combobox_PurchaseType.ItemsSource = freeRoomsForWorkplace;
+                //    break;
             }
         }
 
@@ -297,7 +298,7 @@ namespace CoCoCoWorking.UI
                     {
                         RoomModel newRoom = new RoomModel();
                         newRoom.Name = TextBoxProductName.Text;
-                        newRoom.Type = TypeOfProduct.MiniOffice;
+                        newRoom.Type = (TypeOfProduct)Enum.Parse(typeof(TypeOfProduct), ComboBoxTypeOfRoom.SelectedValue.ToString());
                         if (ComboBoxTypeOfRoom.SelectedIndex == 0)
                         {
                             newRoom.WorkPlaceNumber = Int32.Parse(TextBoxProductCount.Text);
@@ -313,12 +314,36 @@ namespace CoCoCoWorking.UI
             }
         }
 
+        private void ContextMenuDataGridRentPrices_ClickDelete(object sender, RoutedEventArgs e)
+        {
+            if (DataGridRentPrices.SelectedIndex == null)
+            {
+                return;
+            }
+            //unitOrdersToOrder.RemoveAt(DataGrid_UnitOrder.SelectedIndex);
+            DataGridRentPrices.Items.Refresh();
+        }
+
         private void ComboBoxTypeAdministration_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           
+            switch (ComboBoxTypeAdministration.SelectedIndex)
+            {
+                case 0:
+                    //ComboBoxTypeOfRoom.Visibility = Visibility.Visible;
+                    break;
+                case 1:
+                    ComboBoxTypeOfRoom.Visibility = Visibility.Hidden;
+                    break;
+
+            }
         }
         private void ButtonAddToOrder_Click(object sender, RoutedEventArgs e)
         {
+            
+            dynamic model = Combobox_PurchaseType.SelectedItem;
+
+            //List<RentPriceModel> rentPriceModels = orderController.SearchRentPricesById(ComboBox_Type.SelectedIndex, model.Id);
+
             OrderUnitModel orderUnit = new OrderUnitModel()
             {
                 StartDate = DatePicker_Order_StartDate.Text,
@@ -329,7 +354,7 @@ namespace CoCoCoWorking.UI
 
             };
             orderController.FillId(orderUnit, ComboBox_Type.SelectedIndex, Combobox_PurchaseType.SelectedItem as RoomModel, Combobox_PurchaseType.SelectedItem as AdditionalServiceModel, Combobox_ChooseWorkplace.SelectedItem as WorkPlaceModel);
-            orderUnit.OrderUnitCost = 10; // Method which get customer and choose rentprice by data
+            //orderUnit.OrderUnitCost = SearchRentPricesById();
             unitOrdersToOrder.Add(orderUnit);
             DataGrid_UnitOrder.ItemsSource = unitOrdersToOrder;
             DataGrid_UnitOrder.Items.Refresh();
@@ -337,11 +362,11 @@ namespace CoCoCoWorking.UI
 
         private void ContextMenuOrderUnit_ClickDelete(object sender, RoutedEventArgs e)
         {
-            if(DataGrid_UnitOrder.SelectedIndex == null)
+            if(DataGrid_UnitOrder.SelectedIndex == null || DataGrid_UnitOrder.SelectedItem is null )
             {
                 return;
             }
-            unitOrdersList.RemoveAt(DataGrid_UnitOrder.SelectedIndex);
+            unitOrdersToOrder.RemoveAt(DataGrid_UnitOrder.SelectedIndex);
             DataGrid_UnitOrder.Items.Refresh();
         }
 
@@ -365,6 +390,24 @@ namespace CoCoCoWorking.UI
         {
             TextBlockChoosenCustomer.Text = "";
             DataGridCustomers.SelectedIndex = -1;
+        }
+
+        private void ComboBoxTypeOfRoom_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (ComboBoxTypeOfRoom.SelectedIndex)
+            {
+                case 0:
+                    
+                    LabelCount.Visibility = Visibility.Visible;
+                    TextBoxProductCount.Visibility = Visibility.Visible;
+                    break;
+
+            }
+        }
+
+        private void ComboBoxChooseAddOrEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
