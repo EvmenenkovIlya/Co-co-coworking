@@ -199,8 +199,6 @@ namespace CoCoCoWorking.UI
 
             }
         }
-        //dynamic row = DataGridProductsAdministration.SelectedItem;
-        //string identity = row.Id;
 
         private void ButtonSearchByNumber_Click(object sender, RoutedEventArgs e)
         {
