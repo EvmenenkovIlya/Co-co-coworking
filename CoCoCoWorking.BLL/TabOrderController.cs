@@ -21,21 +21,6 @@ namespace CoCoCoWorking.BLL
         {
 
         }
-        public List <int> ConvertIntBusyDateRoom(List <DateTime> BusyDate)
-        {
-            for (int j = 0; j < BusyDate.Count; j++)
-            {
-                var day = BusyDate[j].Day;
-                var month = BusyDate[j].Month; 
-                var year = BusyDate[j].Year;
-
-                DateForCalendar.Add(day);
-                DateForCalendar.Add(month);
-                DateForCalendar.Add(year);
-            }
-            return DateForCalendar;
-        }
-
         public int ConvertRentalDaysInHour(DateTime startDate, DateTime endDate)
         {
             int allHours = Convert.ToInt32(((endDate - startDate).TotalHours));

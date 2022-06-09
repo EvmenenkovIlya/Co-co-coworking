@@ -388,8 +388,6 @@ namespace CoCoCoWorking.UI
             DataGrid_UnitOrder.ItemsSource = unitOrdersToOrder;
             DataGrid_UnitOrder.Items.Refresh();
             Label_UnirOrderSum.Content =$"Order price:{orderController.GetOrderPriceSum(unitOrdersToOrder)}";
-
-
         }
 
         private void ContextMenuOrderUnit_ClickDelete(object sender, RoutedEventArgs e)
