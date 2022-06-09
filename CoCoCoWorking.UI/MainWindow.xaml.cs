@@ -290,22 +290,30 @@ namespace CoCoCoWorking.UI
         }
         private void ButtonAddToOrder_Click(object sender, RoutedEventArgs e)
         {
-            
+           
             dynamic model = Combobox_PurchaseType.SelectedItem;
+            var customerSelected = DataGridCustomers.SelectedItem as CustomerModel;
 
-            //List<RentPriceModel> rentPriceModels = orderController.SearchRentPricesById(ComboBox_Type.SelectedIndex, model.Id);
+            var rentPriceModels = orderController.SearchRentPricesById(ComboBox_Type.SelectedIndex, model.Id);
 
+            if(rentPriceModels.Count == 0)
+            {
+                return;
+            }
+            var hours = orderController.ConvertRentalDaysInHour(DateTime.Parse(DatePicker_Order_StartDate.Text),DateTime.Parse(DatePicker_Order_EndDate.Text));
+            var requiredRentPrice = orderController.GetRequiredRentPrice(rentPriceModels, hours);
+            var priceForCustomer = orderController.GetPriceForCustomer(requiredRentPrice, customerSelected);
             OrderUnitModel orderUnit = new OrderUnitModel()
             {
                 StartDate = DatePicker_Order_StartDate.Text,
                 EndDate = DatePicker_Order_EndDate.Text,       
                 TypeForUi =ComboBox_Type.Text,
                 NameOfficeForUi = Combobox_PurchaseType.Text,
-                NumberWorkplaceForUi = Combobox_ChooseWorkplace.Text
+                NumberWorkplaceForUi = Combobox_ChooseWorkplace.Text,
+                OrderUnitCost= (int)priceForCustomer* hours/ requiredRentPrice.Hours
 
             };
             orderController.FillId(orderUnit, ComboBox_Type.SelectedIndex, Combobox_PurchaseType.SelectedItem as RoomModel, Combobox_PurchaseType.SelectedItem as AdditionalServiceModel, Combobox_ChooseWorkplace.SelectedItem as WorkPlaceModel);
-            //orderUnit.OrderUnitCost = SearchRentPricesById();
             unitOrdersToOrder.Add(orderUnit);
             DataGrid_UnitOrder.ItemsSource = unitOrdersToOrder;
             DataGrid_UnitOrder.Items.Refresh();
@@ -335,6 +343,7 @@ namespace CoCoCoWorking.UI
             DataGrid_UnitOrder.ItemsSource = null;
             unitOrdersToOrder.Clear();
             DataGrid_Order.Items.Refresh();
+            
         }
 
         private void ButtonResetCustomer_Click(object sender, RoutedEventArgs e)

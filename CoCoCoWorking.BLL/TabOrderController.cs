@@ -36,8 +36,7 @@ namespace CoCoCoWorking.BLL
 
         public int ConvertRentalDaysInHour(DateTime startDate, DateTime endDate)
         {
-            int allHours = (endDate - startDate).Hours;
-
+            int allHours = Convert.ToInt32(( (endDate - startDate).TotalHours));
             return allHours;
         }
 
