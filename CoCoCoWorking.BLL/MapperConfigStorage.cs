@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using CoCoCoWorking.BLL;
 using CoCoCoWorking.DAL.DTO;
 using CoCoCoWorking.BLL.Models;
 
@@ -48,12 +47,16 @@ namespace CoCoCoWorking.BLL
                 .ForMember("RoomId", opt => opt.MapFrom(c => c.RoomId))
                 .ForMember("Number", opt => opt.MapFrom(c => c.Number));
 
-                cfg.CreateMap<AdditionalServiceDto, AdditionalServiceModel>().ReverseMap()
-                .ForMember("Name", opt => opt.MapFrom(c => c.Name))
-                .ForMember("Count", opt => opt.MapFrom(c => c.Count));
+                cfg.CreateMap<AdditionalServiceDto, AdditionalServiceModel>()
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(c => c.Name))
+                .ForMember("Count", opt => opt.MapFrom(c => c.Count))
+                .ReverseMap();
+
 
                 //cfg.CreateMap<AdditionalServiceDto, AdditionalServiceModel>().ReverseMap() // это м.б. AllAdditionalServiceDto?
-                //.ForMember("Name", opt => opt.MapFrom(c => c.Name));
+                //.ForMember(dest => dest.Name, opt => opt.MapFrom(c => c.Name))
+                //.ForMember("Count", opt => opt.MapFrom(c => c.Count));
+
                 //cfg.CreateMap<OrderUnitDto, OrderUnitModel>();
 
                 //cfg.CreateMap<RentPriceDto, RentPriceCreateModel>().ReverseMap();
