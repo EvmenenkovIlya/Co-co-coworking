@@ -329,8 +329,17 @@ namespace CoCoCoWorking.UI
             {
                 return;
             }
-            //unitOrdersToOrder.RemoveAt(DataGrid_UnitOrder.SelectedIndex);
-            DataGridRentPrices.Items.Refresh();
+
+            List<RentPriceModel> listPrices = administrationController.GetRentPrices(DataGridProductsAdministration.SelectedIndex + 1);
+            foreach (var a in listPrices)
+            {
+                if (listPrices.IndexOf(a) == DataGridRentPrices.SelectedIndex)
+                {
+                    modelController.DeleteRentPrice(a.Id);
+                    _instance.UpdateInstance();
+                    DataGridRentPrices.ItemsSource = administrationController.GetRentPrices(DataGridProductsAdministration.SelectedIndex + 1);
+                }
+            }
         }
 
         private void ComboBoxTypeAdministration_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -475,6 +484,55 @@ namespace CoCoCoWorking.UI
             modelController.DeleteAdditionalService(row.Id);
             _instance.UpdateInstance();
             DataGridProductsAdministration.ItemsSource = _instance.AdditionalServices;
+        }
+
+        private void ComboBoxTypeOfRoom_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            switch (ComboBoxTypeOfRoom.SelectedIndex)
+            {
+                case 0:
+                    TextBoxProductCount.IsEnabled = true;
+                    CheckBoxPriceForWorkplace.IsEnabled = true;
+                    break;
+                case 1:
+                    TextBoxProductCount.IsEnabled = false;
+                    CheckBoxPriceForWorkplace.IsEnabled = false;
+                    break;
+                case 2:
+                    TextBoxProductCount.IsEnabled = false;
+                    CheckBoxPriceForWorkplace.IsEnabled = false;
+                    break;
+            }
+        }
+
+        private void DataGridProductsAdministration_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGridRentPrices.ItemsSource = administrationController.GetRentPrices(DataGridProductsAdministration.SelectedIndex + 1);
+        }
+
+        private void ButtonSavePriceAdministration_Click(object sender, RoutedEventArgs e)
+        {
+            RentPriceModel newPrice = new RentPriceModel();
+            if (CheckBoxPriceForWorkplace.IsChecked == false)
+            {
+                newPrice.RoomId = DataGridProductsAdministration.SelectedIndex + 1;
+            }
+            else if (CheckBoxPriceForWorkplace.IsChecked == true)
+            {
+                newPrice.WorkPlaceInRoomId = DataGridProductsAdministration.SelectedIndex + 1;
+                newPrice.FixedPrice = Decimal.Parse(TextBoxFixedPrice.Text);
+            }
+            newPrice.Hours = administrationController.GetHours(ComboBoxTypePeriod.SelectedValue.ToString());
+            newPrice.RegularPrice = Decimal.Parse(TextBoxRegularPrice.Text);
+            newPrice.ResidentPrice = Decimal.Parse(TextBoxResidentPrice.Text);
+            modelController.AddRentPrice(newPrice);
+            _instance.UpdateInstance();
+            DataGridRentPrices.ItemsSource = administrationController.GetRentPrices(DataGridProductsAdministration.SelectedIndex + 1);
+        }
+
+        private void DataGridProductsAdministration_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+
         }
     }
 }

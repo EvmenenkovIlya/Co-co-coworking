@@ -23,69 +23,50 @@ namespace CoCoCoWorking.BLL
         }
 
 
-        public List<string> GetPeriodTypesForWorkPlace()
-        {
-            List<string> workplacePeriodTypes = new List<string>();
-            workplacePeriodTypes.Add(TypeOfPeriod.OneDay.ToString());
-            workplacePeriodTypes.Add(TypeOfPeriod.OneWeek.ToString());
-            return workplacePeriodTypes;
-        }
 
-        public List<RentPriceModel> GetRentPrices(int selectedIndexType, int modelId)
+        public List<RentPriceModel> GetRentPrices(int Id)
         {
             List<RentPriceModel> result = new List<RentPriceModel>();
-            switch (selectedIndexType)
-            {
-                case 0:
-                case 1:
-                case 2:
-                    result = _instance.RentPrices.Where(r => r.RoomId == modelId).ToList();
-                    break;
-                case 3:
-                case 4:
-                    result = _instance.RentPrices.Where(r => r.WorkPlaceInRoomId == modelId).ToList();
-                    break;
-                case 5:
-                    result = _instance.RentPrices.Where(r => r.AdditionalServiceId == modelId).ToList();
-                    break;
-            }
+            result = _instance.RentPrices.Where(r => r.RoomId == Id).ToList();
             return result;
         }
 
-        public int GetTypeOfPeriod(TypeOfPeriod typeEnum)
+        public int GetHours(string s)
         {
-            int type = 0;
-            switch (typeEnum)
+            int a = 0;
+            switch (s)
             {
-                case TypeOfPeriod.OneHour:
-                    type = 1;
+                case "OneHour":
+                    a = 1;
                     break;
-                case TypeOfPeriod.EightHours:
-                    type = 8;
+                case "EightHours":
+                    a = 8;
                     break;
-                case TypeOfPeriod.OneDay:
-                    type = 24;
+                case "OneDay":
+                    a = 24;
                     break;
-                case TypeOfPeriod.OneWeek:
-                    type = 168;
+                case "OneWeek":
+                    a = 168;
                     break;
-                case TypeOfPeriod.OneMonth:
-                    type = 720;
+                case "OneMonth":
+                    a = 720;
                     break;
-                case TypeOfPeriod.ThreeMonths:
-                    type = 2160;
+                case "ThreeMonths":
+                    a = 2160;
                     break;
-                case TypeOfPeriod.SixMonths:
-                    type = 4320;
+                case "SixMonths":
+                    a = 4320;
                     break;
-                case TypeOfPeriod.EightMonths:
-                    type = 4320;
+                case "EightMonths":
+                    a = 5760;
                     break;
-                case TypeOfPeriod.OneYear:
-                    type = 8640;
+                case "OneYear":
+                    a = 8640;
                     break;
             }
-            return type;
+                
+            return a;
         }
+        
     }
 }
