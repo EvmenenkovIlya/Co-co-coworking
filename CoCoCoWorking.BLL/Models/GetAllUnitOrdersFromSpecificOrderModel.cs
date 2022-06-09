@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace CoCoCoWorking.BLL.Models
 {
-    public class AllUnitOrdersFromSpecificOrderModel
+    public class GetAllUnitOrdersFromSpecificOrderModel
     {
         public int Id { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
         public string Name { get; set; }
         public int? Number { get; set; }
-<<<<<<< HEAD:CoCoCoWorking.BLL/Models/GetAllUnitOrdersFromSpecificOrderModel.cs
 
         public GetAllUnitOrdersFromSpecificOrderModel()
         {
@@ -42,11 +41,4 @@ namespace CoCoCoWorking.BLL.Models
             return flag;
         }
     }
-=======
-        public string Type { get; set; }
-
-        
-
-    }           
->>>>>>> main:CoCoCoWorking.BLL/Models/AllUnitOrdersFromSpecificOrderModel.cs
 }

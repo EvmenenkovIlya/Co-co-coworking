@@ -15,5 +15,37 @@
         public string TypeForUi { get; set; }
         public string NameOfficeForUi { get; set; }
         public string NumberWorkplaceForUi { get; set; }
+        public decimal? OrderUnitCost { get; set; }
+
+        public OrderUnitModel()
+        {
+
+        }
+
+        public override bool Equals(object? obj)
+        {
+            bool flag = true;
+            if (obj == null || !(obj is OrderUnitModel))
+            {
+                flag = false;
+            }
+            else
+            {
+                OrderUnitModel ouDto = (OrderUnitModel)obj;
+                if (ouDto.Id != this.Id ||
+                    ouDto.StartDate != this.StartDate ||
+                    ouDto.EndDate != this.EndDate ||
+                    ouDto.RoomId != this.RoomId ||
+                    ouDto.WorkPlaceId != this.WorkPlaceId ||
+                    ouDto.WorkPlaceInRoomId != this.WorkPlaceInRoomId ||
+                    ouDto.AdditionalServiceId != this.AdditionalServiceId ||
+                    ouDto.OrderId != this.OrderId ||
+                    ouDto.OrderUnitCost != this.OrderUnitCost)
+                {
+                    flag = false;
+                }
+            }
+            return flag;
+        }
     }
 }
