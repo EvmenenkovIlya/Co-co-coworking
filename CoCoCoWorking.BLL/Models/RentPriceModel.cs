@@ -6,8 +6,8 @@
         public int? RoomId { get; set; }
         public int? WorkPlaceInRoomId { get; set; }
         public int? AdditionalServiceId { get; set; }
-        //public TypeOfProduct Type { get; set; }
-        //public string Name { get; set; }
+        public TypeOfProduct Type { get; set; }
+        public string Name { get; set; }
         public int Hours { get; set; }
         public decimal RegularPrice { get; set; }
         public decimal? ResidentPrice { get; set; }

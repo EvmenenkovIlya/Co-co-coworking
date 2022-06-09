@@ -5,7 +5,7 @@ using CoCoCoWorking.BLL.Models;
 
 namespace CoCoCoWorking.BLL
 {
-    public class ModelController
+    public class ModelController : IModelController
     {
         private FinanceReportManager financeReportManager = new FinanceReportManager();
         private RoomManager roomManager = new RoomManager();
@@ -14,7 +14,6 @@ namespace CoCoCoWorking.BLL
         private CustomerManager customerManager = new CustomerManager();
         private AdditionalServiceManager additionalServiceManager = new AdditionalServiceManager();
         private OrderManager orderManager = new OrderManager();
-        private RentPriceManager rentPriceManager = new RentPriceManager();
         private AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
         private Singleton _instance = Singleton.GetInstance();
 
@@ -79,67 +78,67 @@ namespace CoCoCoWorking.BLL
             return type;
         }
 
-        //public TypeOfProduct GetTypeOfProductForRentPriceModel(RentPriceDto r)
-        //{
+        public TypeOfProduct GetTypeOfProductForRentPriceModel(RentPriceDto r)
+        {
 
-        //    TypeOfProduct type = new TypeOfProduct();
-        //    if (r.RoomId != null)
-        //    {
-        //        foreach (RoomModel a in _instance.Rooms)
-        //        {
-        //            if (a.Id == r.RoomId)
-        //            {
-        //                type = a.Type;
-        //            }
-        //        }
-        //    }
-        //    else if (r.AdditionalServiceId != null)
-        //    {
-        //        type = TypeOfProduct.AdditionalService;
-        //    }
-        //    else
-        //    {
-        //        type = TypeOfProduct.WorkPlace;
-        //    }
-        //    return type;
-        //}
+            TypeOfProduct type = new TypeOfProduct();
+            if (r.RoomId != null)
+            {
+                foreach (RoomModel a in _instance.Rooms)
+                {
+                    if (a.Id == r.RoomId)
+                    {
+                        type = a.Type;
+                    }
+                }
+            }
+            else if (r.AdditionalServiceId != null)
+            {
+                type = TypeOfProduct.AdditionalService;
+            }
+            else
+            {
+                type = TypeOfProduct.WorkPlace;
+            }
+            return type;
+        }
 
-        //public string GetNameForRentPriceModel(RentPriceDto r)
-        //{
+        public string GetNameForRentPriceModel(RentPriceDto r)
+        {
 
-        //    string name = "";
-        //    if (r.RoomId != null)
-        //    {
-        //        foreach (RoomModel a in _instance.Rooms)
-        //        {
-        //            if (a.Id == r.RoomId)
-        //            {
-        //                name = a.Name;
-        //            }
-        //        }
-        //    }
-        //    else if (r.AdditionalServiceId != null)
-        //    {
-        //        foreach (AdditionalServiceModel a in _instance.AdditionalServices)
-        //        {
-        //            if (a.Id == r.AdditionalServiceId)
-        //            {
-        //                name = a.Name;
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        foreach (RoomModel a in _instance.Rooms)
-        //        {
-        //            if (a.Id == r.WorkPlaceInRoomId)
-        //            {
-        //                name = $"Workplace in {a.Name}";
-        //            }
-        //        }
-        //    }
-        //    return name;
-        //}
+            string name = "";
+            if (r.RoomId != null)
+            {
+                foreach (RoomModel a in _instance.Rooms)
+                {
+                    if (a.Id == r.RoomId)
+                    {
+                        name = a.Name;
+                    }
+                }
+            }
+            else if (r.AdditionalServiceId != null)
+            {
+                foreach (AdditionalServiceModel a in _instance.AdditionalServices)
+                {
+                    if (a.Id == r.AdditionalServiceId)
+                    {
+                        name = a.Name;
+                    }
+                }
+            }
+            else
+            {
+                foreach (RoomModel a in _instance.Rooms)
+                {
+                    if (a.Id == r.WorkPlaceInRoomId)
+                    {
+                        name = $"Workplace in {a.Name}";
+                    }
+                }
+            }
+            return name;
+        }
 
         //public TypeOfPeriod GetTypeOfPeriod(RentPriceDto r)
         //{
@@ -337,17 +336,5 @@ namespace CoCoCoWorking.BLL
             roomManager.AddRoom(roomDto);
         }
 
-        public void AddRentPrice(RentPriceModel price)
-        {
-            RentPriceDto priceDto = mapper.Map<RentPriceDto>(price);
-            rentPriceManager.AddRentPrice(priceDto);
-        }
-
-        public void DeleteRentPrice(int id)
-        {
-            rentPriceManager.DeleteRentPrice(id);
-        }
     }
-
-    
 }
