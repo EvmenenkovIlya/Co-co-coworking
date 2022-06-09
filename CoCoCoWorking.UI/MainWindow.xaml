@@ -46,6 +46,31 @@
                     <Button Name="ButtonCreateNewOrder" Grid.Column="1" Grid.Row="1" Content="Create New Order" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="200" Height="30" Margin="0,0,10,30" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonCreateNewOrder_Click"/>
                     <Button x:Name="ButtonReset_Customer" Content="reset"  Grid.Column="3" Width="76" Height="30" HorizontalAlignment="Right" VerticalAlignment= "Top" FontWeight="Bold" Margin="0,50,28,0" FontFamily="Arial Black" FontSize="14" Click="ButtonReset_Customer_Click"/>
                     <Button Name="ButtonRefreshBase" Grid.Column="1" Grid.Row="1" Content="Update customers" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="200" Height="30" Margin="10,0,0,30" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonRefreshBase_Click"/>
+                    <Popup x:Name="popup2" StaysOpen="False" Placement="Mouse" MaxWidth="180" AllowsTransparency="True"  >
+                        <TextBlock TextWrapping="Wrap" Width="180" Background="White" Opacity="0.9" >
+                            Please, fill correct customer name
+                        </TextBlock>
+                    </Popup>
+                    <Popup x:Name="popup3" StaysOpen="False" Placement="Mouse" MaxWidth="180" AllowsTransparency="True"  >
+                        <TextBlock TextWrapping="Wrap" Width="180" Background="White" Opacity="0.9" >
+                            Please, fill correct info into number field
+                        </TextBlock>
+                    </Popup>
+                    <Popup x:Name="popup4" StaysOpen="False" Placement="Mouse" MaxWidth="180" AllowsTransparency="True"  >
+                        <TextBlock TextWrapping="Wrap" Width="180" Background="White" Opacity="0.9" >
+                            Please, type correct email adress
+                        </TextBlock>
+                    </Popup>
+                    <Popup x:Name="popup5" StaysOpen="False" Placement="Mouse" MaxWidth="180" AllowsTransparency="True"  >
+                        <TextBlock TextWrapping="Wrap" Width="180" Background="White" Opacity="0.9" >
+                            Please, fill all cistomer info fields
+                        </TextBlock>
+                    </Popup>
+                    <Popup x:Name="popup6" StaysOpen="False" Placement="Mouse" MaxWidth="180" AllowsTransparency="True"  >
+                        <TextBlock TextWrapping="Wrap" Width="180" Background="White" Opacity="0.9" >
+                            Customer with this phone number already exists
+                        </TextBlock>
+                    </Popup>
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabItem_Orders" Header="Orders" Height="20" VerticalAlignment="Bottom">
