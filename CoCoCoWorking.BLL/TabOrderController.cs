@@ -11,8 +11,14 @@ namespace CoCoCoWorking.BLL
         Singleton _instance = Singleton.GetInstance();
 
 
+       private ITabOrderController _controller;
 
-        public List <int> ConvertIntBusyDateRoom(List <DateTime> BusyDate)
+       public TabOrderController(ITabOrderController controller)
+       {
+          _controller = controller;
+       }
+
+            public List <int> ConvertIntBusyDateRoom(List <DateTime> BusyDate)
         {
             for (int j = 0; j < BusyDate.Count; j++)
             {
