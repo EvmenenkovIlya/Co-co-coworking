@@ -5,7 +5,7 @@ namespace CoCoCoWorking.BLL
 {
     public class TabCustomerController
     {
-        Singleton _instance = Singleton.GetInstance();
+        DataStorage _instance = DataStorage.GetInstance();
         public bool IsNameValid(string name)
         {
             if (name.Length > 255)
