@@ -59,8 +59,7 @@ namespace CoCoCoWorking.BLL
 
                 //cfg.CreateMap<OrderUnitDto, OrderUnitModel>();
 
-                //cfg.CreateMap<RentPriceDto, RentPriceCreateModel>().ReverseMap();
-                cfg.CreateMap<RentPriceDto, RentPriceModel>()
+                cfg.CreateMap<RentPriceDto, RentPriceModel>().ReverseMap()
                 .ForMember("RoomId", opt => opt.MapFrom(c => c.RoomId))
                 .ForMember("WorkPlaceInRoomId", opt => opt.MapFrom(c => c.WorkPlaceInRoomId))
                 .ForMember("AdditionalServiceId", opt => opt.MapFrom(c => c.AdditionalServiceId))
