@@ -5,15 +5,10 @@ using System.Windows.Controls;
 using CoCoCoWorking.BLL;
 using CoCoCoWorking.BLL.Models;
 using System.ComponentModel;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace CoCoCoWorking.UI
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    /// 
     public partial class MainWindow : Window
     {
        
@@ -25,6 +20,8 @@ namespace CoCoCoWorking.UI
 
 
         TabOrderController orderController = new TabOrderController();
+        TabCustomerController customerController = new TabCustomerController();
+
         private ICollectionView items;
         
 
@@ -54,9 +51,39 @@ namespace CoCoCoWorking.UI
 
         private void ButtonCreateNewCustomer_Click(object sender, RoutedEventArgs e)
         {
-            modelController.AddCustomerToBase(TextBoxFirstName.Text, TextBoxLastName.Text, TextBoxNumber.Text, TextBoxEmail.Text);
-            _instance.UpdateInstance();
-            DataGridCustomers.ItemsSource = _instance.CustomersToEdit;          
+            if (String.IsNullOrWhiteSpace(TextBoxFirstName.Text) || String.IsNullOrWhiteSpace(TextBoxLastName.Text) ||
+                String.IsNullOrWhiteSpace(TextBoxNumber.Text) || String.IsNullOrWhiteSpace(TextBoxEmail.Text))
+            {
+                popup5.IsOpen = true;
+            }
+            else if (!customerController.IsNameValid(TextBoxFirstName.Text) 
+                || !customerController.IsNameValid(TextBoxLastName.Text))
+            { 
+                popup2.IsOpen = true;
+            }
+            else if (!customerController.IsNumberValid(TextBoxNumber.Text))
+            {
+                popup3.IsOpen = true;
+            }
+            else if (!customerController.IsEmailValid(TextBoxEmail.Text))
+            {
+                popup4.IsOpen = true;
+            }
+            else if (!customerController.IfNumberExist(_instance.CustomersToEdit, TextBoxNumber.Text))
+            {
+                popup6.IsOpen = true;
+            }
+            else
+            {
+                modelController.AddCustomerToBase(TextBoxFirstName.Text, TextBoxLastName.Text, TextBoxNumber.Text, TextBoxEmail.Text);
+                _instance.UpdateInstance();
+
+                DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
+                TextBoxFirstName.Clear();
+                TextBoxLastName.Clear();
+                TextBoxNumber.Clear();
+                TextBoxEmail.Clear();
+            }
         }
 
 
