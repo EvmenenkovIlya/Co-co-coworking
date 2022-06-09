@@ -34,10 +34,9 @@ namespace CoCoCoWorking.UI
 
             DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
             DataGridRentPrices.ItemsSource = _instance.RentPrices;
-            DataGridAdministrationTest.ItemsSource = _instance.AdditionalServices;
             ComboBoxOrderStatus.ItemsSource = new List<string>() { "Paid", "Unpaid", "Cancelled" };
+            DataGridProductsAdministration.ItemsSource = _instance.Rooms;
             ComboBoxTypeOfRoom.ItemsSource = administrationController.GetRoomsTypes();
-            
             ComboBoxTypePeriod.ItemsSource = Enum.GetValues(typeof(TypeOfPeriod));
         }
 
@@ -265,7 +264,7 @@ namespace CoCoCoWorking.UI
 
         private void ButtonSaveProduct_Click(object sender, RoutedEventArgs e)
         {
-            switch (ComboBoxChooseAddOrEdit.SelectedIndex)
+            switch (ComboBoxTypeAdministration.SelectedIndex)
             {
                 case 0:
                     if (ComboBoxTypeAdministration.SelectedIndex == 0)
@@ -279,7 +278,7 @@ namespace CoCoCoWorking.UI
                         }
                         modelController.AddRoom(newRoom);
                         _instance.UpdateInstance();
-                        DataGridAdministrationTest.ItemsSource = _instance.Rooms;
+                        DataGridProductsAdministration.ItemsSource = _instance.Rooms;
                     }                   
                     
                     break;
@@ -300,16 +299,18 @@ namespace CoCoCoWorking.UI
 
         private void ComboBoxTypeAdministration_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch (ComboBoxTypeAdministration.SelectedIndex)
-            {
-                case 0:
-                    //ComboBoxTypeOfRoom.Visibility = Visibility.Visible;
-                    break;
-                case 1:
-                    ComboBoxTypeOfRoom.Visibility = Visibility.Hidden;
-                    break;
+            //switch (ComboBoxTypeAdministration.SelectedIndex)
+            //{
+            //    case 0:
+            //        _instance.UpdateInstance();
+            //        DataGridProductsAdministration.ItemsSource = _instance.Rooms;
+            //        break;
+            //    case 1:
+            //        _instance.UpdateInstance();
+            //        DataGridProductsAdministration.ItemsSource = _instance.AdditionalServices;
+            //        break;
 
-            }
+            //}
         }
         private void ButtonAddToOrder_Click(object sender, RoutedEventArgs e)
         {
