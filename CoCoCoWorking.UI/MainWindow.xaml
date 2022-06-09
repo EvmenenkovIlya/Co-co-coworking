@@ -155,7 +155,7 @@
                             </ContextMenu>
                         </DataGrid.ContextMenu>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Period" Width="50*" Binding="{Binding Path=PeriodType}"/>
+                            <DataGridTextColumn Header="Period" Width="50*" Binding="{Binding Path=Hours}"/>
                             <DataGridTextColumn Header="Regular Price" Width="50*" Binding="{Binding Path=RegularPrice}"/>
                             <DataGridTextColumn Header="Residents Price" Width="50*" Binding="{Binding Path=ResidentPrice}"/>
                             <DataGridTextColumn Header="Price if Fixed" Width="50*" Binding="{Binding Path=FixedPrice}"/>
