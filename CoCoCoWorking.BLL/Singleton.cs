@@ -14,7 +14,7 @@ namespace CoCoCoWorking.BLL
 
         private static Singleton _instance;
         
-        private CustomerManager customerManager =new CustomerManager();
+        private CustomerManager customerManager = new CustomerManager();
         private RoomManager roomManager = new RoomManager();
         private RentPriceManager rentPriceManager = new RentPriceManager();
         private AdditionalServiceManager additionalServiceManager = new AdditionalServiceManager();
