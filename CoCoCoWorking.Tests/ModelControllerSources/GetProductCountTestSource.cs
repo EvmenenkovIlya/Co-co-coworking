@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CoCoCoWorking.Tests.ModelControllerSources
 {
-    public class GetProductNameTestSource : IEnumerable
+    public class GetProductCountTestSource : IEnumerable
     {
         public IEnumerator GetEnumerator()
         {
@@ -19,14 +19,14 @@ namespace CoCoCoWorking.Tests.ModelControllerSources
                     Id = 1,
                     RoomId = 1,
                     RoomName = "Cool office",
-                    RoomCount = 1,
+                    RoomCount = 6,
                     WorkPlaceCount = 0,
                     AdditionalServiceId = null,
                     AdditionalServiceName = null,
                     AdditionalServiceCount = 0,
                     Summ = 19000.99
                 },
-                "Cool office"
+                6
             };
 
             yield return new object[]
@@ -36,14 +36,14 @@ namespace CoCoCoWorking.Tests.ModelControllerSources
                     Id = 2,
                     RoomId = 1,
                     RoomName = "Bad office",
-                    RoomCount = 1,
+                    RoomCount = 23,
                     WorkPlaceCount = 0,
                     AdditionalServiceId = null,
                     AdditionalServiceName = null,
                     AdditionalServiceCount = 0,
                     Summ = 19000.99
                 },
-                "Bad office"
+                23
             };
 
             yield return new object[]
@@ -60,7 +60,7 @@ namespace CoCoCoWorking.Tests.ModelControllerSources
                     AdditionalServiceCount = 8,
                     Summ = 19000.99
                 },
-                "Notebook"
+                8
             };
 
             yield return new object[]
@@ -77,7 +77,7 @@ namespace CoCoCoWorking.Tests.ModelControllerSources
                     AdditionalServiceCount = 4,
                     Summ = 19000.99
                 },
-                "Luggage storage"
+                4
             };
 
             yield return new object[]
@@ -88,13 +88,13 @@ namespace CoCoCoWorking.Tests.ModelControllerSources
                     RoomId = null,
                     RoomName = null,
                     RoomCount = 0,
-                    WorkPlaceCount = 4,
+                    WorkPlaceCount = 5,
                     AdditionalServiceId = null,
                     AdditionalServiceName = null,
                     AdditionalServiceCount = 0,
                     Summ = 19000.99
                 },
-                "WorkPlaces"
+                5
             };
 
             yield return new object[]
@@ -105,13 +105,13 @@ namespace CoCoCoWorking.Tests.ModelControllerSources
                     RoomId = null,
                     RoomName = null,
                     RoomCount = 0,
-                    WorkPlaceCount = 8,
+                    WorkPlaceCount = 10,
                     AdditionalServiceId = null,
                     AdditionalServiceName = null,
                     AdditionalServiceCount = 0,
                     Summ = 19000.99
                 },
-                "WorkPlaces"
+                10
             };
         }
     }
