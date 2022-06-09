@@ -65,13 +65,13 @@ namespace CoCoCoWorking.UI
             {
                 popup4.IsOpen = true;
             }
-            else if (!customerController.IfNumberExist(_instance.CustomersToEdit, TextBoxNumber.Text))
+            else if (!customerController.IfClientsNumberAlreadyExists(customerController.AdjustPhoneNumber(TextBoxNumber.Text)))
             {
                 popup6.IsOpen = true;
             }
             else
             {
-                modelController.AddCustomerToBase(TextBoxFirstName.Text, TextBoxLastName.Text, TextBoxNumber.Text, TextBoxEmail.Text);
+                modelController.AddCustomerToBase(TextBoxFirstName.Text, TextBoxLastName.Text, customerController.AdjustPhoneNumber(TextBoxNumber.Text), TextBoxEmail.Text);
                 _instance.UpdateInstance();
 
                 DataGridCustomers.ItemsSource = _instance.CustomersToEdit;

@@ -5,37 +5,9 @@ namespace CoCoCoWorking.BLL
 {
     public class TabCustomerController
     {
-        public bool IsNumberValid(string number)
-        {
-            //bool IsNumberValid = true;
-
-            if (number.Length != 11)
-            {
-                return false;
-            }
-
-            foreach (char symbol in number)
-            {
-                if (Char.IsLetter(symbol))
-                {
-                    //IsNumberValid = false;
-                    return false;
-                }
-            }
-            return true;
-            //return IsNumberValid;
-        }
-
-        public bool IsEmailValid(string email)
-        {
-            return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
-
-        }
-
+        Singleton _instance = Singleton.GetInstance();
         public bool IsNameValid(string name)
         {
-            //bool isNameValid = true;
-
             if (name.Length > 255)
             {
                 return false;
@@ -51,14 +23,50 @@ namespace CoCoCoWorking.BLL
             return true;
         }
 
-        public bool IfNumberExist(List<CustomerModel> customers, string number)
+        public bool IsEmailValid(string email)
         {
-            foreach(CustomerModel customer in customers)
+            string patternEmail = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            return Regex.IsMatch(email, patternEmail);
+        }
+
+        public bool IsNumberValid(string number)
+        {
+            if ((number.StartsWith("+7") || number.StartsWith("8")) && AdjustPhoneNumber(number).Length == 11)
             {
-                if (customer.PhoneNumber == number)
+                string patternPhone = @"((8|\+7?)[\- ]?)?(\(?\d{3}\)?[\- ]?)?([\d\- ]{7,10})";
+                return Regex.IsMatch(number, patternPhone);
+            }
+
+            return false;
+        }
+
+        public string AdjustPhoneNumber(string number)
+        {
+            string result = "";
+
+            if (number.StartsWith("+7"))
+            {
+                number = number.Replace("+7", "8");
+            }
+
+            foreach (char symbol in number)
+            {
+                if (Char.IsDigit(symbol))
                 {
-                    return false;
+
+                    result += symbol;
                 }
+            }
+            return result;
+        }
+
+        public bool IfClientsNumberAlreadyExists(string number)
+        {
+            List<CustomerModel> customers = _instance.CustomersToEdit.Where(Customer => Customer.PhoneNumber == number).ToList();
+
+            if (customers.Count() > 0)
+            {
+                return false;
             }
             return true;
         }
