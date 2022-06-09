@@ -63,7 +63,7 @@ namespace CoCoCoWorking.BLL
                 .ForMember("AdditionalServiceId", opt => opt.MapFrom(c => c.AdditionalServiceId))
                 .ForMember("Type", opt => opt.MapFrom(c => modelController.GetTypeOfProductForRentPriceModel(c)))
                 .ForMember("Name", opt => opt.MapFrom(c => modelController.GetNameForRentPriceModel(c)))
-                .ForMember("PeriodType", opt => opt.MapFrom(c => modelController.GetTypeOfPeriod(c)))
+                .ForMember("Hours", opt => opt.MapFrom(c => c.Hours))
                 .ForMember("RegularPrice", opt => opt.MapFrom(c => c.RegularPrice))
                 .ForMember("ResidentPrice", opt => opt.MapFrom(c => c.ResidentPrice))
                 .ForMember("FixedPrice", opt => opt.MapFrom(c => c.FixedPrice));

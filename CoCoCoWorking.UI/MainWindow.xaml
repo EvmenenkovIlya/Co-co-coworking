@@ -63,7 +63,7 @@
                     </TextBlock>
                     <Button Name="ButtonResetCustomer" Content="Reset Customer" Height="30" Width="150" VerticalAlignment="Top" Margin="200, 15, 0, 0" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonResetCustomer_Click"/>
                     <ComboBox x:Name="Combobox_PurchaseType" HorizontalAlignment="Left" Height="33" Margin="463,60,0,0" VerticalAlignment="Top" Width="477" SelectionChanged="Combobox_PurchaseType_SelectionChanged" />
-                    <DataGrid x:Name="DataGrid_Order" HorizontalAlignment="Left" Height="446" Margin="45,250,0,0" VerticalAlignment="Top" Width="413" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="DataGrid_Order_SelectionChanged">
+                    <DataGrid x:Name="DataGrid_Order" CanUserAddRows="False" HorizontalAlignment="Left" Height="446" Margin="45,250,0,0" VerticalAlignment="Top" Width="413" Grid.ColumnSpan="2" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="OrderCost" Binding="{Binding Path=OrderCost}"/>
                             <DataGridTextColumn Header="OrderStatus" Binding="{Binding Path=OrderStatus}"/>
@@ -80,18 +80,19 @@
                         <ComboBoxItem Content="Worckplace fixed"/>
                         <ComboBoxItem Content="Service"/>
                     </ComboBox>
-                    <DataGrid x:Name="DataGrid_UnitOrder" HorizontalAlignment="Left" Height="446" Margin="530,250,0,0" VerticalAlignment="Top" Width="415" Grid.ColumnSpan="2" AutoGenerateColumns="False" >
+                    <DataGrid x:Name="DataGrid_UnitOrder" CanUserAddRows="False" HorizontalAlignment="Left" Height="446" Margin="530,250,0,0" VerticalAlignment="Top" Width="415" Grid.ColumnSpan="2" AutoGenerateColumns="False" >
                         <DataGrid.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="Удалить" Click="ContextMenuOrderUnit_ClickDelete"/>
                             </ContextMenu>
                         </DataGrid.ContextMenu>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="StartDate" Binding="{Binding StartDate}"/>
-                            <DataGridTextColumn Header="StartDate" Binding="{Binding EndDate}"/>
-                            <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Number" Binding="{Binding Number}"/>
+                            <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}"/>
+                            <DataGridTextColumn Header="Start Date" Binding="{Binding EndDate}"/>
+                            <DataGridTextColumn Header="Type" Binding="{Binding TypeForUi}"/>
+                            <DataGridTextColumn Header="Office Name" Binding="{Binding NameOfficeForUi}"/>
+                            <DataGridTextColumn Header="Workplace" Binding="{Binding NumberWorkplaceForUi}"/>
+                            <DataGridTextColumn Header="Price" Binding="{Binding OrderUnitCost}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="ButtonAddToOrder" Content="Add to order" HorizontalAlignment="Left" Height="38" Margin="463,200,0,0" VerticalAlignment="Top" Width="114"  FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonAddToOrder_Click" />

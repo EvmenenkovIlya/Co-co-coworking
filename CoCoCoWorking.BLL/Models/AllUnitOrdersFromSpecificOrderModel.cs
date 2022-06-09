@@ -17,9 +17,5 @@ namespace CoCoCoWorking.BLL.Models
 
         
 
-    }
-
-        
-        
-
+    }           
 }

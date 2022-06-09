@@ -12,6 +12,27 @@ namespace CoCoCoWorking.DAL.DTO
         public string EndDate { get; set; }
         public List<RoomDto> Rooms { get; set; }
         public List<RentPriceDto> Rentprices { get; set; } = new List<RentPriceDto>();
+
+        public AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDto()
+        {
+
+        }
+
+        public override bool Equals(object? obj)
+        {
+            bool flag = true;
+            if (obj == null || !(obj is AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDto))
+            {
+                flag = false;
+            }
+            AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDto alrppDto = (AllRoomsWithPriceWithPeriodRentalWhereRentFromWeekDto)obj;
+            if (alrppDto.StartDate != this.StartDate ||
+                alrppDto.EndDate != this.EndDate)
+            {
+                flag = false;
+            }
+            return flag;
+        }
     }
 
    

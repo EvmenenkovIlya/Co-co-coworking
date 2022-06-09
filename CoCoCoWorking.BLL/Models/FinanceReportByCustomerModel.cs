@@ -6,5 +6,12 @@
 		public string Name { get; set; }			
 		public int OrderCount { get; set; }
 		public double OrderSum { get; set; }
+
+		public FinanceReportByCustomerModel()
+        {
+
+        }
+
+
 	}
 }

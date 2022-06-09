@@ -3,7 +3,7 @@
 AS
 BEGIN
 
-  SELECT A.[Id],A.[Name],A.[Count],OU.[StartDate], OU.[EndDate], RP.[PeriodType], RP.[RegularPrice],RP.[ResidentPrice], RP.[FixedPrice] FROM [dbo].[AdditionalService] as A
+  SELECT A.[Id],A.[Name],A.[Count],OU.[StartDate], OU.[EndDate], RP.[Hours], RP.[RegularPrice],RP.[ResidentPrice], RP.[FixedPrice] FROM [dbo].[AdditionalService] as A
 
 left Join [dbo].[OrderUnit] as OU on OU.[AdditionalServiceId] = A.[Id]
 left Join [dbo].[RentPrice] as RP on RP.[AdditionalServiceId]=A.[Id]
