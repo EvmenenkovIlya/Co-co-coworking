@@ -30,7 +30,7 @@ namespace CoCoCoWorking.UI
             InitializeComponent();
 
             DataGridCustomers.ItemsSource = _instance.CustomersToEdit;
-            DataGridRentPrices.ItemsSource = _instance.RentPrices;
+            //DataGridRentPrices.ItemsSource = _instance.RentPrices;
             ComboBoxOrderStatus.ItemsSource = new List<string>() { "Paid", "Unpaid", "Cancelled" };
             DataGridProductsAdministration.ItemsSource = _instance.Rooms;
             ComboBoxTypeOfRoom.ItemsSource = administrationController.GetRoomsTypes();
@@ -329,17 +329,10 @@ namespace CoCoCoWorking.UI
             {
                 return;
             }
-
-            List<RentPriceModel> listPrices = administrationController.GetRentPrices(DataGridProductsAdministration.SelectedIndex + 1);
-            foreach (var a in listPrices)
-            {
-                if (listPrices.IndexOf(a) == DataGridRentPrices.SelectedIndex)
-                {
-                    modelController.DeleteRentPrice(a.Id);
-                    _instance.UpdateInstance();
-                    DataGridRentPrices.ItemsSource = administrationController.GetRentPrices(DataGridProductsAdministration.SelectedIndex + 1);
-                }
-            }
+            dynamic row = DataGridRentPrices.SelectedItem;
+            modelController.DeleteRentPrice(row.Id);
+            _instance.UpdateInstance();
+            DataGridRentPrices.ItemsSource = administrationController.GetRentPrices(ComboBoxTypeAdministration.SelectedIndex, DataGridProductsAdministration.SelectedIndex + 1);
         }
 
         private void ComboBoxTypeAdministration_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -432,9 +425,16 @@ namespace CoCoCoWorking.UI
             switch (ComboBoxTypeOfRoom.SelectedIndex)
             {
                 case 0:
-
-                    LabelCount.Visibility = Visibility.Visible;
-                    TextBoxProductCount.Visibility = Visibility.Visible;
+                    TextBoxProductCount.IsEnabled = true;
+                    CheckBoxPriceForWorkplace.IsEnabled = true;
+                    break;
+                case 1:
+                    TextBoxProductCount.IsEnabled = false;
+                    CheckBoxPriceForWorkplace.IsEnabled = false;
+                    break;
+                case 2:
+                    TextBoxProductCount.IsEnabled = false;
+                    CheckBoxPriceForWorkplace.IsEnabled = false;
                     break;
 
             }
@@ -486,40 +486,23 @@ namespace CoCoCoWorking.UI
             DataGridProductsAdministration.ItemsSource = _instance.AdditionalServices;
         }
 
-        private void ComboBoxTypeOfRoom_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-            switch (ComboBoxTypeOfRoom.SelectedIndex)
-            {
-                case 0:
-                    TextBoxProductCount.IsEnabled = true;
-                    CheckBoxPriceForWorkplace.IsEnabled = true;
-                    break;
-                case 1:
-                    TextBoxProductCount.IsEnabled = false;
-                    CheckBoxPriceForWorkplace.IsEnabled = false;
-                    break;
-                case 2:
-                    TextBoxProductCount.IsEnabled = false;
-                    CheckBoxPriceForWorkplace.IsEnabled = false;
-                    break;
-            }
-        }
 
         private void DataGridProductsAdministration_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DataGridRentPrices.ItemsSource = administrationController.GetRentPrices(DataGridProductsAdministration.SelectedIndex + 1);
+            DataGridRentPrices.ItemsSource = administrationController.GetRentPrices(ComboBoxTypeAdministration.SelectedIndex, DataGridProductsAdministration.SelectedIndex + 1);
         }
 
         private void ButtonSavePriceAdministration_Click(object sender, RoutedEventArgs e)
         {
+            dynamic row = DataGridProductsAdministration.SelectedItem;
             RentPriceModel newPrice = new RentPriceModel();
             if (CheckBoxPriceForWorkplace.IsChecked == false)
             {
-                newPrice.RoomId = DataGridProductsAdministration.SelectedIndex + 1;
+                newPrice.RoomId = row.Id;
             }
             else if (CheckBoxPriceForWorkplace.IsChecked == true)
             {
-                newPrice.WorkPlaceInRoomId = DataGridProductsAdministration.SelectedIndex + 1;
+                newPrice.WorkPlaceInRoomId = row.Id;
                 newPrice.FixedPrice = Decimal.Parse(TextBoxFixedPrice.Text);
             }
             newPrice.Hours = administrationController.GetHours(ComboBoxTypePeriod.SelectedValue.ToString());
@@ -527,12 +510,7 @@ namespace CoCoCoWorking.UI
             newPrice.ResidentPrice = Decimal.Parse(TextBoxResidentPrice.Text);
             modelController.AddRentPrice(newPrice);
             _instance.UpdateInstance();
-            DataGridRentPrices.ItemsSource = administrationController.GetRentPrices(DataGridProductsAdministration.SelectedIndex + 1);
-        }
-
-        private void DataGridProductsAdministration_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-
+            DataGridRentPrices.ItemsSource = administrationController.GetRentPrices(ComboBoxTypeAdministration.SelectedIndex, row.Id);
         }
     }
 }

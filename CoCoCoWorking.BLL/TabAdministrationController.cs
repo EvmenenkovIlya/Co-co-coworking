@@ -24,10 +24,21 @@ namespace CoCoCoWorking.BLL
 
 
 
-        public List<RentPriceModel> GetRentPrices(int Id)
+        public List<RentPriceModel> GetRentPrices(int selectedIndex, int Id)
         {
             List<RentPriceModel> result = new List<RentPriceModel>();
-            result = _instance.RentPrices.Where(r => r.RoomId == Id).ToList();
+            switch (selectedIndex)
+            {
+                case 0:
+                    result = _instance.RentPrices.Where(r => r.RoomId == Id).ToList();
+                    break;
+                case 1:
+                    result = _instance.RentPrices.Where(r => r.AdditionalServiceId == Id).ToList();
+                    break;
+            }
+            
+            
+            
             return result;
         }
 
