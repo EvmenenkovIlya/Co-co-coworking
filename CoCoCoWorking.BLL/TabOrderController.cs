@@ -38,7 +38,7 @@ namespace CoCoCoWorking.BLL
 
         public int ConvertRentalDaysInHour(DateTime startDate, DateTime endDate)
         {
-            int allHours = Convert.ToInt32(( (endDate - startDate).TotalHours));
+            int allHours = Convert.ToInt32(((endDate - startDate).TotalHours));
             return allHours;
         }
 
@@ -63,16 +63,36 @@ namespace CoCoCoWorking.BLL
             return result;
         }
 
-        public decimal GetPriceForCustomer(RentPriceModel model, CustomerModel customer)
+
+        public decimal GetPriceForCustomer(RentPriceModel model, CustomerModel customer, int typeIndex)
         {
+            
             decimal price = model.RegularPrice;
-            if (customer.Subscribe is true)
+            if (customer.Subscribe)
             {
                 price = (decimal)model.ResidentPrice;
+            }
+            else if(typeIndex == 4)
+            {
+                price = (decimal) model.FixedPrice;
             }
             return price;
 
         }
+
+
+        public decimal GetOrderPriceSum(List<OrderUnitModel> unitOrdersToOrder)
+        {
+            decimal orderSum =0;
+            foreach (var unitOrder in unitOrdersToOrder)
+            {
+                var unitPrice = (decimal)unitOrder.OrderUnitCost;
+                orderSum += unitPrice;
+            }
+
+            return orderSum;
+        }
+
 
         public RentPriceModel GetRequiredRentPrice(List<RentPriceModel> list, int hours)
         {
@@ -86,19 +106,49 @@ namespace CoCoCoWorking.BLL
             return list[requiredIndex];
         }
 
+
+        public List<int> GetAllWorkplaceInRoom(int id)
+        {
+            List<int> workPlaceIdInRoom = new List<int>();
+            var allWorkplace = modelController.GetAllWorkplace();
+            var rooms = modelController.GetAllRoom();
+
+            foreach (var room in rooms)
+            {
+                if (room.Id == id)
+                {
+                    foreach (var workplace in allWorkplace)
+                    {
+                        if (workplace.RoomId == room.Id)
+                        {
+                            workPlaceIdInRoom.Add(workplace.Id);
+                        }
+                    }
+                }
+            }
+            return workPlaceIdInRoom;
+        }
+
+
+        public IEnumerable<DateTime> GetEveryDayInRange(DateTime start, DateTime end)
+        {
+            for (var day = start.Date; day.Date <= end.Date; day = day.AddDays(1))
+                yield return day;
+        }
+
+
         public List<DateTime> GetStringBusyDate(int? roomId, int? workplaceId)
         {
-
             foreach (var unit in _instance.OrderUnits)
             {
-                if ((((unit.AdditionalServiceId is null && unit.RoomId == roomId && unit.WorkPlaceId is null) ||                    
-                                        (unit.WorkPlaceId == workplaceId && unit.WorkPlaceInRoomId == roomId)))) 
+                if ((((unit.AdditionalServiceId is null && unit.RoomId == roomId && unit.WorkPlaceId is null) ||
+                                        (unit.WorkPlaceId == workplaceId && unit.WorkPlaceInRoomId == roomId))))
                 {
                     foreach (DateTime day in GetEveryDayInRange(DateTime.Parse(unit.StartDate), DateTime.Parse(unit.EndDate)))
-                    {                        
+                    {
                         busyDate.Add(day);
                     }
-                } 
+                }
             }
             return busyDate;
         }
@@ -133,11 +183,11 @@ namespace CoCoCoWorking.BLL
                     {
                         workplaceId = null;
                     }
+
                     var busyDate = GetStringBusyDate(room.Id, workplaceId);
                     foreach (var date in busyDate)
                     {
                         busyRooms[room.Id].Add(date);
-
                     }
                     busyDate.Clear();
                 }
@@ -153,7 +203,6 @@ namespace CoCoCoWorking.BLL
                     {
                         if (date == date2)
                         {
-
                             busyRooms.Remove(key);
                             break;
                         }
@@ -164,59 +213,35 @@ namespace CoCoCoWorking.BLL
             return freeRoom;
         }
 
-        
-        public List<int> GetAllWorkplaceInRoom(int id)
-        {
-            List<int> workPlaceIdInRoom = new List<int>();
-            var allWorkplace = modelController.GetAllWorkplace();
-            var rooms = modelController.GetAllRoom();
-
-            foreach(var room in rooms)
+        public List<int> ConvertIntBusyDateRoom(List<DateTime> BusyDate)
+        {    
+            foreach (var date in BusyDate)
             {
-                if(room.Id == id)
-                {
-                    foreach(var workplace in allWorkplace)
-                    {
-                        if(workplace.RoomId == room.Id)
-                        {
-                            workPlaceIdInRoom.Add(workplace.Id);
-                        }
-                    }
-                }
+                DateForCalendar.Add(date.Day);
+                DateForCalendar.Add(date.Month);
+                DateForCalendar.Add(date.Year);
             }
-            return workPlaceIdInRoom;
+            return DateForCalendar;
         }
 
-        public IEnumerable<DateTime> GetEveryDayInRange(DateTime start, DateTime end)
-        {
-            for (var day = start.Date; day.Date <= end.Date; day = day.AddDays(1))
-                yield return day;
-        }
-
-    
         public void FillId(OrderUnitModel orderUnit, int indexType, RoomModel room = null, AdditionalServiceModel additionalService = null, WorkPlaceModel workplace = null)
         {
             if (indexType == 3)
             {
-                orderUnit.WorkPlaceInRoomId = room.Id;
-                
-               
+                orderUnit.WorkPlaceInRoomId = room.Id;                             
             }
             if (room != null && indexType == 0)
             {
-                orderUnit.RoomId = room.Id;
-                
+                orderUnit.RoomId = room.Id;               
             }
             if (additionalService != null)
             {
-                orderUnit.AdditionalServiceId = additionalService.Id;
-                
+                orderUnit.AdditionalServiceId = additionalService.Id;               
             }
             if (workplace != null)
             {
                 orderUnit.WorkPlaceId= workplace.Id;
                 orderUnit.WorkPlaceInRoomId = room.Id;
-
             }
             
         }
