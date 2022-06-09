@@ -1,5 +1,6 @@
 ﻿using CoCoCoWorking.BLL.Models;
 using CoCoCoWorking.DAL;
+using CoCoCoWorking.DAL.DTO;
 
 namespace CoCoCoWorking.BLL
 {
@@ -26,14 +27,14 @@ namespace CoCoCoWorking.BLL
 
 
         AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
-
+        
         private Singleton()
         {            
             Rooms = mapper.Map<List<RoomModel>>(roomManager.GetAllRooms());
             CustomersToEdit = mapper.Map<List<CustomerModel>>(customerManager.GetAllCustomerWhithOrderWithOrderUnit());
             WorkPlaces = mapper.Map<List<WorkPlaceModel>>(workplaceManager.GetAllWorkplaces());
             OrderUnits = mapper.Map<List<OrderUnitModel>>(orderUnitManager.GetAllOrderUnits());
-            
+            AdditionalServices = mapper.Map<List<AdditionalServiceModel>>(additionalServiceManager.GetAllAdditionalServices());
         }
 
         public static Singleton GetInstance()
@@ -46,7 +47,7 @@ namespace CoCoCoWorking.BLL
         }
         public void UpdateInstance()
         {
-            AdditionalServices = mapper.Map<List<AdditionalServiceModel>>(additionalServiceManager.GetAllAdditionalServices());
+            AdditionalServices = mapper.Map< List<AdditionalServiceDto>, List<AdditionalServiceModel>>(additionalServiceManager.GetAllAdditionalServices());
             RentPrices = mapper.Map<List<RentPriceModel>>(rentPriceManager.GetAllRentPrices());
             CustomersToEdit = mapper.Map<List<CustomerModel>>(customerManager.GetAllCustomerWhithOrderWithOrderUnit());
             Rooms = mapper.Map<List<RoomModel>>(roomManager.GetAllRooms());
