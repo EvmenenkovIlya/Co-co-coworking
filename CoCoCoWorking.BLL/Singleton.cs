@@ -1,6 +1,5 @@
 ﻿using CoCoCoWorking.BLL.Models;
 using CoCoCoWorking.DAL;
-using CoCoCoWorking.DAL.DTO;
 
 namespace CoCoCoWorking.BLL
 {
@@ -31,7 +30,6 @@ namespace CoCoCoWorking.BLL
             CustomersToEdit = mapper.Map<List<CustomerModel>>(customerManager.GetAllCustomerWhithOrderWithOrderUnit());
             WorkPlaces = mapper.Map<List<WorkPlaceModel>>(workplaceManager.GetAllWorkplaces());
             OrderUnits = mapper.Map<List<OrderUnitModel>>(orderUnitManager.GetAllOrderUnits());
-
         }
 
         public static Singleton GetInstance()

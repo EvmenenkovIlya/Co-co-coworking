@@ -46,6 +46,31 @@
                     <Button Name="ButtonCreateNewOrder" Grid.Column="1" Grid.Row="1" Content="Create New Order" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="200" Height="30" Margin="0,0,10,30" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonCreateNewOrder_Click"/>
                     <Button x:Name="ButtonReset_Customer" Content="reset"  Grid.Column="3" Width="76" Height="30" HorizontalAlignment="Right" VerticalAlignment= "Top" FontWeight="Bold" Margin="0,50,28,0" FontFamily="Arial Black" FontSize="14" Click="ButtonReset_Customer_Click"/>
                     <Button Name="ButtonRefreshBase" Grid.Column="1" Grid.Row="1" Content="Update customers" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="200" Height="30" Margin="10,0,0,30" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonRefreshBase_Click"/>
+                    <Popup x:Name="popup2" StaysOpen="False" Placement="Mouse" MaxWidth="180" AllowsTransparency="True"  >
+                        <TextBlock TextWrapping="Wrap" Width="180" Background="White" Opacity="0.9" >
+                            Please, fill correct customer name
+                        </TextBlock>
+                    </Popup>
+                    <Popup x:Name="popup3" StaysOpen="False" Placement="Mouse" MaxWidth="180" AllowsTransparency="True"  >
+                        <TextBlock TextWrapping="Wrap" Width="180" Background="White" Opacity="0.9" >
+                            Please, fill correct info into number field
+                        </TextBlock>
+                    </Popup>
+                    <Popup x:Name="popup4" StaysOpen="False" Placement="Mouse" MaxWidth="180" AllowsTransparency="True"  >
+                        <TextBlock TextWrapping="Wrap" Width="180" Background="White" Opacity="0.9" >
+                            Please, type correct email adress
+                        </TextBlock>
+                    </Popup>
+                    <Popup x:Name="popup5" StaysOpen="False" Placement="Mouse" MaxWidth="180" AllowsTransparency="True"  >
+                        <TextBlock TextWrapping="Wrap" Width="180" Background="White" Opacity="0.9" >
+                            Please, fill all cistomer info fields
+                        </TextBlock>
+                    </Popup>
+                    <Popup x:Name="popup6" StaysOpen="False" Placement="Mouse" MaxWidth="180" AllowsTransparency="True"  >
+                        <TextBlock TextWrapping="Wrap" Width="180" Background="White" Opacity="0.9" >
+                            Customer with this phone number already exists
+                        </TextBlock>
+                    </Popup>
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabItem_Orders" Header="Orders" Height="20" VerticalAlignment="Bottom">
@@ -63,7 +88,7 @@
                     </TextBlock>
                     <Button Name="ButtonResetCustomer" Content="Reset Customer" Height="30" Width="150" VerticalAlignment="Top" Margin="200, 15, 0, 0" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonResetCustomer_Click"/>
                     <ComboBox x:Name="Combobox_PurchaseType" HorizontalAlignment="Left" Height="33" Margin="463,60,0,0" VerticalAlignment="Top" Width="477" SelectionChanged="Combobox_PurchaseType_SelectionChanged" />
-                    <DataGrid x:Name="DataGrid_Order" HorizontalAlignment="Left" Height="446" Margin="45,250,0,0" VerticalAlignment="Top" Width="413" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="DataGrid_Order_SelectionChanged">
+                    <DataGrid x:Name="DataGrid_Order" CanUserAddRows="False" HorizontalAlignment="Left" Height="446" Margin="45,250,0,0" VerticalAlignment="Top" Width="413" Grid.ColumnSpan="2" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="OrderCost" Binding="{Binding Path=OrderCost}"/>
                             <DataGridTextColumn Header="OrderStatus" Binding="{Binding Path=OrderStatus}"/>
@@ -80,18 +105,19 @@
                         <ComboBoxItem Content="Worckplace fixed"/>
                         <ComboBoxItem Content="Service"/>
                     </ComboBox>
-                    <DataGrid x:Name="DataGrid_UnitOrder" HorizontalAlignment="Left" Height="446" Margin="530,250,0,0" VerticalAlignment="Top" Width="415" Grid.ColumnSpan="2" AutoGenerateColumns="False" >
+                    <DataGrid x:Name="DataGrid_UnitOrder" CanUserAddRows="False" HorizontalAlignment="Left" Height="446" Margin="530,250,0,0" VerticalAlignment="Top" Width="415" Grid.ColumnSpan="2" AutoGenerateColumns="False" >
                         <DataGrid.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="Удалить" Click="ContextMenuOrderUnit_ClickDelete"/>
                             </ContextMenu>
                         </DataGrid.ContextMenu>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="StartDate" Binding="{Binding StartDate}"/>
-                            <DataGridTextColumn Header="StartDate" Binding="{Binding EndDate}"/>
-                            <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Number" Binding="{Binding Number}"/>
+                            <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}"/>
+                            <DataGridTextColumn Header="Start Date" Binding="{Binding EndDate}"/>
+                            <DataGridTextColumn Header="Type" Binding="{Binding TypeForUi}"/>
+                            <DataGridTextColumn Header="Office Name" Binding="{Binding NameOfficeForUi}"/>
+                            <DataGridTextColumn Header="Workplace" Binding="{Binding NumberWorkplaceForUi}"/>
+                            <DataGridTextColumn Header="Price" Binding="{Binding OrderUnitCost}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="ButtonAddToOrder" Content="Add to order" HorizontalAlignment="Left" Height="38" Margin="463,200,0,0" VerticalAlignment="Top" Width="114"  FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonAddToOrder_Click" />
@@ -107,21 +133,24 @@
             <TabItem x:Name="TabItemAdministration" Header="Administration">
                 <Grid Background="Bisque">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition/>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="0*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <DataGrid x:Name="DataGridRentPrices" HorizontalAlignment="Center" Height="166" VerticalAlignment="Top" Width="446" d:ItemsSource="{d:SampleData ItemCount=5}" AutoGenerateColumns="False" Grid.Row="2" Margin="0,34,0,0">
+                    <DataGrid x:Name="DataGridRentPrices" HorizontalAlignment="Center" Height="465" VerticalAlignment="Top" Width="446" d:ItemsSource="{d:SampleData ItemCount=5}" AutoGenerateColumns="False" Grid.Row="1" Grid.Column="1" Margin="0,14,0,0">
                         <DataGrid.CellStyle>
                             <Style/>
                         </DataGrid.CellStyle>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Удалить" Click="ContextMenuDataGridRentPrices_ClickDelete"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Type of Product" Width="50*" Binding="{Binding Path=Type}"/>
-                            <DataGridTextColumn Header="Name" Width="50*" Binding="{Binding Path=Name}"/>
                             <DataGridTextColumn Header="Period" Width="50*" Binding="{Binding Path=PeriodType}"/>
                             <DataGridTextColumn Header="Regular Price" Width="50*" Binding="{Binding Path=RegularPrice}"/>
                             <DataGridTextColumn Header="Residents Price" Width="50*" Binding="{Binding Path=ResidentPrice}"/>
@@ -129,57 +158,38 @@
                         </DataGrid.Columns>
                     </DataGrid>
 
-                    <ComboBox x:Name="ComboBoxTypeAdministration" HorizontalAlignment="Left" Height="35" Margin="269,16,0,0" VerticalAlignment="Top" Width="220" SelectionChanged="ComboBoxTypeAdministration_SelectionChanged">
+                    <ComboBox x:Name="ComboBoxTypeAdministration" HorizontalAlignment="Left" Height="35" Margin="269,16,0,0" VerticalAlignment="Top" Width="202" SelectionChanged="ComboBoxTypeAdministration_SelectionChanged">
                         <ComboBoxItem Content="Room" IsSelected="True"/>
                         <ComboBoxItem Content="Additional Service"/>
                     </ComboBox>
-                    <ComboBox x:Name="ComboBoxTypeOfRoom" HorizontalAlignment="Left" Height="35" Margin="16,66,0,0" VerticalAlignment="Top" Width="221">
-                        <ComboBoxItem Content="MiniOffice"/>
-                        <ComboBoxItem Content="MeetingRoom"/>
-                        <ComboBoxItem Content="ConferenceHall"/>
-                    </ComboBox>
+                    <ComboBox x:Name="ComboBoxTypeOfRoom" HorizontalAlignment="Left" Height="35" Margin="16,66,0,0" VerticalAlignment="Top" Width="202" SelectionChanged="ComboBoxTypeOfRoom_SelectionChanged"/>
                     <Label x:Name="LabelNameAdministration" Content="Name" HorizontalAlignment="Left" Height="29" Margin="17,136,0,0" VerticalAlignment="Top" Width="64" FontWeight="Bold" FontSize="14"/>
                     <TextBox x:Name="TextBoxProductName" HorizontalAlignment="Left" Height="35" Margin="95,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="269" Text="Enter Name"/>
-                    <Label x:Name="LabelCount" Content="Count " HorizontalAlignment="Left" Height="30" Margin="17,187,0,0" VerticalAlignment="Top" Width="61" FontSize="14" FontWeight="Bold"/>
-                    <TextBox x:Name="TextBoxProductCount" HorizontalAlignment="Left" Height="35" Margin="95,188,0,0" TextWrapping="Wrap" Text="Enter Count" VerticalAlignment="Top" Width="269"/>
-                    <Button x:Name="ButtonSaveProduct" Content="Save " HorizontalAlignment="Left" Height="35" Margin="380,188,0,0" VerticalAlignment="Top" Width="107" FontWeight="Bold" FontSize="14" Background="#FF9FDFF2" Click="ButtonSaveProduct_Click"/>
-                    <Grid x:Name="GridWorkPlaceAdministration" HorizontalAlignment="Center" Height="217" VerticalAlignment="Top" Width="446" Visibility="Visible" Background="#FFE6C297" Grid.Column="1" Grid.Row="1" Margin="0,10,0,0">
-                        <Label x:Name="LabelAddPriceForWorkPlaceInRoom" Content="Add Price For Workplace In Room" HorizontalAlignment="Left" Height="35" Margin="34,10,0,0" VerticalAlignment="Top" Width="278" FontSize="16" FontWeight="Bold"/>
-                        <ComboBox x:Name="ComboBoxTypePeriodForWorkPlace" HorizontalAlignment="Left" Height="37" Margin="34,49,0,0" VerticalAlignment="Top" Width="262">
-                            <ComboBoxItem Content="One Day" IsSelected="True"/>
-                            <ComboBoxItem Content="One Week"/>
-                        </ComboBox>
-                        <Label x:Name="LabelRegularPriceWP" Content="Regular" HorizontalAlignment="Left" Height="35" Margin="34,0,0,0" VerticalAlignment="Center" Width="110" FontWeight="Bold" FontSize="14"/>
-                        <TextBox x:Name="TextBoxRegularPrice_Copy" HorizontalAlignment="Left" Height="26" Margin="138,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="158" Text="RegularPrice"/>
-                        <Label x:Name="LabelFixedPriceWP" Content="Fixed" HorizontalAlignment="Left" Height="36" Margin="34,167,0,0" VerticalAlignment="Top" Width="86" FontWeight="Bold" FontSize="14"/>
-                        <TextBox x:Name="TextBoxFixedPriceWP" HorizontalAlignment="Left" Height="26" Margin="138,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="158" Text="Fixed Price"/>
-                        <Label x:Name="LabelResidentPriceWP" Content="Resident" HorizontalAlignment="Left" Height="35" Margin="34,129,0,0" VerticalAlignment="Top" Width="86" FontSize="14" FontWeight="Bold"/>
-                        <TextBox x:Name="TextBoxResidentPriceWP" HorizontalAlignment="Left" Height="26" Margin="138,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="158" Text="Resident Price"/>
-                        <Button x:Name="ButtonSavePriceAdministrationWP" Content="Save Price" HorizontalAlignment="Left" Height="35" Margin="344,172,0,0" VerticalAlignment="Top" Width="92" FontWeight="Bold" Background="#FF9FDFF2"/>
-                    </Grid>
-                    <Grid x:Name="GridPrices" HorizontalAlignment="Center" Height="217" Margin="0,10,0,0" VerticalAlignment="Top" Width="446" Visibility="Visible" Background="#FFE6C297" Grid.Row="1">
+                    <Label x:Name="LabelCount" Content="Count " HorizontalAlignment="Left" Height="30" Margin="17,187,0,0" VerticalAlignment="Top" Width="61" FontSize="14" FontWeight="Bold" Visibility="Hidden"/>
+                    <TextBox x:Name="TextBoxProductCount" HorizontalAlignment="Left" Height="35" Margin="95,188,0,0" TextWrapping="Wrap" Text="Enter Count" VerticalAlignment="Top" Width="269" Visibility="Hidden"/>
+                    <Button x:Name="ButtonSaveProduct" Content="Save " HorizontalAlignment="Left" Height="35" Margin="382,207,0,0" VerticalAlignment="Top" Width="107" FontWeight="Bold" FontSize="14" Background="#FF9FDFF2" Click="ButtonSaveProduct_Click"/>
+                    <Grid x:Name="GridPrices" HorizontalAlignment="Center" Height="465" VerticalAlignment="Top" Width="446" Visibility="Visible" Background="#FFE6C297" Grid.Row="1" Margin="0,14,0,0">
                         <Label x:Name="LabelAddPrices" Content="Add Price " HorizontalAlignment="Left" Height="35" Margin="34,10,0,0" VerticalAlignment="Top" Width="124" FontSize="16" FontWeight="Bold"/>
-                        <ComboBox x:Name="ComboBoxTypePeriod" HorizontalAlignment="Left" Height="37" Margin="34,49,0,0" VerticalAlignment="Top" Width="262">
-                            <ComboBoxItem Content="One Hour" IsSelected="True"/>
-                            <ComboBoxItem Content="One Day"/>
-                            <ComboBoxItem Content="One Week"/>
+                        <ComboBox x:Name="ComboBoxTypePeriod" HorizontalAlignment="Left" Height="36" Margin="138,92,0,0" VerticalAlignment="Top" Width="159">
+
                         </ComboBox>
-                        <Label x:Name="LabelRegularPrice" Content="Regular" HorizontalAlignment="Left" Height="35" Margin="34,0,0,0" VerticalAlignment="Center" Width="86" FontWeight="Bold" FontSize="14"/>
-                        <TextBox x:Name="TextBoxRegularPrice" HorizontalAlignment="Left" Height="26" Margin="138,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="158" Text="RegularPrice"/>
-                        <Label x:Name="LabelResidentPrice" Content="Resident" HorizontalAlignment="Left" Height="35" Margin="34,129,0,0" VerticalAlignment="Top" Width="106" FontSize="14" FontWeight="Bold"/>
-                        <TextBox x:Name="TextBoxResidentPrice" HorizontalAlignment="Left" Height="26" Margin="138,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="158" Text="Resident Price"/>
-                        <Button x:Name="ButtonSavePriceAdministration" Content="Save Price" HorizontalAlignment="Left" Height="35" Margin="344,172,0,0" VerticalAlignment="Top" Width="92" FontWeight="Bold" Background="#FF9FDFF2"/>
+                        <Label x:Name="LabelRegularPrice" Content="Regular" HorizontalAlignment="Left" Height="36" Margin="34,143,0,0" VerticalAlignment="Top" Width="86" FontWeight="Bold" FontSize="14"/>
+                        <TextBox x:Name="TextBoxRegularPrice" HorizontalAlignment="Left" Height="26" Margin="138,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="158" Text="RegularPrice"/>
+                        <Label x:Name="LabelResidentPrice" Content="Resident" HorizontalAlignment="Left" Height="35" Margin="34,179,0,0" VerticalAlignment="Top" Width="106" FontSize="14" FontWeight="Bold"/>
+                        <TextBox x:Name="TextBoxResidentPrice" HorizontalAlignment="Left" Height="26" Margin="138,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="158" Text="Resident Price"/>
+                        <Button x:Name="ButtonSavePriceAdministration" Content="Save Price" HorizontalAlignment="Left" Height="35" Margin="344,272,0,0" VerticalAlignment="Top" Width="92" FontWeight="Bold" Background="#FF9FDFF2"/>
+                        <Label x:Name="LabelFixedPriceWP" Content="Fixed" HorizontalAlignment="Left" Height="36" Margin="34,217,0,0" VerticalAlignment="Top" Width="86" FontWeight="Bold" FontSize="14"/>
+                        <TextBox x:Name="TextBoxFixedPriceWP" HorizontalAlignment="Left" Height="26" Margin="138,222,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="158" Text="Fixed Price"/>
+                        <CheckBox Content="for workplace in this room" HorizontalAlignment="Left" Margin="152,20,0,0" VerticalAlignment="Top"/>
+                        <Label x:Name="LabelRegularPrice_Copy" Content="Period:" HorizontalAlignment="Left" Height="36" Margin="34,92,0,0" VerticalAlignment="Top" Width="86" FontWeight="Bold" FontSize="14"/>
                     </Grid>
-                    <ComboBox x:Name="ComboBoxChooseAddOrEdit" HorizontalAlignment="Left" Height="35" Margin="17,16,0,0" VerticalAlignment="Top" Width="220">
+                    <ComboBox x:Name="ComboBoxChooseAddOrEdit" HorizontalAlignment="Left" Height="35" Margin="17,16,0,0" VerticalAlignment="Top" Width="202" SelectionChanged="ComboBoxChooseAddOrEdit_SelectionChanged">
                         <ComboBoxItem Content="Add New" IsSelected="True"/>
                         <ComboBoxItem Content="Edit"/>
                     </ComboBox>
-                    <Button x:Name="ButtonSavePriceAdminDatagrid" Content="Save" HorizontalAlignment="Left" Height="35" Margin="248,207,0,0" VerticalAlignment="Top" Width="108" FontWeight="Bold" FontSize="14" Background="#FF9FDFF2" Grid.Row="2"/>
-                    <Button x:Name="ButtonDeletePriceAdminDatagrid" Content="Delete" HorizontalAlignment="Left" Height="35" Margin="364,207,0,0" VerticalAlignment="Top" Width="108" FontSize="14" FontWeight="Bold" Background="#FFF45050" Grid.Row="2"/>
-                    <ComboBox x:Name="ComboBoxNameOfProduct" HorizontalAlignment="Left" Height="35" Margin="269,68,0,0" VerticalAlignment="Top" Width="220" Background="{x:Null}"/>
-                    <DataGrid x:Name="DataGridAdministrationTest" HorizontalAlignment="Center" Height="166" VerticalAlignment="Top" Width="446" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="1" Grid.Row="2" Margin="0,34,0,0"/>
-                    <Label Content="Prices" HorizontalAlignment="Left" Margin="26,5,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
-                    <Label Grid.Column="1" Content="For Tests" HorizontalAlignment="Left" Margin="26,252,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="14" Grid.RowSpan="2"/>
+                    <ComboBox x:Name="ComboBoxNameOfProduct" HorizontalAlignment="Left" Height="35" Margin="269,66,0,0" VerticalAlignment="Top" Width="220" Background="{x:Null}" SelectedIndex="0" Visibility="Hidden"/>
+                    <DataGrid x:Name="DataGridAdministrationTest" HorizontalAlignment="Center" Height="165" VerticalAlignment="Top" Width="446" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Column="1" Margin="0,52,0,0"/>
+                    <Label Grid.Column="1" Content="For Tests" HorizontalAlignment="Left" Margin="11,10,0,0" VerticalAlignment="Top" FontSize="14" Height="29" Width="64"/>
 
 
                 </Grid>
