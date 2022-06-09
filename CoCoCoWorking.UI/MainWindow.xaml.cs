@@ -23,6 +23,7 @@ namespace CoCoCoWorking.UI
 
 
         TabOrderController orderController = new TabOrderController();
+        TabAdministrationController administrationController = new TabAdministrationController();
         private ICollectionView items;
         
 
@@ -35,8 +36,8 @@ namespace CoCoCoWorking.UI
             DataGridRentPrices.ItemsSource = _instance.RentPrices;
             DataGridAdministrationTest.ItemsSource = _instance.AdditionalServices;
             ComboBoxOrderStatus.ItemsSource = new List<string>() { "Paid", "Unpaid", "Cancelled" };
-            ComboBoxTypeOfRoom.ItemsSource = modelController.GetRoomsTypes();
-            ComboBoxTypePeriodForWorkPlace.ItemsSource = modelController.GetPeriodTypesForWorkPlace();
+            ComboBoxTypeOfRoom.ItemsSource = administrationController.GetRoomsTypes();
+            
             ComboBoxTypePeriod.ItemsSource = Enum.GetValues(typeof(TypeOfPeriod));
         }
 
@@ -287,9 +288,28 @@ namespace CoCoCoWorking.UI
             }
         }
 
+        private void ContextMenuDataGridRentPrices_ClickDelete(object sender, RoutedEventArgs e)
+        {
+            if (DataGridRentPrices.SelectedIndex == null)
+            {
+                return;
+            }
+            //unitOrdersToOrder.RemoveAt(DataGrid_UnitOrder.SelectedIndex);
+            DataGridRentPrices.Items.Refresh();
+        }
+
         private void ComboBoxTypeAdministration_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           
+            switch (ComboBoxTypeAdministration.SelectedIndex)
+            {
+                case 0:
+                    //ComboBoxTypeOfRoom.Visibility = Visibility.Visible;
+                    break;
+                case 1:
+                    ComboBoxTypeOfRoom.Visibility = Visibility.Hidden;
+                    break;
+
+            }
         }
         private void ButtonAddToOrder_Click(object sender, RoutedEventArgs e)
         {
@@ -351,11 +371,17 @@ namespace CoCoCoWorking.UI
             switch (ComboBoxTypeOfRoom.SelectedIndex)
             {
                 case 0:
-                    GridWorkPlaceAdministration.Visibility = Visibility.Visible;
+                    
                     LabelCount.Visibility = Visibility.Visible;
                     TextBoxProductCount.Visibility = Visibility.Visible;
                     break;
+
             }
+        }
+
+        private void ComboBoxChooseAddOrEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
