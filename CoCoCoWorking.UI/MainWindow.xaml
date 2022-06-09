@@ -95,7 +95,7 @@
                             <DataGridTextColumn Header="PaidDate" Binding="{Binding Path=PaidDate}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="ButtonCreateOrder" Content="Create order" HorizontalAlignment="Left" Height="31" Margin="799,701,0,0" VerticalAlignment="Top" Width="145"  FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonCreateOrder_Click" />
+                    <Button x:Name="ButtonCreateOrder" Content="Create order" HorizontalAlignment="Left" Height="30" Margin="800,701,0,0" VerticalAlignment="Top" Width="145"  FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonCreateOrder_Click" />
                     <ComboBox x:Name="Combobox_ChooseWorkplace" HorizontalAlignment="Left" Height="35" Margin="463,125,0,0" VerticalAlignment="Top" Width="477" IsEnabled="False" SelectionChanged="Combobox_ChooseWorkplace_SelectionChanged"  />
                     <ComboBox x:Name="ComboBox_Type" HorizontalAlignment="Left" Height="33" Margin="45,60,0,0" VerticalAlignment="Top" Width="173" SelectionChanged="ComboBox_Type_SelectionChanged" >
 
@@ -123,6 +123,7 @@
                     <Button x:Name="ButtonSearchByDateForOrder" Content="Search by date" HorizontalAlignment="Left" Height="38" Margin="45,200,0,0" VerticalAlignment="Top" Width="142"  FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonSearchByDateForOrder_Click"/>
                     <Button x:Name="ButtonReset" Content="Reset" HorizontalAlignment="Left" Height="38" Margin="834,200,0,0" VerticalAlignment="Top" Width="110"  FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonReset_Click"/>
                     <ComboBox Name="ComboBoxOrderStatus" HorizontalAlignment="Left" Margin="530,701,0,0" VerticalAlignment="Top" Width="167" Height="30"></ComboBox>
+                    <Label x:Name="Label_UnirOrderSum" Content="" HorizontalAlignment="Left" Height="30" Margin="702,659,0,0" VerticalAlignment="Top" Width="92"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabItemAdministration" Header="Administration">

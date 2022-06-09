@@ -127,6 +127,7 @@ namespace CoCoCoWorking.UI
         private void ComboBox_Type_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Combobox_ChooseWorkplace.IsEnabled = false;
+            Combobox_ChooseWorkplace.SelectedItem = null;
 
             switch (ComboBox_Type.SelectedIndex)
             {
@@ -213,6 +214,10 @@ namespace CoCoCoWorking.UI
         private void ButtonSearchByDateForOrder_Click(object sender, RoutedEventArgs e)
         {
 
+            if (DatePicker_Order_StartDate.Text == "" || DatePicker_Order_EndDate.Text =="")
+            {
+                return;
+            }
             var startDate = DatePicker_Order_StartDate.Text;
             string endDate = DatePicker_Order_EndDate.Text;
 
@@ -343,11 +348,26 @@ namespace CoCoCoWorking.UI
         }
         private void ButtonAddToOrder_Click(object sender, RoutedEventArgs e)
         {
-           
-            dynamic model = Combobox_PurchaseType.SelectedItem;
+            if (DatePicker_Order_StartDate.Text == "" || DatePicker_Order_EndDate.Text == "" || Combobox_PurchaseType.SelectedItem is null ||
+                                                                   ComboBox_Type.SelectedItem is null || TextBlockChoosenCustomer.Text == "")
+            {
+                MessageBox.Show("Not all data entered");
+                return;
+            }
+            dynamic model = null;
             var customerSelected = DataGridCustomers.SelectedItem as CustomerModel;
+            switch (ComboBox_Type.SelectedIndex)
+            {
+                case 0:
+                    model = Combobox_PurchaseType.SelectedItem;
+                    break;
+                case 4:
+                    model = Combobox_ChooseWorkplace.SelectedItem;
+                    break;
+            }
 
             var rentPriceModels = orderController.SearchRentPricesById(ComboBox_Type.SelectedIndex, model.Id);
+
             if(rentPriceModels.Count == 0)
             {
                 return;
@@ -370,6 +390,7 @@ namespace CoCoCoWorking.UI
             unitOrdersToOrder.Add(orderUnit);
             DataGrid_UnitOrder.ItemsSource = unitOrdersToOrder;
             DataGrid_UnitOrder.Items.Refresh();
+            Label_UnirOrderSum.Content =$"Order price:{orderController.GetOrderPriceSum(unitOrdersToOrder)}";
 
         }
 
@@ -430,11 +451,11 @@ namespace CoCoCoWorking.UI
 
         private void ButtonReset_Click(object sender, RoutedEventArgs e)
         {
-            ComboBox_Type.SelectedIndex = -1;
-            Combobox_PurchaseType.SelectedIndex= -1;
-            Combobox_ChooseWorkplace.SelectedIndex= -1;
-            DatePicker_Order_StartDate.Text = "";
-            DatePicker_Order_EndDate.Text = "";
+            ComboBox_Type.SelectedItem = null;
+            Combobox_PurchaseType.SelectedItem = null;
+            Combobox_ChooseWorkplace.SelectedItem = null;
+            DatePicker_Order_StartDate.Text = null;
+            DatePicker_Order_EndDate.Text = null;
         }
     }
 }

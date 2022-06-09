@@ -47,6 +47,17 @@ namespace CoCoCoWorking.BLL
             return price;
 
         }
+        public decimal GetOrderPriceSum(List<OrderUnitModel> unitOrdersToOrder)
+        {
+            decimal orderSum =0;
+            foreach (var unitOrder in unitOrdersToOrder)
+            {
+                var unitPrice = (decimal)unitOrder.OrderUnitCost;
+                orderSum += unitPrice;
+            }
+
+            return orderSum;
+        }
 
         public RentPriceModel GetRequiredRentPrice(List<RentPriceModel> list, int hours)
         {
@@ -100,7 +111,7 @@ namespace CoCoCoWorking.BLL
 
         public List<int> SearchFreeForDate(string startDate, string endDate, bool forWorkplace = false)
         {
-
+            
             var rooms = _instance.Rooms;
             List<DateTime> allDatesForFree = new List<DateTime>();
             List<int> freeRoom = new List<int>();
