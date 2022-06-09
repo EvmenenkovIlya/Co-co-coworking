@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CoCoCoWorking.BLL.Models;
-using CoCoCoWorking.DAL;
-using CoCoCoWorking.DAL.DTO;
+﻿using CoCoCoWorking.BLL.Models;
 
 namespace CoCoCoWorking.BLL
 {
@@ -36,8 +29,7 @@ namespace CoCoCoWorking.BLL
 
         public int ConvertRentalDaysInHour(DateTime startDate, DateTime endDate)
         {
-            int allHours = (endDate - startDate).Hours;
-
+            int allHours = Convert.ToInt32(( (endDate - startDate).TotalHours));
             return allHours;
         }
 

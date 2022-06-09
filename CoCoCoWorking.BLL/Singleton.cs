@@ -1,6 +1,5 @@
 ﻿using CoCoCoWorking.BLL.Models;
 using CoCoCoWorking.DAL;
-using CoCoCoWorking.DAL.DTO;
 
 namespace CoCoCoWorking.BLL
 {
