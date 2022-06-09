@@ -71,12 +71,12 @@ namespace CoCoCoWorking.Tests
             Assert.AreEqual(expected, actual);
         }
 
-/*        [TestCaseSource(typeof(GetFinanceReportModelsTestSource))]
+        /*[TestCaseSource(typeof(GetFinanceReportModelsTestSource))]
         public void GetFinanceReportModelsTest
             (
-                DateTime startDate, 
-                DateTime endDate, 
-                List<FinanceReportDto> expectedFinanceReportDto, 
+                DateTime startDate,
+                DateTime endDate,
+                List<FinanceReportDto> expectedFinanceReportDto,
                 List<FinanceReportModel> expectedFinanceReportModel
             )
         {
@@ -88,5 +88,45 @@ namespace CoCoCoWorking.Tests
 
             _financeReportManagerMock.Verify();
         }*/
+
+        [TestCaseSource(typeof(GetCustomerWithTheMatchedNumberIsReturnedTestSource))]
+        public void GetCustomerWithTheMatchedNumberIsReturnedTest(string pathOfNumber, List<CustomerModel> listCustomers, List<CustomerModel> expected)
+        {
+            List<CustomerModel> actual = _modelController.GetCustomerWithTheMatchedNumberIsReturned(pathOfNumber, listCustomers);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCaseSource(typeof(IsRegularTestSource))]
+        public void IsRegularTest(CustomersWithOrdersDto customer, bool expected)
+        {
+            bool actual = _modelController.IsRegular(customer);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCaseSource(typeof(IsSubscribeTestSource))]
+        public void IsSubscribeTest(CustomersWithOrdersDto customer, bool expected)
+        {
+            bool actual = _modelController.IsSubscribe(customer);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCaseSource(typeof(GetLastDateTestSource))]
+        public void GetLastDateTest(CustomersWithOrdersDto customer, string expected)
+        {
+            string actual = _modelController.GetLastDate(customer);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCaseSource(typeof(GetSumOrderUnitsTestSource))]
+        public void GetSumOrderUnitsTest(List<OrderUnitModel> orderUnits, decimal expected)
+        {
+            decimal actual = _modelController.GetSumOrderUnits(orderUnits);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

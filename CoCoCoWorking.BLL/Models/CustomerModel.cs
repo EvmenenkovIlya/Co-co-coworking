@@ -30,7 +30,26 @@
 
         public override bool Equals(object? obj)
         {
-            return base.Equals(obj);
+            bool flag = true;
+
+            if (obj == null || !(obj is CustomerModel))
+            {
+                flag = false;
+            }
+
+            CustomerModel oruDto = (CustomerModel)obj;
+            if (oruDto.Id != this.Id ||
+               oruDto.FirstName != this.FirstName ||
+               oruDto.LastName != this.LastName ||
+               oruDto.PhoneNumber != this.PhoneNumber ||
+               oruDto.Email != this.Email ||
+               oruDto.Regular != this.Regular ||
+               oruDto.Subscribe != this.Subscribe ||
+               oruDto.EndDate != this.EndDate )
+            {
+                flag = false;
+            }
+            return flag;
         }
         public override string ToString()
         {
