@@ -3,7 +3,7 @@
     [RoomId]              INT NULL,
     [WorkPlaceInRoomId]   INT NULL,
     [AdditionalServiceId] INT            NULL,
-    [PeriodType]          NVARCHAR(255)   NOT NULL,
+    [Hours]               INT         NULL,
     [RegularPrice]        DECIMAL (18, 2)   NULL,
     [ResidentPrice]       DECIMAL (18, 2)   NULL,
     [FixedPrice]          DECIMAL (18, 2)   NULL,

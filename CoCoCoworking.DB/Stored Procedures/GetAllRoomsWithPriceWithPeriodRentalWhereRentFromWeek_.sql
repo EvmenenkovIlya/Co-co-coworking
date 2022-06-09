@@ -15,5 +15,5 @@ BEGIN
 	inner join dbo.[Room] as R on OU.RoomId = R.Id
 	inner join dbo.[RentPrice] as RP  on R.Id = RP.RoomId  
 	
-	where RP.[PeriodType] = 'неделя' 
+	where RP.[Hours] = 168
 END

@@ -9,10 +9,10 @@ namespace CoCoCoWorking.DAL.DTO
     public class RentPriceDto
     {
         public int Id { get; set; }
-        public int RoomId { get; set; }
-        public int WorkPlaceInRoomId { get; set; }
-        public int AdditionalServiceId { get; set; }
-        public string PeriodType { get; set; }
+        public int? RoomId { get; set; }
+        public int? WorkPlaceInRoomId { get; set; }
+        public int? AdditionalServiceId { get; set; }
+        public int Hours { get; set; }
         public decimal RegularPrice { get; set; }
         public decimal? ResidentPrice { get; set; }
         public decimal? FixedPrice { get; set; }
@@ -35,7 +35,7 @@ namespace CoCoCoWorking.DAL.DTO
                rpDto.RoomId != this.RoomId ||
                rpDto.WorkPlaceInRoomId != this.WorkPlaceInRoomId ||
                rpDto.AdditionalServiceId != this.AdditionalServiceId ||
-               rpDto.PeriodType != this.PeriodType ||
+               rpDto.Hours != this.Hours ||
                rpDto.RegularPrice != this.RegularPrice ||
                rpDto.ResidentPrice != this.ResidentPrice||
                rpDto.FixedPrice!=this.FixedPrice

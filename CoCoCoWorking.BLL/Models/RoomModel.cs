@@ -33,5 +33,10 @@
             }
             return flag;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
