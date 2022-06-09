@@ -528,13 +528,5 @@ namespace CoCoCoWorking.UI
         {
 
         }
-
-        private void ContextMenuProductsAdministration_ClickDelete(object sender, RoutedEventArgs e)
-        {
-            dynamic row = DataGridProductsAdministration.SelectedItem;
-            modelController.DeleteAdditionalService(row.Id);
-            _instance.UpdateInstance();
-            DataGridProductsAdministration.ItemsSource = _instance.AdditionalServices;
-        }
     }
 }
