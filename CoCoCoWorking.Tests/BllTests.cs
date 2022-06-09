@@ -6,6 +6,7 @@ using CoCoCoWorking.Tests.ModelControllerSources;
 using CoCoCoWorking.BLL.Models;
 using CoCoCoWorking.DAL;
 using CoCoCoWorking.DAL.Interfaces;
+using NUnit.Framework;
 
 namespace CoCoCoWorking.Tests
 {
@@ -63,20 +64,20 @@ namespace CoCoCoWorking.Tests
 
         //GetNameForRentPriceModel
 
-        [TestCaseSource(typeof(GetTypeOfPeriodTestSource))]
-        public void GetTypeOfPeriodTest(RentPriceDto rentPrice, TypeOfPeriod expected)
-        {
-            TypeOfPeriod actual = _modelController.GetTypeOfPeriod(rentPrice);
+        //[TestCaseSource(typeof(GetTypeOfPeriodTestSource))]
+        //public void GetTypeOfPeriodTest(RentPriceDto rentPrice, TypeOfPeriod expected)
+        //{
+        //    TypeOfPeriod actual = _modelController.GetTypeOfPeriod(rentPrice);
 
-            Assert.AreEqual(expected, actual);
-        }
+        //    Assert.AreEqual(expected, actual);
+        //}
 
-/*        [TestCaseSource(typeof(GetFinanceReportModelsTestSource))]
+        /*[TestCaseSource(typeof(GetFinanceReportModelsTestSource))]
         public void GetFinanceReportModelsTest
             (
-                DateTime startDate, 
-                DateTime endDate, 
-                List<FinanceReportDto> expectedFinanceReportDto, 
+                DateTime startDate,
+                DateTime endDate,
+                List<FinanceReportDto> expectedFinanceReportDto,
                 List<FinanceReportModel> expectedFinanceReportModel
             )
         {
@@ -88,5 +89,45 @@ namespace CoCoCoWorking.Tests
 
             _financeReportManagerMock.Verify();
         }*/
+
+        [TestCaseSource(typeof(GetCustomerWithTheMatchedNumberIsReturnedTestSource))]
+        public void GetCustomerWithTheMatchedNumberIsReturnedTest(string pathOfNumber, List<CustomerModel> listCustomers, List<CustomerModel> expected)
+        {
+            List<CustomerModel> actual = _modelController.GetCustomerWithTheMatchedNumberIsReturned(pathOfNumber, listCustomers);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCaseSource(typeof(IsRegularTestSource))]
+        public void IsRegularTest(CustomersWithOrdersDto customer, bool expected)
+        {
+            bool actual = _modelController.IsRegular(customer);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCaseSource(typeof(IsSubscribeTestSource))]
+        public void IsSubscribeTest(CustomersWithOrdersDto customer, bool expected)
+        {
+            bool actual = _modelController.IsSubscribe(customer);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCaseSource(typeof(GetLastDateTestSource))]
+        public void GetLastDateTest(CustomersWithOrdersDto customer, string expected)
+        {
+            string actual = _modelController.GetLastDate(customer);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCaseSource(typeof(GetSumOrderUnitsTestSource))]
+        public void GetSumOrderUnitsTest(List<OrderUnitModel> orderUnits, decimal expected)
+        {
+            decimal actual = _modelController.GetSumOrderUnits(orderUnits);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

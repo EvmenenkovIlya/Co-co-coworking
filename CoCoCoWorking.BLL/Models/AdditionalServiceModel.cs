@@ -11,12 +11,6 @@
 
       }
        
-      public AdditionalServiceModel(int id, string Name)
-      {
-        id = id;
-        Name = Name;
-      }
-
        public override bool Equals(object? obj)
        {
             bool flag = false;
@@ -35,8 +29,5 @@
             }
             return flag;
        }
-
-
-
     }
 }

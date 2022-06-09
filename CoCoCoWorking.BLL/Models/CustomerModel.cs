@@ -15,23 +15,29 @@
         {
 
         }
-        //public CustomerModel(int id, string FirstName, string LastName,string PhoneNumber, string Email, bool Regular, bool Subscribe, string EndDate)
+        //public override bool Equals(object? obj)
         //{
-        //    id = id;
-        //    FirstName=FirstName;
-        //    LastName=LastName;
-        //    PhoneNumber=PhoneNumber;
-        //    Email=Email;
-        //    Regular=Regular;
-        //    Subscribe=Subscribe;
-        //    EndDate=EndDate;
+        //    bool flag = true;
+
+        //    if (obj == null || !(obj is CustomerModel))
+        //    {
+        //        flag = false;
+        //    }
+
+        //    CustomerModel oruDto = (CustomerModel)obj;
+        //    if (oruDto.Id != this.Id ||
+        //       oruDto.FirstName != this.FirstName ||
+        //       oruDto.LastName != this.LastName ||
+        //       oruDto.PhoneNumber != this.PhoneNumber ||
+        //       oruDto.Email != this.Email ||
+        //       oruDto.Regular != this.Regular ||
+        //       oruDto.Subscribe != this.Subscribe ||
+        //       oruDto.EndDate != this.EndDate )
+        //    {
+        //        flag = false;
+        //    }
+        //    return flag;
         //}
-
-
-        public override bool Equals(object? obj)
-        {
-            return base.Equals(obj);
-        }
         public override string ToString()
         {
             return $"{FirstName} {LastName}";

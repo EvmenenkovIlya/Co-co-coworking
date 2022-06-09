@@ -29,7 +29,7 @@ namespace CoCoCoWorking.DAL
                 connection.Open();
                 return connection.Query<FinanceReportDto>
                     (StoredProcedures.GetFinanceReport,
-                    param: new { StartDate = startDate, EndDate = endDate },
+                    param: new { StartDate = startDate, EndDate = endDate},
                     commandType: System.Data.CommandType.StoredProcedure)
                     .ToList();
             }

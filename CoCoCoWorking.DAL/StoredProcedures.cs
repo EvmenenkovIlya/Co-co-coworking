@@ -34,15 +34,12 @@
         public const string Workplace_GetById = "Workplace_GetById";
         public const string Workplace_Update = "Workplace_Update";
 
-        public const string GetAllAdditionalService = "GetAllAdditionalService";
         public const string GetAllCustomerWhithOrderWithOrderUnit = "GetAllCustomerWhithOrderWithOrderUnit";
         public const string GetAllCustomerWithActiveSubscription = "GetAllCustomerWithActiveSubscription";
         public const string GetAllRoomAndWorkPlaceBusyOrFree = "GetAllRoomAndWorkPlaceBusyOrFree";
         public const string GetFinanceReport = "GetFinanceReport";
         public const string GetFinanceReportByCustomer = "GetFinanceReportByCustomer";
         
-        public const string GetAllUnitOrdersFromSpecificOrder = "GetAllUnitOrdersFromSpecificOrder";
-        public const string GetAllRoomsWithPriceWithPeriodRentalWhereRentFromHour = "GetAllRoomsWithPriceWithPeriodRentalWhereRentFromHour";
-        public const string GetAllRoomsWithPriceWithPeriodRentalWhereRentFromWeek = "GetAllRoomsWithPriceWithPeriodRentalWhereRentFromWeek";
+        public const string GetAllUnitOrdersFromSpecificOrder = "GetAllUnitOrdersFromSpecificOrder";      
     }
 }

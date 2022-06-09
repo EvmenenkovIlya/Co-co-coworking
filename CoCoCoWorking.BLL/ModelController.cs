@@ -5,7 +5,7 @@ using CoCoCoWorking.BLL.Models;
 
 namespace CoCoCoWorking.BLL
 {
-    public class ModelController : IModelController
+    public class ModelController
     {
         private FinanceReportManager financeReportManager = new FinanceReportManager();
         private RoomManager roomManager = new RoomManager();
@@ -14,8 +14,9 @@ namespace CoCoCoWorking.BLL
         private CustomerManager customerManager = new CustomerManager();
         private AdditionalServiceManager additionalServiceManager = new AdditionalServiceManager();
         private OrderManager orderManager = new OrderManager();
+        private RentPriceManager rentPriceManager = new RentPriceManager();
         private AutoMapper.Mapper mapper = MapperConfigStorage.GetInstance();
-        private Singleton _instance = Singleton.GetInstance();
+        private DataStorage _instance = DataStorage.GetInstance();
 
         private IModelController _controller;
 
@@ -77,76 +78,6 @@ namespace CoCoCoWorking.BLL
 
             return type;
         }
-
-        public TypeOfProduct GetTypeOfProductForRentPriceModel(RentPriceDto r)
-        {
-
-            TypeOfProduct type = new TypeOfProduct();
-            if (r.RoomId != null)
-            {
-                foreach (RoomModel a in _instance.Rooms)
-                {
-                    if (a.Id == r.RoomId)
-                    {
-                        type = a.Type;
-                    }
-                }
-            }
-            else if (r.AdditionalServiceId != null)
-            {
-                type = TypeOfProduct.AdditionalService;
-            }
-            else
-            {
-                type = TypeOfProduct.WorkPlace;
-            }
-            return type;
-        }
-
-        public string GetNameForRentPriceModel(RentPriceDto r)
-        {
-
-            string name = "";
-            if (r.RoomId != null)
-            {
-                foreach (RoomModel a in _instance.Rooms)
-                {
-                    if (a.Id == r.RoomId)
-                    {
-                        name = a.Name;
-                    }
-                }
-            }
-            else if (r.AdditionalServiceId != null)
-            {
-                foreach (AdditionalServiceModel a in _instance.AdditionalServices)
-                {
-                    if (a.Id == r.AdditionalServiceId)
-                    {
-                        name = a.Name;
-                    }
-                }
-            }
-            else
-            {
-                foreach (RoomModel a in _instance.Rooms)
-                {
-                    if (a.Id == r.WorkPlaceInRoomId)
-                    {
-                        name = $"Workplace in {a.Name}";
-                    }
-                }
-            }
-            return name;
-        }
-
-        //public TypeOfPeriod GetTypeOfPeriod(RentPriceDto r)
-        //{
-        //    TypeOfPeriod type = (TypeOfPeriod)Enum.Parse(typeof(TypeOfPeriod), r.PeriodType);
-
-        //    return type;
-        //}
-
         public List<FinanceReportModel> GetFinanceReportModels(DateTime startDate, DateTime endDate)
         {
             List<FinanceReportDto> listDto = financeReportManager.GetFinanceReport(startDate, endDate);
@@ -154,33 +85,35 @@ namespace CoCoCoWorking.BLL
             return list;
         }
 
+        //
         public List<FinanceReportByCustomerModel> GetFinanceReportByCustomerModels(DateTime startDate, DateTime endDate)
         {
             List<FinanceReportByCustomerDto> listDto = financeReportManager.GetFinanceReportByCustomer(startDate, endDate);
             List<FinanceReportByCustomerModel> list = mapper.Map<List<FinanceReportByCustomerModel>>(listDto);
             return list;
         }
-
+        //
         public List<RoomModel> GetAllRoom()
         {
             List<RoomDto> listDto = roomManager.GetAllRooms();
             List<RoomModel> list = mapper.Map<List<RoomModel>>(listDto);
             return list;
         }
+        //
         public List<OrderUnitModel> GetAllOrderUnit()
         {
             List<OrderUnitDto> listDto = orderUnitManager.GetAllOrderUnits();
             List<OrderUnitModel> list = mapper.Map<List<OrderUnitModel>>(listDto);
             return list;
         }
-
+        //
         public List<WorkPlaceModel> GetAllWorkplace()
         {
             List<WorkPlaceDto> listDto = workplaceManager.GetAllWorkplaces();
             List<WorkPlaceModel> list = mapper.Map<List<WorkPlaceModel>>(listDto);
             return list;
         }
-
+        //
         public List<AdditionalServiceModel> GetAllAdditionalService()
         {
             List<AdditionalServiceModel> list = new List<AdditionalServiceModel>();
@@ -213,7 +146,7 @@ namespace CoCoCoWorking.BLL
                 {
                     foreach (OrderUnitDto orderUnit in order.OrderUnits!)
                     {
-                        if ((DateTime.Parse(orderUnit.EndDate!) - DateTime.Parse(orderUnit.EndDate!)).Days > 30)
+                        if ((DateTime.Parse(orderUnit.EndDate!) - DateTime.Parse(orderUnit.StartDate!)).Days > 30)
                         {
                             return true;
                         }
@@ -269,12 +202,14 @@ namespace CoCoCoWorking.BLL
             }
             return lastDate.ToString();
         }
+        //
         public void AddCustomerToBase(string firstName, string lastName, string phone, string email)
         {
             CustomerModel customer = new CustomerModel() {FirstName = firstName, LastName = lastName, PhoneNumber = phone, Email = email};
             CustomersWithOrdersDto customerDto = mapper.Map<CustomersWithOrdersDto>(customer);
             customerManager.AddCustomer(customerDto);
         }
+        //
         public void UpdateCustomerInBase(CustomerModel customer)
         {            
             CustomersWithOrdersDto customerDto = mapper.Map<CustomersWithOrdersDto>(customer);
@@ -291,7 +226,7 @@ namespace CoCoCoWorking.BLL
         {
             return unitOrders.Sum(unit => unit.OrderUnitCost);
         }
-
+        //
         public string AddOrderInBase(OrderModel order)
         {
             OrderManager orderManager = new OrderManager();
@@ -299,42 +234,54 @@ namespace CoCoCoWorking.BLL
             var idEnd = orderManager.AddOrder(orderDto);
             return idEnd;
         }
+        //
         public AdditionalServiceModel GetAditionalServiceById(int serviceId)
         {
-            AdditionalServiceModel additionalServiceModel = new AdditionalServiceModel();
             AdditionalServiceDto additionalServiceDto = additionalServiceManager.GetAdditionalServiceByID(serviceId);
-            additionalServiceModel = mapper.Map<AdditionalServiceModel>(additionalServiceDto);
+            AdditionalServiceModel additionalServiceModel = mapper.Map<AdditionalServiceModel>(additionalServiceDto);
             return additionalServiceModel;
         }
-        
+        //
         public void UpdateAdditionalService(AdditionalServiceModel additionalService)
         {
             AdditionalServiceDto additionalServiceDto = mapper.Map<AdditionalServiceDto>(additionalService);
             additionalServiceManager.UpdateAdditionalService(additionalServiceDto);
         }
-
+        //
         public List<OrderModel> GetOrderByCustomerID(int id)
         {
             List<OrderDto> listDto = orderManager.OrderGetByCustomerId(id);
             List<OrderModel> order = mapper.Map<List<OrderModel>>(listDto);
             return order;
         }
+        //
         public void AddUnitOrdertoBase(OrderUnitModel orderUnit)
         {
             OrderUnitManager orderUnitManager = new OrderUnitManager();
             OrderUnitDto orderDto = mapper.Map<OrderUnitDto>(orderUnit);
             orderUnitManager.AddOrderUnit(orderDto);
         }
+        //
         public void DeleteAdditionalService(int serviceId)
         {
             additionalServiceManager.DeleteAdditionalService(serviceId);
         }
-
+        //
         public void AddRoom(RoomModel room)
         {
             RoomDto roomDto = mapper.Map<RoomDto>(room);
             roomManager.AddRoom(roomDto);
         }
 
-    }
+        public void AddRentPrice(RentPriceModel price)
+        {
+            RentPriceDto priceDto = mapper.Map<RentPriceDto>(price);
+            rentPriceManager.AddRentPrice(priceDto);
+        }
+
+        public void DeleteRentPrice(int id)
+        {
+            rentPriceManager.DeleteRentPrice(id);
+        }
+    }  
 }
