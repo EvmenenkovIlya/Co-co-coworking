@@ -147,6 +147,7 @@ namespace CoCoCoWorking.BLL
         //    return type;
         //}
 
+        //
         public List<FinanceReportModel> GetFinanceReportModels(DateTime startDate, DateTime endDate)
         {
             List<FinanceReportDto> listDto = financeReportManager.GetFinanceReport(startDate, endDate);
@@ -154,33 +155,35 @@ namespace CoCoCoWorking.BLL
             return list;
         }
 
+        //
         public List<FinanceReportByCustomerModel> GetFinanceReportByCustomerModels(DateTime startDate, DateTime endDate)
         {
             List<FinanceReportByCustomerDto> listDto = financeReportManager.GetFinanceReportByCustomer(startDate, endDate);
             List<FinanceReportByCustomerModel> list = mapper.Map<List<FinanceReportByCustomerModel>>(listDto);
             return list;
         }
-
+        //
         public List<RoomModel> GetAllRoom()
         {
             List<RoomDto> listDto = roomManager.GetAllRooms();
             List<RoomModel> list = mapper.Map<List<RoomModel>>(listDto);
             return list;
         }
+        //
         public List<OrderUnitModel> GetAllOrderUnit()
         {
             List<OrderUnitDto> listDto = orderUnitManager.GetAllOrderUnits();
             List<OrderUnitModel> list = mapper.Map<List<OrderUnitModel>>(listDto);
             return list;
         }
-
+        //
         public List<WorkPlaceModel> GetAllWorkplace()
         {
             List<WorkPlaceDto> listDto = workplaceManager.GetAllWorkplaces();
             List<WorkPlaceModel> list = mapper.Map<List<WorkPlaceModel>>(listDto);
             return list;
         }
-
+        //
         public List<AdditionalServiceModel> GetAllAdditionalService()
         {
             List<AdditionalServiceModel> list = new List<AdditionalServiceModel>();
@@ -213,7 +216,7 @@ namespace CoCoCoWorking.BLL
                 {
                     foreach (OrderUnitDto orderUnit in order.OrderUnits!)
                     {
-                        if ((DateTime.Parse(orderUnit.EndDate!) - DateTime.Parse(orderUnit.EndDate!)).Days > 30)
+                        if ((DateTime.Parse(orderUnit.EndDate!) - DateTime.Parse(orderUnit.StartDate!)).Days > 30)
                         {
                             return true;
                         }
@@ -269,12 +272,14 @@ namespace CoCoCoWorking.BLL
             }
             return lastDate.ToString();
         }
+        //
         public void AddCustomerToBase(string firstName, string lastName, string phone, string email)
         {
             CustomerModel customer = new CustomerModel() {FirstName = firstName, LastName = lastName, PhoneNumber = phone, Email = email};
             CustomersWithOrdersDto customerDto = mapper.Map<CustomersWithOrdersDto>(customer);
             customerManager.AddCustomer(customerDto);
         }
+        //
         public void UpdateCustomerInBase(CustomerModel customer)
         {            
             CustomersWithOrdersDto customerDto = mapper.Map<CustomersWithOrdersDto>(customer);
@@ -291,7 +296,7 @@ namespace CoCoCoWorking.BLL
         {
             return unitOrders.Sum(unit => unit.OrderUnitCost);
         }
-
+        //
         public string AddOrderInBase(OrderModel order)
         {
             OrderManager orderManager = new OrderManager();
@@ -299,6 +304,7 @@ namespace CoCoCoWorking.BLL
             var idEnd = orderManager.AddOrder(orderDto);
             return idEnd;
         }
+        //
         public AdditionalServiceModel GetAditionalServiceById(int serviceId)
         {
             AdditionalServiceModel additionalServiceModel = new AdditionalServiceModel();
@@ -306,30 +312,32 @@ namespace CoCoCoWorking.BLL
             additionalServiceModel = mapper.Map<AdditionalServiceModel>(additionalServiceDto);
             return additionalServiceModel;
         }
-        
-        public void UpdateAdditionalService(AdditionalServiceModel additionalService)
+        //
+        public void UpdateAdditionalService(AdditionalServiceModel additionalService) //на вход AdditionalServiceModel
         {
             AdditionalServiceDto additionalServiceDto = mapper.Map<AdditionalServiceDto>(additionalService);
             additionalServiceManager.UpdateAdditionalService(additionalServiceDto);
         }
-
+        //
         public List<OrderModel> GetOrderByCustomerID(int id)
         {
             List<OrderDto> listDto = orderManager.OrderGetByCustomerId(id);
             List<OrderModel> order = mapper.Map<List<OrderModel>>(listDto);
             return order;
         }
+        //
         public void AddUnitOrdertoBase(OrderUnitModel orderUnit)
         {
             OrderUnitManager orderUnitManager = new OrderUnitManager();
             OrderUnitDto orderDto = mapper.Map<OrderUnitDto>(orderUnit);
             orderUnitManager.AddOrderUnit(orderDto);
         }
+        //
         public void DeleteAdditionalService(int serviceId)
         {
             additionalServiceManager.DeleteAdditionalService(serviceId);
         }
-
+        //
         public void AddRoom(RoomModel room)
         {
             RoomDto roomDto = mapper.Map<RoomDto>(room);

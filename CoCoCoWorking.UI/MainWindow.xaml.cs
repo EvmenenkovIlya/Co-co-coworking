@@ -202,7 +202,6 @@ namespace CoCoCoWorking.UI
 
         private void ButtonSearchByNumber_Click(object sender, RoutedEventArgs e)
         {
-
             DataGridCustomers.ItemsSource = modelController.GetCustomerWithTheMatchedNumberIsReturned(TextBoxNumberForSearch.Text,_instance.CustomersToEdit);        
         }
 
