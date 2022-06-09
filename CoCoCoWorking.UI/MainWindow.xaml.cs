@@ -398,6 +398,7 @@ namespace CoCoCoWorking.UI
           
             if (DataGrid_UnitOrder.SelectedIndex == null || DataGrid_UnitOrder.SelectedItem is null )
             {
+                MessageBox.Show("Not all data entered");
                 return;
             }
 
@@ -408,6 +409,11 @@ namespace CoCoCoWorking.UI
 
         private void ButtonCreateOrder_Click(object sender, RoutedEventArgs e)
         {
+            if(ComboBoxOrderStatus.SelectedItem == null)
+            {
+                MessageBox.Show("Not all data entered");
+                return;
+            }
             CustomerModel customerSelected = DataGridCustomers.SelectedItem as CustomerModel;
             decimal orderCost = modelController.GetSumOrderUnits(unitOrdersToOrder); 
             OrderModel order = new OrderModel() { CustomerId = customerSelected.Id, OrderCost = orderCost, OrderStatus=ComboBoxOrderStatus.SelectedItem.ToString(), PaidDate=DateTime.Now.ToString() };
