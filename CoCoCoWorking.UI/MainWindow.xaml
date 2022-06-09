@@ -123,7 +123,7 @@
                     <Button x:Name="ButtonSearchByDateForOrder" Content="Search by date" HorizontalAlignment="Left" Height="38" Margin="45,200,0,0" VerticalAlignment="Top" Width="142"  FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonSearchByDateForOrder_Click"/>
                     <Button x:Name="ButtonReset" Content="Reset" HorizontalAlignment="Left" Height="38" Margin="834,200,0,0" VerticalAlignment="Top" Width="110"  FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonReset_Click"/>
                     <ComboBox Name="ComboBoxOrderStatus" HorizontalAlignment="Left" Margin="530,701,0,0" VerticalAlignment="Top" Width="167" Height="30"></ComboBox>
-                    <Label x:Name="Label_UnirOrderSum" Content="" HorizontalAlignment="Left" Height="30" Margin="702,659,0,0" VerticalAlignment="Top" Width="92"/>
+                    <Label x:Name="Label_UnirOrderSum" Content="" HorizontalAlignment="Left" Height="30" Margin="683,659,0,0" VerticalAlignment="Top" Width="257"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabItemAdministration" Header="Administration">
