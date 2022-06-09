@@ -56,13 +56,10 @@ namespace CoCoCoWorking.BLL
                 //.ForMember("Name", opt => opt.MapFrom(c => c.Name));
                 //cfg.CreateMap<OrderUnitDto, OrderUnitModel>();
 
-                //cfg.CreateMap<RentPriceDto, RentPriceCreateModel>().ReverseMap();
-                cfg.CreateMap<RentPriceDto, RentPriceModel>()
+                cfg.CreateMap<RentPriceDto, RentPriceModel>().ReverseMap()
                 .ForMember("RoomId", opt => opt.MapFrom(c => c.RoomId))
                 .ForMember("WorkPlaceInRoomId", opt => opt.MapFrom(c => c.WorkPlaceInRoomId))
                 .ForMember("AdditionalServiceId", opt => opt.MapFrom(c => c.AdditionalServiceId))
-                .ForMember("Type", opt => opt.MapFrom(c => modelController.GetTypeOfProductForRentPriceModel(c)))
-                .ForMember("Name", opt => opt.MapFrom(c => modelController.GetNameForRentPriceModel(c)))
                 .ForMember("Hours", opt => opt.MapFrom(c => c.Hours))
                 .ForMember("RegularPrice", opt => opt.MapFrom(c => c.RegularPrice))
                 .ForMember("ResidentPrice", opt => opt.MapFrom(c => c.ResidentPrice))

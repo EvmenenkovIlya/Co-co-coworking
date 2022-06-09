@@ -177,16 +177,16 @@
                         <TextBox x:Name="TextBoxRegularPrice" HorizontalAlignment="Left" Height="26" Margin="138,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="158" Text="RegularPrice"/>
                         <Label x:Name="LabelResidentPrice" Content="Resident" HorizontalAlignment="Left" Height="35" Margin="34,149,0,0" VerticalAlignment="Top" Width="106" FontSize="14" FontWeight="Bold"/>
                         <TextBox x:Name="TextBoxResidentPrice" HorizontalAlignment="Left" Height="26" Margin="138,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="158" Text="Resident Price"/>
-                        <Button x:Name="ButtonSavePriceAdministration" Content="Save Price" HorizontalAlignment="Left" Height="35" Margin="334,235,0,0" VerticalAlignment="Top" Width="92" FontWeight="Bold" Background="#FF9FDFF2"/>
+                        <Button x:Name="ButtonSavePriceAdministration" Content="Save Price" HorizontalAlignment="Left" Height="35" Margin="334,235,0,0" VerticalAlignment="Top" Width="92" FontWeight="Bold" Background="#FF9FDFF2" Click="ButtonSavePriceAdministration_Click"/>
                         <Label x:Name="LabelFixedPriceWP" Content="Fixed" HorizontalAlignment="Left" Height="36" Margin="34,187,0,0" VerticalAlignment="Top" Width="86" FontWeight="Bold" FontSize="14"/>
-                        <TextBox x:Name="TextBoxFixedPriceWP" HorizontalAlignment="Left" Height="26" Margin="138,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="158" Text="Fixed Price"/>
-                        <CheckBox Content="for workplace in this room" HorizontalAlignment="Left" Margin="152,20,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="TextBoxFixedPrice" HorizontalAlignment="Left" Height="26" Margin="138,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="158" Text="Fixed Price"/>
+                        <CheckBox x:Name="CheckBoxPriceForWorkplace" Content="for workplace in this room" HorizontalAlignment="Left" Margin="152,20,0,0" VerticalAlignment="Top"/>
                         <Label x:Name="LabelRegularPrice_Copy" Content="Period:" HorizontalAlignment="Left" Height="36" Margin="34,62,0,0" VerticalAlignment="Top" Width="86" FontWeight="Bold" FontSize="14"/>
                     </Grid>
-                    <DataGrid x:Name="DataGridProductsAdministration" HorizontalAlignment="Center" Height="284" VerticalAlignment="Top" Width="446" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,18,0,0" Grid.Column="1"/>
+                    <DataGrid x:Name="DataGridProductsAdministration" HorizontalAlignment="Center" Height="284" VerticalAlignment="Top" Width="446" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,18,0,0" Grid.Column="1" SelectionChanged="DataGridProductsAdministration_SelectionChanged" CellEditEnding="DataGridProductsAdministration_CellEditEnding"/>
                     <Label Content="Add new" HorizontalAlignment="Left" Margin="17,70,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Height="31" Width="77"/>
                     <Label x:Name="LabelTypeRoomAdministration" Content="Type" HorizontalAlignment="Left" Height="29" Margin="17,116,0,0" VerticalAlignment="Top" Width="64" FontWeight="Bold" FontSize="14"/>
-                    <ComboBox x:Name="ComboBoxTypeOfRoom" HorizontalAlignment="Left" Margin="95,120,0,0" VerticalAlignment="Top" Width="269" Height="22" SelectedIndex="0"/>
+                    <ComboBox x:Name="ComboBoxTypeOfRoom" HorizontalAlignment="Left" Margin="95,120,0,0" VerticalAlignment="Top" Width="269" Height="22" SelectedIndex="0" SelectionChanged="ComboBoxTypeOfRoom_SelectionChanged_1"/>
 
 
                 </Grid>

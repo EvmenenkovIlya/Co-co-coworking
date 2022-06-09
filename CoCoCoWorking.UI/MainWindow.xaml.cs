@@ -293,20 +293,16 @@ namespace CoCoCoWorking.UI
             switch (ComboBoxTypeAdministration.SelectedIndex)
             {
                 case 0:
-                    if (ComboBoxTypeAdministration.SelectedIndex == 0)
+                    RoomModel newRoom = new RoomModel();
+                    newRoom.Name = TextBoxProductName.Text;
+                    newRoom.Type = (TypeOfProduct)Enum.Parse(typeof(TypeOfProduct), ComboBoxTypeOfRoom.SelectedValue.ToString());
+                    if (ComboBoxTypeOfRoom.SelectedIndex == 0)
                     {
-                        RoomModel newRoom = new RoomModel();
-                        newRoom.Name = TextBoxProductName.Text;
-                        newRoom.Type = (TypeOfProduct)Enum.Parse(typeof(TypeOfProduct), ComboBoxTypeOfRoom.SelectedValue.ToString());
-                        if (ComboBoxTypeOfRoom.SelectedIndex == 0)
-                        {
-                            newRoom.WorkPlaceNumber = Int32.Parse(TextBoxProductCount.Text);
-                        }
-                        modelController.AddRoom(newRoom);
-                        _instance.UpdateInstance();
-                        DataGridProductsAdministration.ItemsSource = _instance.Rooms;
-                    }                   
-                    
+                        newRoom.WorkPlaceNumber = Int32.Parse(TextBoxProductCount.Text);
+                    }
+                    modelController.AddRoom(newRoom);
+                    _instance.UpdateInstance();
+                    DataGridProductsAdministration.ItemsSource = _instance.Rooms;
                     break;
                 case 1:                    
                     break;                  
@@ -319,8 +315,8 @@ namespace CoCoCoWorking.UI
             {
                 return;
             }
-            //unitOrdersToOrder.RemoveAt(DataGrid_UnitOrder.SelectedIndex);
-            DataGridRentPrices.Items.Refresh();
+            modelController.DeleteRentPrice(DataGridRentPrices.SelectedIndex);
+            DataGridRentPrices.ItemsSource = administrationController.GetRentPrices(DataGridProductsAdministration.SelectedIndex);
         }
 
         private void ComboBoxTypeAdministration_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -416,6 +412,55 @@ namespace CoCoCoWorking.UI
         }
 
         private void ComboBoxChooseAddOrEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ComboBoxTypeOfRoom_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            switch (ComboBoxTypeOfRoom.SelectedIndex)
+            {
+                case 0:
+                    TextBoxProductCount.IsEnabled = true;
+                    CheckBoxPriceForWorkplace.IsEnabled = true;
+                    break;
+                case 1:
+                    TextBoxProductCount.IsEnabled = false;
+                    CheckBoxPriceForWorkplace.IsEnabled = false;
+                    break;
+                case 2:
+                    TextBoxProductCount.IsEnabled = false;
+                    CheckBoxPriceForWorkplace.IsEnabled = false;
+                    break;
+            }
+        }
+
+        private void DataGridProductsAdministration_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGridRentPrices.ItemsSource = administrationController.GetRentPrices(DataGridProductsAdministration.SelectedIndex);
+        }
+
+        private void ButtonSavePriceAdministration_Click(object sender, RoutedEventArgs e)
+        {
+            RentPriceModel newPrice = new RentPriceModel();
+            if (CheckBoxPriceForWorkplace.IsChecked == false)
+            {
+                newPrice.RoomId = DataGridProductsAdministration.SelectedIndex;
+            }
+            else if (CheckBoxPriceForWorkplace.IsChecked == true)
+            {
+                newPrice.WorkPlaceInRoomId = DataGridProductsAdministration.SelectedIndex;
+                newPrice.FixedPrice = Decimal.Parse(TextBoxFixedPrice.Text);
+            }
+            newPrice.Hours = administrationController.GetHours(ComboBoxTypePeriod.SelectedValue.ToString());
+            newPrice.RegularPrice = Decimal.Parse(TextBoxRegularPrice.Text);
+            newPrice.ResidentPrice = Decimal.Parse(TextBoxResidentPrice.Text);
+            modelController.AddRentPrice(newPrice);
+            _instance.UpdateInstance();
+            DataGridRentPrices.ItemsSource = administrationController.GetRentPrices(DataGridProductsAdministration.SelectedIndex);
+        }
+
+        private void DataGridProductsAdministration_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
 
         }
