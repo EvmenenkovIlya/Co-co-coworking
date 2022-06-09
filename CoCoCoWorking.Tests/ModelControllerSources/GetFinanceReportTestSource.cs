@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace CoCoCoWorking.Tests.ModelControllerSources
 {
-    public class GetFinanceReportTestSource : IEnumerable
+/*    public class GetFinanceReportModelsTestSource : IEnumerable
     {
         public IEnumerator GetEnumerator()
         { 
             
         }
-    }
+    }*/
 }

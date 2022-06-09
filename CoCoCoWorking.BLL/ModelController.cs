@@ -29,6 +29,11 @@ namespace CoCoCoWorking.BLL
             _controller = controller;
         }
 
+        public ModelController()
+        {
+
+        }
+
         public string GetProductName(FinanceReportDto f)
         {
             string s = "";
