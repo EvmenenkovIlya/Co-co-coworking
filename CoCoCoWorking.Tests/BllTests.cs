@@ -6,6 +6,7 @@ using CoCoCoWorking.Tests.ModelControllerSources;
 using CoCoCoWorking.BLL.Models;
 using CoCoCoWorking.DAL;
 using CoCoCoWorking.DAL.Interfaces;
+using NUnit.Framework;
 
 namespace CoCoCoWorking.Tests
 {

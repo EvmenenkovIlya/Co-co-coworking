@@ -2,7 +2,6 @@
 {
     public class OrderModel
     {
-
         public int Id { get; set; }
         public int CustomerId { get; set; }
         public decimal? OrderCost { get; set; }
@@ -12,7 +11,6 @@
 
         public OrderModel()
         { }
-    }
 
         public override bool Equals(object? obj)
         {
@@ -34,5 +32,6 @@
             }
             return flag;
         }
-        }
+        
+    }
 }

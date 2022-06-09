@@ -17,8 +17,11 @@ namespace CoCoCoWorking.BLL
        {
           _controller = controller;
        }
+        public TabOrderController()
+        {
 
-            public List <int> ConvertIntBusyDateRoom(List <DateTime> BusyDate)
+        }
+        public List <int> ConvertIntBusyDateRoom(List <DateTime> BusyDate)
         {
             for (int j = 0; j < BusyDate.Count; j++)
             {
@@ -215,6 +218,11 @@ namespace CoCoCoWorking.BLL
                 orderUnit.WorkPlaceInRoomId = room.Id;
 
             }
+            
+        }
+        public ITabOrderController GetITabOrderController()
+        {
+            return _controller;
         }
     }
 }

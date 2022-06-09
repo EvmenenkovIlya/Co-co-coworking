@@ -13,12 +13,11 @@ namespace CoCoCoWorking.BLL.Models
         public string EndDate { get; set; }
         public string Name { get; set; }
         public int? Number { get; set; }
-<<<<<<< HEAD:CoCoCoWorking.BLL/Models/GetAllUnitOrdersFromSpecificOrderModel.cs
+        public string Type { get; set; }
+        //public GetAllUnitOrdersFromSpecificOrderModel()
+        //{
 
-        public GetAllUnitOrdersFromSpecificOrderModel()
-        {
-
-        }
+        //}
 
         public override bool Equals(object? obj)
         {
@@ -41,12 +40,5 @@ namespace CoCoCoWorking.BLL.Models
             }
             return flag;
         }
-    }
-=======
-        public string Type { get; set; }
-
-        
-
-    }           
->>>>>>> main:CoCoCoWorking.BLL/Models/AllUnitOrdersFromSpecificOrderModel.cs
+    }                         
 }

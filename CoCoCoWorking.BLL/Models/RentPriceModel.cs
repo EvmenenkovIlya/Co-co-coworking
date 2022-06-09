@@ -34,7 +34,7 @@
                rpDto.AdditionalServiceId != this.AdditionalServiceId ||
                rpDto.Type != this.Type ||
                rpDto.Name != this.Name ||
-               rpDto.PeriodType != this.PeriodType ||
+               rpDto.Hours != this.Hours ||
                rpDto.RegularPrice != this.RegularPrice ||
                rpDto.ResidentPrice != this.ResidentPrice ||
                rpDto.FixedPrice != this.FixedPrice
