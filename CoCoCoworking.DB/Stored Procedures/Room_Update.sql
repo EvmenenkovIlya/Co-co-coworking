@@ -1,9 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[Room_Update]
 	
 	@Id int,
-	@Type nvarchar (255),
 	@Name nvarchar (255),
-	@WorkPlaceNumber int
+	@WorkPlaceNumber int,
+	@Type nvarchar (255)
 
 AS
 BEGIN

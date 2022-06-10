@@ -64,13 +64,7 @@ namespace CoCoCoWorking.Tests
 
         //GetNameForRentPriceModel
 
-        //[TestCaseSource(typeof(GetTypeOfPeriodTestSource))]
-        //public void GetTypeOfPeriodTest(RentPriceDto rentPrice, TypeOfPeriod expected)
-        //{
-        //    TypeOfPeriod actual = _modelController.GetTypeOfPeriod(rentPrice);
 
-        //    Assert.AreEqual(expected, actual);
-        //}
 
         /*[TestCaseSource(typeof(GetFinanceReportModelsTestSource))]
         public void GetFinanceReportModelsTest

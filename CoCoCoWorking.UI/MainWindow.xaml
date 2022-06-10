@@ -87,7 +87,7 @@
                             </LinearGradientBrush>
                         </TextBlock.Background>
                     </TextBlock>
-                    <Button Name="ButtonResetCustomer" Content="Reset Customer" Height="30" Width="150" VerticalAlignment="Top" Margin="522,15,322,0" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonResetCustomer_Click"/>
+                    <Button Name="ButtonResetCustomer" Content="Reset Customer" Height="30" Width="140" VerticalAlignment="Top" Margin="522,15,322,0" FontWeight="Bold" FontFamily="Arial Black" FontSize="14" Click="ButtonResetCustomer_Click"/>
                     <ComboBox x:Name="Combobox_PurchaseType" HorizontalAlignment="Left" Height="33" Margin="463,60,0,0" VerticalAlignment="Top" Width="477" SelectionChanged="Combobox_PurchaseType_SelectionChanged" />
                     <DataGrid x:Name="DataGrid_Order" CanUserAddRows="False" HorizontalAlignment="Left" Height="446" Margin="45,250,0,0" VerticalAlignment="Top" Width="413" AutoGenerateColumns="False">
                         <DataGrid.Columns>
