@@ -414,12 +414,14 @@ namespace CoCoCoWorking.UI
                 modelController.AddUnitOrdertoBase(orderUnit);
             }
 
+            DataGrid_Order.ItemsSource = modelController.GetOrderByCustomerID(customerSelected.Id);
             DataGrid_UnitOrder.ItemsSource = null;
             unitOrdersToOrder.Clear();
             _instance.UpdateInstance();
             DataGrid_Order.Items.Refresh();
             Combobox_PurchaseType.SelectedIndex = -1;
             Combobox_ChooseWorkplace.SelectedIndex = -1;
+
         }
         private void ButtonResetCustomer_Click(object sender, RoutedEventArgs e)
         {
