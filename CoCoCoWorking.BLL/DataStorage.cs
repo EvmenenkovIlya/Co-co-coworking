@@ -13,6 +13,7 @@ namespace CoCoCoWorking.BLL
         public List<WorkPlaceModel> WorkPlaces { get; private set; }
         public List<OrderUnitModel> OrderUnits { get; private set; }
 
+        //public List<OrderUnitModel> OrderUnits { get; private set; }
         public List<TypeOfProduct> typeOfProducts= new List<TypeOfProduct>() { TypeOfProduct.MiniOffice,TypeOfProduct.ConferenceHall,TypeOfProduct.MeetingRoom,TypeOfProduct.WorkPlace, TypeOfProduct.WorkPlaceFixed, TypeOfProduct.AdditionalService};        
 
         private static DataStorage _instance;       

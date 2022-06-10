@@ -8,6 +8,6 @@
         private const string _IlyaBServer = @"Server=LAPTOP-SLNPF1AK;Database=CoCoCoworking.DB;Trusted_Connection=True;";
         private const string _DaniilServer = @"Server=DESKTOP-3318FA3;Database=CoCoCoworking.DB;Trusted_Connection=True;";
         private const string _EmilServer = @"Server=.;Database=CoCoCoworking.DB;Trusted_Connection=True;";
-        public const string ConnectionOption = _ilyaEServer;
+        public const string ConnectionOption = _LevServer;
     }
 }
