@@ -1,26 +1,14 @@
 ﻿using CoCoCoWorking.DAL.DTO;
-using CoCoCoWorking.DAL.Interfaces;
+
 using Dapper;
 using System.Data.SqlClient;
 
 
 namespace CoCoCoWorking.DAL
 {
-    public class FinanceReportManager : IFinanceReportManager
+    public class FinanceReportManager
     {
         public string connectionString = ServerOptions.ConnectionOption;
-
-        private IFinanceReportManager _financeReportManager;
-
-        public FinanceReportManager()
-        {
-
-        }
-
-        public FinanceReportManager(IFinanceReportManager financeReport)
-        {
-            _financeReportManager = financeReport;
-        }
 
         public List<FinanceReportDto> GetFinanceReport(DateTime startDate, DateTime endDate)
         {
