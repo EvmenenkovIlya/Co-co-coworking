@@ -316,7 +316,8 @@ namespace CoCoCoWorking.UI
             dynamic row = DataGridRentPrices.SelectedItem;
             modelController.DeleteRentPrice(row.Id);
             _instance.UpdateInstance();
-            DataGridRentPrices.ItemsSource = administrationController.GetRentPrices(ComboBoxTypeAdministration.SelectedIndex, DataGridProductsAdministration.SelectedIndex + 1);
+            dynamic model = DataGridProductsAdministration.SelectedItem;
+            DataGridRentPrices.ItemsSource = administrationController.GetRentPrices(ComboBoxTypeAdministration.SelectedIndex, model.Id);
         }
 
         private void ComboBoxTypeAdministration_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -495,7 +496,11 @@ namespace CoCoCoWorking.UI
         }
         private void DataGridProductsAdministration_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DataGridRentPrices.ItemsSource = administrationController.GetRentPrices(ComboBoxTypeAdministration.SelectedIndex, DataGridProductsAdministration.SelectedIndex + 1);
+            if (DataGridProductsAdministration.SelectedIndex >= 0)
+            {
+            dynamic model = DataGridProductsAdministration.SelectedItem;
+            DataGridRentPrices.ItemsSource = administrationController.GetRentPrices(ComboBoxTypeAdministration.SelectedIndex, model.Id);               
+            }
         }
         private void ButtonSavePriceAdministration_Click(object sender, RoutedEventArgs e)
         {
@@ -515,7 +520,8 @@ namespace CoCoCoWorking.UI
             newPrice.ResidentPrice = Decimal.Parse(TextBoxResidentPrice.Text);
             modelController.AddRentPrice(newPrice);
             _instance.UpdateInstance();
-            DataGridRentPrices.ItemsSource = administrationController.GetRentPrices(ComboBoxTypeAdministration.SelectedIndex, row.Id);
+            dynamic model = DataGridProductsAdministration.SelectedItem;
+            DataGridRentPrices.ItemsSource = administrationController.GetRentPrices(ComboBoxTypeAdministration.SelectedIndex, model.Id);
         }
     }
 }
